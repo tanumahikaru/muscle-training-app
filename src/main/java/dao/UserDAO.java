@@ -107,6 +107,7 @@ public class UserDAO {
 		}
 		return null;
 	}
+	
 	public static int registertentative(String mail,String hash) {
 		String sql = "INSERT INTO project_tentative VALUES(default, ?, ?)";
 		int result = 0;

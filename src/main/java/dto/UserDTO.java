@@ -8,6 +8,7 @@ public class UserDTO {
 	private String password;
 	private String hashedPassword;
 	
+	
 	public UserDTO(int id, String name, String mail, String salt, String password, String hashedPassword) {
 		super();
 		this.id = id;
