@@ -63,18 +63,10 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(user.getId());
 		} else {
 			// ログイン情報をセッションに登録
-			int rootid=UserDAO.selectroot(user.getId());
 			String view;
-			if(rootid==-1) {
-				HttpSession session = request.getSession();
-				session.setAttribute("user", user);
-				 view = "WEB-INF/view/user-menu.jsp";
-
-			}else {				
-				HttpSession session = request.getSession();
-				session.setAttribute("root", user);
-				view = "WEB-INF/view/root-menu.jsp";
-			}
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			view = "WEB-INF/view/user-menu.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
 		}
