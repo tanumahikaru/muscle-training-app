@@ -1,64 +1,29 @@
 @charset "UTF-8";
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f7f6;
-  margin: 0;
-  padding: 0;
+
+body{
+	background-image: url("../img/haikei1.jpg");
+    background-size: cover;
+    background-color: #EEF3F9;
+    
+}
+.header-banner {
+    background-color: #2941BC; /* 帯の背景色を設定 */
+    color: white; /* 帯内の文字の色を設定 */
+    padding: 10px; /* 帯の内側の余白を設定 */
+    text-align: left; /* テキストを中央寄せに設定 */
+    margin: 0; /* 上下のマージンを0に設定 */
+    position: fixed; /* ヘッダーを固定位置に設定 */
+    top: 0; /* 上端に配置 */
+    left: 0; /* 左端に配置 */
+    width: 100%; /* 画面幅いっぱいに広げる */
+    height: 50px; /* 帯の高さを設定 (適切な高さに調整) */
+
 }
 
-.signup-container {
-  background-color: white;
-  width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.header-banner h1 {
+    margin: 0; /* h1要素のマージンをリセット */
 }
-
-h1 {
-  text-align: center;
-  color: #333;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.form-group input[type="text"],
-.form-group input[type="date"],
-.form-group input[type="number"],
-.form-group input[type="email"],
-.form-group input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.form-group input[type="radio"] {
-  margin-right: 5px;
-}
-
-.hint {
-  display: block;
-  font-size: 0.85em;
-  color: #666;
-}
-
-.signup-button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #5c67f2;
-  color: white;
-  cursor: pointer;
-}
-
-.signup-button:hover {
-  background-color: #4a55d7;
+.box3{
+	text-align: center;
+	margin-top: 250px;
 }

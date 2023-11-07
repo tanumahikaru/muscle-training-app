@@ -16,6 +16,7 @@ public class UserDTO {
 		this.salt = salt;
 		this.password = password;
 		this.hashedPassword = hashedPassword;
+		
 	}
 
 	public int getId() {

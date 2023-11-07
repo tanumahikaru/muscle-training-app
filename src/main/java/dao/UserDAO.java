@@ -109,6 +109,7 @@ public class UserDAO {
 		}
 		return null;
 	}
+	
 	public static int registertentative(String mail,String hash) {
 		String sql = "INSERT INTO project_tentative VALUES(default, ?, ?)";
 		int result = 0;
@@ -128,6 +129,10 @@ public class UserDAO {
 			System.out.println(result + "件更新しました。");
 		}
 		return result;
+	}
+	public static int selectroot1(int id) {
+		// TODO 自動生成されたメソッド・スタブ
+		return 0;
 	}
 	public static String selecttentative(String path) {
 
@@ -246,3 +251,4 @@ public class UserDAO {
 		return result;
 	}
 }
+
