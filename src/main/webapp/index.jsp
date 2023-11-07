@@ -13,7 +13,7 @@
 		if(request.getParameter("error") != null){	
 	%>
 	<p style="color:red">ログイン失敗</p>
-	<p>○○図書館</p><br>
+	<p>筋トレ</p><br>
 	<div class="box3">
 	<form action="LoginServlet" method="post">
 		<input type="text" name="mail" placeholder="E-mail" value="<%=request.getParameter("mail") %>"><br>
@@ -28,7 +28,7 @@
 	<%
 		} else {
 	%>
-	<p>○○図書館</p><br>
+	<p>筋トレ</p><br>
 	<div class="box3">
 	<form action="LoginServlet" method="post">
 		<input type="text" name="mail" placeholder="E-mail" required><br>
