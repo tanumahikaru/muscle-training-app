@@ -28,7 +28,10 @@
 	<%
 		} else {
 	%>
+<<<<<<< HEAD
 	
+=======
+>>>>>>> refs/remotes/origin/hatakeyama
 	<p>筋トレ</p><br>
 	<div class="box3">
 	<form action="LoginServlet" method="post">

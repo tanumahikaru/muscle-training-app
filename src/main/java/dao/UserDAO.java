@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import dto.UserDTO;
 import util.GenerateHashedPw;
@@ -128,9 +130,125 @@ public class UserDAO {
 		}
 		return result;
 	}
-	public static int selectroot(int id) {
+	public static int selectroot1(int id) {
 		// TODO 自動生成されたメソッド・スタブ
 		return 0;
+	}
+	public static String selecttentative(String path) {
+
+		String sql = "SELECT * FROM project_tentative where tent = ?";
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setString(1, path);
+			try (ResultSet rs = pstmt.executeQuery()){
+				if(rs.next()) {
+					String mail= rs.getString("mail");
+					return mail;
+				}
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+			}catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+		return null;
+	}
+	public static int Updatuser(String passwd,String mail) {
+		String sql = "UPDATE project_user set salt = ? ,password = ? where mail = ?";
+	String salt = GenerateSalt.getSalt(32);
+	
+	String hashedPw = GenerateHashedPw.getSafetyPassword(passwd, salt);
+		int result = 0;
+		
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+				pstmt.setString(1,salt);
+				pstmt.setString(2,hashedPw);
+				pstmt.setString(3,mail);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件を更新しました。");
+		}
+		return result;
+	}
+	public static int selectroot(int num) {
+		int result=-1;
+		String sql = "SELECT * FROM project_root WHERE user_id = ?";
+		
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setInt(1, num);
+
+			try (ResultSet rs = pstmt.executeQuery()){
+				
+				if(rs.next()) {
+					result= rs.getInt("user_id");
+				return result;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public static String SelectUser(int num) {
+		String result=null;
+		String sql = "SELECT * FROM project_user WHERE id = ?";
+		
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setInt(1, num);
+
+			try (ResultSet rs = pstmt.executeQuery()){
+				
+				if(rs.next()) {
+					result= rs.getString("mail");
+				return result;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	//全件取得
+	public static List<UserDTO> selectAllRoot() {
+		List<UserDTO> result = new ArrayList<>();
+		String sql = "SELECT * FROM project_root";
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			try (ResultSet rs = pstmt.executeQuery()){
+				while(rs.next()) {
+					int id = rs.getInt("user_id");
+					UserDTO log=new UserDTO(id, null, null, null, null, null);
+					result.add(log);
+				}
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+			}catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+		return result;
 	}
 }
 
