@@ -13,30 +13,31 @@
 		if(request.getParameter("error") != null){	
 	%>
 	<p style="color:red">ログイン失敗</p>
-	<p>筋トレ</p><br>
+	
 	<div class="box3">
 	<form action="LoginServlet" method="post">
-		<input type="text" name="mail" placeholder="E-mail" value="<%=request.getParameter("mail") %>"><br>
-		<input type="password" name="pw" placeholder="password"><br>
-		<input type="submit" value="SIGN-IN">
+		メールアドレス<input type="text" name="mail" placeholder="E-mail" value="<%=request.getParameter("mail") %>"><br>
+		<p>パスワード</p><br>
+		半角英数字8~16文字<input type="password" name="pw" placeholder="password"><br>
+		<input type="submit" value="ログイン">
 	</form>
 
-	<a href="RegisterFormServlet">新規登録</a><br>
-	<a href="ForgetPasswordFormServlet">パスワードを忘れた方はこちらから</a>
+	<a href="RegisterFormServlet">新規アカウント登録はこちら</a><br>
+	<a href="ForgetPasswordFormServlet">パスワード変更はこちらから</a>
   	</div>
     
 	<%
 		} else {
 	%>
-	<p>筋トレ</p><br>
+	
 	<div class="box3">
 	<form action="LoginServlet" method="post">
-		<input type="text" name="mail" placeholder="E-mail" required><br>
-		<input type="password" name="pw" placeholder="password" required><br>
-		<input type="submit" value="SIGN-IN" class="hoge">
+		メールアドレス<input type="text" name="mail" placeholder="E-mail" value="<%=request.getParameter("mail") %>"><br>
+		パスワード<br>
+		半角英数字8~16文字<input type="password" name="pw" placeholder="password"><br>
 	</form>
-	<a href="RegisterFormServlet">新規登録</a><br>
-	<a href="ForgetPasswordFormServlet">パスワードを忘れた方はこちらから</a>
+	<a href="RegisterFormServlet">新規アカウント登録はこちら</a><br>
+	<a href="ForgetPasswordFormServlet">パスワード変更はこちらから</a>
 </div>
 	<%
 		}
