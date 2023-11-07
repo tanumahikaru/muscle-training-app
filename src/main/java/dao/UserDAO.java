@@ -130,10 +130,7 @@ public class UserDAO {
 		}
 		return result;
 	}
-	public static int selectroot(int id) {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
-	}
+
 	public static String selecttentative(String path) {
 
 		String sql = "SELECT * FROM project_tentative where tent = ?";

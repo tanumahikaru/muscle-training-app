@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(user.getId());
 		} else {
 			// ログイン情報をセッションに登録
-			int rootid=UserDAO.selectroot(user.getId());
+			int rootid=UserDAO.selectroot1(user.getId());
 			String view;
 			if(rootid==-1) {
 				HttpSession session = request.getSession();
