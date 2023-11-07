@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/backnumber.css">
+<link rel="stylesheet" href="css/style.css">
 <title>ログイン画面</title>
 </head>
 <body>
@@ -12,8 +12,11 @@
 		request.setCharacterEncoding("UTF-8");
 		if(request.getParameter("error") != null){	
 	%>
+	<div class="header-banner">
+        <h1>筋トレ</h1>
+    </div>
+    <div class="main">
 	<p style="color:red">ログイン失敗</p>
-	<p>筋トレ</p><br>
 	<div class="box3">
 	<form action="LoginServlet" method="post">
 		<input type="text" name="mail" placeholder="E-mail" value="<%=request.getParameter("mail") %>"><br>
@@ -23,16 +26,15 @@
 
 	<a href="RegisterFormServlet">新規登録</a><br>
 	<a href="ForgetPasswordFormServlet">パスワードを忘れた方はこちらから</a>
+	</div>
   	</div>
     
 	<%
 		} else {
 	%>
-<<<<<<< HEAD
-	
-=======
->>>>>>> refs/remotes/origin/hatakeyama
-	<p>筋トレ</p><br>
+	<div class="header-banner">
+        <h1>筋トレ</h1>
+    </div>
 	<div class="box3">
 	<form action="LoginServlet" method="post">
 		<input type="text" name="mail" placeholder="E-mail" required><br>
