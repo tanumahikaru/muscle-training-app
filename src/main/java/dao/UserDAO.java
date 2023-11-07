@@ -130,11 +130,10 @@ public class UserDAO {
 		}
 		return result;
 	}
-<<<<<<< HEAD
 	public static int selectroot(int id) {
 		// TODO 自動生成されたメソッド・スタブ
 		return 0;
-=======
+	}
 	public static String selecttentative(String path) {
 
 		String sql = "SELECT * FROM project_tentative where tent = ?";
@@ -181,7 +180,7 @@ public class UserDAO {
 		}
 		return result;
 	}
-	public static int selectroot(int num) {
+	public static int selectroot1(int num) {
 		int result=-1;
 		String sql = "SELECT * FROM project_root WHERE user_id = ?";
 		
@@ -250,7 +249,6 @@ public class UserDAO {
 				e.printStackTrace();
 			}
 		return result;
->>>>>>> branch 'main' of git@github.com:tanumahikaru/muscle-training-app.git
 	}
 }
 
