@@ -15,8 +15,8 @@
 	<div class="header-banner">
         <h1>筋トレ</h1>
     </div>
-	<p style="color:red">ログイン失敗</p>
 	<div class="box3">
+	<p style="color:red">ログイン失敗</p>
 	<form action="LoginServlet" method="post">
 		メールアドレス<input type="text" name="mail" placeholder="E-mail" value="<%=request.getParameter("mail") %>"><br>
 		<p>パスワード</p><br>

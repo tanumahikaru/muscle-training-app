@@ -4,13 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/style.css">
 <title>新規登録画面</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-あとで修正
+<div class="header-banner">
+        <h1>筋トレ</h1>
+    </div>
   <div class="signup-container">
+  あとで修正
     <header>
       <h1>新規登録</h1>
     </header>
