@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/style.css">
 <title>新規登録画面</title>
 <link rel="stylesheet" href="css/register-user.css">
 <link rel="stylesheet" href="css/style.css">
@@ -12,9 +13,20 @@
         <h1>筋トレ</h1>
     </div>
 <body>
+<<<<<<< HEAD
 
   <div class="signup-container">
 	<h2>新規登録</h2>
+=======
+<div class="header-banner">
+        <h1>筋トレ</h1>
+    </div>
+  <div class="signup-container">
+  あとで修正
+    <header>
+      <h1>新規登録</h1>
+    </header>
+>>>>>>> main
     <form class="signup-form">
       <div class="form-group">
         <label for="username">ニックネーム</label>
