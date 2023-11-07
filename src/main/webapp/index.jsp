@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/backnumber.css">
+<link rel="stylesheet" href="css/style.css">
 <title>ログイン画面</title>
 </head>
 <body>
@@ -12,32 +12,42 @@
 		request.setCharacterEncoding("UTF-8");
 		if(request.getParameter("error") != null){	
 	%>
+	<div class="header-banner">
+        <h1>筋トレ</h1>
+    </div>
+    <div class="main">
 	<p style="color:red">ログイン失敗</p>
-	<p>筋トレ</p><br>
 	<div class="box3">
 	<form action="LoginServlet" method="post">
-		<input type="text" name="mail" placeholder="E-mail" value="<%=request.getParameter("mail") %>"><br>
-		<input type="password" name="pw" placeholder="password"><br>
-		<input type="submit" value="SIGN-IN">
+		メールアドレス<input type="text" name="mail" placeholder="E-mail" value="<%= (request.getParameter("mail") != null) ? request.getParameter("mail") : "" %>"><br>
+		半角英数字8~16文字<input type="password" name="pw" placeholder="password"><br>
+		<input type="submit" value="ログイン">
 	</form>
 
 	<a href="RegisterFormServlet">新規登録</a><br>
 	<a href="ForgetPasswordFormServlet">パスワードを忘れた方はこちらから</a>
-  	</div>
+	</div>
+	</div>
     
 	<%
 		} else {
 	%>
-	<p>筋トレ</p><br>
+
+	<div class="header-banner">
+        <h1>筋トレ</h1>
+    </div>
+
 	<div class="box3">
 	<form action="LoginServlet" method="post">
-		<input type="text" name="mail" placeholder="E-mail" required><br>
-		<input type="password" name="pw" placeholder="password" required><br>
-		<input type="submit" value="SIGN-IN" class="hoge">
+		メールアドレス<input type="text" name="mail" placeholder="E-mail" value="<%= (request.getParameter("mail") != null) ? request.getParameter("mail") : "" %>"><br>
+		パスワード<br>
+		半角英数字8~16文字<input type="password" name="pw" placeholder="password"><br>
+		<input type="submit" value="ログイン">
 	</form>
-	<a href="RegisterFormServlet">新規登録</a><br>
-	<a href="ForgetPasswordFormServlet">パスワードを忘れた方はこちらから</a>
+	<a href="RegisterFormServlet">新規アカウント登録はこちら</a><br>
+	<a href="ForgetPasswordFormServlet">パスワード変更はこちらから</a>
 </div>
+
 	<%
 		}
 	%>
