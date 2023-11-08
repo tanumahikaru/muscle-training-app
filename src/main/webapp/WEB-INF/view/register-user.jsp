@@ -52,8 +52,9 @@
         <span class="hint">半角英数字8〜16文字</span>
       </div>
       <div class="form-group">
-        <button type="submit" class="signup-button">確認</button>
-      </div>
+        <button type="submit" class="signup-button">確認</button><br>
+		<button type="button" class="back-button">戻る</button>      
+	  </div>
     </form>
   </div>
   
