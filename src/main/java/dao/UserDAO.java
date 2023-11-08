@@ -3,12 +3,11 @@ package dao;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import dto.UserDTO;
 import util.GenerateHashedPw;
@@ -30,7 +29,7 @@ public class UserDAO {
 	    return DriverManager.getConnection(dbUrl, username, password);
 	}
 	public static int registerUser(UserDTO user) {
-		String sql = "INSERT INTO project_user VALUES(default, ?, ?, ?, ?, current_timestamp)";
+		String sql = "INSERT INTO muscle_users VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int result = 0;
 		
 		// ランダムなソルトの取得(今回は32桁で実装)
@@ -44,9 +43,16 @@ public class UserDAO {
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
 			pstmt.setString(1, user.getName());
-			pstmt.setString(2, user.getMail());
-			pstmt.setString(3, salt);
-			pstmt.setString(4, hashedPw);
+			pstmt.setString(2, salt);
+			pstmt.setString(3, hashedPw);
+			pstmt.setInt(4, user.getGender());
+			pstmt.setDate(5, (Date) user.getBirth());
+			pstmt.setFloat(6, user.getHeight());
+			pstmt.setString(7, user.getMail());
+			pstmt.setInt(8, user.getLevel());
+			pstmt.setInt(9, user.getTraining_program_id());
+			pstmt.setInt(10, user.getFood_id());
+			pstmt.setDate(11, (Date) user.getLast_login());
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -97,9 +103,15 @@ public class UserDAO {
 					int id = rs.getInt("id");
 					String name = rs.getString("name");
 					String salt = rs.getString("salt");
-					String createdAt = rs.getString("created_at");
+					int gender = rs.getInt("gender");
+					Date birth = rs.getDate("birth");
+					float height = rs.getFloat("height");
+					int level = rs.getInt("level");
+					int training_program_id = rs.getInt("training_program_id");
+					int food_id = rs.getInt("food_id");
+					Date last_login = rs.getDate("last_login");
 					
-					return new UserDTO(id, name, mail, salt, null, null);
+					return new UserDTO(id, name, salt, null, null, gender, birth, height, mail, level, training_program_id, food_id, last_login);
 				}
 			}
 		} catch (SQLException e) {
@@ -226,26 +238,26 @@ public class UserDAO {
 		return result;
 	}
 	//全件取得
-	public static List<UserDTO> selectAllRoot() {
-		List<UserDTO> result = new ArrayList<>();
-		String sql = "SELECT * FROM project_root";
-		try (
-				Connection con = getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				){
-			try (ResultSet rs = pstmt.executeQuery()){
-				while(rs.next()) {
-					int id = rs.getInt("user_id");
-					UserDTO log=new UserDTO(id, null, null, null, null, null);
-					result.add(log);
-				}
-			}
-		}catch (SQLException e) {
-			e.printStackTrace();
-			}catch (URISyntaxException e) {
-				e.printStackTrace();
-			}
-		return result;
-	}
+//	public static List<UserDTO> selectAllRoot() {
+//		List<UserDTO> result = new ArrayList<>();
+//		String sql = "SELECT * FROM project_root";
+//		try (
+//				Connection con = getConnection();
+//				PreparedStatement pstmt = con.prepareStatement(sql);
+//				){
+//			try (ResultSet rs = pstmt.executeQuery()){
+//				while(rs.next()) {
+//					int id = rs.getInt("user_id");
+//					UserDTO log=new UserDTO(id, null, null, null, null, null);
+//					result.add(log);
+//				}
+//			}
+//		}catch (SQLException e) {
+//			e.printStackTrace();
+//			}catch (URISyntaxException e) {
+//				e.printStackTrace();
+//			}
+//		return result;
+//	}
 }
 
