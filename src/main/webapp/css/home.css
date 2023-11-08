@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+/* ドロワーメニューの初期状態は非表示に設定 */
+.menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  padding-top: 60px; /* ヘッダーの高さ分だけ下にずらす */
+  text-align: center;
+  z-index: 1;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  margin: 15px 0;
+}
+
+.menu-btn {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* メニューが表示されるときのアニメーション */
+.menu.active {
+  display: block;
+  animation: slide-in 0.3s ease;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
