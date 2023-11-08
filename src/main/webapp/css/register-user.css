@@ -5,6 +5,24 @@ body {
   margin: 0;
   padding: 0;
 }
+.header-banner {
+    background-color: #2941BC; /* 帯の背景色を設定 */
+    color: white; /* 帯内の文字の色を設定 */
+    padding: 10px; /* 帯の内側の余白を設定 */
+    margin: 0; /* 上下のマージンを0に設定 */
+    position: fixed; /* ヘッダーを固定位置に設定 */
+    top: 0; /* 上端に配置 */
+    left: 0; /* 左端に配置 */
+    width: 100%; /* 画面幅いっぱいに広げる */
+    height: 50px; /* 帯の高さを設定 (適切な高さに調整) */
+    display:flex;
+    justify-content: left;
+}
+
+
+.header-banner h1 {
+    margin: 0; /* h1要素のマージンをリセット */
+}
 
 .signup-container {
   background-color: white;
