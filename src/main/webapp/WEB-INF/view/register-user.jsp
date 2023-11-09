@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="dto.UserDTO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,16 +18,16 @@
     <header>
       <h1>新規登録</h1>
     </header>
-    <form class="signup-form">
+    <form class="signup-form" action="RegisterConfirmServlet" method="post">
       <div class="form-group">
         <label for="username">ニックネーム</label>
         <input type="text" id="username" name="username">
       </div>
       <div class="form-group">
         <label>性別</label>
-        <input type="radio" id="male" name="gender" value="male">
+        <input type="radio" id="male" name="gender" value="1">
         <label for="male">男性</label>
-        <input type="radio" id="female" name="gender" value="female">
+        <input type="radio" id="female" name="gender" value="2">
         <label for="female">女性</label>
       </div>
       <div class="form-group">
