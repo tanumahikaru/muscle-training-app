@@ -60,25 +60,17 @@ public class LoginServlet extends HttpServlet {
 			String view = "./?error=1";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
-			System.out.println(user.getId());
 		} else {
 			// ログイン情報をセッションに登録
-			int rootid=UserDAO.selectroot1(user.getId());
-			String view;
-			if(rootid==-1) {
-				HttpSession session = request.getSession();
-				session.setAttribute("user", user);
-				 view = "WEB-INF/view/user-menu.jsp";
-
-			}else {				
-				HttpSession session = request.getSession();
-				session.setAttribute("root", user);
-				view = "WEB-INF/view/root-menu.jsp";
-			}
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			
+			String view = "WEB-INF/view/menu.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
 		}
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

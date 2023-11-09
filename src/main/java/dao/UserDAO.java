@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dto.UserDTO;
+import dto.WeightDTO;
 import util.GenerateHashedPw;
 import util.GenerateSalt;
 
@@ -45,7 +46,9 @@ public class UserDAO {
 			pstmt.setString(1, user.getName());
 			pstmt.setString(2, salt);
 			pstmt.setString(3, hashedPw);
-			pstmt.setInt(4, user.getGender());
+			Integer gender = user.getGender();
+		    int genderValue = gender != null ? gender : 0; // デフォルトは無性 (0)
+		    pstmt.setInt(4, genderValue);
 			pstmt.setDate(5, (Date) user.getBirth());
 			pstmt.setFloat(6, user.getHeight());
 			pstmt.setString(7, user.getMail());
@@ -87,6 +90,29 @@ public class UserDAO {
 		}
 		return null;
 	}
+	
+	public static int registerWeight(WeightDTO weight) {
+		String sql = "INSERT INTO weight VALUES(default, ?, ?)";
+		int result = 0;
+		
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setDate(1, (Date) weight.getDate());
+			pstmt.setFloat(2, weight.getWeight());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件更新しました。");
+		}
+		return result;
+	}
+	
 	public static UserDTO login(String mail, String hashedPw) {
 		String sql = "SELECT * FROM project_user WHERE mail = ? AND password = ?";
 		
