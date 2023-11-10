@@ -38,31 +38,34 @@ public class RegisterConfirmServlet extends HttpServlet {
 		 
 		 String name = request.getParameter("name");
 		 String genderStr = request.getParameter("gender");
-		 if (genderStr != null) {
-		     int gender = Integer.parseInt(genderStr);
-		     // ここで gender を使用する処理を続ける
-		 } else {
-		     System.out.println("例外発生");
-		 }
-
 		 String birthStr = request.getParameter("birth");
 		 String heightStr = request.getParameter("height");
 		 String weightStr = request.getParameter("weight");
 		 String mail = request.getParameter("mail");
-		 String levelStr = request.getParameter("level");
 		 String password = request.getParameter("password");
+		 String last_loginStr = request.getParameter("birth");
 		 String dateStr = request.getParameter("date");
+		 
+		 System.out.print(name);
+		 System.out.print(genderStr);
+		 System.out.print(birthStr);
+		 System.out.print(heightStr);
+		 System.out.print(weightStr);
+		 System.out.print(mail);
+		 System.out.print(password);
+		 System.out.print(last_loginStr);
+		 
 		 
 		 int gender = Integer.parseInt(genderStr);
 		 float height = Float.parseFloat(heightStr);
 		 float weight = Float.parseFloat(weightStr);
-		 int level = Integer.parseInt(levelStr);
-		 System.out.println("genderStr: " + genderStr);
+		 
 		 try {
-			    Date birth = new SimpleDateFormat("yyyy/MM/dd").parse(birthStr);
-			    Date date = new SimpleDateFormat("yyyy/MM/dd").parse(dateStr);
-			    UserDTO user = new UserDTO(-1, name, null, password, null, gender, birth, height, mail, level, -1, -1, null);
-			    WeightDTO we = new WeightDTO(-1, date, weight);
+			    Date birth = new SimpleDateFormat("yyyy-MM-dd").parse(birthStr);
+			    Date last_login = new SimpleDateFormat("yyyy-MM-dd").parse(birthStr);
+			    Date date = new SimpleDateFormat("yyyy-MM-dd").parse(birthStr);
+			    UserDTO user = new UserDTO(-1, name, gender, birth, height, mail, null, password, null, -1, -1, -1, last_login);
+			    WeightDTO we = new WeightDTO(-1, date,weight);
 			    // セッションスコープのインスタンス取得
 			    HttpSession session = request.getSession();
 			    
@@ -70,7 +73,7 @@ public class RegisterConfirmServlet extends HttpServlet {
 			    // 第1引数：キー
 			    // 第2引数：保存する値
 			    session.setAttribute("input_data", user);
-			    
+			    session.setAttribute("weight_data", we);
 			    String view = "WEB-INF/view/register-user-confirm.jsp";
 			    RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			    dispatcher.forward(request, response);	
