@@ -92,15 +92,14 @@ public class UserDAO {
 	}
 	
 	public static int registerWeight(WeightDTO weight) {
-		String sql = "INSERT INTO weight VALUES(default, ?, ?)";
+		String sql = "INSERT INTO weight VALUES(default, current_timestamp, ?)";
 		int result = 0;
 		
 		try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
-			pstmt.setDate(1, (Date) weight.getDate());
-			pstmt.setFloat(2, weight.getWeight());
+			pstmt.setFloat(3, weight.getWeight());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

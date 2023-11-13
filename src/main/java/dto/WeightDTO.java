@@ -4,13 +4,11 @@ import java.util.Date;
 
 public class WeightDTO {
 	private int user_id;
-	private Date date;
 	private float weight;
 	
-	public WeightDTO(int user_id, Date date, float weight) {
+	public WeightDTO(int user_id, float weight) {
 		super();
 		this.user_id = user_id;
-		this.date = date;
 		this.weight = weight;
 	}
 
@@ -22,13 +20,6 @@ public class WeightDTO {
 		this.user_id = user_id;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
 
 	public float getWeight() {
 		return weight;
