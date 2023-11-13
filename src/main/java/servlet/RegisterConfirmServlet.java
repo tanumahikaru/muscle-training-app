@@ -34,6 +34,17 @@ public class RegisterConfirmServlet extends HttpServlet {
         String weightStr = request.getParameter("weight");
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
+        
+     // パスワードの長さが8~16文字でない場合にエラー処理
+        if (password.length() < 8 || password.length() > 16) {
+            // エラーメッセージをリクエスト属性にセット
+            request.setAttribute("error", "パスワードは8~16文字で入力してください。");
+
+            // エラーページにフォワード
+            RequestDispatcher errorDispatcher = request.getRequestDispatcher("WEB-INF/view/register-user.jsp?error=1");
+            errorDispatcher.forward(request, response);
+            return;
+        }
        
         
         System.out.print(name);
@@ -48,6 +59,7 @@ public class RegisterConfirmServlet extends HttpServlet {
         int gender = Integer.parseInt(genderStr);
         float height = Float.parseFloat(heightStr);
         float weight = Float.parseFloat(weightStr);
+        
         
         try {
             Date birth = new SimpleDateFormat("yyyy-MM-dd").parse(birthStr);
