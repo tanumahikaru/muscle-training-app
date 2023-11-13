@@ -21,6 +21,7 @@
 	体重：<%=we.getWeight() %><br>
 	メール：<%=user.getMail() %><br>
 	パスワード：********<br>
+	生年月日：<%=user.getLast_login() %><br>
 	<a href="ExecuteServlet">OK</a><br>
 	<a href="FormServlet">戻る</a>
 </body>
