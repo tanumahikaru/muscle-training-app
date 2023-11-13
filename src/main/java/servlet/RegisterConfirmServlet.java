@@ -34,7 +34,7 @@ public class RegisterConfirmServlet extends HttpServlet {
         String weightStr = request.getParameter("weight");
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
-        String lastLoginStr = request.getParameter("last_login"); // パラメータ名を修正
+       
         
         System.out.print(name);
         System.out.print(genderStr);
@@ -43,7 +43,7 @@ public class RegisterConfirmServlet extends HttpServlet {
         System.out.print(weightStr);
         System.out.print(mail);
         System.out.print(password);
-        System.out.print(lastLoginStr);
+      
         
         int gender = Integer.parseInt(genderStr);
         float height = Float.parseFloat(heightStr);
@@ -51,13 +51,11 @@ public class RegisterConfirmServlet extends HttpServlet {
         
         try {
             Date birth = new SimpleDateFormat("yyyy-MM-dd").parse(birthStr);
-            Date registrationDate = new Date(); // 現在の日時を取得
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String registrationDateStr = dateFormat.format(registrationDate);
-
+            Date Lastlogin = new Date(); // 現在の日時を取得
+            
             // ... (他のパラメータの取得)
 
-            UserDTO user = new UserDTO(-1, name, gender, birth, height, mail, null, password, null, -1, -1, -1, registrationDate);
+            UserDTO user = new UserDTO(-1, name, gender, birth, height, mail, null, password, null, -1, -1, -1, Lastlogin);
             WeightDTO we = new WeightDTO(-1, weight);
 
             // ... (セッションへの保存とフォワードの処理)
