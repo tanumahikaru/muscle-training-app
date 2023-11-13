@@ -7,9 +7,14 @@
 <meta charset="UTF-8">
 <title>新規登録画面</title>
 <link rel="stylesheet" href="css/register-user.css">
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </head>
 <body>
-	<div class="header-banner">
+    <div class="header-banner">
         <h1 style="color: white;">筋トレ</h1>
     </div>
 
@@ -51,10 +56,10 @@
         <input type="password" id="password" name="password">
         <span class="hint">半角英数字8〜16文字</span>
       </div>
-      <div class="form-group">
+   <div class="form-group">
         <button type="submit" class="signup-button">確認</button><br>
-		<button type="button" class="back-button">戻る</button>      
-	  </div>
+       <button type="button" class="signup-button" onclick="goBack()">戻る</button>
+      </div>
     </form>
   </div>
  
