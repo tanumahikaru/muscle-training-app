@@ -23,7 +23,6 @@
   <h1>あなたの今日のメニュー</h1>
   <div class="menu-list">
     
-    <!-- トレーニング種目が入ります -->
     <div class="menu-item">
       <div class="icon">&#9742;</div>
       <div class="menu-info">
@@ -32,7 +31,6 @@
       </div>
       <button class="start-button">詳細</button>
     </div>
-    <!-- ... 他のアイテムが続きます ... -->
 
   </div>
   <div class="button-group">

@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dto.UserDTO;
+import dto.WeightDTO;
 import util.GenerateHashedPw;
 import util.GenerateSalt;
 
@@ -29,7 +30,7 @@ public class UserDAO {
 	    return DriverManager.getConnection(dbUrl, username, password);
 	}
 	public static int registerUser(UserDTO user) {
-		String sql = "INSERT INTO muscle_users VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO muscle_users VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int result = 0;
 		
 		// ランダムなソルトの取得(今回は32桁で実装)
@@ -43,16 +44,19 @@ public class UserDAO {
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
 			pstmt.setString(1, user.getName());
-			pstmt.setString(2, salt);
-			pstmt.setString(3, hashedPw);
-			pstmt.setInt(4, user.getGender());
-			pstmt.setDate(5, (Date) user.getBirth());
-			pstmt.setFloat(6, user.getHeight());
-			pstmt.setString(7, user.getMail());
+			
+			pstmt.setInt(2, user.getGender());
+			pstmt.setDate(3, new java.sql.Date(user.getBirth().getTime()));
+
+			pstmt.setFloat(4, user.getHeight());
+			pstmt.setString(5, user.getMail());
+			pstmt.setString(6, salt);
+			pstmt.setString(7, hashedPw);
 			pstmt.setInt(8, user.getLevel());
 			pstmt.setInt(9, user.getTraining_program_id());
 			pstmt.setInt(10, user.getFood_id());
-			pstmt.setDate(11, (Date) user.getLast_login());
+
+			pstmt.setDate(11, new java.sql.Date(user.getLast_login().getTime()));
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -65,7 +69,7 @@ public class UserDAO {
 		return result;
 	}
 	public static String getSalt(String mail) {
-		String sql = "SELECT salt FROM project_user WHERE mail = ?";
+		String sql = "SELECT salt FROM muscle_users WHERE mail = ?";
 		
 		try (
 				Connection con = getConnection();
@@ -87,8 +91,31 @@ public class UserDAO {
 		}
 		return null;
 	}
+	
+	public static int registerWeight(WeightDTO weight) {
+		String sql = "INSERT INTO weight VALUES(default, ?, ?)";
+		int result = 0;
+		
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setTimestamp(1, new java.sql.Timestamp(weight.getDate().getTime()));
+			pstmt.setFloat(2, weight.getWeight());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件更新しました。");
+		}
+		return result;
+	}
+	
 	public static UserDTO login(String mail, String hashedPw) {
-		String sql = "SELECT * FROM project_user WHERE mail = ? AND password = ?";
+		String sql = "SELECT * FROM muscle_users WHERE mail = ? AND password = ?";
 		
 		try (
 				Connection con = getConnection();
@@ -102,16 +129,16 @@ public class UserDAO {
 				if(rs.next()) {
 					int id = rs.getInt("id");
 					String name = rs.getString("name");
-					String salt = rs.getString("salt");
 					int gender = rs.getInt("gender");
 					Date birth = rs.getDate("birth");
 					float height = rs.getFloat("height");
+					String salt = rs.getString("salt");
 					int level = rs.getInt("level");
 					int training_program_id = rs.getInt("training_program_id");
 					int food_id = rs.getInt("food_id");
 					Date last_login = rs.getDate("last_login");
 					
-					return new UserDTO(id, name, salt, null, null, gender, birth, height, mail, level, training_program_id, food_id, last_login);
+					return new UserDTO(id, name, gender, birth, height, mail, salt, null, null, level, training_program_id, food_id, last_login);
 				}
 			}
 		} catch (SQLException e) {
