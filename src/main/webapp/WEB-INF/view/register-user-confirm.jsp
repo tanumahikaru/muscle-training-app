@@ -32,7 +32,5 @@
 	<a href="RegisterExecuteServlet">OK</a><br>
 	<a href="FormServlet">戻る</a>
 
-
->>>>>>> refs/heads/Tanifuji
 </body>
 </html>

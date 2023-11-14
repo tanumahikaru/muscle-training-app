@@ -30,7 +30,7 @@ public class UserDAO {
 	    return DriverManager.getConnection(dbUrl, username, password);
 	}
 	public static int registerUser(UserDTO user) {
-		String sql = "INSERT INTO muscle_users VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO muscle_users VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int result = 0;
 		
 		// ランダムなソルトの取得(今回は32桁で実装)
@@ -92,6 +92,32 @@ public class UserDAO {
 		return null;
 	}
 	
+	public static int getUserIdByMail(String mail) {
+		
+		String sql = "SELECT id FROM muscle_users WHERE mail = ?";
+		int userId = -1;
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setString(1, mail);
+
+			try (ResultSet rs = pstmt.executeQuery()){
+
+				if(rs.next()) {
+					 userId=rs.getInt("id");
+				
+
+					
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return userId;
+	}
 	public static int registerWeight(WeightDTO weight) {
 		String sql = "INSERT INTO weight VALUES(default, ?, ?)";
 		int result = 0;
