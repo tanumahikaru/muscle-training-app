@@ -72,7 +72,7 @@ public class RegisterConfirmServlet extends HttpServlet {
 
 
             UserDTO user = new UserDTO(-1, name, gender, birth, height, mail, null, password, null, -1, 1, 1, Lastlogin);
-            WeightDTO we = new WeightDTO(-1, weight);
+            WeightDTO we = new WeightDTO(-1,date,weight);
 
 
             // ... (セッションへの保存とフォワードの処理)
