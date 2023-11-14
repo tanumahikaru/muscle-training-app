@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.UserDAO;
 import dto.UserDTO;
 import dto.WeightDTO;
 
@@ -72,10 +71,7 @@ public class RegisterConfirmServlet extends HttpServlet {
 
             
             UserDTO user = new UserDTO(-1, name, gender, birth, height, mail, null, password, null, -1, 1, 1, Lastlogin);
-            int userIdFromMuscleUsers = UserDAO.registerUser(user);
-            if (userIdFromMuscleUsers != -1) {
-            	int userId = UserDAO.getUserIdByMail(mail);
-            	WeightDTO we = new WeightDTO(userId, date, weight);
+            WeightDTO we = new WeightDTO(0, date, weight);
 
 
             	// ... (セッションへの保存とフォワードの処理)
@@ -90,12 +86,12 @@ public class RegisterConfirmServlet extends HttpServlet {
             	String view = "WEB-INF/view/register-user-confirm.jsp";
             	RequestDispatcher dispatcher = request.getRequestDispatcher(view);
             	dispatcher.forward(request, response);    
-            }else {
+         
             	request.setAttribute("error", "ユーザーの登録に失敗しました。");
             	
             	RequestDispatcher errorDispatcher = request.getRequestDispatcher("WEB-INF/view/register-user.jsp?error=2");
                 errorDispatcher.forward(request, response);
-            }
+            
         } catch (ParseException e) {
             // パースエラーが発生した場合の処理を記述
             e.printStackTrace(); // または適切なエラーメッセージをログに記録

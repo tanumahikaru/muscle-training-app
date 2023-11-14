@@ -119,15 +119,16 @@ public class UserDAO {
 		return userId;
 	}
 	public static int registerWeight(WeightDTO weight) {
-		String sql = "INSERT INTO weight VALUES(default, ?, ?)";
+		String sql = "INSERT INTO weight VALUES(?, ?, ?)";
 		int result = 0;
 		
 		try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
-			pstmt.setTimestamp(1, new java.sql.Timestamp(weight.getDate().getTime()));
-			pstmt.setFloat(2, weight.getWeight());
+			pstmt.setInt(1, weight.getUser_id());
+			pstmt.setTimestamp(2, new java.sql.Timestamp(weight.getDate().getTime()));
+			pstmt.setFloat(3, weight.getWeight());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
