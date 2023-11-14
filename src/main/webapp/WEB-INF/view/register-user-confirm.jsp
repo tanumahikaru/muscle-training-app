@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/register-user-confirm.css">
 <title>登録内容確認</title>
 <script>
     function goBack() {
@@ -32,5 +32,7 @@
 	<a href="RegisterExecuteServlet">OK</a><br>
 	<a href="FormServlet">戻る</a>
 
+
+>>>>>>> refs/heads/Tanifuji
 </body>
 </html>
