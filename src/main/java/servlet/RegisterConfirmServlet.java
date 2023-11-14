@@ -77,6 +77,7 @@ public class RegisterConfirmServlet extends HttpServlet {
             // セッションスコープのインスタンス取得
             HttpSession session = request.getSession();
             
+
             // セッションスコープに値の保存
             session.setAttribute("input_data", user);
             session.setAttribute("weight_data", we);
