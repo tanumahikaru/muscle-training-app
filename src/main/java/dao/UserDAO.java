@@ -44,11 +44,10 @@ public class UserDAO {
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
 			pstmt.setString(1, user.getName());
-			Integer gender = user.getGender();
-			int genderValue = gender != null ? gender : 0; // デフォルトは無性 (0)
-			pstmt.setInt(2, genderValue);
-			java.sql.Date sqlDate = new java.sql.Date(user.getBirth().getTime());
-			pstmt.setDate(5, sqlDate);
+			
+			pstmt.setInt(2, user.getGender());
+			pstmt.setDate(3, new java.sql.Date(user.getBirth().getTime()));
+
 			pstmt.setFloat(4, user.getHeight());
 			pstmt.setString(5, user.getMail());
 			pstmt.setString(6, salt);
@@ -56,8 +55,8 @@ public class UserDAO {
 			pstmt.setInt(8, user.getLevel());
 			pstmt.setInt(9, user.getTraining_program_id());
 			pstmt.setInt(10, user.getFood_id());
-			java.sql.Date sqllastlogin = new java.sql.Date(user.getLast_login().getTime());
-			pstmt.setDate(11, sqllastlogin);
+
+			pstmt.setDate(11, new java.sql.Date(user.getLast_login().getTime()));
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
