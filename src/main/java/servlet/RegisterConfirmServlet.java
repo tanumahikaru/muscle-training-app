@@ -67,7 +67,6 @@ public class RegisterConfirmServlet extends HttpServlet {
             Date Lastlogin = new Date(); // 現在の日時を取得
             Timestamp date = new Timestamp(System.currentTimeMillis()); // 現在の日時を取得
 
-            
             // ... (他のパラメータの取得)
 
 
