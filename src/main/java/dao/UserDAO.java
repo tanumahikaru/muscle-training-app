@@ -30,7 +30,7 @@ public class UserDAO {
 	    return DriverManager.getConnection(dbUrl, username, password);
 	}
 	public static int registerUser(UserDTO user) {
-		String sql = "INSERT INTO muscle_users VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO muscle_users VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int result = 0;
 		
 		// ランダムなソルトの取得(今回は32桁で実装)
@@ -47,6 +47,7 @@ public class UserDAO {
 			
 			pstmt.setInt(2, user.getGender());
 			pstmt.setDate(3, new java.sql.Date(user.getBirth().getTime()));
+
 			pstmt.setFloat(4, user.getHeight());
 			pstmt.setString(5, user.getMail());
 			pstmt.setString(6, salt);
@@ -54,8 +55,8 @@ public class UserDAO {
 			pstmt.setInt(8, user.getLevel());
 			pstmt.setInt(9, user.getTraining_program_id());
 			pstmt.setInt(10, user.getFood_id());
-			pstmt.setDate(11, new java.sql.Date(user.getLast_login().getTime()));
 
+			pstmt.setDate(11, new java.sql.Date(user.getLast_login().getTime()));
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -92,14 +93,15 @@ public class UserDAO {
 	}
 	
 	public static int registerWeight(WeightDTO weight) {
-		String sql = "INSERT INTO weight VALUES(default, current_timestamp, ?)";
+		String sql = "INSERT INTO weight VALUES(default, ?, ?)";
 		int result = 0;
 		
 		try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
-			pstmt.setFloat(3, weight.getWeight());
+			pstmt.setTimestamp(1, new java.sql.Timestamp(weight.getDate().getTime()));
+			pstmt.setFloat(2, weight.getWeight());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

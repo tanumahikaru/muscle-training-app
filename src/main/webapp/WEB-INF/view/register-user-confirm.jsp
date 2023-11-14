@@ -6,9 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="css/style.css">
+<title>登録内容確認</title>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </head>
 <body>
+
 	<p>下記の内容で登録します。よろしいですか？</p>
 	<%
 		UserDTO user = (UserDTO)session.getAttribute("input_data");
@@ -24,5 +31,6 @@
 	
 	<a href="RegisterExecuteServlet">OK</a><br>
 	<a href="FormServlet">戻る</a>
+
 </body>
 </html>

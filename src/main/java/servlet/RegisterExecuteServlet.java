@@ -44,8 +44,10 @@ public class RegisterExecuteServlet extends HttpServlet {
 		int result2 = UserDAO.registerWeight(we);
 		
 		String path = "";
+
 		if(result == 1) {
 			if(result2 == 1) {
+
 			// 登録に成功したので、sessionのデータを削除
 			session.removeAttribute("input_data");
 			session.removeAttribute("weight_data");
