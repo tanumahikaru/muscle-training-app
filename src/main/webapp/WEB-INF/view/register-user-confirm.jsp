@@ -22,7 +22,7 @@
 	メール：<%=user.getMail() %><br>
 	パスワード：********<br>
 	
-	<a href="ExecuteServlet">OK</a><br>
+	<a href="RegisterExecuteServlet">OK</a><br>
 	<a href="FormServlet">戻る</a>
 </body>
 </html>
