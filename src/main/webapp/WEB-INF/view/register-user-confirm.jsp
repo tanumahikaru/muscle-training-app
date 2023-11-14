@@ -39,6 +39,5 @@
         <button type="button" class="signup-button" onclick="goBack()">戻る</button>
     </div>
 </div>
-
 </body>
 </html>
