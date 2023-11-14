@@ -79,7 +79,6 @@ public class RegisterConfirmServlet extends HttpServlet {
             	WeightDTO we = new WeightDTO(userId, date, weight);
 
 
-
             // ... (セッションへの保存とフォワードの処理)
 
             // セッションスコープのインスタンス取得
