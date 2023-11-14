@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -64,11 +65,13 @@ public class RegisterConfirmServlet extends HttpServlet {
         try {
             Date birth = new SimpleDateFormat("yyyy-MM-dd").parse(birthStr);
             Date Lastlogin = new Date(); // 現在の日時を取得
+            Timestamp date = new Timestamp(System.currentTimeMillis()); // 現在の日時を取得
+
             
             // ... (他のパラメータの取得)
 
             UserDTO user = new UserDTO(-1, name, gender, birth, height, mail, null, password, null, -1, -1, -1, Lastlogin);
-            WeightDTO we = new WeightDTO(-1, weight);
+            WeightDTO we = new WeightDTO(-1, date, weight);
 
             // ... (セッションへの保存とフォワードの処理)
 
