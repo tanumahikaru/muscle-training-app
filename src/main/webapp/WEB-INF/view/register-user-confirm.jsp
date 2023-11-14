@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/register-user-confirm.css">
 <title>登録内容確認</title>
 <script>
     function goBack() {
@@ -33,11 +33,10 @@
     体重：<%=we.getWeight() %><br>
     メール：<%=user.getMail() %><br>
     パスワード：********<br>
-    <a href="ExecuteServlet">OK</a><br>
-    <div class="form-group">
-        <!-- 戻るボタン -->
-        <button type="button" class="signup-button" onclick="goBack()">戻る</button>
-    </div>
+   <div class="form-group">
+        <button type="submit" class="signup-button">確認</button><br>
+       <button type="button" class="signup-button" onclick="goBack()">戻る</button>
+      </div>
 </div>
 </body>
 </html>
