@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="dto.UserDTO" %>
+<%@ page import="dto.WeightDTO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,8 @@
 		String errorCode = request.getParameter("error");
 		if(errorCode != null && errorCode.equals("1")){
 			UserDTO user = (UserDTO)session.getAttribute("input_data");
+			WeightDTO we = (WeightDTO)session.getAttribute("weight_data");
+			
 	%>
 		<div class="header-banner">
         <h1 style="color: white;">筋トレ</h1>
