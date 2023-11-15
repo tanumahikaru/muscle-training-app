@@ -91,6 +91,7 @@ public class RegisterConfirmServlet extends HttpServlet {
             	
             	RequestDispatcher errorDispatcher = request.getRequestDispatcher("WEB-INF/view/register-user.jsp?error=2");
                 errorDispatcher.forward(request, response);
+                
             
         } catch (ParseException e) {
             // パースエラーが発生した場合の処理を記述
