@@ -69,22 +69,21 @@ public class RegisterConfirmServlet extends HttpServlet {
 
             // ... (他のパラメータの取得)
 
-            UserDTO user = new UserDTO(-1, name, gender, birth, height, mail, null, password, null, -1, -1, -1, Lastlogin);
-            WeightDTO we = new WeightDTO(-1, date, weight);
+            
+            UserDTO user = new UserDTO(-1, name, gender, birth, height, mail, null, password, null, -1, 1, 1, Lastlogin);
+            WeightDTO we = new WeightDTO(0, date, weight);
 
-            // ... (セッションへの保存とフォワードの処理)
 
-            // セッションスコープのインスタンス取得
-            HttpSession session = request.getSession();
+            	// ... (セッションへの保存とフォワードの処理)
+
+            	// セッションスコープのインスタンス取得
+            	HttpSession session = request.getSession();
+            
+            	// セッションスコープに値の保存
+            	session.setAttribute("input_data", user);
+            	session.setAttribute("weight_data", we);
             
 
-            // セッションスコープに値の保存
-            session.setAttribute("input_data", user);
-            session.setAttribute("weight_data", we);
-            
-            String view = "WEB-INF/view/register-user-confirm.jsp";
-            RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-            dispatcher.forward(request, response);    
         } catch (ParseException e) {
             // パースエラーが発生した場合の処理を記述
             e.printStackTrace(); // または適切なエラーメッセージをログに記録
