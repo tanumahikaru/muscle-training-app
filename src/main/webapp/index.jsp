@@ -19,7 +19,11 @@
 	<p style="color:red">ログイン失敗</p>
 	<form action="LoginServlet" method="post">
 		メールアドレス<input type="text" name="mail" placeholder="E-mail" value="<%= (request.getParameter("mail") != null) ? request.getParameter("mail") : "" %>"><br>
-		半角英数字8~16文字<input type="password" name="pw" placeholder="password"><br>
+		<div class="password-container">
+			パスワード<br>
+			半角英数字8~16文字<input type="password" name="pw" class="password-input" placeholder="password">
+			<span class="toggle-password" onclick="togglePasswordVisibility(this)">👁</span>
+		</div>
 		<input type="submit" value="ログイン">
 	</form>
 
@@ -39,16 +43,24 @@
 	<div class="box3">
 	<form action="LoginServlet" method="post">
 		メールアドレス<input type="text" name="mail" placeholder="E-mail" value="<%= (request.getParameter("mail") != null) ? request.getParameter("mail") : "" %>"><br>
-		パスワード<br>
-		半角英数字8~16文字<input type="password" name="pw" placeholder="password"><br>
+		<div class="password-container">
+			パスワード<br>
+			半角英数字8~16文字<input type="password" name="pw" class="password-input" placeholder="password">
+			 <span class="toggle-password" onclick="togglePasswordVisibility(this)">👁</span>
+		</div>	
 		<input type="submit" value="ログイン">
 	</form>
 	<a href="RegisterFormServlet">新規アカウント登録はこちら</a><br>
 	<a href="ForgetPasswordFormServlet">パスワード変更はこちらから</a>
 </div>
-
 	<%
 		}
 	%>
+<script>
+function togglePasswordVisibility() {
+    var passwordInput = document.querySelector('.password-input');
+    passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
+}
+</script>
 </body>
 </html>
