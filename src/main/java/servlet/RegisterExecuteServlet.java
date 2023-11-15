@@ -41,7 +41,11 @@ public class RegisterExecuteServlet extends HttpServlet {
 		
 		// 登録処理
 		int result = UserDAO.registerUser(user);
-		int result2 = UserDAO.registerWeight(we);
+        
+        int userId = UserDAO.getUserIdByMail(user.getMail());
+        System.out.println(userId);
+        we.setUser_id(userId);
+        int result2 = UserDAO.registerWeight(we);
 		
 		String path = "";
 
