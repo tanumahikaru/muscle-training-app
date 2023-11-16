@@ -6,6 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
 <link rel="stylesheet" href="css/style.css">
 <title>登録内容確認</title>
 <script>
@@ -15,6 +21,10 @@
 </script>
 </head>
 <body>
+	 <div class="header-banner">
+        <h1 style="color: white;">筋トレ</h1>
+    </div>
+	<div class="box3">
 
 	<p>下記の内容で登録します。よろしいですか？</p>
 	<%
@@ -30,8 +40,11 @@
 	メール：<%=user.getMail() %><br>
 	パスワード：********<br>
 	
-	<a href="RegisterExecuteServlet">OK</a><br>
-	<a href="FormServlet">戻る</a>
+	<div class="form-group">
+	        <button type="submit" class="signup-button">確認</button><br>
+	       <button type="button" class="signup-button" onclick="goBack()">戻る</button>
+	      </div>
+	</div>
 
 </body>
 </html>

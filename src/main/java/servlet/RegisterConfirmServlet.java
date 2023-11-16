@@ -104,5 +104,9 @@ public class RegisterConfirmServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
+<<<<<<< HEAD
 }
 //こんにちは
+=======
+}
+>>>>>>> branch 'hikaru' of git@github.com:tanumahikaru/muscle-training-app.git
