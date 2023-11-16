@@ -23,7 +23,7 @@
 		<div class="password-container">
 			パスワード<br>
 			半角英数字8~16文字<input type="password" name="pw" class="password-input" placeholder="password">
-
+		</div>
 		<input type="submit" value="ログイン">
 	</form>
 
@@ -55,11 +55,6 @@
 	<%
 		}
 	%>
-<script>
-function togglePasswordVisibility() {
-    var passwordInput = document.querySelector('.password-input');
-    passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
-}
-</script>
+	<script src="./JavaScript/index.js"></script>
 </body>
 </html>
