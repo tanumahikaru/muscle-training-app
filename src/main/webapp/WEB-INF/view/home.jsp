@@ -4,12 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/home.css">
 <title>TOP</title>
 </head>
 <body>
-	<div class="header-banner">
+	   <div class="header-banner">
         <h1>筋トレ</h1>
     </div>
     

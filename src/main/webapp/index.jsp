@@ -22,8 +22,7 @@
 		<div class="password-container">
 			パスワード<br>
 			半角英数字8~16文字<input type="password" name="pw" class="password-input" placeholder="password">
-			<span class="toggle-password" onclick="togglePasswordVisibility(this)">👁</span>
-		</div>
+
 		<input type="submit" value="ログイン">
 	</form>
 
@@ -31,7 +30,7 @@
 	<a href="ForgetPasswordFormServlet">パスワードを忘れた方はこちらから</a>
 	</div>
 	</div>
-    
+	 
 	<%
 		} else {
 	%>
