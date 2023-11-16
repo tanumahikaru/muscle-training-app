@@ -42,3 +42,4 @@ public class RegisterFormServlet extends HttpServlet {
 	}
 
 }
+//こんにちは

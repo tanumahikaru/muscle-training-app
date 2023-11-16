@@ -18,7 +18,7 @@
     top: 0; /* 上端に配置 */
     left: 0; /* 左端に配置 */
     width: 100%; /* 画面幅いっぱいに広げる */
-    height: 51px; /* 帯の高さを設定 (適切な高さに調整) */
+    height: 50px; /* 帯の高さを設定 (適切な高さに調整) */
 
 h1 {
   text-align: center;
@@ -84,3 +84,4 @@ h1 {
 .menu a:hover {
     background-color: #555;
 }
+/*こんにちは*/

@@ -43,3 +43,4 @@ public class UserLogServlet extends HttpServlet {
 	}
 
 }
+//こんにちは

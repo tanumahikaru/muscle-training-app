@@ -41,3 +41,4 @@
     <script src="./JavaScript/home.js"></script>
 </body>
 </html>
+//こんにちは
