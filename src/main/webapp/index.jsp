@@ -30,8 +30,7 @@
 	<a href="RegisterFormServlet">新規アカウント登録はこちら</a><br>
 	<a href="ForgetPasswordFormServlet">パスワードを忘れた方はこちらから</a>
 	</div>
-	</div>
-	 
+
 	<%
 		} else {
 	%>
