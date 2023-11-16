@@ -105,3 +105,4 @@ public class RegisterConfirmServlet extends HttpServlet {
         doGet(request, response);
     }
 }
+//こんにちは
