@@ -80,4 +80,3 @@ public class RegisterExecuteServlet extends HttpServlet {
 	}
 
 }
-//こんにちは

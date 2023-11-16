@@ -6,13 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/register-user-confirm.css">
 <script>
     function goBack() {
         window.history.back();
     }
 </script>
-
-<link rel="stylesheet" href="css/style.css">
 <title>登録内容確認</title>
 <script>
     function goBack() {
@@ -25,7 +24,6 @@
         <h1 style="color: white;">筋トレ</h1>
     </div>
 	<div class="box3">
-
 	<p>下記の内容で登録します。よろしいですか？</p>
 	<%
 		UserDTO user = (UserDTO)session.getAttribute("input_data");
@@ -41,7 +39,7 @@
 	パスワード：********<br>
 	
 	<div class="form-group">
-	        <button type="submit" class="signup-button">確認</button><br>
+	        <a href="RegisterExecuteServlet">OK</a><br>
 	       <button type="button" class="signup-button" onclick="goBack()">戻る</button>
 	      </div>
 	</div>

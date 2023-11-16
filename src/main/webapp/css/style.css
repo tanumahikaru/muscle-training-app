@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
+
 body{
 	background-image: url("../img/haikei1.jpg");
     background-size: cover;
     background-color: #EEF3F9;
-    
 }
 .header-banner {
     background-color: #2941BC; /* 帯の背景色を設定 */
@@ -30,24 +30,9 @@ body{
 .signup-container{
 	text-align: center;
 	margin-top: 150px;
+
 }
 
-.password-container {
-    position: relative;
-}
-
- .password-input {
-    padding-right: 30px; /* 目のアイコンの分のスペースを確保 */
-}
-
- .toggle-password {
-   	position: absolute;
-   	top: 50%;
- 	right: 10px;
-	transform: translateY(-50%);
- 	cursor: pointer;
-	user-select: none;
-}
 /* 追加：ハンバーガーメニューのボタンスタイル */
 .menu-btn {
     display: none;
