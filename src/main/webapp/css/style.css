@@ -1,12 +1,13 @@
 @charset "UTF-8";
-/* style.css */
 
-body{
-	background-image: url("../img/haikei1.jpg");
-    background-size: cover;
-    background-color: #EEF3F9;
-    
+.signup-container {
+  background-color: white;
+  width: 600px;
+  margin: 50px auto;
+  padding: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .header-banner {
     background-color: #2941BC; /* 帯の背景色を設定 */
     color: white; /* 帯内の文字の色を設定 */
@@ -19,18 +20,9 @@ body{
     width: 100%; /* 画面幅いっぱいに広げる */
     height: 51px; /* 帯の高さを設定 (適切な高さに調整) */
 
-}
-
-.header-banner h1 {
-    margin: 0; /* h1要素のマージンをリセット */
-}
-.box3{
-	text-align: center;
-	margin-top: 250px;
-}
-.signup-container{
-	text-align: center;
-	margin-top: 150px;
+h1 {
+  text-align: center;
+  color: #333;
 }
 
 .password-container {

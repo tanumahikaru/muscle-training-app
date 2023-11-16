@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/style.css">
 <title>ログイン画面</title>
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 	<%
@@ -22,12 +23,11 @@
 		<div class="password-container">
 			パスワード<br>
 			半角英数字8~16文字<input type="password" name="pw" class="password-input" placeholder="password">
-			 <span class="toggle-password" onclick="togglePasswordVisibility(this)">👁</span>
-		</div>	
+
 		<input type="submit" value="ログイン">
 	</form>
 
-	<a href="RegisterFormServlet">新規登録</a><br>
+	<a href="RegisterFormServlet">新規アカウント登録はこちら</a><br>
 	<a href="ForgetPasswordFormServlet">パスワードを忘れた方はこちらから</a>
 	</div>
 
