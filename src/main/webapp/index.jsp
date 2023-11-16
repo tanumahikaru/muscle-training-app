@@ -50,7 +50,7 @@
 		<input type="submit" value="ログイン">
 	</form>
 	<a href="RegisterFormServlet">新規アカウント登録はこちら</a><br>
-	<a href="ForgetPasswordFormServlet">パスワード変更はこちらから</a>
+	<a href="ForgetPasswordFormServlet">パスワード変更はこちらから.</a>
 </div>
 	<%
 		}
