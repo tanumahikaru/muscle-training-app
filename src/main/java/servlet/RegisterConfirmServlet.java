@@ -67,6 +67,7 @@ public class RegisterConfirmServlet extends HttpServlet {
             Date Lastlogin = new Date(); // 現在の日時を取得
             Timestamp date = new Timestamp(System.currentTimeMillis()); // 現在の日時を取得
 
+            
             // ... (他のパラメータの取得)
 
             
@@ -83,6 +84,7 @@ public class RegisterConfirmServlet extends HttpServlet {
             	session.setAttribute("input_data", user);
             	session.setAttribute("weight_data", we);
             
+
             	String view = "WEB-INF/view/register-user-confirm.jsp";
             	RequestDispatcher dispatcher = request.getRequestDispatcher(view);
             	dispatcher.forward(request, response);    
@@ -91,7 +93,8 @@ public class RegisterConfirmServlet extends HttpServlet {
             	
             	RequestDispatcher errorDispatcher = request.getRequestDispatcher("WEB-INF/view/register-user.jsp?error=2");
                 errorDispatcher.forward(request, response);
-            
+              
+
         } catch (ParseException e) {
             // パースエラーが発生した場合の処理を記述
             e.printStackTrace(); // または適切なエラーメッセージをログに記録

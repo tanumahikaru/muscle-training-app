@@ -30,6 +30,8 @@
 	<a href="RegisterFormServlet">新規登録</a><br>
 	<a href="ForgetPasswordFormServlet">パスワードを忘れた方はこちらから</a>
 	</div>
+	</div>
+	 
 	<%
 		} else {
 	%>
@@ -51,10 +53,14 @@
 	<a href="RegisterFormServlet">新規アカウント登録はこちら</a><br>
 	<a href="ForgetPasswordFormServlet">パスワード変更はこちらから</a>
 </div>
-
 	<%
 		}
 	%>
-	<script src="./JavaScript/index.js"></script>
+<script>
+function togglePasswordVisibility() {
+    var passwordInput = document.querySelector('.password-input');
+    passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
+}
+</script>
 </body>
 </html>
