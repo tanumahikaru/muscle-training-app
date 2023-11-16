@@ -39,10 +39,11 @@
 	パスワード：********<br>
 	
 	<div class="form-group">
-	        <button type="submit" class="signup-button">確認</button><br>
+	        <a href="RegisterExecuteServlet">OK</a><br>
 	       <button type="button" class="signup-button" onclick="goBack()">戻る</button>
 	      </div>
 	</div>
 
 </body>
 </html>
+//こんにちは
