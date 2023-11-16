@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/style.css">
 <title>ログイン画面</title>
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 	<%
@@ -27,7 +28,7 @@
 		<input type="submit" value="ログイン">
 	</form>
 
-	<a href="RegisterFormServlet">新規登録</a><br>
+	<a href="RegisterFormServlet">新規アカウント登録はこちら</a><br>
 	<a href="ForgetPasswordFormServlet">パスワードを忘れた方はこちらから</a>
 	</div>
 	</div>
