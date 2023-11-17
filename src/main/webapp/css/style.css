@@ -6,19 +6,22 @@ body{
     background-size: cover;
     background-color: #EEF3F9;
 }
-.header-banner {
-    background-color: #2941BC; /* 帯の背景色を設定 */
-    color: white; /* 帯内の文字の色を設定 */
-    padding: 10px; /* 帯の内側の余白を設定 */
-    text-align: left; /* テキストを中央寄せに設定 */
-    margin: 0; /* 上下のマージンを0に設定 */
-    position: fixed; /* ヘッダーを固定位置に設定 */
-    top: 0; /* 上端に配置 */
-    left: 0; /* 左端に配置 */
-    width: 100%; /* 画面幅いっぱいに広げる */
-    height: 50px; /* 帯の高さを設定 (適切な高さに調整) */
 
+.header-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* .menu よりも大きい値に設定 */
+  width: 100%;
+  background-color: #2941BC;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  margin: 0;
 }
+
+/* 他のスタイルはそのまま */
+
 
 .header-banner h1 {
     margin: 0; /* h1要素のマージンをリセット */
@@ -49,20 +52,20 @@ body{
 }
 
 /* 追加：ハンバーガーメニューのスタイル */
+
 .menu {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: #333;
-    padding: 15px;
-    position: fixed;
-    top: 0;
-    left: -250px;
-    height: 100%;
-    width: 250px;
-    z-index: 1;
-    overflow-x: hidden;
-    transition: 0.5s;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  z-index: 999; /* .header-banner よりも小さい値に設定 */
+  width: 250px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background: #333;
+  transition: all .3s linear;
 }
 
 .menu a {
