@@ -1,8 +1,9 @@
 /* メニュー開閉ボタン */
+
 .menu-btn {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 10px; /* 10pxの隙間を作る */
+  left: 10px;
   z-index: 1001;
   width: 40px;
   height: 40px;
@@ -15,7 +16,6 @@
   color: #fff;
   font-size: 24px;
   cursor: pointer;
-  margin-left: 10px; /* 追加：h1要素からのマージンを設定 */
 }
 /*----------------------------
 * メニュー本体
@@ -61,7 +61,6 @@
 .menu.is-active {
   transform: translateX(0);
 }
-
 
 a {
   color: red;
