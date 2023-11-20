@@ -7,11 +7,12 @@ body{
     background-color: #EEF3F9;
 }
 
+
 .header-banner {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000; /* .menu よりも大きい値に設定 */
+  z-index: 1000;
   width: 100%;
   background-color: #2941BC;
   color: white;
@@ -20,12 +21,11 @@ body{
   margin: 0;
 }
 
-/* 他のスタイルはそのまま */
-
-
 .header-banner h1 {
-    margin: 0; /* h1要素のマージンをリセット */
+  margin: 0;
+  margin-left: 50px; /* "筋トレ" テキストの位置 */
 }
+
 .box3{
 	text-align: center;
 	margin-top: 250px;
