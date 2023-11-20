@@ -5,6 +5,7 @@ body{
 	background-image: url("../img/haikei1.jpg");
     background-size: cover;
     background-color: #EEF3F9;
+    margin-top: 50px; /* 適宜調整してください */
 }
 
 
@@ -19,13 +20,15 @@ body{
   padding: 10px;
   text-align: left;
   margin: 0;
+  overflow: hidden;
 }
 
 .header-banner h1 {
   margin: 0;
   margin-left: 50px; /* "筋トレ" テキストの位置 */
+  position: relative; /* 相対位置指定を追加 */
+  z-index: 1; /* ヘッダーを手前に持ってくる */
 }
-
 .box3{
 	text-align: center;
 	margin-top: 250px;
