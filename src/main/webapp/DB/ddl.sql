@@ -75,3 +75,30 @@ INSERT INTO position (position) VALUES
     ('肩'),
     ('有酸素')
 ;
+
+--トレーニング種目テーブル
+CREATE TABLE types_of_training(
+    training_event_id     SERIAL PRIMARY KEY,
+    event_name            VARCHAR(32),
+    mets                  INTEGER,
+    movie_url             TEXT,
+    default_number        INTEGER DEFAULT -1,
+    default_time          INTEGER DEFAULT -1
+);
+-- テストデータの挿入はスプレッドシートを使用してください
+
+--トレーニングプログラム詳細
+CREATE TABLE traning_programs_detail(
+    detail_id             					SERIAL PRIMARY KEY,
+    training_program_id   		INTEGER,
+    step                 					INTEGER,
+    training_event_id     			INTEGER,
+    FOREIGN KEY(training_program_id) REFERENCES training_programs(training_program_id),
+    FOREIGN KEY(training_event_id) REFERENCES types_of_training(training_event_id)
+);
+-- テストデータの挿入はスプレッドシートを使用してください
+
+
+
+
+
