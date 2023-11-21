@@ -5,26 +5,29 @@ body{
 	background-image: url("../img/haikei1.jpg");
     background-size: cover;
     background-color: #EEF3F9;
+    margin-top: 100px; /* 適宜調整してください */
 }
+
 
 .header-banner {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000; /* .menu よりも大きい値に設定 */
+  z-index: 1000;
   width: 100%;
   background-color: #2941BC;
   color: white;
   padding: 10px;
   text-align: left;
   margin: 0;
+  overflow: hidden;
 }
 
-/* 他のスタイルはそのまま */
-
-
 .header-banner h1 {
-    margin: 0; /* h1要素のマージンをリセット */
+  margin: 0;
+  margin-left: 50px; /* "筋トレ" テキストの位置 */
+  position: relative; /* 相対位置指定を追加 */
+  z-index: 1; /* ヘッダーを手前に持ってくる */
 }
 .box3{
 	text-align: center;
@@ -35,48 +38,3 @@ body{
 	margin-top: 150px;
 
 }
-
-/* 追加：ハンバーガーメニューのボタンスタイル */
-.menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: white;
-}
-
-/* 追加：メニューが開いたときにボディをずらすスタイル */
-.menu-open .header-container {
-    margin-left: 250px;
-}
-
-/* 追加：ハンバーガーメニューのスタイル */
-
-.menu {
-  position: fixed;
-  top: 0;
-  left: -250px;
-  z-index: 999; /* .header-banner よりも小さい値に設定 */
-  width: 250px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  background: #333;
-  transition: all .3s linear;
-}
-
-.menu a {
-    padding: 15px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    transition: 0.3s;
-}
-
-.menu a:hover {
-    background-color: #555;
-}
-/*こんにちは*/

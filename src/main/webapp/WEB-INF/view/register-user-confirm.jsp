@@ -13,13 +13,16 @@
     }
 </script>
 <title>登録内容確認</title>
+
 <script>
     function goBack() {
         window.history.back();
     }
 </script>
 </head>
+
 <body>
+<form action="RegisterExecuteServlet" method="post">
 	 <div class="header-banner">
         <h1 style="color: white;">筋トレ</h1>
     </div>
@@ -38,12 +41,13 @@
 	メール：<%=user.getMail() %><br>
 	パスワード：********<br>
 	
-	<div class="form-group">
-	        <a href="RegisterExecuteServlet">OK</a><br>
-	       <button type="button" class="signup-button" onclick="goBack()">戻る</button>
-	      </div>
-	</div>
+	 <div class="form-group">
+        <button type="submit" class="signup-button">確認</button><br>
+        <button type="button" class="signup-button" onclick="goBack()">戻る</button>
+    </div>
+    </div>
+    
+</form>
 
 </body>
 </html>
-//こんにちは
