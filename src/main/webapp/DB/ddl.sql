@@ -85,7 +85,12 @@ CREATE TABLE types_of_training(
     default_number        INTEGER DEFAULT -1,
     default_time          INTEGER DEFAULT -1
 );
--- テストデータの挿入はスプレッドシートを使用してください
+-- テストデータ5件
+INSERT INTO types_of_training (event_name, mets, movie_url, default_number, default_time) VALUES('スクワット',5,'<iframe width="560" height="315" src="https://www.youtube.com/embed/SFnfYPktYBU?si=JZmpunSJZI2-KeiI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',10,-1);
+INSERT INTO types_of_training (event_name, mets, movie_url, default_number, default_time) VALUES('腕立て伏せ',3.5,'<iframe width="560" height="315" src="https://www.youtube.com/embed/k4fsFKCp5iU?si=2NpfOIwMJKHlNoYN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',10,-1);
+INSERT INTO types_of_training (event_name, mets, movie_url, default_number, default_time) VALUES('上体起こし',3.5,'<iframe width="560" height="315" src="https://www.youtube.com/embed/kXEBIOJyXmo?si=X0asHFktJa4RwIov" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',10,-1);
+INSERT INTO types_of_training (event_name, mets, movie_url, default_number, default_time) VALUES('背筋',3.5,'<iframe width="560" height="315" src="https://www.youtube.com/embed/cPmZpupDLrE?si=__fsLiOMay7MT8z6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',10,-1);
+INSERT INTO types_of_training (event_name, mets, movie_url, default_number, default_time) VALUES('プランク',8,'<iframe width="560" height="315" src="https://www.youtube.com/embed/lSKmC3kLT6w?si=B3H8aaMBADVDtV_7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',-1,20);
 
 --トレーニングプログラム詳細
 CREATE TABLE traning_programs_detail(
@@ -96,8 +101,12 @@ CREATE TABLE traning_programs_detail(
     FOREIGN KEY(training_program_id) REFERENCES training_programs(training_program_id),
     FOREIGN KEY(training_event_id) REFERENCES types_of_training(training_event_id)
 );
--- テストデータの挿入はスプレッドシートを使用してください
-
+-- テストデータ5件
+INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,1,1);
+INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,2,2);
+INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,3,3);
+INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,4,4);
+INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,5,5);
 
 
 
