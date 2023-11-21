@@ -19,6 +19,8 @@
     <button type="button" class="menu-btn">
       <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
+     <h1>筋トレ</h1>
+  </div>
     <div class="menu">
       <div class="menu__item"><a href="homeServlet">ホーム</a></div>
       <div class="menu__item"><a href="TrainingSuggestionServlet">今日のトレーニング</a></div>
@@ -28,9 +30,7 @@
       <div class="menu__item"><a href="UserLogServlet">記録</a></div>
       <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
    	  <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
-    <h1>筋トレ</h1>
-  </div>
-
+	</div>
   <form action="RegisterWeightServlet" method="post">
     今日の体重を記録：<input type="text" name="weight" value="weigh"><br>
     <input type="submit" value="記録">
