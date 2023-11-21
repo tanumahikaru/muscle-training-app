@@ -17,13 +17,13 @@ import dto.Meal_menuDTO;
  * Servlet implementation class FreeTrainingServlet
  */
 @WebServlet("/RecipeServlet")
-public class RecipeServletServlet extends HttpServlet {
+public class RecipeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RecipeServletServlet() {
+    public RecipeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
