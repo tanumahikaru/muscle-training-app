@@ -19,18 +19,16 @@
     <button type="button" class="menu-btn">
       <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
+    <div class="menu">
+      <div class="menu__item"><a href="homeServlet">ホーム</a></div>
+      <div class="menu__item"><a href="TrainingSuggestionServlet">今日のトレーニング</a></div>
+      <div class="menu__item"><a href="MealServlet">食事</a></div>
+      <div class="menu__item"><a href="FreeTrainingServlet">フリートレーニング</a></div>
+      <div class="menu__item"><a href="RecipeServlet">レシピ検索</a></div>
+      <div class="menu__item"><a href="UserLogServlet">記録</a></div>
+      <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
+   	  <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
     <h1>筋トレ</h1>
-  </div>
-
-  <div class="menu">
-    <div class="menu__item"><a href="homeServlet">ホーム</a></div>
-    <div class="menu__item"><a href="TrainingSuggestionServlet">今日のトレーニング</a></div>
-    <div class="menu__item"><a href="MealServlet">食事</a></div>
-    <div class="menu__item"><a href="FreeServlet">フリートレーニング</a></div>
-    <div class="menu__item"><a href="RecipeServlet">レシピ検索</a></div>
-    <div class="menu__item"><a href="UserLogServlet">記録</a></div>
-    <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
-    <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
   </div>
 
   <form action="RegisterWeightServlet" method="post">
@@ -47,7 +45,7 @@
         <% if (latestRecord != null) { %>
             <p>calories_burned: <%= latestRecord.getCalories_burned() %></p>
         <% } %>
-    </div>
+  </div>
   
   <p>クイズ正答数</p>
   
