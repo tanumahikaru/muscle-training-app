@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.MuscleRecordDAO;
 import dao.UserDAO;
+import dto.MuscleRecord;
 import dto.UserDTO;
 import util.GenerateHashedPw;
 
@@ -61,15 +63,21 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
 		} else {
-			// ログイン情報をセッションに登録
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
+			MuscleRecord latestRecord = MuscleRecordDAO.selectLatestMuscleRecord();
 			
-			String view = "WEB-INF/view/home.jsp";
-			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-			dispatcher.forward(request, response);
+			 if (latestRecord != null) {
+	                request.setAttribute("latestRecord", latestRecord);
+	            }
+			// ログイン情報をセッションに登録
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
+				
+				String view = "WEB-INF/view/home.jsp";
+				RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+				dispatcher.forward(request, response);
+	        }
 		}
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

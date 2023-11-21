@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="dto.MuscleRecord" %>
+<%@ page import="dao.MuscleRecordDAO" %>
+<%@ page import="dto.UserDTO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,10 +37,20 @@
     今日の体重を記録：<input type="text" name="weight" value="weigh"><br>
     <input type="submit" value="記録">
   </form>
-
+  
+ <div>
   <p>摂取カロリー</p>
+  
   <p>消費カロリー</p>
+  
+   <% MuscleRecord latestRecord = (MuscleRecord)request.getAttribute("latestRecord"); %>
+        <% if (latestRecord != null) { %>
+            <p>calories_burned: <%= latestRecord.getCalories_burned() %></p>
+        <% } %>
+    </div>
+  
   <p>クイズ正答数</p>
+  
 
   <script src="./JavaScript/home.js"></script>
 </body>
