@@ -101,7 +101,7 @@ CREATE TABLE traning_programs_detail(
     FOREIGN KEY(training_program_id) REFERENCES training_programs(training_program_id),
     FOREIGN KEY(training_event_id) REFERENCES types_of_training(training_event_id)
 );
--- テストデータ5件
+-- テストデータ5件＋
 INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,1,1);
 INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,2,2);
 INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,3,3);
