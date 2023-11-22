@@ -6,6 +6,10 @@
   <meta charset="UTF-8">
   <title>あなたの今日のメニュー</title>
   <link rel="stylesheet" href="css/training-suggestion.jsp">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/training-suggestion.css">
 </head>
 <body>
 
@@ -13,13 +17,7 @@
     <button type="button" class="menu-btn">
       <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
-    <!-- ここにハンバーガーメニューが入ります -->
-  <h1 id="header-title">筋トレ</h1>
-  <div class="right">
-    <div id="user-level">Lv.13</div>
-    <div class="user-icon">
-      <img src="user.png" alt="ユーザー画像">
-    </div>
+    <h1>筋トレ</h1>
   </div>
 
   <div class="menu">
@@ -32,7 +30,6 @@
     <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
     <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
   </div>
-</header>
 
 <main>
   <h1>あなたの今日のメニュー</h1>
@@ -54,5 +51,6 @@
   </div>
 </main>
 
+<script src="./JavaScript/home.js"></script>
 </body>
 </html>
