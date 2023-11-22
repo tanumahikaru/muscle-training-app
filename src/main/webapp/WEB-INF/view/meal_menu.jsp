@@ -10,6 +10,10 @@
 <title>フリートレーニング一覧</title>
 </head>
 <body>
+<form action="SearchServlet" method="get">
+  <input type="text" name="search" placeholder="Search...">
+  <button type="submit">Search</button>
+</form>
 	<table border="1">
 		<tr>
 			<th>ID</th>
