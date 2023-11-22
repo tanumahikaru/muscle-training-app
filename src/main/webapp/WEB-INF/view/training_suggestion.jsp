@@ -19,7 +19,7 @@
     <button type="button" class="menu-btn">
       <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
-    <h1>筋トレ</h1>
+    <h1>筋トレ-</h1>
   </div>
 
   <div class="menu">
