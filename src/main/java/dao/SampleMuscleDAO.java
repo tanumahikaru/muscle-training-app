@@ -60,8 +60,9 @@ public class SampleMuscleDAO {
         } catch (SQLException | URISyntaxException e) {
             e.printStackTrace();
         }
-
+        
         return result;
     }
 }
+
 
