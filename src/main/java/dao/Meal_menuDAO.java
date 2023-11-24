@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.CategoryDTO;
 import dto.Meal_menuDTO;
 
 public class Meal_menuDAO {
@@ -28,44 +29,72 @@ public class Meal_menuDAO {
 	    return DriverManager.getConnection(dbUrl, username, password);
 	}
 	
-	public static List<Meal_menuDTO> selectAllRecipe(){
-		
-		// 実行するSQL
-		String sql = "SELECT * FROM meal_menu";
-		
 		// 返却用のListインスタンス
-		List<Meal_menuDTO> result = new ArrayList<>();
-				
-		try (
-				Connection con = getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				){
-			
-			
-			try (ResultSet rs = pstmt.executeQuery()){
-				
-				while(rs.next()) {
-					int food_id = rs.getInt("food_id");
-					String food_name = rs.getString("food_name");
-					int calorie = rs.getInt("calorie");
-					int protein = rs.getInt("protein");
-					int fat = rs.getInt("fat");
-					int carbo = rs.getInt("carbo");
-					boolean main_dish_flag = rs.getBoolean("main_dish_flag");
-					
-					
-					Meal_menuDTO meal_menu = new Meal_menuDTO(food_id, food_name, calorie, protein, fat, carbo, main_dish_flag);
-					result.add(meal_menu);
-				}
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
+	public static List<Meal_menuDTO> selectAllRecipe() {
+	    // 実行するSQL
+	    String sql = "SELECT * FROM meal_menus";
 
-		// Listを返却する。0件の場合は空のListが返却される。
-		return result;
+	    // 返却用のListインスタンス
+	    List<Meal_menuDTO> result = new ArrayList<>();
+
+	    try (Connection con = getConnection(); 
+	         PreparedStatement pstmt = con.prepareStatement(sql);
+	         ResultSet rs = pstmt.executeQuery()) {
+
+	        while (rs.next()) {
+	            int food_id = rs.getInt("food_id");
+	            String food_name = rs.getString("food_name");
+	            int calorie = rs.getInt("calorie");
+	            int protein = rs.getInt("protein");
+	            int fat = rs.getInt("fat");
+	            int carbo = rs.getInt("carbo");
+	            boolean main_dish_flag = rs.getBoolean("main_dish_flag");
+
+	            Meal_menuDTO meal_menu = new Meal_menuDTO(food_id, food_name, calorie, protein, fat, carbo, main_dish_flag);
+	            result.add(meal_menu);
+	        }
+
+	    } catch (SQLException | URISyntaxException e) {
+	        e.printStackTrace();
+	        // エラーメッセージを表示
+	        System.out.println("Error in selectAllRecipe: " + e.getMessage());
+	    }
+
+	    // Listを返却する。0件の場合は空のListが返却される。
+	    return result;
 	}
+	public static List<Meal_menuDTO> selectMenuByCategory(int categoryId) {
+        String sql = "SELECT m.* FROM meal_menus m JOIN meal_menu_by_category mc ON m.food_id = mc.food_id WHERE mc.category_id = ?";
+        List<Meal_menuDTO> result = new ArrayList<>();
+
+        try (Connection con = getConnection(); 
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setInt(1, categoryId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    int food_id = rs.getInt("food_id");
+                    String food_name = rs.getString("food_name");
+                    int calorie = rs.getInt("calorie");
+                    int protein = rs.getInt("protein");
+                    int fat = rs.getInt("fat");
+                    int carbo = rs.getInt("carbo");
+                    boolean main_dish_flag = rs.getBoolean("main_dish_flag");
+
+                    // カテゴリIDからカテゴリを取得
+                    CategoryDTO category = CategoryDAO.getCategoryById(categoryId);
+
+                    Meal_menuDTO meal_menu = new Meal_menuDTO(food_id, food_name, calorie, protein, fat, carbo, main_dish_flag, category);
+                    result.add(meal_menu);
+                }
+            }
+
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
 }
