@@ -1,6 +1,23 @@
 package dto;
 
 public class Meal_menuDTO {
+	
+	private CategoryDTO category;
+
+    public Meal_menuDTO(int food_id, String food_name, int calorie, int protein, int fat, int carbo,
+            boolean main_dish_flag, CategoryDTO category) {
+        // 既存のコンストラクタ呼び出し...
+        this.category = category;
+    }
+
+    public CategoryDTO getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryDTO category) {
+        this.category = category;
+    }
+	
 	private int food_id;
 	private String food_name;
 	private int calorie;
@@ -76,5 +93,5 @@ public class Meal_menuDTO {
 	public void setMain_dish_flag(boolean main_dish_flag) {
 		this.main_dish_flag = main_dish_flag;
 	}
-		
+	
 }
