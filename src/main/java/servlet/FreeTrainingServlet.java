@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.MuscleDAO;
+import dao.SampleMuscleDAO;
 import dto.MuscleDTO;
 
 /**
@@ -32,7 +32,20 @@ public class FreeTrainingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<MuscleDTO> training = MuscleDAO.selectAllTraining();
+		 // ボタンがクリックされたときに渡された positionId を取得
+        String positionIdParam = request.getParameter("positionId");
+
+        int positionId;
+
+        if (positionIdParam != null) {
+            // ボタンがクリックされた場合はその値を使う
+            positionId = Integer.parseInt(positionIdParam);
+        } else {
+            // ボタンがクリックされていない場合はデフォルトの positionId を指定する
+            positionId = 1;  // ここでは腕の positionId をデフォルトとしていますが、適切な値に変更してください
+        }
+		
+		List<MuscleDTO> training = SampleMuscleDAO.selectTrainingByPosition(positionId);
 		
 		request.setAttribute("list", training);
 		
