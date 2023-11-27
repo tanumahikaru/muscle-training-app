@@ -19,7 +19,7 @@
 	  	<input type="text" name="mail" class="mail"><br>
 	  	<input type="submit" value="送信" class="send">
 	  </form>
-	  <button class="back">戻る</button>
+        <button type="button" class="signup-button" onclick="goBack()">戻る</button>
   </div>
 </body>
 </html>
