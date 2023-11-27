@@ -22,7 +22,7 @@
      <h1>筋トレ</h1>
   </div>
     <div class="menu">
-      <div class="menu__item"><a href="homeServlet">ホーム</a></div>
+      <div class="menu__item"><a href="TopServlet">ホーム</a></div>
       <div class="menu__item"><a href="TrainingSuggestionServlet">今日のトレーニング</a></div>
       <div class="menu__item"><a href="MealServlet">食事</a></div>
       <div class="menu__item"><a href="FreeTrainingServlet">フリートレーニング</a></div>
