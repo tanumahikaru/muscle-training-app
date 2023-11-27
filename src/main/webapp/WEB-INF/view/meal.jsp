@@ -1,17 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-        <title>記録</title>
-    
+    <title>食事画面</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/user-log.css">
-    <link rel="stylesheet" href="css/style.css">
+　  <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/training-suggestion.css">    
-</head>
+    <link rel="stylesheet" href="css/training-suggestion.css">
+
 <body>
 <header>
    <div class="header-banner">
@@ -35,21 +32,9 @@
     <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
     <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
   </div>
-</header>
-<main>
-    <section>
-        <form>
-          <div class="button-group">
-			 <button>トレーニング記録</button>
-   			 <button>食事記録</button>
-          </div>
-        </form>
-    </section>
-     </main>
-     <div>
-      <button class="start-button">TOP</button>
-    </div>
-      <script src="./JavaScript/home.js"></script>
-    
+ </header>
+    <h2>今日の食事</h2>
+    <!-- ここに食事に関する情報やコンテンツを追加 -->
+    <script src="./JavaScript/home.js"></script>
 </body>
 </html>
