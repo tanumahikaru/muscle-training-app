@@ -60,7 +60,12 @@
     <!-- ボタンがクリックされたときにJavaScriptでpositionIdを設定し、フォームをサーバーに送信する -->
     <button type="button" onclick="setAndSubmitForm(1)">肉</button>
     <button type="button" onclick="setAndSubmitForm(2)">魚</button>
-    <button type="button" onclick="setAndSubmitForm(3)">野菜</button>
+    <button type="button" onclick="setAndSubmitForm(3)">卵</button>
+    <button type="button" onclick="setAndSubmitForm(4)">乳製品</button>
+    <button type="button" onclick="setAndSubmitForm(5)">豆</button>
+    <button type="button" onclick="setAndSubmitForm(6)">野菜</button>
+    <button type="button" onclick="setAndSubmitForm(7)">果実</button>
+    <button type="button" onclick="setAndSubmitForm(8)">その他</button>
 
     <!-- JavaScriptでpositionIdを設定し、フォームをサーバーに送信するスクリプト -->
     <script>
