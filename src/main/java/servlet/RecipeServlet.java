@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Meal_menuDAO;
 import dto.Meal_menuDTO;
-
 /**
  * Servlet implementation class FreeTrainingServlet
  */
@@ -31,33 +30,28 @@ public class RecipeServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // カテゴリが選択されているか確認
-        Integer selectedCategoryId = null;
-        if (request.getParameter("category") != null) {
-            // カテゴリが選択されている場合は、選択されたカテゴリに基づいてメニューを絞り込む
-            selectedCategoryId = Integer.parseInt(request.getParameter("category"));
-            List<Meal_menuDTO> filteredMenu = filterMenuByCategory(selectedCategoryId);
-            request.setAttribute("list", filteredMenu);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 // ボタンがクリックされたときに渡された positionId を取得
+        String categoryIdParam = request.getParameter("category_Id");
+
+        int category_Id;
+
+        if (categoryIdParam != null) {
+            // ボタンがクリックされた場合はその値を使う
+        	category_Id = Integer.parseInt(categoryIdParam);
         } else {
-        	List<Meal_menuDTO> meal_menu = Meal_menuDAO.selectAllRecipe();
-        	request.setAttribute("list", meal_menu);
+            // ボタンがクリックされていない場合はデフォルトの positionId を指定する
+        	category_Id = 1;  // ここでは腕の positionId をデフォルトとしていますが、適切な値に変更してください
         }
-
-        // selectedCategoryIdをリクエスト属性に設定
-        request.setAttribute("selectedCategoryId", selectedCategoryId);
-
-        String view = "WEB-INF/view/meal_menu.jsp";
-        RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-        dispatcher.forward(request, response);
-    }
-
-    // カテゴリに基づいてメニューを絞り込むメソッド
-    private List<Meal_menuDTO> filterMenuByCategory(int categoryId) {
-        // Meal_menuDAO クラスに、カテゴリに基づいて絞り込むメソッドを追加する必要があります。
-        // このメソッドは、Meal_menuDAO クラス内に実装されるべきです。
-        return Meal_menuDAO.selectMenuByCategory(categoryId);
-    }
+		
+		List<Meal_menuDTO> meal_menu = Meal_menuDAO.selectMeal_menu(category_Id);
+		
+		request.setAttribute("list", meal_menu);
+		
+		String view = "WEB-INF/view/meal_menu.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		dispatcher.forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
