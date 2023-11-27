@@ -1,6 +1,5 @@
 @charset "UTF-8";
 /* メニュー開閉ボタン */
-
 .menu-btn {
   position: fixed;
   top: 10px; /* 10pxの隙間を作る */
@@ -62,18 +61,6 @@
 .menu.is-active {
   transform: translateX(0);
 }
-
-a {
-  color: red;
-  text-decoration: none;
-}
-
-a:hover {
-  color: skyblue;
-  font-size: 2em;
-  font-weight: bold;
-}
-
 
 .menu a {
   padding: 15px;
