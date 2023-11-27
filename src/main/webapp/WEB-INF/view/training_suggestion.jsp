@@ -16,8 +16,8 @@
     <button type="button" class="menu-btn">
       <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
+    <h1 id="header-title">筋トレ</h1>
   <div class="right">
-   <h1 id="header-title">筋トレ</h1>
     <div id="user-level">Lv.13
       <img src="user.png" alt="ユーザー画像">
       </div>
