@@ -25,6 +25,7 @@ public class SampleMuscleDAO {
 	    String password = dbUri.getUserInfo().split(":")[1];
 	    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
+
 	    return DriverManager.getConnection(dbUrl, username, password);
 	}
 	
@@ -63,6 +64,41 @@ public class SampleMuscleDAO {
         
         return result;
     }
+	
+	public static List<MuscleDTO> searchTrainingByName(String searchKeyword) {
+        // 実行するSQL
+        String sql = "SELECT * FROM types_of_training WHERE event_name LIKE ?";
+
+        // 返却用のListインスタンス
+        List<MuscleDTO> result = new ArrayList<>();
+
+        try (
+                Connection con = getConnection();
+                PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+        	// UTF-8でエンコードしてからPreparedStatementにセット
+        	pstmt.setString(1, "%" + searchKeyword + "%");
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    int training_event_id = rs.getInt("training_event_id");
+                    String event_name = rs.getString("event_name");
+                    int mets = rs.getInt("mets");
+                    String movie_url = rs.getString("movie_url");
+                    int default_number = rs.getInt("default_number");
+                    int default_time = rs.getInt("default_time");
+
+                    MuscleDTO training = new MuscleDTO(training_event_id, event_name, mets, movie_url, default_number, default_time);
+                    result.add(training);
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }
+
 
 
