@@ -94,7 +94,6 @@
 	</table>
    	<a href="TopServlet">戻る</a>
 
-          <script src="./JavaScript/home.js"></script>
-    
+    <script src="./JavaScript/home.js"></script>
 </body>
 </html>
