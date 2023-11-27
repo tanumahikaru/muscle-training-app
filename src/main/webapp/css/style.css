@@ -7,6 +7,11 @@ body{
     margin-top: 100px; /* 適宜調整してください */
 }
 
+.right {
+    margin-left: 500px;
+    text-align: right;
+   
+}
 
 .header-banner {
   position: fixed;
@@ -21,6 +26,7 @@ body{
   margin: 0;
   overflow: hidden;
 }
+
 
 .header-banner h1 {
   margin: 0;

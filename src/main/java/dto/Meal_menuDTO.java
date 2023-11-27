@@ -1,33 +1,16 @@
 package dto;
 
 public class Meal_menuDTO {
-	
-	private CategoryDTO category;
-
-    public Meal_menuDTO(int food_id, String food_name, int calorie, int protein, int fat, int carbo,
-            boolean main_dish_flag, CategoryDTO category) {
-        // 既存のコンストラクタ呼び出し...
-        this.category = category;
-    }
-
-    public CategoryDTO getCategory() {
-        return category;
-    }
-
-    public void setCategory(CategoryDTO category) {
-        this.category = category;
-    }
-	
 	private int food_id;
 	private String food_name;
 	private int calorie;
 	private int protein;
 	private int fat;
 	private int carbo;
-	private boolean main_dish_flag ;
+	private boolean dish_fiag;
 	
 	public Meal_menuDTO(int food_id, String food_name, int calorie, int protein, int fat, int carbo,
-			boolean main_dish_flag) {
+			boolean dish_fiag) {
 		super();
 		this.food_id = food_id;
 		this.food_name = food_name;
@@ -35,7 +18,7 @@ public class Meal_menuDTO {
 		this.protein = protein;
 		this.fat = fat;
 		this.carbo = carbo;
-		this.main_dish_flag = main_dish_flag;
+		this.dish_fiag = dish_fiag;
 	}
 
 	public int getFood_id() {
@@ -86,12 +69,12 @@ public class Meal_menuDTO {
 		this.carbo = carbo;
 	}
 
-	public boolean isMain_dish_flag() {
-		return main_dish_flag;
+	public boolean isDish_fiag() {
+		return dish_fiag;
 	}
 
-	public void setMain_dish_flag(boolean main_dish_flag) {
-		this.main_dish_flag = main_dish_flag;
+	public void setDish_fiag(boolean dish_fiag) {
+		this.dish_fiag = dish_fiag;
 	}
 	
 }
