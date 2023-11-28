@@ -27,10 +27,10 @@
 <main>
   <div class="upper-contents">
     <h1><%=training.getEvent_name() %></h1>
-    <button class="back-button">戻る</button>
+    <a href="TrainingSuggestionServlet"><button class="back-button">戻る</button></a>
   </div>
 
-  <iframe width="600" height="335" src="https://www.youtube.com/embed/f-Vv-5QRrCE?si=gY0FUwjtW9gDugB0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <%=training.getMovie_url() %>
   <br>
   <p class="explanation">
     ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
