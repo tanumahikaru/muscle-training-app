@@ -70,6 +70,35 @@ public class MuscleDAO {
 	}
 	
 	
+	public static MuscleDTO SelectMuscleEventById(int id) {
+        String sql = "SELECT * FROM types_of_training Where training_event_id=?";
+        MuscleDTO training = null;
+
+        try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setInt(1, id);
+			try (ResultSet rs = pstmt.executeQuery()){
+	            if (rs.next()) {
+	            	int training_event_id = rs.getInt("training_event_id");
+					String event_name = rs.getString("event_name");
+					int mets = rs.getInt("mets");
+					String movie_url = rs.getString("movie_url");
+					int default_number = rs.getInt("default_number");
+					int default_time = rs.getInt("default_time");
+	
+	                training = new MuscleDTO(training_event_id, event_name, mets, movie_url, default_number, default_time);
+	            }
+			}
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        return training;
+    }
+	
+	
 	public static List<MuscleDTO> selectAllTraining(){
 		
 		// 実行するSQL
