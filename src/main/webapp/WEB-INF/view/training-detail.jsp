@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="dto.MuscleDTO" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,10 +22,12 @@
     </div>
   </div>
 </header>
+<% MuscleDTO training = (MuscleDTO)request.getAttribute("training"); %>
+
 <main>
   <div class="upper-contents">
-    <h1>メニュー名</h1>
-    <butto class="back-button">戻る</butto>
+    <h1><%=training.getEvent_name() %></h1>
+    <button class="back-button">戻る</button>
   </div>
 
   <iframe width="600" height="335" src="https://www.youtube.com/embed/f-Vv-5QRrCE?si=gY0FUwjtW9gDugB0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
