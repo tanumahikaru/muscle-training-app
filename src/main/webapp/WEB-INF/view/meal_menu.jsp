@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>レシピ検索</title>
+   
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/user-log.css">
     <link rel="stylesheet" href="css/style.css">
@@ -38,13 +39,12 @@
   </div>
 </header>
 
-    <!-- カテゴリー別に検索する JavaScript 部分 -->
-    <script>
-        function searchByCategory(category_Id) {
-            // カテゴリーIDをパラメータとしてサーブレットに送信
-            window.location.href = "SearchServlet?category=" + category_Id;
-        }
-    </script>
+ 	<form action="SearchRecipeServlet" method="post">
+        <input type="text" name="searchKeyword" placeholder="検索したいメニューを入力してください">
+        <input type="submit" value="検索">
+    </form>
+
+
 </head>
 <body>
 
@@ -53,7 +53,7 @@
     String servletURL = "RecipeServlet"; // サーブレットのURLに置き換えてください
 %>
 
-<form action="<%=servletURL%>" method="post">
+<form action="<%=servletURL%>" method="post" id="categoryForm">
     <!-- positionIdをサーバーに送信するフォーム -->
     <input type="hidden" name="category_Id" id="category_Id" value="" />
 
@@ -68,12 +68,7 @@
     <button type="button" onclick="setAndSubmitForm(8)">その他</button>
 
     <!-- JavaScriptでpositionIdを設定し、フォームをサーバーに送信するスクリプト -->
-    <script>
-        function setAndSubmitForm(category_Id) {
-            document.getElementById("category_Id").value = category_Id;
-            document.forms[0].submit();
-        }
-    </script>
+    
 	</form>
 		<table border="1">
 			<tr>
@@ -95,5 +90,6 @@
    	<a href="TopServlet">戻る</a>
 
     <script src="./JavaScript/home.js"></script>
+    <script src="./JavaScript/meal_menu.js"></script>
 </body>
 </html>
