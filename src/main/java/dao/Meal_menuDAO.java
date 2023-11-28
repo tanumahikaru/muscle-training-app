@@ -64,12 +64,13 @@ public class Meal_menuDAO {
         return result;
     }
 	
+  
 	public static Meal_menuDTO SelectMealMenuById(int id) {
 		System.out.println(id);
-        String sql = "SELECT * FROM meal_menus Where food_id=?";
-        Meal_menuDTO meal_menu = null;
+    String sql = "SELECT * FROM meal_menus Where food_id=?";
+    Meal_menuDTO meal_menu = null;
 
-        try (
+    try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
@@ -86,12 +87,44 @@ public class Meal_menuDAO {
                     meal_menu = new Meal_menuDTO(food_id, food_name, calorie, fat, carbo, carbo, main_dish_flag);
 	            }
 			}
+    } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+      }
+    return meal_menu;
+  }
+
+
+	public static List<Meal_menuDTO> searchRecipeByName(String searchKeyword) {
+        // 実行するSQL
+        String sql = "SELECT * FROM meal_menus WHERE food_name LIKE ?";
+
+        // 返却用のListインスタンス
+        List<Meal_menuDTO> result = new ArrayList<>();
+
+        try (
+                Connection con = getConnection();
+                PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+        	// UTF-8でエンコードしてからPreparedStatementにセット
+        	pstmt.setString(1, "%" + searchKeyword + "%");
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                	int food_id = rs.getInt("food_id");
+                    String food_name = rs.getString("food_name");
+                    int calorie = rs.getInt("calorie");
+                    int fat = rs.getInt("fat");
+                    int carbo = rs.getInt("carbo");
+                    boolean main_dish_flag = rs.getBoolean("main_dish_flag");
+
+                    Meal_menuDTO menu = new Meal_menuDTO(food_id, food_name, calorie, fat, carbo, carbo, main_dish_flag);
+                    result.add(menu);
+                }
+            }
         } catch (SQLException | URISyntaxException e) {
             e.printStackTrace();
         }
 
-        return meal_menu;
+        return result;
     }
 }
-
-
