@@ -26,12 +26,13 @@
     <div class="menu__item"><a href="homeServlet">ホーム</a></div>
     <div class="menu__item"><a href="TrainingSuggestionServlet">今日のトレーニング</a></div>
     <div class="menu__item"><a href="MealServlet">食事</a></div>
-    <div class="menu__item"><a href="FreeServlet">フリートレーニング</a></div>
+    <div class="menu__item"><a href="FreeTrainingServlet">フリートレーニング</a></div>
     <div class="menu__item"><a href="RecipeServlet">レシピ検索</a></div>
     <div class="menu__item"><a href="UserLogServlet">記録</a></div>
     <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
     <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
   </div>
+
 
 <main>
   <h1>あなたの今日のメニュー</h1>
