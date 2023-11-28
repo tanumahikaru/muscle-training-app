@@ -63,6 +63,38 @@ public class Meal_menuDAO {
         
         return result;
     }
+	
+	public static List<Meal_menuDTO> searchRecipeByName(String searchKeyword) {
+        // 実行するSQL
+        String sql = "SELECT * FROM meal_menus WHERE food_name LIKE ?";
+
+        // 返却用のListインスタンス
+        List<Meal_menuDTO> result = new ArrayList<>();
+
+        try (
+                Connection con = getConnection();
+                PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+        	// UTF-8でエンコードしてからPreparedStatementにセット
+        	pstmt.setString(1, "%" + searchKeyword + "%");
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                	int food_id = rs.getInt("food_id");
+                    String food_name = rs.getString("food_name");
+                    int calorie = rs.getInt("calorie");
+                    int fat = rs.getInt("fat");
+                    int carbo = rs.getInt("carbo");
+                    boolean main_dish_flag = rs.getBoolean("main_dish_flag");
+
+                    Meal_menuDTO menu = new Meal_menuDTO(food_id, food_name, calorie, fat, carbo, carbo, main_dish_flag);
+                    result.add(menu);
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }
-
-
