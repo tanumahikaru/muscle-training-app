@@ -35,6 +35,7 @@
     <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
   </div>
 
+
 <main>
   <h1>あなたの今日のメニュー</h1>
   <div class="menu-list">
