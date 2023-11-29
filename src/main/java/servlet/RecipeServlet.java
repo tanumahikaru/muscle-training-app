@@ -39,6 +39,11 @@ public class RecipeServlet extends HttpServlet {
         // カテゴリIDに基づいてカテゴリ名を取得
         String categoryName = Meal_menuDAO.getCategoryNameById(category_Id);
 
+        // カテゴリ名がnullの場合、"検索した"を設定
+        if (categoryName == null) {
+            categoryName = "検索した";
+        }
+
         // リクエスト属性に設定
         request.setAttribute("list", meal_menu);
         request.setAttribute("categoryName", categoryName);
