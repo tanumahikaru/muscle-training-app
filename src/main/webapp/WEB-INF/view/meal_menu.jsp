@@ -84,7 +84,7 @@
 		for(Meal_menuDTO m : meal_menu) {
 	%>
 		<tr>
-			<td><%=m.getFood_id() %>
+			<td><a href="MealMenuDetailServlet?id=<%=m.getFood_id() %>"><%=m.getFood_id() %></a></td>
 			<td><%=m.getFood_name() %></td>
 			<td><%=m.getCalorie() %></td>
 		</tr>
