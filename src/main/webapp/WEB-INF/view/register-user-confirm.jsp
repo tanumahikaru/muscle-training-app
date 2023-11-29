@@ -7,18 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/register-user-confirm.css">
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
+
 <title>登録内容確認</title>
 
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
 </head>
 
 <body>
@@ -48,6 +39,6 @@
     </div>
     
 </form>
-
+	<script src="./JavaScript/back.js"></script>
 </body>
 </html>
