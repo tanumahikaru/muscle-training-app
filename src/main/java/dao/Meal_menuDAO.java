@@ -127,4 +127,27 @@ public class Meal_menuDAO {
 
         return result;
     }
+	 // カテゴリIDに基づいてカテゴリ名を取得するメソッド
+    public static String getCategoryNameById(int category_Id) {
+        String sql = "SELECT category_name FROM category WHERE category_id = ?";
+        String categoryName = null;
+
+        try (
+                Connection con = getConnection();
+                PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setInt(1, category_Id);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    categoryName = rs.getString("category_name");
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        return categoryName;
+    }
+
 }

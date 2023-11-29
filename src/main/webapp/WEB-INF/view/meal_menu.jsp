@@ -69,7 +69,8 @@
 	<button type="button" class="button-outline" onclick="setAndSubmitForm(8)">その他</button>
     
 
-    <!-- JavaScriptでpositionIdを設定し、フォームをサーバーに送信するスクリプト -->
+   	<%-- カテゴリー名を表示 --%>
+	<h2><%= request.getAttribute("categoryName") %>のレシピ一覧</h2>
     
 	</form>
 		<table border="1">
