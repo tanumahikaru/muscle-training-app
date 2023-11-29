@@ -9,10 +9,11 @@
     <title>レシピ検索</title>
    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/meal_menu.css">
     <link rel="stylesheet" href="css/user-log.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/training-suggestion.css">    
+    
 </head>
 <body>
 <header>
@@ -58,14 +59,15 @@
     <input type="hidden" name="category_Id" id="category_Id" value="" />
 
     <!-- ボタンがクリックされたときにJavaScriptでpositionIdを設定し、フォームをサーバーに送信する -->
-    <button type="button" onclick="setAndSubmitForm(1)">肉</button>
-    <button type="button" onclick="setAndSubmitForm(2)">魚</button>
-    <button type="button" onclick="setAndSubmitForm(3)">卵</button>
-    <button type="button" onclick="setAndSubmitForm(4)">乳製品</button>
-    <button type="button" onclick="setAndSubmitForm(5)">豆</button>
-    <button type="button" onclick="setAndSubmitForm(6)">野菜</button>
-    <button type="button" onclick="setAndSubmitForm(7)">果実</button>
-    <button type="button" onclick="setAndSubmitForm(8)">その他</button>
+    <button type="button" class="button-outline" onclick="setAndSubmitForm(1)">肉</button>
+	<button type="button" class="button-outline" onclick="setAndSubmitForm(2)">魚</button>
+	<button type="button" class="button-outline" onclick="setAndSubmitForm(3)">卵</button>
+	<button type="button" class="button-outline" onclick="setAndSubmitForm(4)">乳製品</button>
+	<button type="button" class="button-outline" onclick="setAndSubmitForm(5)">豆</button>
+	<button type="button" class="button-outline" onclick="setAndSubmitForm(6)">野菜</button>
+	<button type="button" class="button-outline" onclick="setAndSubmitForm(7)">果実</button>
+	<button type="button" class="button-outline" onclick="setAndSubmitForm(8)">その他</button>
+    
 
     <!-- JavaScriptでpositionIdを設定し、フォームをサーバーに送信するスクリプト -->
     
@@ -87,7 +89,7 @@
 		</tr>
 	<%} %>
 	</table>
-   	<a href="TopServlet">戻る</a>
+   		<a href="TopServlet">戻る</a>
 
     <script src="./JavaScript/home.js"></script>
     <script src="./JavaScript/meal_menu.js"></script>
