@@ -16,7 +16,7 @@ body {
 }
 
 .title {
-    margin-top: 40px;
+    margin-top: 20px;
     text-align: left;
 }
 
@@ -56,17 +56,17 @@ body {
 }
 
 #option {
-    margin: 40px auto;
+    margin: 20px auto;
     background-color: white;
     text-align: center;
     width: 460px;
-    height: 360px;
+    height: 380px;
 }
 
 .button-group {
-    margin-left: 40px;
+    margin-left: 20px;
     display: flex;
-    gap: 30px;
+    gap: 20px;
 }
 .button-group button {
     height: 40px;

@@ -99,14 +99,12 @@
 					<button>75%</button>
 					<button>100%</button>
 				</div>
-				<br>
 				<h3>白米</h3>
 				<div class="button-group">
 					<button>大(200g)</button>
 					<button>中(150g)</button>
 					<button>小(100g)</button>
 				</div>
-				<br>
 				<h3>食パン</h3>
 				<div class="button-group">
 					<button>プレーン</button>

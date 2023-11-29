@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+#main-contents {
+    text-align: center;
+}
+
+#login-form {
+    margin: 60px auto 0;
+    text-align: center;
+
+    width: 550px;
+    height: 450px;
+    background-color: white;
+    font-family: 'メイリオ', 'Meiryo', sans-serif;
+}
+
+#input-area{
+    padding: 60px 0 0 50px;
+    text-align: left;
+}
+
+input[type=text], input[type=password] {
+    margin-bottom: 40px;
+    padding: 8px;
+
+    width: 450px;
+    height: 36px;
+    background-color: white;
+    border:  #808080 1px solid;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    border:  black 2px solid;     /*フォーカス時に枠線を太くする*/
+    box-shadow: inset 0 10px 25px 0 rgba(0, 0, 0, .05);  /*フォーカス時に影を付ける*/
+}
+
+.input-format {
+    margin-left: 20px;
+
+    font-size: 16px;
+    color: grey;
+}
+
+#submit-button{
+    text-align: center;
+}
+
+button[type=submit] {
+    margin: 20px auto 30px;
+
+    width: 150px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #2941BC;
+    font-family: 'HG創英角ｺﾞｼｯｸUB';
+    color: white;
+}
+
+.small-link {
+    display: block;
+    margin-bottom: 8px;
+    color: #609ECE;
+    font-size: 16px;
+}
