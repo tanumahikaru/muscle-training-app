@@ -6,6 +6,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
     <title>フリートレーニング一覧</title>
     <script>
         function setAndSubmitForm(positionId) {
@@ -15,6 +18,23 @@
     </script>
 </head>
 <body>
+     <div class="header-banner">
+    <button type="button" class="menu-btn">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+     <h1>筋トレ</h1>
+  </div>
+    <div class="menu">
+      <div class="menu__item"><a href="TopServlet">ホーム</a></div>
+      <div class="menu__item"><a href="TrainingSuggestionServlet">今日のトレーニング</a></div>
+      <div class="menu__item"><a href="MealServlet">食事</a></div>
+      <div class="menu__item"><a href="FreeTrainingServlet">フリートレーニング</a></div>
+      <div class="menu__item"><a href="RecipeServlet">レシピ検索</a></div>
+      <div class="menu__item"><a href="UserLogServlet">記録</a></div>
+      <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
+   	  <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
+	</div>
+    
     <form action="SearchTrainingServlet" method="post">
         <input type="text" name="searchKeyword" placeholder="検索したいメニューを入力してください">
         <input type="submit" value="検索">
@@ -25,8 +45,12 @@
         
         <!-- ボタンがクリックされたときにJavaScriptでpositionIdを設定し、フォームをサーバーに送信する -->
         <button type="button" onclick="setAndSubmitForm(1)">腕</button>
-        <button type="button" onclick="setAndSubmitForm(2)">肩</button>
-        <button type="button" onclick="setAndSubmitForm(3)">脚</button>
+        <button type="button" onclick="setAndSubmitForm(2)">背筋</button>
+        <button type="button" onclick="setAndSubmitForm(3)">腹筋</button>
+        <button type="button" onclick="setAndSubmitForm(4)">胸筋</button>
+        <button type="button" onclick="setAndSubmitForm(5)">脚</button>
+        <button type="button" onclick="setAndSubmitForm(6)">肩</button>
+        <button type="button" onclick="setAndSubmitForm(7)">有酸素</button>
     </form>
     <table border="1">
         <tr>
@@ -46,6 +70,6 @@
         <%} %>
     </table>
     <a href="TopServlet">戻る</a>
-    
+     <script src="./JavaScript/home.js"></script>
 </body>
 </html>
