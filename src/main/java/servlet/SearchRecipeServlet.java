@@ -32,7 +32,7 @@ public class SearchRecipeServlet extends HttpServlet {
         // DAOメソッドに検索キーワードを渡して結果を取得
         List<Meal_menuDTO> menu;
 
-        // デフォルトのポジションID（腕）を指定
+        // デフォルトのポジションID（肉）を指定
         int defaultCategoryId = 1;
 
         // カテゴリ名を取得
@@ -40,7 +40,7 @@ public class SearchRecipeServlet extends HttpServlet {
 
      // カテゴリ名がnullの場合、検索時のメッセージを設定
      if (categoryName == null || searchKeyword != null && !searchKeyword.isEmpty()) {
-         categoryName = "検索した";
+         categoryName = "検索";
      }
 
 
@@ -51,7 +51,7 @@ public class SearchRecipeServlet extends HttpServlet {
             // 検索キーワードがある場合は検索を実行
             menu = Meal_menuDAO.searchRecipeByName(searchKeyword);
 
-            // 検索結果がnullの場合、カテゴリ名を "検索した" に変更
+            // 検索結果がnullの場合、カテゴリ名を "検索" に変更
             if (menu == null || menu.isEmpty()) {
                 categoryName = "検索した";
                 request.setAttribute("categoryName", categoryName);

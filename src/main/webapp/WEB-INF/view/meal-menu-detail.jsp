@@ -48,8 +48,9 @@
 	</div>
 
 	<%
-	Meal_menuDTO menu = (Meal_menuDTO) request.getAttribute("menu");
+		Meal_menuDTO menu = (Meal_menuDTO) request.getAttribute("menu");
 	%>
+
 	<div id="main-contents">
 		<div id="left-contents">
 			<img id="meal-img" src="images/meal.png" alt="食事メニュー画像">
@@ -61,17 +62,17 @@
 			<div class="title">
 				<h3>栄養素</h3>
 			</div>
-			<span class="calorie">カロリー 400kcal</span>
+			<span class="calorie"><%=menu.getCalorie() %></span>
 			<hr>
 			<div id="nutrients">
 				<div class="protein">
-					タンパク質<br>40g
+					タンパク質<br><%=menu.getProtein() %>
 				</div>
 				<div class="fat">
-					脂質<br>15g
+					脂質<br><%=menu.getFat() %>
 				</div>
 				<div class="carbo">
-					糖質<br>5g
+					糖質<br><%=menu.getCarbo() %>
 				</div>
 			</div>
 
@@ -117,5 +118,6 @@
 			<a href="#"><button class="add-button">戻る</button></a>
 		</div>
 	</div>
+	<script src="./JavaScript/home.js"></script>
 </body>
 </html>
