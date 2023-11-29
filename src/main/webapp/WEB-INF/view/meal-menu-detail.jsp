@@ -22,7 +22,7 @@
 
 	<div class="menu">
 		<div class="menu__item">
-			<a href="homeServlet">ホーム</a>
+			<a href="TopServlet">ホーム</a>
 		</div>
 		<div class="menu__item">
 			<a href="TrainingSuggestionServlet">今日のトレーニング</a>
