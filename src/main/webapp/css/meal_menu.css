@@ -1,2 +1,24 @@
 @charset "UTF-8";
 
+/* button-styles.css */
+.button-outline {
+  display: inline-block;
+  font-size: 1rem;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border: 2px solid #6fa24a; /* アウトラインの色を指定 */
+  border-radius: 0rem;
+  background-color: transparent; /* 背景色を透明に設定 */
+}
+
+.button-outline:hover {
+  background-color: #dcedd2;
+}
