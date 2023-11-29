@@ -32,7 +32,7 @@
    	  <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
 	</div>
   <form action="RegisterWeightServlet" method="post">
-    今日の体重を記録：<input type="text" name="weight" value="weigh"><br>
+    今日の体重を記録：<input type="text" name="weight" placeholder="体重を入力してください"><br>
     <input type="submit" value="記録">
   </form>
   
