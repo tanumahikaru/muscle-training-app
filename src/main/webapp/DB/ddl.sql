@@ -20,12 +20,12 @@ CREATE TABLE meal_menus(
     calorie           		INTEGER,
     protein           		INTEGER,
     fat               			INTEGER,
-    cardo             		INTEGER,
+    carbo             		INTEGER,
     main_dish_flag   boolean
 );
 
 -- テストデータ
-INSERT INTO meal_menus (food_name, calorie, protein, fat, cardo, main_dish_flag) VALUES
+INSERT INTO meal_menus (food_name, calorie, protein, fat, carbo, main_dish_flag) VALUES
 	('Chicken Salad', 300, 25, 12, 10, true),
 	('Vegetable Stir-fry', 200, 8, 6, 15, true),
 	('Fruit Smoothie', 150, 5, 2, 30, false),
