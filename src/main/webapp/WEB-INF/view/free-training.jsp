@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/free-training.css">
     <title>フリートレーニング一覧</title>
     <script>
         function setAndSubmitForm(positionId) {
@@ -64,7 +65,7 @@
         %>
         <tr>
             <td><%=m.getTraining_event_id() %></td>
-            <td><%=m.getEvent_name() %></td>
+            <td><a href="TrainingServlet"><%=m.getEvent_name() %></a></td>
             <td><%=m.getMets() %></td>
         </tr>
         <%} %>
