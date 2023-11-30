@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /* メインコンテンツエリアのスタイリング */
 main {
     text-align: center;
@@ -12,7 +13,6 @@ h1 {
 
 .menu-list {
     border-top: 2px solid red;
-
 }
 
 .menu-item {
@@ -25,20 +25,28 @@ h1 {
     border-bottom: 1px solid #ccc;
 }
 
-.icon {
-    font-size: 32px;
-    flex: 0 0 50px; /* アイコンのスペースを確保 */
+.right {
+    margin-left: 500px;
+    text-align: right;
+   
 }
+
+.header-banner {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 .menu-info {
     text-align: left;
-    flex-grow: 1; /* 情報部分がスペースを埋めるようにする */
+    flex-grow: 1;
     display: flex;
-    justify-content: space-evenly; /* アイテムを均等に分散させる */
+    justify-content: space-evenly;
 }
 
-.menu-name, .menu-details {
-    margin: 0 5px; /* 名前と詳細の間隔を設定 */
+.menu-name,
+.menu-details {
+    margin: 0 5px;
 }
 
 .start-button {
@@ -64,7 +72,7 @@ h1 {
     color: white;
     margin-left: 175px;
 }
+
 .button-group button:first-child {
     margin: 0;
 }
-
