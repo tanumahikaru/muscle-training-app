@@ -1,4 +1,70 @@
-@charset "UTF-8";
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh; /* Set the height of the main container to 100% of the viewport height */
+    color: #333;
+    margin: 120px;
+}
+
+.start-button {
+    background-color: #2941BC;
+    border: none;
+    cursor: pointer;
+    height: 36px;
+    width: 80px;
+    border-radius: 10px;
+    color: black;
+    text-align: center;
+}
+
+.start-button:hover {
+    background-color: #2941BC;
+}
+
+.header-banner {
+    background-color: #2941BC;
+    color: white;
+    padding: 50px;
+    text-align: left;
+    margin: 50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.header-banner h1 {
+    margin: 0;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px ;
+}
+
+.spacer {
+    height: 20px; /* 適切な高さに調整 */
+}
+
+.center-button {
+    display: flex;
+    justify-content: center;
+}
+
 .start-button {
     background-color: #2941BC;
     border: none;
@@ -6,35 +72,6 @@
     height: 36px;
     width: 80px;
     border-radius: 8px;
-    color: black;
+    color: white;
     text-align: center;
-}
-
-.start-button:hover {
-    background-color: #e6b800;
-}
-
-.header-banner {
-    background-color: #2941BC; /* 帯の背景色を設定 */
-    color: white; /* 帯内の文字の色を設定 */
-    padding: 10px; /* 帯の内側の余白を設定 */
-    text-align: left; /* テキストを中央寄せに設定 */
-    margin: 0; /* 上下のマージンを0に設定 */
-    position: fixed; /* ヘッダーを固定位置に設定 */
-    top: 0; /* 上端に配置 */
-    left: 0; /* 左端に配置 */
-    width: 100%; /* 画面幅いっぱいに広げる */
-    height: 50px; /* 帯の高さを設定 (適切な高さに調整) */
-
-}
-.right {
-    display: flex;
-}
-
-.header-banner h1 {
-    margin: 0; /* h1要素のマージンをリセット */
-}
-.signup-container{
-	text-align: center;
-	margin-top: 150px;
 }
