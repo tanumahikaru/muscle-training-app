@@ -58,7 +58,7 @@
 		</div>
 
 		<div id="right-contents">
-			<a href="#"><button class="back-button">戻る</button></a>
+			<button class="back-button" onclick="goBack()">戻る</button>
 			<div class="title">
 				<h3>栄養素</h3>
 			</div>
@@ -113,9 +113,9 @@
 					<button>バター</button>
 				</div>
 			</div>
-			<a href="#"><button class="add-button">戻る</button></a>
+			<button class="add-button" onclick="goBack()">戻る</button>
 		</div>
 	</div>
-	<script src="./JavaScript/home.js"></script>
+	<script src="./JavaScript/back.js"></script>
 </body>
 </html>
