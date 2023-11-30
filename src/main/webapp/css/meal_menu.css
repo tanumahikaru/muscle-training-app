@@ -22,3 +22,42 @@
 .button-outline:hover {
   background-color: #dcedd2;
 }
+
+/*----------------------------------------------
+type2
+----------------------------------------------*/
+.card-button {
+  display: inline-block;
+  padding: 7px 20px;
+  width: 200px;
+  background: rgb(55,55,55);
+  box-shadow: 0px 0px 28 3px #e0e0e0;
+  transform: skew(-21deg);
+  font-size: 1rem;
+  color: #FCFCF5;
+  margin-top: 2rem;
+}
+
+.card-button span {
+  display: inline-block;
+  transform: skew(21deg);
+}
+
+.card-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  left: 0;
+  background: #E28B8B;
+  transition: all .5s;
+}
+
+.card-button:hover {
+  color: #FCFCF5;
+}
+
+.card-button:hover::before {
+  right: 0;
+}
