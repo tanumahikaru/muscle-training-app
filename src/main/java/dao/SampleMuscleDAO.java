@@ -98,6 +98,29 @@ public class SampleMuscleDAO {
 
         return result;
     }
+	
+	public static String getPositionNameById(int positionId) {
+        String sql = "SELECT position FROM position WHERE position_id = ?";
+        String positionName = null;
+
+        try (
+                Connection con = getConnection();
+                PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setInt(1, positionId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    positionName = rs.getString("position");
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        return positionName;
+    }
+
 }
 
 

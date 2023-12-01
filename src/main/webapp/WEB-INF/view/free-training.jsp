@@ -53,6 +53,9 @@
         <button type="button" onclick="setAndSubmitForm(6)">肩</button>
         <button type="button" onclick="setAndSubmitForm(7)">有酸素</button>
     </form>
+    
+    <h2><%=request.getAttribute("positionName") %>のレシピ一覧</h2>
+    
     <table border="1">
         <tr>
             <th>ID</th>

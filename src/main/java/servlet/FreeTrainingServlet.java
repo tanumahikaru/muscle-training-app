@@ -47,7 +47,14 @@ public class FreeTrainingServlet extends HttpServlet {
 		
 		List<MuscleDTO> training = SampleMuscleDAO.selectTrainingByPosition(positionId);
 		
+		String positionName = SampleMuscleDAO.getPositionNameById(positionId);
+		
+		if(positionName == null) {
+			positionName = "検索した";
+		}
+		
 		request.setAttribute("list", training);
+		request.setAttribute("positionName", positionName);
 		
 		String view = "WEB-INF/view/free-training.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);

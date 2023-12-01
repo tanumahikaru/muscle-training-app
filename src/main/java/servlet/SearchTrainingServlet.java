@@ -42,9 +42,24 @@ public class SearchTrainingServlet extends HttpServlet {
         // DAOメソッドに検索キーワードを渡して結果を取得
         List<MuscleDTO> training;
         
+        int defaultCategoryId = 1;
+        
+        String positionName = SampleMuscleDAO.getPositionNameById(defaultCategoryId);
+        
+     // カテゴリ名がnullの場合、検索時のメッセージを設定
+        if (positionName == null || searchKeyword != null && !searchKeyword.isEmpty()) {
+            positionName = "検索";
+        }
+        
+        request.setAttribute("positionName", positionName);
+        
         if (searchKeyword != null && !searchKeyword.isEmpty()) {
             // 検索キーワードがある場合は検索を実行
             training = SampleMuscleDAO.searchTrainingByName(searchKeyword);
+            if (training == null || training.isEmpty()) {
+                positionName = "検索した";
+                request.setAttribute("positionName", positionName);
+            }
         } else {
             // 検索キーワードがない場合はデフォルトのカテゴリーで検索
             int defaultPositionId = 1;  // デフォルトのポジションID（腕）を指定
