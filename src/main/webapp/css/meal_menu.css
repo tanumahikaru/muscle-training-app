@@ -26,16 +26,46 @@
 /*----------------------------------------------
 type2
 ----------------------------------------------*/
+.card-container.type2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px; /* カードの間隔 */
+}
+
+.card-header,
+.card-body {
+  text-align: center;
+}
+
+.card-header {
+  width: 100%;
+}
+
+.card-body {
+  width: 200px; /* カードの幅 */
+  border: 2px solid #6fa24a;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 15px;
+}
+
 .card-button {
   display: inline-block;
   padding: 7px 20px;
-  width: 200px;
-  background: rgb(55,55,55);
-  box-shadow: 0px 0px 28 3px #e0e0e0;
-  transform: skew(-21deg);
+  background: rgb(55, 55, 55);
   font-size: 1rem;
   color: #FCFCF5;
   margin-top: 2rem;
+  text-decoration: none;
+  border: 2px solid #6fa24a;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #6fa24a;
 }
 
 .card-button span {
@@ -51,11 +81,7 @@ type2
   right: 100%;
   left: 0;
   background: #E28B8B;
-  transition: all .5s;
-}
-
-.card-button:hover {
-  color: #FCFCF5;
+  transition: all 0.5s;
 }
 
 .card-button:hover::before {
