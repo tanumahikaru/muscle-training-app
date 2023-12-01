@@ -11,3 +11,7 @@ function searchByCategory(category_Id) {
     // カテゴリーIDをパラメータとしてサーブレットに送信
     window.location.href = "SearchServlet?category=" + category_Id;
 }
+
+    function redirectToDetail(foodId) {
+        window.location.href = "MealMenuDetailServlet?id=" + foodId;
+    }
