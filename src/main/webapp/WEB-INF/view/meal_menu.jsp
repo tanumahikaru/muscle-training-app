@@ -85,7 +85,6 @@
 		<div class="card-body">
 			<h2><%= m.getFood_name() %></h2>
        		<h1><%= m.getCalorie() %></h1>
-       		<h1><%= m.getFood_id() %></h1>
 			<a href="MealMenuDetailServlet?id=<%=m.getFood_id() %>">料理を作る</a>
 		</div>
 		<%} %>
