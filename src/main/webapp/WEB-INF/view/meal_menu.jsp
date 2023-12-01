@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="css/user-log.css">
     <link rel="stylesheet" href="css/style.css">
     
-    
 </head>
 <body>
 <header>
@@ -84,9 +83,9 @@
 			<figure class="image"><img src="images/image (1).png"alt=""></figure>
 		</div>
 		<div class="card-body">
-				<h2><%= m.getFood_name() %></h2>
-       			<h1><%= m.getCalorie() %></h1>
-				<button class = "card-button"><span>プロフィールを見る</span></button>
+			<h2><%= m.getFood_name() %></h2>
+       		<h1><%= m.getCalorie() %></h1>
+			<a href="MealMenuDetailServlet?id=<%=m.getFood_id() %>">料理を作る</a>
 		</div>
 		<%} %>
 	</div>
