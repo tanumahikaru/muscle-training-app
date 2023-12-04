@@ -78,13 +78,11 @@
 		List<Meal_menuDTO> meal_menu = (ArrayList<Meal_menuDTO>)request.getAttribute("list");
 		for(Meal_menuDTO m : meal_menu) {
 		%>
-		
-		<div class="card-header">	
-			<figure class="image"><img src="images/image (1).png"alt=""></figure>
-		</div>
+
 		<div class="card-body">
+			<figure class="image"><img src="images/user_icon.png" alt="" style="width: 50px; height: 50px;"></figure>
 			<h2><%= m.getFood_name() %></h2>
-       		<h1><%= m.getCalorie() %></h1>
+       		<h1><%= m.getCalorie() %>kcal</h1>
 			<a href="MealMenuDetailServlet?id=<%=m.getFood_id() %>">料理を作る</a>
 		</div>
 		<%} %>
