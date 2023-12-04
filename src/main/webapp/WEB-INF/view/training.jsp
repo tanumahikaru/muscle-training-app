@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="dto.MuscleDTO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,8 +28,11 @@
       <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
    	  <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
 	</div>
+	<%
+		MuscleDTO training = (MuscleDTO) request.getAttribute("training");
+	%>
     <button class="breakBtn">中断</button>
-	<h1 class="titile">種目名</h1>
+	<h1 class="titile"><%=training.getEvent_name()%></h1>
 	<!-- フォームタグを付けるとタイマーが動かなくなる -->
 		<div class="set" id="set1">
 			1セット目:

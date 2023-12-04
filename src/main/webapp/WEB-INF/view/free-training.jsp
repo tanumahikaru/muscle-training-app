@@ -68,7 +68,7 @@
         %>
         <tr>
             <td><%=m.getTraining_event_id() %></td>
-            <td><a href="TrainingServlet"><%=m.getEvent_name() %></a></td>
+            <td><a href="TrainingServlet?id=<%=m.getTraining_event_id() %>"><%=m.getEvent_name() %></a></td>
             <td><%=m.getMets() %></td>
         </tr>
         <%} %>
