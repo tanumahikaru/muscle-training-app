@@ -28,9 +28,13 @@ type2
 ----------------------------------------------*/
 .card-container.type2 {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 20px; /* カードの間隔 */
+  flex-wrap: wrap; /* 複数行に折り返す */
+  justify-content: flex-start; /* カードを左寄せに */
+  gap: 100px; /* カードの間隔 */
+}
+
+.card-container.type2.center-cards {
+  justify-content: center;
 }
 
 .card-body {
@@ -44,6 +48,7 @@ type2
   overflow: hidden; /* カード内の余分な部分を隠す */
   display: flex;
   flex-direction: column; /* これを追加してフレックスコンテナにする */
+  margin-bottom: 20px; /* カードの下部に20pxの余白を追加 */
 }
 
 .card-body img {
@@ -68,8 +73,11 @@ type2
   transition: background-color 0.3s ease;
 }
 
-.card-header img {
-  width: 50px;
-  height: 50px;
+.card-container.type2.center-cards {
+  justify-content: center;
 }
 
+.card-container.type2.left-align {
+  justify-content: flex-start;
+  margin-left: 150px; /* 左の余白を調整（必要に応じて適切な値に調整） */
+}
