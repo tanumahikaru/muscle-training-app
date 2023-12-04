@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.SampleMuscleDAO;
+import dto.MuscleDTO;
 
 /**
  * Servlet implementation class TrainingServlet
@@ -28,6 +32,14 @@ public class TrainingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		MuscleDTO training = SampleMuscleDAO.SelectTrainingById(id);
+		
+		HttpSession session=request.getSession();
+		session.setAttribute("detail", training);
+		
+		request.setAttribute("training", training);
 		String view = "WEB-INF/view/training.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
