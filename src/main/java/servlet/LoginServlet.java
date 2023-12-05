@@ -22,67 +22,76 @@ import util.GenerateHashedPw;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public LoginServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.getParameter("UTF-8");
-		
+
 		String mail = request.getParameter("mail");
 		String pw = request.getParameter("pw");
-		
+
 		// 入力されたIDをもとにソルトを取得する。
 		String salt = UserDAO.getSalt(mail);
-		
+
 		// 取得したソルトがnullの場合は対象のユーザがいないので、Errorでログイン画面に戻す
-		if(salt == null) {
-			String view = "./?error=1";
+		if (salt == null) {
+			String view = "/?error=1"; // URLはhttp://localhost:8080/MuscleTrainingApp/という意味
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
 			return;
 		}
-				
-		// 取得したソルトを使って入力したPWをハッシュ
+
+		// 取得したソルトを使って入力したPWをハッシュ化
 		String hashedPw = GenerateHashedPw.getSafetyPassword(pw, salt);
-		
-		// 入力されたID、ハッシュしたPWに一致するユーザを検索する
+
+		// 入力されたID、ハッシュ化したPWに一致するユーザを検索する
 		UserDTO user = UserDAO.login(mail, hashedPw);
-		
-		// 一致するユーザがいなければ、ログイン失敗
-		if(user == null) {
-			String view = "./?error=1";
+
+		if (user == null) {
+			// ログイン失敗時index.htmlを表示
+			String view = "/?error=1";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
 		} else {
-			MuscleRecord latestRecord = MuscleRecordDAO.selectLatestMuscleRecord();
+			// ログイン成功時の処理
+			// 初回ログインかどうかの判定
+			System.out.println(user.getLast_login());
 			
-			 if (latestRecord != null) {
-	                request.setAttribute("latestRecord", latestRecord);
-	            }
-			// ログイン情報をセッションに登録
-				HttpSession session = request.getSession();
-				session.setAttribute("user", user);
+			
+			MuscleRecord latestRecord = MuscleRecordDAO.selectLatestMuscleRecord();
 
-				String view = "WEB-INF/view/home.jsp";
-				RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-				dispatcher.forward(request, response);
-	        }
+			if (latestRecord != null) {
+				request.setAttribute("latestRecord", latestRecord);
+			}
+
+			// ログイン情報をセッションに登録
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+
+			// ログイン後のホーム画面へ遷移
+			String view = "WEB-INF/view/home.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+			dispatcher.forward(request, response);
 		}
-	
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
