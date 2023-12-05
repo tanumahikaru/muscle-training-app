@@ -37,10 +37,10 @@
 		<div class="set" id="set1">
 			1セット目:
 			<div id="timer">
-	  			<div id="time-display">00:00:00</div>
-				<button id="start-button">開始</button>
-				<button id="stop-button">停止</button>
-				<button id="reset-button">リセット</button>
+	  			<div class="time-display">00:00:00</div>
+				<button class="start-button">開始</button>
+				<button class="stop-button">停止</button>
+				<button class="reset-button">リセット</button>
 				<button class="minus">ー</button>
 				<input type="number" class="number" min="0">
 				<button class="plus">＋</button>
@@ -50,10 +50,10 @@
 		<div class="set" id="set2">
 			2セット目:
 			<div id="timer">
-	  			<div id="time-display">00:00:00</div>
-				<button id="start-button">開始</button>
-				<button id="stop-button">停止</button>
-				<button id="reset-button">リセット</button>
+	  			<div class="time-display">00:00:00</div>
+				<button class="start-button">開始</button>
+				<button class="stop-button">停止</button>
+				<button class="reset-button">リセット</button>
 				<button class="minus">ー</button>
 				<input type="number" class="number" min="0">
 				<button class="plus">＋</button>
@@ -63,10 +63,10 @@
 		<div class="set" id="set3">
 			3セット目:
 			<div id="timer">
-	  			<div id="time-display">00:00:00</div>
-				<button id="start-button">開始</button>
-				<button id="stop-button">停止</button>
-				<button id="reset-button">リセット</button>
+	  			<div class="time-display">00:00:00</div>
+				<button class="start-button">開始</button>
+				<button class="stop-button">停止</button>
+				<button class="reset-button">リセット</button>
 				<button class="minus">ー</button>
 				<input type="number" class="number" min="0">
 				<button class="plus">＋</button>

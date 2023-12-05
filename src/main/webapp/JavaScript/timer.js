@@ -1,65 +1,67 @@
-/**
- * 
- */
- 
- //１つ前のページに戻る
-function goBack() {
-	window.history.back();
-}
+window.onload = function() {
+  // タイマー関連の変数
+  let timerIntervals = [];  // タイマーのインターバルを格納する配列
+  let startTimes = [];  // 開始時間を格納する配列
 
+  // 各セットのボタンとタイマーの要素を取得
+  const startButtons = document.querySelectorAll('.start-button');
+  const stopButtons = document.querySelectorAll('.stop-button');
+  const resetButtons = document.querySelectorAll('.reset-button');
+  const timeDisplays = document.querySelectorAll('.time-display');
+  const numbers = document.querySelectorAll('.number');
+  const minusButtons = document.querySelectorAll('.minus');
+  const plusButtons = document.querySelectorAll('.plus');
 
-//初期値の設定
-let startTime = 0;
-let timerInterval = null;
-
-//開始ボタンの動作の設定
-document.getElementById("start-button").addEventListener("click", function() {
-  if (timerInterval) return;
-  startTime = Date.now();
-  timerInterval = setInterval(updateTime, 10); // 10ミリ秒ごとに更新
-});
-
-//停止ボタンの動作の設定
-document.getElementById("stop-button").addEventListener("click", function() {
-  clearInterval(timerInterval);
-  timerInterval = null;
-});
-
-//リセットボタンの動作の設定
-document.getElementById("reset-button").addEventListener("click", function() {
-  clearInterval(timerInterval);
-  timerInterval = null;
-  document.getElementById("time-display").innerText = "00:00.00";
-  startTime = 0;
-});
-
-function updateTime() {
-  const currentTime = Date.now();
-  const timeElapsed = new Date(currentTime - startTime);
-
-  const minutes = timeElapsed.getUTCMinutes().toString().padStart(2, '0');
-  const seconds = timeElapsed.getSeconds().toString().padStart(2, '0');
-  // ミリ秒の上位2桁を取得
-  const milliseconds = Math.floor(timeElapsed.getMilliseconds() / 10).toString().padStart(2, '0');
-
-  document.getElementById("time-display").innerText = `${minutes}:${seconds}.${milliseconds}`;
-}
-
-//要素の取得
-let numbers = document.querySelectorAll('.number');
-let plusBtns = document.querySelectorAll('.plus');
-let minusBtns = document.querySelectorAll('.minus');
-
-//＋ボタンのイベント設定
-plusBtns.forEach((plusBtn, index) => {
-  plusBtn.addEventListener('click', () => {
-    numbers[index].stepUp();
+  // 開始ボタンのクリックイベント
+  startButtons.forEach((startButton, index) => {
+      startButton.addEventListener('click', () => {
+          if (timerIntervals[index]) return;  // タイマーが既に動いていれば何もしない
+          startTimes[index] = Date.now();
+          timerIntervals[index] = setInterval(() => updateTime(index), 10);  // 10ミリ秒ごとに更新
+      });
   });
-});
 
-//－ボタンのイベント設定
-minusBtns.forEach((minusBtn, index) => {
-  minusBtn.addEventListener('click', () => {
-    numbers[index].stepDown();
+  // －ボタンのクリックイベント
+  minusButtons.forEach((minusButton, index) => {
+      minusButton.addEventListener('click', () => {
+          numbers[index].stepDown();
+      });
   });
-});
+
+  // ＋ボタンのクリックイベント
+  plusButtons.forEach((plusButton, index) => {
+      plusButton.addEventListener('click', () => {
+          numbers[index].stepUp();
+      });
+  });
+
+  // リセットボタンのクリックイベント
+  resetButtons.forEach((resetButton, index) => {
+      resetButton.addEventListener('click', () => {
+          clearInterval(timerIntervals[index]);
+          timerIntervals[index] = null;
+          timeDisplays[index].innerText = "00:00.00";
+          startTimes[index] = 0;
+      });
+  });
+
+  // 停止ボタンのクリックイベント
+  stopButtons.forEach((stopButton, index) => {
+      stopButton.addEventListener('click', () => {
+          clearInterval(timerIntervals[index]);
+          timerIntervals[index] = null;
+      });
+  });
+
+  // 時間更新の関数
+  function updateTime(index) {
+      const currentTime = Date.now();
+      const timeElapsed = new Date(currentTime - startTimes[index]);
+
+      const minutes = timeElapsed.getUTCMinutes().toString().padStart(2, '0');
+      const seconds = timeElapsed.getSeconds().toString().padStart(2, '0');
+      const milliseconds = Math.floor(timeElapsed.getMilliseconds() / 10).toString().padStart(2, '0');
+
+      timeDisplays[index].innerText = `${minutes}:${seconds}.${milliseconds}`;
+  }
+};
