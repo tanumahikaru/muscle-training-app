@@ -108,6 +108,34 @@ INSERT INTO traning_programs_detail(training_program_id, step, training_event_id
 INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,4,4);
 INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,5,5);
 
+-- ここから食事に関するテーブル
+--カテゴリー
+CREATE TABLE category(
+	category_id 				SERIAL PRIMARY KEY,
+	category_name 			VARCHAR(10)
+);
+
+--カテゴリーテーブルのデータ
+INSERT INTO category (category_name) VALUES
+	('肉'),
+	('魚'),
+	('卵'),
+	('乳製品'),
+	('豆'),
+	('野菜'),
+	('果物'),
+	('その他')
+;
+
+--カテゴリー別食事メニュー
+CREATE TABLE meal_menu_by_category(
+  category_id 	INTEGER,
+  food_id 		INTEGER,
+  PRIMARY KEY(category_id, food_id),
+  FOREIGN KEY(category_id) REFERENCES category(category_id),
+  FOREIGN KEY(food_id) REFERENCES meal_menus(food_id)
+);
+
 
 
 
