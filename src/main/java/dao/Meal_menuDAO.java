@@ -49,11 +49,12 @@ public class Meal_menuDAO {
                     int food_id = rs.getInt("food_id");
                     String food_name = rs.getString("food_name");
                     int calorie = rs.getInt("calorie");
+                    int protein = rs.getInt("protein");
                     int fat = rs.getInt("fat");
                     int carbo = rs.getInt("carbo");
                     boolean main_dish_flag = rs.getBoolean("main_dish_flag");
 
-                    Meal_menuDTO meal_menu = new Meal_menuDTO(food_id, food_name, calorie, fat, carbo, carbo, main_dish_flag);
+                    Meal_menuDTO meal_menu = new Meal_menuDTO(food_id, food_name, calorie, protein, fat, carbo, main_dish_flag);
                     result.add(meal_menu);
                 }
             }
@@ -80,11 +81,12 @@ public class Meal_menuDAO {
 	            	int food_id = rs.getInt("food_id");
                     String food_name = rs.getString("food_name");
                     int calorie = rs.getInt("calorie");
+                    int protein = rs.getInt("protein");
                     int fat = rs.getInt("fat");
                     int carbo = rs.getInt("carbo");
                     boolean main_dish_flag = rs.getBoolean("main_dish_flag");
 
-                    meal_menu = new Meal_menuDTO(food_id, food_name, calorie, fat, carbo, carbo, main_dish_flag);
+                    meal_menu = new Meal_menuDTO(food_id, food_name, calorie, protein, fat, carbo, main_dish_flag);
 	            }
 			}
     } catch (SQLException | URISyntaxException e) {
@@ -113,11 +115,12 @@ public class Meal_menuDAO {
                 	int food_id = rs.getInt("food_id");
                     String food_name = rs.getString("food_name");
                     int calorie = rs.getInt("calorie");
+                    int protein = rs.getInt("protein");
                     int fat = rs.getInt("fat");
                     int carbo = rs.getInt("carbo");
                     boolean main_dish_flag = rs.getBoolean("main_dish_flag");
 
-                    Meal_menuDTO menu = new Meal_menuDTO(food_id, food_name, calorie, fat, carbo, carbo, main_dish_flag);
+                    Meal_menuDTO menu = new Meal_menuDTO(food_id, food_name, calorie, protein, fat, carbo, main_dish_flag);
                     result.add(menu);
                 }
             }
@@ -127,4 +130,27 @@ public class Meal_menuDAO {
 
         return result;
     }
+	 // カテゴリIDに基づいてカテゴリ名を取得するメソッド
+    public static String getCategoryNameById(int category_Id) {
+        String sql = "SELECT category_name FROM category WHERE category_id = ?";
+        String categoryName = null;
+
+        try (
+                Connection con = getConnection();
+                PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setInt(1, category_Id);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    categoryName = rs.getString("category_name");
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        return categoryName;
+    }
+
 }

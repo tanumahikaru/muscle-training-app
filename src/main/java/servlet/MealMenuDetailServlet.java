@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.Meal_menuDAO;
 import dto.Meal_menuDTO;
@@ -31,11 +32,15 @@ public class MealMenuDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		int id = Integer.parseInt(request.getParameter("id"));
-		int id=1;
+		int id = Integer.parseInt(request.getParameter("id"));
+
 		System.out.println(id);
 		Meal_menuDTO menu = Meal_menuDAO.SelectMealMenuById(id);
 		System.out.println(menu.getFood_name());
+		
+		HttpSession session=request.getSession();
+		session.setAttribute("detail", menu);
+		
 		request.setAttribute("menu", menu);
 		String view = "WEB-INF/view/meal-menu-detail.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);

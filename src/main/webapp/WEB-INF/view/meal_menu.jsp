@@ -9,10 +9,10 @@
     <title>レシピ検索</title>
    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/meal_menu.css">
     <link rel="stylesheet" href="css/user-log.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/home.css">
     
 </head>
 <body>
@@ -69,26 +69,26 @@
 	<button type="button" class="button-outline" onclick="setAndSubmitForm(8)">その他</button>
     
 
-    <!-- JavaScriptでpositionIdを設定し、フォームをサーバーに送信するスクリプト -->
+   	<%-- カテゴリー名を表示 --%>
+	<h2><%= request.getAttribute("categoryName") %>のレシピ一覧</h2>
     
-	</form>
-		<table border="1">
-			<tr>
-				<th>ID</th>
-				<th>メニュー名</th>
-				<th>カロリー</th>
-		</tr>
-	<%
+	<div class="card-container type2">
+		<%
+		int category_Id = 1;
 		List<Meal_menuDTO> meal_menu = (ArrayList<Meal_menuDTO>)request.getAttribute("list");
 		for(Meal_menuDTO m : meal_menu) {
-	%>
-		<tr>
-			<td><%=m.getFood_id() %>
-			<td><%=m.getFood_name() %></td>
-			<td><%=m.getCalorie() %></td>
-		</tr>
-	<%} %>
-	</table>
+		%>
+
+		<div class="card-body">
+			<figure class="image"><img src="images/user_icon.png" alt="" style="width: 50px; height: 50px;"></figure>
+			<h2><%= m.getFood_name() %></h2>
+       		<h1><%= m.getCalorie() %>kcal</h1>
+			<a href="MealMenuDetailServlet?id=<%=m.getFood_id() %>">料理を作る</a>
+		</div>
+		<%} %>
+	</div>
+</form>
+
    		<a href="TopServlet">戻る</a>
 
     <script src="./JavaScript/home.js"></script>

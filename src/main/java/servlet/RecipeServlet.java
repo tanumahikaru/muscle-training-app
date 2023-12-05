@@ -12,53 +12,50 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Meal_menuDAO;
 import dto.Meal_menuDTO;
-/**
- * Servlet implementation class FreeTrainingServlet
- */
+
 @WebServlet("/RecipeServlet")
 public class RecipeServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RecipeServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 // ボタンがクリックされたときに渡された positionId を取得
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // カテゴリIDを取得
         String categoryIdParam = request.getParameter("category_Id");
 
         int category_Id;
 
+        // カテゴリIDが指定されているかどうかを確認
         if (categoryIdParam != null) {
-            // ボタンがクリックされた場合はその値を使う
-        	category_Id = Integer.parseInt(categoryIdParam);
+            // 指定されている場合はその値を使用
+            category_Id = Integer.parseInt(categoryIdParam);
         } else {
-            // ボタンがクリックされていない場合はデフォルトの positionId を指定する
-        	category_Id = 1;  // ここでは腕の positionId をデフォルトとしていますが、適切な値に変更してください
+            // 指定されていない場合はデフォルトのカテゴリIDを使用
+            category_Id = 1; // 適切なデフォルト値に変更してください
         }
-		
-		List<Meal_menuDTO> meal_menu = Meal_menuDAO.selectMeal_menu(category_Id);
-		
-		request.setAttribute("list", meal_menu);
-		
-		String view = "WEB-INF/view/meal_menu.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
-	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+        // カテゴリIDに基づいてレシピを取得
+        List<Meal_menuDTO> meal_menu = Meal_menuDAO.selectMeal_menu(category_Id);
 
+        // カテゴリIDに基づいてカテゴリ名を取得
+        String categoryName = Meal_menuDAO.getCategoryNameById(category_Id);
+
+        // カテゴリ名がnullの場合、"検索した"を設定
+        if (categoryName == null) {
+            categoryName = "検索した";
+        }
+
+        // リクエスト属性に設定
+        request.setAttribute("list", meal_menu);
+        request.setAttribute("categoryName", categoryName);
+
+        // JSPに転送
+        String view = "WEB-INF/view/meal_menu.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+        dispatcher.forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
 }
