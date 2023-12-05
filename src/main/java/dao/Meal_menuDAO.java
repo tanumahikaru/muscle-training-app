@@ -19,138 +19,161 @@ public class Meal_menuDAO {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-	    URI dbUri = new URI(System.getenv("DATABASE_URL"));
+		URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
-	    String username = dbUri.getUserInfo().split(":")[0];
-	    String password = dbUri.getUserInfo().split(":")[1];
-	    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+		String username = dbUri.getUserInfo().split(":")[0];
+		String password = dbUri.getUserInfo().split(":")[1];
+		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
-	    return DriverManager.getConnection(dbUrl, username, password);
+		return DriverManager.getConnection(dbUrl, username, password);
 	}
-	
+
+	// カテゴリーごとに食事メニューを取得するメソッド
 	public static List<Meal_menuDTO> selectMeal_menu(int category_Id) {
-        // 実行するSQL
-        String sql = "SELECT m.* FROM meal_menus m " +
-                     "JOIN meal_menu_by_category mc ON m.food_id = mc.food_id " +
-                     "JOIN category c ON mc.category_id = c.category_id " +
-                     "WHERE c.category_id = ?";
+		// 実行するSQL
+		String sql = "SELECT m.* FROM meal_menus m " +
+				"JOIN meal_menu_by_category mc ON m.food_id = mc.food_id " +
+				"JOIN category c ON mc.category_id = c.category_id " +
+				"WHERE c.category_id = ?";
 
-        // 返却用のListインスタンス
-        List<Meal_menuDTO> result = new ArrayList<>();
+		// 返却用のListインスタンス
+		List<Meal_menuDTO> result = new ArrayList<>();
 
-        try (
-                Connection con = getConnection();
-                PreparedStatement pstmt = con.prepareStatement(sql);
-        ) {
-            pstmt.setInt(1, category_Id);
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setInt(1, category_Id);
 
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-                    int food_id = rs.getInt("food_id");
-                    String food_name = rs.getString("food_name");
-                    int calorie = rs.getInt("calorie");
-                    int protein = rs.getInt("protein");
-                    int fat = rs.getInt("fat");
-                    int carbo = rs.getInt("carbo");
-                    boolean main_dish_flag = rs.getBoolean("main_dish_flag");
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					int food_id = rs.getInt("food_id");
+					String food_name = rs.getString("food_name");
+					int calorie = rs.getInt("calorie");
+					int protein = rs.getInt("protein");
+					int fat = rs.getInt("fat");
+					int carbo = rs.getInt("carbo");
+					boolean main_dish_flag = rs.getBoolean("main_dish_flag");
 
-                    Meal_menuDTO meal_menu = new Meal_menuDTO(food_id, food_name, calorie, protein, fat, carbo, main_dish_flag);
-                    result.add(meal_menu);
-                }
-            }
-        } catch (SQLException | URISyntaxException e) {
-            e.printStackTrace();
-        }
-        
-        return result;
-    }
-	
-  
+					Meal_menuDTO meal_menu = new Meal_menuDTO(food_id, food_name, calorie, protein, fat, carbo,
+							main_dish_flag);
+					result.add(meal_menu);
+				}
+			}
+		} catch (SQLException | URISyntaxException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	// idによって食事メニューの情報を取得するメソッド
 	public static Meal_menuDTO SelectMealMenuById(int id) {
 		System.out.println(id);
-    String sql = "SELECT * FROM meal_menus Where food_id=?";
-    Meal_menuDTO meal_menu = null;
+		String sql = "SELECT * FROM meal_menus Where food_id=?";
+		Meal_menuDTO meal_menu = null;
 
-    try (
+		try (
 				Connection con = getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				){
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setInt(1, id);
-			try (ResultSet rs = pstmt.executeQuery()){
-	            if (rs.next()) {
-	            	int food_id = rs.getInt("food_id");
-                    String food_name = rs.getString("food_name");
-                    int calorie = rs.getInt("calorie");
-                    int protein = rs.getInt("protein");
-                    int fat = rs.getInt("fat");
-                    int carbo = rs.getInt("carbo");
-                    boolean main_dish_flag = rs.getBoolean("main_dish_flag");
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					int food_id = rs.getInt("food_id");
+					String food_name = rs.getString("food_name");
+					int calorie = rs.getInt("calorie");
+					int protein = rs.getInt("protein");
+					int fat = rs.getInt("fat");
+					int carbo = rs.getInt("carbo");
+					boolean main_dish_flag = rs.getBoolean("main_dish_flag");
 
-                    meal_menu = new Meal_menuDTO(food_id, food_name, calorie, protein, fat, carbo, main_dish_flag);
-	            }
+					meal_menu = new Meal_menuDTO(food_id, food_name, calorie, protein, fat, carbo, main_dish_flag);
+				}
 			}
-    } catch (SQLException | URISyntaxException e) {
-            e.printStackTrace();
-      }
-    return meal_menu;
-  }
+		} catch (SQLException | URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return meal_menu;
+	}
 
-
+	// メニュー名の部分一致で食事メニューを検索するメソッド
 	public static List<Meal_menuDTO> searchRecipeByName(String searchKeyword) {
-        // 実行するSQL
-        String sql = "SELECT * FROM meal_menus WHERE food_name LIKE ?";
+		// 実行するSQL
+		String sql = "SELECT * FROM meal_menus WHERE food_name LIKE ?";
 
-        // 返却用のListインスタンス
-        List<Meal_menuDTO> result = new ArrayList<>();
+		// 返却用のListインスタンス
+		List<Meal_menuDTO> result = new ArrayList<>();
 
-        try (
-                Connection con = getConnection();
-                PreparedStatement pstmt = con.prepareStatement(sql);
-        ) {
-        	// UTF-8でエンコードしてからPreparedStatementにセット
-        	pstmt.setString(1, "%" + searchKeyword + "%");
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+			// UTF-8でエンコードしてからPreparedStatementにセット
+			pstmt.setString(1, "%" + searchKeyword + "%");
 
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-                	int food_id = rs.getInt("food_id");
-                    String food_name = rs.getString("food_name");
-                    int calorie = rs.getInt("calorie");
-                    int protein = rs.getInt("protein");
-                    int fat = rs.getInt("fat");
-                    int carbo = rs.getInt("carbo");
-                    boolean main_dish_flag = rs.getBoolean("main_dish_flag");
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					int food_id = rs.getInt("food_id");
+					String food_name = rs.getString("food_name");
+					int calorie = rs.getInt("calorie");
+					int protein = rs.getInt("protein");
+					int fat = rs.getInt("fat");
+					int carbo = rs.getInt("carbo");
+					boolean main_dish_flag = rs.getBoolean("main_dish_flag");
 
-                    Meal_menuDTO menu = new Meal_menuDTO(food_id, food_name, calorie, protein, fat, carbo, main_dish_flag);
-                    result.add(menu);
-                }
-            }
-        } catch (SQLException | URISyntaxException e) {
-            e.printStackTrace();
-        }
+					Meal_menuDTO menu = new Meal_menuDTO(food_id, food_name, calorie, protein, fat, carbo,
+							main_dish_flag);
+					result.add(menu);
+				}
+			}
+		} catch (SQLException | URISyntaxException e) {
+			e.printStackTrace();
+		}
 
-        return result;
-    }
-	 // カテゴリIDに基づいてカテゴリ名を取得するメソッド
-    public static String getCategoryNameById(int category_Id) {
-        String sql = "SELECT category_name FROM category WHERE category_id = ?";
-        String categoryName = null;
+		return result;
+	}
 
-        try (
-                Connection con = getConnection();
-                PreparedStatement pstmt = con.prepareStatement(sql);
-        ) {
-            pstmt.setInt(1, category_Id);
+	// カテゴリIDに基づいてカテゴリ名を取得するメソッド
+	public static String getCategoryNameById(int category_Id) {
+		String sql = "SELECT category_name FROM category WHERE category_id = ?";
+		String categoryName = null;
 
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    categoryName = rs.getString("category_name");
-                }
-            }
-        } catch (SQLException | URISyntaxException e) {
-            e.printStackTrace();
-        }
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setInt(1, category_Id);
 
-        return categoryName;
-    }
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					categoryName = rs.getString("category_name");
+				}
+			}
+		} catch (SQLException | URISyntaxException e) {
+			e.printStackTrace();
+		}
+
+		return categoryName;
+	}
+
+	// メインディッシュの食事メニューIDを取得するメソッド
+	public static List<Integer> selectAllMainDishesId() {
+		// 実行するSQL
+		String sql = "SELECT food_id FROM meal_menus WHERE main_dish_flag = true";
+		// 返却用のListインスタンス
+		List<Integer> result = new ArrayList<>();
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					int food_id = rs.getInt("food_id");
+					result.add(food_id);
+				}
+			}
+
+		} catch (SQLException | URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 }

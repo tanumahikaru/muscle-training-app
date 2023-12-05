@@ -1,6 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.Meal_menuDAO;
 import dao.MuscleRecordDAO;
 import dao.UserDAO;
 import dto.MuscleRecord;
@@ -67,15 +71,31 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			// ログイン成功時の処理
 			// 初回ログインかどうかの判定
-			System.out.println(user.getLast_login());
+			Date today = new Date();	// java.util.Date型で現在日時を取得
 			
+			if(user.getLast_login() != new java.sql.Date(today.getTime())) {
+				System.out.println("初回ログイン！");
+				// 今日のトレーニングプログラムIDを取得
+				List<Integer> preTrainingRecords = MuscleRecordDAO.selectPreviousMuscleRecords(user.getId());
+				// 前回トレーニングしたときに指定されたトレーニングプログラムを行っているか判定
+				if (preTrainingRecords.contains(user.getTraining_program_id())) {
+					// トレーニングプログラムの内容を行っていたら今日のトレーニングIDを更新する
+				}
+				
+				// 今日の食事メニューをランダムで選択
+				List<Integer> foodIdList = Meal_menuDAO.selectAllMainDishesId();
+				Random rand = new Random();
+			    int foodId = rand.nextInt(foodIdList.size());
+				
+			    // 今日のトレーニングプログラムIDと食事メニューIDを上書き
+			    
+			}
 			
 			MuscleRecord latestRecord = MuscleRecordDAO.selectLatestMuscleRecord();
-
 			if (latestRecord != null) {
 				request.setAttribute("latestRecord", latestRecord);
 			}
-
+			
 			// ログイン情報をセッションに登録
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);

@@ -108,6 +108,27 @@ INSERT INTO traning_programs_detail(training_program_id, step, training_event_id
 INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,4,4);
 INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,5,5);
 
+--トレーニング記録テーブル
+CREATE TABLE training_records(
+  training_record_id 	SERIAL PRIMARY KEY,
+  user_id 						INTEGER,
+  training_event_id 	INTEGER,
+  date DATE,
+  number INTEGER DEFAULT 0,
+  time INTEGER DEFAULT 0,
+  calories_burned INTEGER DEFAULT 0,
+  FOREIGN KEY(user_id) REFERENCES muscle_users(id),
+  FOREIGN KEY(training_event_id) REFERENCES types_of_training(training_event_id)
+);
+
+INSERT INTO training_records (user_id, training_event_id, date, number, time, calories_burned)
+VALUES
+(2, 1, '2023-01-05', 10, 0, 300),
+(3, 2, '2023-01-07', 30, 0, 500),
+(3, 3, '2023-01-06', 20, 0, 400)
+;
+
+
 -- ここから食事に関するテーブル
 --カテゴリー
 CREATE TABLE category(
