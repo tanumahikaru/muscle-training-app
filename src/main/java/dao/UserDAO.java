@@ -175,5 +175,25 @@ public class UserDAO {
 		return null;
 	}
 
-	
+	// 最終ログイン日を更新するメソッド
+			public static int updateLastLogin(int userId) {
+				int result = 0; // 更新件数0のままだったら登録失敗
+				String sql = "UPDATE muscle_users SET last_login=NOW() WHERE id=?";
+
+				try (
+						Connection con = getConnection();
+						PreparedStatement pstmt = con.prepareStatement(sql);){ // SQL文は、プリコンパイルされ、PreparedStatementオブジェクトに格納される
+					// 値をバインドする
+					pstmt.setInt(1, userId);
+					// sql実行
+					result = pstmt.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} catch (URISyntaxException e) {
+					e.printStackTrace();
+				} finally {
+					System.out.println(result + "件更新しました。(最終ログイン日)");
+				}
+				return result;		// 更新件数を返す
+			}
 }
