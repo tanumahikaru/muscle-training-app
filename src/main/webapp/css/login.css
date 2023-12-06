@@ -4,7 +4,7 @@
     text-align: center;
 }
 
-#login-form {
+#login-form, #link-send-form  {
     margin: 60px auto 0;
     text-align: center;
 
@@ -12,6 +12,10 @@
     height: 450px;
     background-color: white;
     font-family: 'メイリオ', 'Meiryo', sans-serif;
+}
+
+#link-send-form {
+	height: 400px;
 }
 
 #input-area{
@@ -47,6 +51,19 @@ input[type=text]:focus, input[type=password]:focus {
 
 button[type=submit] {
     margin: 20px auto 30px;
+
+    width: 150px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #2941BC;
+    font-family: 'HG創英角ｺﾞｼｯｸUB';
+    color: white;
+}
+
+#back-button {
+	margin: 0px auto 30px;
+	position: relative;
+	top: -100px;
 
     width: 150px;
     height: 50px;

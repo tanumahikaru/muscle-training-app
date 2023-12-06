@@ -15,8 +15,6 @@
 		<div id="header-title">筋トレ</div>
 		<div id="header-contents">
 			<!--  ヘッダーの右側に入るモノを入れる  -->
-			<div id="level">Lv. 13</div>
-			<img id="user-icon" src="images/user_icon.png" alt="">
 		</div>
 	</header>
 
@@ -41,7 +39,7 @@
 
 			<button type="submit">ログイン</button>
 			<br> <a href="RegisterFormServlet" class="small-link">新規アカウント登録はこちら</a>
-			<a href="ForgetPasswordFormServlet" class="small-link">パスワード変更はこちら</a>
+			<a href="LinkSendFormServlet" class="small-link">パスワード変更はこちら</a>
 
 		</form>
 	</div>
