@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.MuscleDAO;
 import dto.MuscleDTO;
+import dto.UserDTO;
 
 /**
  * Servlet implementation class TrainingSuggestionServlet
@@ -32,7 +34,10 @@ public class TrainingSuggestionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int training_program_id = 1;  // 本当は今日のトレーニングプログラムを書く
+		HttpSession session = request.getSession();
+		UserDTO user = (UserDTO)session.getAttribute("user"); 
+		int training_program_id = user.getTraining_program_id();  // 本当は今日のトレーニングプログラムを書く
+		System.out.println(training_program_id);
 		List<MuscleDTO> training = MuscleDAO.selectTrainingsByTrainingProgram(training_program_id);
 		
 		request.setAttribute("list", training);
