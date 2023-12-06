@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import dto.MaterialDTO;
 
@@ -26,31 +28,30 @@ public class MaterialDAO {
 	    return DriverManager.getConnection(dbUrl, username, password);
 	}
 	
-	public static MaterialDTO SelectMaterialById(int id) {
-		System.out.println(id);
-    String sql = "SELECT * FROM material Where food_id=?";
-    MaterialDTO material = null;
 
-    try (
-				Connection con = getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				){
-			pstmt.setInt(1, id);
-			try (ResultSet rs = pstmt.executeQuery()){
-	            if (rs.next()) {
-	            	int food_id = rs.getInt("food_id");
-	            	int step = rs.getInt("step");
-                    String  ingredients = rs.getString("ingredients");
-                    String quantity = rs.getString("quantity");
+	    public static List<MaterialDTO> SelectMaterialsByFoodId(int foodId) {
+	        String sql = "SELECT * FROM material WHERE food_id=?";
+	        List<MaterialDTO> materials = new ArrayList<>();
 
-                    material = new MaterialDTO(food_id, step, ingredients, quantity);
-                   
+	        try (Connection con = getConnection();
+	             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	            pstmt.setInt(1, foodId);
+
+	            try (ResultSet rs = pstmt.executeQuery()) {
+	                while (rs.next()) {
+	                    int step = rs.getInt("step");
+	                    String ingredients = rs.getString("ingredients");
+	                    String quantity = rs.getString("quantity");
+
+	                    MaterialDTO material = new MaterialDTO(foodId, step, ingredients, quantity);
+	                    materials.add(material);
+	                }
 	            }
-			}
-    } catch (SQLException | URISyntaxException e) {
-            e.printStackTrace();
-      }
-    return material;
-  }
+	        } catch (SQLException | URISyntaxException e) {
+	            e.printStackTrace();
+	        }
 
-}
+	        return materials;
+	    }
+	}

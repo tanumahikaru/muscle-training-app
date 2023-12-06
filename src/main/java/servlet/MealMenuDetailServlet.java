@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,25 +34,25 @@ public class MealMenuDetailServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		System.out.println(id);
-		
-		Meal_menuDTO menu = Meal_menuDAO.SelectMealMenuById(id);
-		MaterialDTO material = MaterialDAO.SelectMaterialById(id);
-		System.out.println(menu.getFood_name());
-		System.out.println(material.getIngredients());
-		
-		HttpSession session=request.getSession();
-		session.setAttribute("detail", menu);
-		session.setAttribute("mael", material);
-		
-		request.setAttribute("menu", menu);
-		request.setAttribute("material", material);
-		String view = "WEB-INF/view/meal-menu-detail.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        System.out.println(id);
+        
+        Meal_menuDTO menu = Meal_menuDAO.SelectMealMenuById(id);
+        List<MaterialDTO> materials = MaterialDAO.SelectMaterialsByFoodId(id);
+        System.out.println(menu.getFood_name());
+
+        HttpSession session = request.getSession();
+        session.setAttribute("detail", menu);
+        session.setAttribute("materials", materials);
+
+        request.setAttribute("menu", menu);
+        request.setAttribute("materials", materials); // この行を追加
+
+        String view = "WEB-INF/view/meal-menu-detail.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+        dispatcher.forward(request, response);
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

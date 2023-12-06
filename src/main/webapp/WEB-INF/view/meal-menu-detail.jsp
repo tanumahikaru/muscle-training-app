@@ -54,11 +54,7 @@
 		Meal_menuDTO menu = (Meal_menuDTO) request.getAttribute("menu");
 	%>
 	
-	<%
-		MaterialDTO material = (MaterialDTO) request.getAttribute("material");
-	%>
 
-	
 
 	<div id="main-contents">
 		<div id="left-contents">
@@ -85,16 +81,24 @@
 				</div>
 			</div>
 
-			<div class="card-container type2">
-	
+		 <div class="card-container type2">
 
-		<div class="card-body">
-			<h2><%= material.getStep() %></h2>
-       		<h1><%= material.getIngredients() %></h1>
-       		<h1><%= material.getQuantity() %></h1>
-		</div>
-	
-	</div>
+                <!-- 材料のリストを表示 -->
+                <%
+                    List<MaterialDTO> materials = (List<MaterialDTO>) request.getAttribute("materials");
+                    if (materials != null) {
+                        for (MaterialDTO material : materials) {
+                %>
+                            <div class="card-body">
+                                <h2><%= material.getStep() %></h2>
+                                <h1><%= material.getIngredients() %></h1>
+                                <h1><%= material.getQuantity() %></h1>
+                            </div>
+                <%
+                        }
+                    }
+                %>
+            </div>
 
 			<div id="option">
 				<br>
