@@ -12,6 +12,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/meal-menu-detail.css">
 </head>
@@ -90,9 +91,10 @@
                         for (MaterialDTO material : materials) {
                 %>
                             <div class="card-body">
-                                <h2><%= material.getStep() %></h2>
+                            <div class="materials">
                                 <h1><%= material.getIngredients() %></h1>
                                 <h1><%= material.getQuantity() %></h1>
+                                </div>
                             </div>
                 <%
                         }
@@ -126,6 +128,7 @@
 			<button class="add-button" onclick="goBack()">戻る</button>
 		</div>
 	</div>
+	<script src="./JavaScript/home.js"></script>
 	<script src="./JavaScript/back.js"></script>
 </body>
 </html>

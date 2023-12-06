@@ -30,7 +30,7 @@ public class MaterialDAO {
 	
 
 	    public static List<MaterialDTO> SelectMaterialsByFoodId(int foodId) {
-	        String sql = "SELECT * FROM material WHERE food_id=?";
+	        String sql = "SELECT * FROM material WHERE food_id=? ORDER BY step;";
 	        List<MaterialDTO> materials = new ArrayList<>();
 
 	        try (Connection con = getConnection();
