@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dto.Meal_menuDTO"%>
+<%@ page import="dto.MaterialDTO"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,6 +53,12 @@
 	<%
 		Meal_menuDTO menu = (Meal_menuDTO) request.getAttribute("menu");
 	%>
+	
+	<%
+		MaterialDTO material = (MaterialDTO) request.getAttribute("material");
+	%>
+
+	
 
 	<div id="main-contents">
 		<div id="left-contents">
@@ -76,19 +85,16 @@
 				</div>
 			</div>
 
-			<div class="title">
-				<h3>材料 (3~4人分)</h3>
-			</div>
-			<div class="materials">
-				<div class="ingredient">
-					鶏ささみ<br> 酒<br> 醤油<br> しょうがチューブ<br> 片栗粉<br>
-					いりごま(白)<br> いりごま(黒)<br>
-				</div>
-				<div class="quantity">
-					5本 (300g)<br> 大さじ1<br> 大さじ1<br> 2cm<br> 目分量<br>
-					大さじ2<br>
-				</div>
-			</div>
+			<div class="card-container type2">
+	
+
+		<div class="card-body">
+			<h2><%= material.getStep() %></h2>
+       		<h1><%= material.getIngredients() %></h1>
+       		<h1><%= material.getQuantity() %></h1>
+		</div>
+	
+	</div>
 
 			<div id="option">
 				<br>
