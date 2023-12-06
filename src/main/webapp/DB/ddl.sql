@@ -157,6 +157,6 @@ CREATE TABLE meal_menu_by_category(
   FOREIGN KEY(food_id) REFERENCES meal_menus(food_id)
 );
 
-
+SELECT training_program_id FROM training_records JOIN traning_programs_detail ON training_records.training_event_id=traning_programs_detail.training_event_id WHERE training_records.user_id=? AND training_records.date=(SELECT max(date) FROM training_records) ORDER BY training_record_id;
 
 

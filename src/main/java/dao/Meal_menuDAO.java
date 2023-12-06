@@ -176,4 +176,27 @@ public class Meal_menuDAO {
 		return result;
 	}
 
+	// 今日の食事メニューを更新するメソッド
+	public static int updateFoodId(int userId, int foodId) {
+		int result = 0; // 更新件数0のままだったら登録失敗
+		String sql = "UPDATE muscle_users SET food_id=? WHERE id=?";
+
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) { // SQL文は、プリコンパイルされ、PreparedStatementオブジェクトに格納される
+			// 値をバインドする
+			pstmt.setInt(1, foodId);
+			pstmt.setInt(2, userId);
+			// sql実行
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件更新しました。(食事メニューID)");
+		}
+		return result; // 更新件数を返す
+	}
+
 }
