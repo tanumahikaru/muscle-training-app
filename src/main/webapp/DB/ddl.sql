@@ -61,7 +61,7 @@ CREATE TABLE weight (
 -- ここからトレーニングに関するテーブル
 -- positionテーブル
 CREATE TABLE position(
-    id          SERIAL PRIMARY KEY,
+    position_id          SERIAL PRIMARY KEY,
     position    VARCHAR(10)
 );
 
@@ -75,6 +75,20 @@ INSERT INTO position (position) VALUES
     ('肩'),
     ('有酸素')
 ;
+
+-- 部位別トレーニングテーブル
+CREATE TABLE classify_training_by_parts(
+  training_event_id INTEGER,
+  position_id 			 INTEGER,
+  PRIMARY KEY(training_event_id, position_id),
+  FOREIGN KEY(training_event_id) REFERENCES types_of_training(training_event_id),
+  FOREIGN KEY(position_id)REFERENCES position(position_id)
+);
+
+-- 部位別トレーニングのテストデータ
+INSERT INTO classify_training_by_parts VALUES(1, 5);
+INSERT INTO classify_training_by_parts VALUES(2, 1);
+
 
 --トレーニング種目テーブル
 CREATE TABLE types_of_training(
@@ -156,7 +170,3 @@ CREATE TABLE meal_menu_by_category(
   FOREIGN KEY(category_id) REFERENCES category(category_id),
   FOREIGN KEY(food_id) REFERENCES meal_menus(food_id)
 );
-
-SELECT training_program_id FROM training_records JOIN traning_programs_detail ON training_records.training_event_id=traning_programs_detail.training_event_id WHERE training_records.user_id=? AND training_records.date=(SELECT max(date) FROM training_records) ORDER BY training_record_id;
-
-

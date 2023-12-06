@@ -93,7 +93,9 @@ public class LoginServlet extends HttpServlet {
 						todaysTrainingProgramId = MuscleDAO.minTrainingProgramId();
 					}
 					System.out.println("トレプロID" + todaysTrainingProgramId);
-					MuscleDAO.updateTrainingProgramId(todaysTrainingProgramId, user.getId());
+					if(MuscleDAO.updateTrainingProgramId(todaysTrainingProgramId, user.getId()) == 1){
+						user.setTraining_program_id(todaysTrainingProgramId);
+					}
 				}
 
 				// 今日の食事メニューをランダムで選択し、更新する
@@ -101,7 +103,10 @@ public class LoginServlet extends HttpServlet {
 				Random rand = new Random();
 				int foodId = rand.nextInt(foodIdList.size());
 				System.out.println("食事メニューID" + foodId);
-				Meal_menuDAO.updateFoodId(foodId, user.getId());
+				if(Meal_menuDAO.updateFoodId(foodId, user.getId()) == 1) {
+					user.setFood_id(foodId);
+				}
+				
 				
 				// 最終ログイン日を更新する
 				UserDAO.updateLastLogin(user.getId());
