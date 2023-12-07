@@ -31,7 +31,9 @@
 	<%
 		MuscleDTO training = (MuscleDTO) request.getAttribute("training");
 	%>
-    <a href="TrainingResult"><button class="breakBtn">中断</button></a>
+    <form action="TrainingResult" method="post">
+	<button class="breakBtn">中断</button>
+	</form>
 	<h1 class="titile"><%=training.getEvent_name()%></h1>
 	<!-- フォームタグを付けるとタイマーが動かなくなる -->
 		<div class="set" id="set1">
