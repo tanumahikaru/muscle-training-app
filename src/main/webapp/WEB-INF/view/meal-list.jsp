@@ -26,7 +26,7 @@
         <div class="menu">
             <div class="menu__item"><a href="TopServlet">ホーム</a></div>
             <div class="menu__item"><a href="TrainingSuggestionServlet">今日のトレーニング</a></div>
-            <div class="menu__item"><a href="MealSuggestionServlet">食事</a></div>
+            <div class="menu__item"><a href="MealServlet">食事</a></div>
             <div class="menu__item"><a href="FreeTrainingServlet">フリートレーニング</a></div>
             <div class="menu__item"><a href="RecipeServlet">レシピ検索</a></div>
             <div class="menu__item"><a href="UserLogServlet">記録</a></div>
@@ -37,6 +37,23 @@
 
     <div id="container">
         <div id="title">今日の食事</div>
+        
+          <div class="content">
+        <!-- 食事提案を表示 -->
+        <h2>今日のおすすめメニュー:</h2>
+        <% if (request.getAttribute("mealSuggestion") != null) { %>
+            <p>食べ物ID: ${mealSuggestion.food_id}</p>
+            <p>食べ物名: ${mealSuggestion.food_name}</p>
+            <p>カロリー: ${mealSuggestion.calorie}</p>
+            <p>タンパク質: ${mealSuggestion.protein}</p>
+            <p>脂質: ${mealSuggestion.fat}</p>
+            <p>炭水化物: ${mealSuggestion.carbo}</p>
+            <p>主菜フラグ: ${mealSuggestion.isDish_fiag()}</p>
+        <% } else { %>
+            <p>提案されたメニューはありません。</p>
+        <% } %>
+    </div>
+        
 
         <!-- レシピ検索で追加ボタン -->
         <button class="recipe-button" id="recipeAddButton">レシピ検索で追加</button><br>
