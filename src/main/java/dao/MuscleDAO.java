@@ -139,6 +139,7 @@ public class MuscleDAO {
 		return result;
 	}
 	
+
 	
 	// トレーニングプログラムを更新するためのIDを取得するメソッド
 	public static int nextTrainingProgramId(int id) {
@@ -206,4 +207,5 @@ public class MuscleDAO {
 			}
 			return result;		// 更新件数を返す
 		}
+
 }
