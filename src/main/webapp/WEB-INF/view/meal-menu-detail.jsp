@@ -32,7 +32,7 @@
 			<a href="TrainingSuggestionServlet">今日のトレーニング</a>
 		</div>
 		<div class="menu__item">
-			<a href="MealServlet">食事</a>
+			<a href="MealSuggestionServlet">食事</a>
 		</div>
 		<div class="menu__item">
 			<a href="FreeTrainingServlet">フリートレーニング</a>
