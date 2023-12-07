@@ -138,4 +138,58 @@ public class MuscleDAO {
 		// Listを返却する。0件の場合は空のListが返却される。
 		return result;
 	}
+	
+	public static int getMetsByTrainingEventId(int training_event_id) {
+		
+		String sql = "SELECT mets FROM types_of_training WHERE training_event_id = ?";
+		int mets = -1;
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setInt(1, training_event_id);
+
+			try (ResultSet rs = pstmt.executeQuery()){
+
+				if(rs.next()) {
+					 mets=rs.getInt("mets");
+				
+
+					
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return mets;
+	}
+	
+	public static int getWeightByUserId(int user_id) {
+		
+		String sql = "SELECT weight FROM weight WHERE user_id = ?";
+		int weight = -1;
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setInt(1, user_id);
+
+			try (ResultSet rs = pstmt.executeQuery()){
+
+				if(rs.next()) {
+					 weight=rs.getInt("weight");
+				
+
+					
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return weight;
+	}
 }
