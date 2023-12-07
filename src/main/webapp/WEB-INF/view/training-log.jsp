@@ -77,7 +77,6 @@
         <%} %>
     </table>
    <button type="button" onclick="goBack()">戻る</button>
-
     <script>
         function goBack() {
             window.history.back();
