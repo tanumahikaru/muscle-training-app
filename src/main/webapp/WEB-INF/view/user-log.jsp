@@ -37,7 +37,8 @@
 </header>
 <main>
   <div class="button-group">
-    <form action="FreeTrainingServlet" method="post">
+    <form action="TrainingLogServlet" method="post">
+    
         <button type="submit">トレーニング記録</button>
     </form>
     <form action="RecipeServlet" method="post">

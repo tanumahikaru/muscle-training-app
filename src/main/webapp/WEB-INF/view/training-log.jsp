@@ -76,7 +76,13 @@
         </tr>
         <%} %>
     </table>
-    <a href="TopServlet">戻る</a>
+   <button type="button" onclick="goBack()">戻る</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>     <script src="./JavaScript/home.js"></script>
      <script src="./JavaScript/home.js"></script>
 </body>
 </html>
