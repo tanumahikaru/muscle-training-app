@@ -12,10 +12,10 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    height: 80px;
+    height: 72px;
     background-color: #2941BC;
     color: white;
-    font-size: 50px;
+    font-size: 36px;
 }
 
 #header-title {
@@ -29,13 +29,12 @@ header {
 
 #level {
     margin: 10px 0;
-    font-size: 40px;
+    font-size: 32px;
     font-family: 'Segoe UI';
 }
 
 #user-icon {
     margin-left: 10px;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
 }
-

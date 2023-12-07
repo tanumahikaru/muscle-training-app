@@ -61,7 +61,7 @@ CREATE TABLE weight (
 -- ここからトレーニングに関するテーブル
 -- positionテーブル
 CREATE TABLE position(
-    id          SERIAL PRIMARY KEY,
+    position_id          SERIAL PRIMARY KEY,
     position    VARCHAR(10)
 );
 
@@ -75,6 +75,20 @@ INSERT INTO position (position) VALUES
     ('肩'),
     ('有酸素')
 ;
+
+-- 部位別トレーニングテーブル
+CREATE TABLE classify_training_by_parts(
+  training_event_id INTEGER,
+  position_id 			 INTEGER,
+  PRIMARY KEY(training_event_id, position_id),
+  FOREIGN KEY(training_event_id) REFERENCES types_of_training(training_event_id),
+  FOREIGN KEY(position_id)REFERENCES position(position_id)
+);
+
+-- 部位別トレーニングのテストデータ
+INSERT INTO classify_training_by_parts VALUES(1, 5);
+INSERT INTO classify_training_by_parts VALUES(2, 1);
+
 
 --トレーニング種目テーブル
 CREATE TABLE types_of_training(
@@ -108,6 +122,51 @@ INSERT INTO traning_programs_detail(training_program_id, step, training_event_id
 INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,4,4);
 INSERT INTO traning_programs_detail(training_program_id, step, training_event_id) VALUES(1,5,5);
 
+--トレーニング記録テーブル
+CREATE TABLE training_records(
+  training_record_id 	SERIAL PRIMARY KEY,
+  user_id 						INTEGER,
+  training_event_id 	INTEGER,
+  date DATE,
+  number INTEGER DEFAULT 0,
+  time INTEGER DEFAULT 0,
+  calories_burned INTEGER DEFAULT 0,
+  FOREIGN KEY(user_id) REFERENCES muscle_users(id),
+  FOREIGN KEY(training_event_id) REFERENCES types_of_training(training_event_id)
+);
+
+INSERT INTO training_records (user_id, training_event_id, date, number, time, calories_burned)
+VALUES
+(2, 1, '2023-01-05', 10, 0, 300),
+(3, 2, '2023-01-07', 30, 0, 500),
+(3, 3, '2023-01-06', 20, 0, 400)
+;
 
 
+-- ここから食事に関するテーブル
+--カテゴリー
+CREATE TABLE category(
+	category_id 				SERIAL PRIMARY KEY,
+	category_name 			VARCHAR(10)
+);
 
+--カテゴリーテーブルのデータ
+INSERT INTO category (category_name) VALUES
+	('肉'),
+	('魚'),
+	('卵'),
+	('乳製品'),
+	('豆'),
+	('野菜'),
+	('果物'),
+	('その他')
+;
+
+--カテゴリー別食事メニュー
+CREATE TABLE meal_menu_by_category(
+  category_id 	INTEGER,
+  food_id 		INTEGER,
+  PRIMARY KEY(category_id, food_id),
+  FOREIGN KEY(category_id) REFERENCES category(category_id),
+  FOREIGN KEY(food_id) REFERENCES meal_menus(food_id)
+);

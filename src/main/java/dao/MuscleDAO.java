@@ -139,57 +139,73 @@ public class MuscleDAO {
 		return result;
 	}
 	
-	public static int getMetsByTrainingEventId(int training_event_id) {
-		
-		String sql = "SELECT mets FROM types_of_training WHERE training_event_id = ?";
-		int mets = -1;
-		try (
-				Connection con = getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				){
-			pstmt.setInt(1, training_event_id);
 
-			try (ResultSet rs = pstmt.executeQuery()){
-
-				if(rs.next()) {
-					 mets=rs.getInt("mets");
-				
-
-					
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		return mets;
-	}
 	
-	public static int getWeightByUserId(int user_id) {
-		
-		String sql = "SELECT weight FROM weight WHERE user_id = ?";
-		int weight = -1;
-		try (
+	// トレーニングプログラムを更新するためのIDを取得するメソッド
+	public static int nextTrainingProgramId(int id) {
+        String sql = "SELECT MIN(training_program_id) as training_program_id FROM training_programs Where training_program_id >?";
+        int training_program_id = 0;
+
+        try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
-			pstmt.setInt(1, user_id);
-
+			pstmt.setInt(1, id);
 			try (ResultSet rs = pstmt.executeQuery()){
-
-				if(rs.next()) {
-					 weight=rs.getInt("weight");
-				
-
-					
-				}
+	            if (rs.next()) {
+	            	training_program_id = rs.getInt("training_program_id");
+	            	System.out.println(training_program_id);
+	            }
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return training_program_id;
+    }
+	
+	// 最小のトレーニングプログラムIDを取得するメソッド
+		public static int minTrainingProgramId() {
+	        String sql = "SELECT MIN(training_program_id) as training_program_id FROM training_programs";
+	        int training_program_id = 0;
+
+	        try (
+					Connection con = getConnection();
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					){
+				try (ResultSet rs = pstmt.executeQuery()){
+		            if (rs.next()) {
+		            	training_program_id = rs.getInt("training_program_id");
+		            	System.out.println(training_program_id);
+		            }
+				}
+	        } catch (SQLException | URISyntaxException e) {
+	            e.printStackTrace();
+	        }
+	        return training_program_id;
+	    }
+		
+		
+		// トレーニングプログラムを更新するメソッド
+		public static int updateTrainingProgramId(int trainingProgramId, int userId) {
+			int result = 0; // 更新件数0のままだったら登録失敗
+			String sql = "UPDATE muscle_users SET training_program_id=? WHERE id=?";
+
+			try (
+					Connection con = getConnection();
+					PreparedStatement pstmt = con.prepareStatement(sql);){ // SQL文は、プリコンパイルされ、PreparedStatementオブジェクトに格納される
+				// 値をバインドする
+				pstmt.setInt(1, trainingProgramId);
+				pstmt.setInt(2, userId);
+				// sql実行
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			} finally {
+				System.out.println(result + "件更新しました。(トレプロID)");
+			}
+			return result;		// 更新件数を返す
 		}
-		return weight;
-	}
+
 }
