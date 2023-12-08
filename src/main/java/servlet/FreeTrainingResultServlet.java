@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.SampleMuscleDAO;
-import dto.MuscleDTO;
 import dto.UserDTO;
 
 /**
@@ -23,27 +21,25 @@ public class FreeTrainingResultServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { 	
-    	int id = Integer.parseInt(request.getParameter("id"));
     	
-    	MuscleDTO training = SampleMuscleDAO.SelectTrainingById(id);
-    	
-        // セッションからユーザー情報を取得
-        HttpSession session = request.getSession();
-        UserDTO user = (UserDTO) session.getAttribute("user");
-     	session.setAttribute("detail", training);
-     	
-        // ユーザー情報からメールアドレスを取得
-        String userEmail = user.getMail();
+    	HttpSession session = request.getSession();
+    	UserDTO user = (UserDTO) session.getAttribute("user");
 
-     // 仮にUserDAOを使用している場合
-        int userId = UserDAO.getUserIdByMail(userEmail);
-        System.out.print(userId);
-        // user_idをリクエスト属性として設定
-        request.setAttribute("user_id", userId);	
-		request.setAttribute("training", training);
+    	    // ユーザーオブジェクトからユーザーIDを取得
+    	    int userId = user.getId();
 
-        // 今回は遷移先のJSPに直接user_idを表示する例を示していますが、
-        // 実際の利用に合わせて処理を追加してください。
+    	    // 取得したユーザーIDをリクエスト属性として設定
+    	    request.setAttribute("user_id", userId);
+    	    System.out.print(userId);
+
+    	    // training_event_idをリクエストパラメータから取得
+    	    int trainingEventId = Integer.parseInt(request.getParameter("training_event_id"));
+    	    System.out.print(trainingEventId);
+    	    
+    	    // 取得したtraining_event_idをリクエスト属性として設定
+    	    request.setAttribute("training_event_id", trainingEventId);
+    	    System.out.print(trainingEventId);
+        
         String view = "WEB-INF/view/training-result.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(view);
         dispatcher.forward(request, response);

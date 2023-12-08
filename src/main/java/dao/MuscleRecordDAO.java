@@ -83,26 +83,4 @@ public class MuscleRecordDAO {
 		return latestRecord;
 	}
 	
-	// トレーニングイベントidを取得するメソッド
-		public static int getTraining_event_Id(String mail) {
-			String sql = "SELECT id FROM muscle_users WHERE mail = ?";
-			int userId = -1;
-			try (
-				Connection con = getConnection();
-			    PreparedStatement pstmt = con.prepareStatement(sql);) {
-				pstmt.setString(1, mail);
-				// sql実行
-				try (ResultSet rs = pstmt.executeQuery()) {
-					if (rs.next()) {
-						userId = rs.getInt("id");
-					}
-				}
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (URISyntaxException e) {
-				e.printStackTrace();
-			}
-			return userId;
-		}
 }
