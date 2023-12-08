@@ -89,9 +89,10 @@
 	</div>
 </form>
 
-   		<a href="TopServlet">戻る</a>
+   		<a onclick="goBack()">戻る</a>
 
     <script src="./JavaScript/home.js"></script>
     <script src="./JavaScript/meal_menu.js"></script>
+    <script src="./JavaScript/back.js"></script>
 </body>
 </html>

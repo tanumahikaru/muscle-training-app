@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/meal.css"> <!-- 追加したCSSファイルの読み込み -->
-  
 </head>
 <body>
     <header>
@@ -36,28 +35,22 @@
     </header>
 
     <div id="container">
-        <div id="title">今日の食事</div>
-        
           <div class="content">
         <!-- 食事提案を表示 -->
         <h2>今日のおすすめメニュー:</h2>
         <% if (request.getAttribute("mealSuggestion") != null) { %>
             <p>食べ物ID: ${mealSuggestion.food_id}</p>
             <p>食べ物名: ${mealSuggestion.food_name}</p>
-            <p>カロリー: ${mealSuggestion.calorie}</p>
-            <p>タンパク質: ${mealSuggestion.protein}</p>
-            <p>脂質: ${mealSuggestion.fat}</p>
-            <p>炭水化物: ${mealSuggestion.carbo}</p>
             <p>主菜フラグ: ${mealSuggestion.isDish_fiag()}</p>
+              <a href="MealMenuDetailServlet?id=${ mealSuggestion.getFood_id() }">料理を作る</a>
         <% } else { %>
             <p>提案されたメニューはありません。</p>
         <% } %>
     </div>
         
-
         <!-- レシピ検索で追加ボタン -->
-        <button class="recipe-button" id="recipeAddButton">レシピ検索で追加</button><br>
-
+       <a href="RecipeServlet" class="recipe-button" id="recipeAddButton">レシピ検索で追加</a><br>
+       
         <!-- 登録フォーム -->
         <form action="MealServlet" method="post">
             <div class="underline-input-container">
