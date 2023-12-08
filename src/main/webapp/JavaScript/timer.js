@@ -65,3 +65,4 @@ window.onload = function() {
       timeDisplays[index].innerText = `${minutes}:${seconds}.${milliseconds}`;
   }
 };
+
