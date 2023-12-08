@@ -51,7 +51,7 @@
 
  	<%
     // ボタンがクリックされたときにpositionIdを取得するサーブレットのURL
-    String servletURL = "RecipeServlet"; // サーブレットのURLに置き換えてください
+    String servletURL = "RecipeLogServlet"; // サーブレットのURLに置き換えてください
 %>
 
 <form action="<%=servletURL%>" method="post" id="categoryForm">
@@ -90,8 +90,12 @@
 	
 </form>
 
-   		<a href="TopServlet">戻る</a>
-
+   	<button type="button" onclick="goBack()">戻る</button>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
     <script src="./JavaScript/home.js"></script>
     <script src="./JavaScript/meal_menu.js"></script>
 </body>

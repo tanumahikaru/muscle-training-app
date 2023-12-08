@@ -23,7 +23,6 @@
 		</button>
 		<h1>筋トレ</h1>
 	</div>
-
 	<div class="menu">
 		<div class="menu__item">
 			<a href="TopServlet">ホーム</a>
