@@ -81,7 +81,7 @@
         function goBack() {
             window.history.back();
         }
-        </script>
-        	<script src="./JavaScript/home.js"></script>
+    </script>  
+     <script src="./JavaScript/home.js"></script>
 </body>
 </html>
