@@ -76,6 +76,10 @@ public class LoginServlet extends HttpServlet {
 			
 			System.out.println(lastLogin);
 			System.out.println(today);
+
+            // ログイン情報をセッションに登録
+			  HttpSession session = request.getSession();
+	          session.setAttribute("user", user);
 			
 			if (!lastLogin.equals(today)) {
 				System.out.println("初回ログイン！");
@@ -116,10 +120,6 @@ public class LoginServlet extends HttpServlet {
 			if (latestRecord != null) {
 				request.setAttribute("latestRecord", latestRecord);
 			}
-
-			// ログイン情報をセッションに登録
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
 
 			// ログイン後のホーム画面へ遷移
 			String view = "WEB-INF/view/home.jsp";
