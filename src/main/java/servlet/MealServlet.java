@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.AdditionalMealDAO;
 import dao.MealSuggestionDAO;
+import dto.Meal_RecordDTO;
 import dto.Meal_menuDTO;
+import dto.UserDTO;
 
 @WebServlet("/MealServlet")
 public class MealServlet extends HttpServlet {
@@ -26,6 +30,23 @@ public class MealServlet extends HttpServlet {
         // ランダムで主菜フラグが true のデータを取得
         Meal_menuDTO mealSuggestion = mealSuggestionDAO.selectRandomMealSuggestionWithMainDishFlag();
 
+        // セッションなどからユーザーIDを取得（適切に実装してください）
+        HttpSession session = request.getSession();
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        int userId = user.getId();
+        request.setAttribute("user_id", userId);
+
+        // AdditionalMealDAO クラスを利用して同じ日に追加された食事のデータを取得
+        AdditionalMealDAO additionalMealDAO = new AdditionalMealDAO();
+        List<Meal_RecordDTO> mealsAddedOnSameDay = additionalMealDAO.getMealsAddedOnSameDay(userId);
+     
+       
+        // 取得したデータをリクエスト属性にセット
+        request.setAttribute("mealsAddedOnSameDay", mealsAddedOnSameDay);
+        System.out.println("Meals added on the same day: " + mealsAddedOnSameDay);
+
+
+        
         // リクエスト属性に設定
         request.setAttribute("mealSuggestion", mealSuggestion);
 

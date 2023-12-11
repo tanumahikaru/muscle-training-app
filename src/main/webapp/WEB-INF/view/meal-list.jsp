@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="dto.Meal_RecordDTO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,6 +53,23 @@
         
         <!-- レシピ検索で追加ボタン -->
        <a href="RecipeServlet" class="recipe-button" id="recipeAddButton">レシピ検索で追加</a><br>
+       
+          <!-- 新しく作りたいメニューを表示 -->
+   <!-- 新しく作りたいメニューを表示 -->
+<div class="content">
+    <h2>今日の食べたメニュー:</h2>
+    <!-- 表示コードを追加 -->
+    <% if (request.getAttribute("mealsAddedOnSameDay") != null) { 
+        List<Meal_RecordDTO> mealsAddedOnSameDay = (List<Meal_RecordDTO>) request.getAttribute("mealsAddedOnSameDay");
+        for (Meal_RecordDTO meal : mealsAddedOnSameDay) { %>
+            <p>食べ物ID: <%= meal.getId() %></p>
+            <p>食べ物名: <%= meal.getFood_name() %></p>
+            <br>
+        <% }
+    } else { %>
+        <p>今日はまだ何も食べていません。</p>
+    <% } %>
+    </div>
        
         <!-- 登録フォーム -->
         <form action="MealServlet" method="post">
