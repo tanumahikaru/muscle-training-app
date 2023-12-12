@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="dto.Meal_RecordDTO" %>
+<%@ page import="dto.Meal_menuDTO" %>
+<%@ page import="dto.UserDTO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -37,19 +39,20 @@
         </div>
     </header>
 
-    <div id="container">
-          <div class="content">
-        <!-- 食事提案を表示 -->
+     <div id="container">
+        <div class="content">
+       <% 
+  		  Integer mealIDObject = (Integer) request.getAttribute("mealID");
+  		  int mealID = (mealIDObject != null) ? mealIDObject : 0;
+		%>
+            <!-- 今日のおすすめメニューを表示 -->
         <h2>今日のおすすめメニュー:</h2>
-        <% if (request.getAttribute("mealSuggestion") != null) { %>
-            <p>食べ物ID: ${mealSuggestion.food_id}</p>
-            <p>食べ物名: ${mealSuggestion.food_name}</p>
-            <p>主菜フラグ: ${mealSuggestion.isDish_fiag()}</p>
-              <a href="MealMenuDetailServlet?id=${ mealSuggestion.getFood_id() }">料理を作る</a>
-        <% } else { %>
-            <p>提案されたメニューはありません。</p>
-        <% } %>
-    </div>
+		<% if (mealID != 0) { %>
+ 				<p>食べ物ID: <%= mealID %></p>
+			<% } else { %>	
+    			<p>提案されたメニューはありません。</p>
+		<% } %>
+     </div>
         
         <!-- レシピ検索で追加ボタン -->
        <a href="RecipeServlet" class="recipe-button" id="recipeAddButton">レシピ検索で追加</a><br>
