@@ -123,6 +123,11 @@
 					<button>マーガリン</button>
 					<button>バター</button>
 				</div>
+				<form action="RegistrationServlet" method="post">
+   				 <!-- フォームの内容 -->
+   					 <button type="submit" class="margin-button" id="addButton">追加</button>
+				</form>
+				
 			</div>
 			<button class="add-button" onclick="goBack()">戻る</button>
 		</div>

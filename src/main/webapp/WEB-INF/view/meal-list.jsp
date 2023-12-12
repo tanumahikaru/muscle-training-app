@@ -76,7 +76,7 @@
     </div>
        
         <!-- 登録フォーム -->
-        <form action="MealServlet" method="post">
+        <form action="RegistrationServlet" method="post">
             <div class="underline-input-container">
                 <span style="border-bottom: solid 1px">
                     <input type="text" id="mealName" name="mealName" class="small-rounded-input" placeholder="食べたものを入力">
