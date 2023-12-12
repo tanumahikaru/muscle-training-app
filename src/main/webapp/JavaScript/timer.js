@@ -6,7 +6,6 @@ window.onload = function() {
   // 各セットのボタンとタイマーの要素を取得
   const startButtons = document.querySelectorAll('.start-button');
   const stopButtons = document.querySelectorAll('.stop-button');
-  const resetButtons = document.querySelectorAll('.reset-button');
   const timeDisplays = document.querySelectorAll('.time-display');
   const numbers = document.querySelectorAll('.number');
   const minusButtons = document.querySelectorAll('.minus');
@@ -35,15 +34,6 @@ window.onload = function() {
       });
   });
 
-  // リセットボタンのクリックイベント
-  resetButtons.forEach((resetButton, index) => {
-      resetButton.addEventListener('click', () => {
-          clearInterval(timerIntervals[index]);
-          timerIntervals[index] = null;
-          timeDisplays[index].innerText = "00:00.00";
-          startTimes[index] = 0;
-      });
-  });
 
   // 停止ボタンのクリックイベント
   stopButtons.forEach((stopButton, index) => {
