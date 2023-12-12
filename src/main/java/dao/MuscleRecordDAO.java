@@ -83,4 +83,75 @@ public class MuscleRecordDAO {
 		return latestRecord;
 	}
 	
+	public static double getWeightByUserId(int user_id) {
+		String sql = "SELECT weight FROM weight WHERE user_id = ?";
+		double weight = -1;
+		try (
+			Connection con = getConnection();
+		    PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setInt(1, user_id);
+			// sql実行
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					weight = rs.getDouble("weight");
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return weight;
+	}
+	
+	public static int getMetsByTrainingEventId(int training_event_id) {
+		String sql = "SELECT mets FROM types_of_training WHERE training_event_id = ?";
+		int mets = -1;
+		try (
+			Connection con = getConnection();
+		    PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setInt(1, training_event_id);
+			// sql実行
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					mets = rs.getInt("mets");
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return mets;
+	}
+	
+	public static void insertTrainingRecord(int user_id, int training_event_id, int number, double time, double weight, int mets) {
+	    String sql = "INSERT INTO training_records (user_id, training_event_id, date, number, time, calories_burned) "
+	            + "VALUES (?, ?, CURRENT_DATE, ?, ?, ?)";
+
+	    try (
+	            Connection con = getConnection();
+	            PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	        // パラメーターの設定
+	        pstmt.setInt(1, user_id);
+	        pstmt.setInt(2, training_event_id);
+	        pstmt.setInt(3, number);
+
+	        // タイマーの値を分に変換し、設定
+	        pstmt.setDouble(4, time);
+
+	        // 消費カロリーの計算と設定
+	        double calories_burned = mets * (time / 60.0) * weight * 1.05;
+	        pstmt.setDouble(5, calories_burned);
+
+	        // SQL実行
+	        pstmt.executeUpdate();
+
+	    } catch (SQLException | URISyntaxException e) {
+	        e.printStackTrace();
+	    }
+	}
 }

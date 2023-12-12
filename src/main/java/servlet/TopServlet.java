@@ -34,7 +34,7 @@ public class TopServlet extends HttpServlet {
 		//処理の始めにログイン状態のチェックを行う。
 		HttpSession session = request.getSession();
 		UserDTO users = (UserDTO)session.getAttribute("user");
-
+		System.out.println("Session User: " + users);
 		if(users == null){
 			//セッションの中身がnullであれば不正アクセスと判断し
 			//ログイン画面へ戻る
