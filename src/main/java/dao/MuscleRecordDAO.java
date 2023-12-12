@@ -145,8 +145,12 @@ public class MuscleRecordDAO {
 
 	        // 消費カロリーの計算と設定
 	        double calories_burned = mets * (time / 60.0) * weight * 1.05;
-	        pstmt.setDouble(5, calories_burned);
-
+	        
+	        // 小数点第3位までフォーマット
+	        String formattedCalories = String.format("%.2f", calories_burned);
+	        
+	        pstmt.setDouble(5, Double.parseDouble(formattedCalories));
+	        
 	        // SQL実行
 	        pstmt.executeUpdate();
 

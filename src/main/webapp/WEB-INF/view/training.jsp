@@ -48,7 +48,6 @@
                 <div class="time-display">00:00:00</div>
                 <button type="button" class="start-button">開始</button>
                 <button type="button" class="stop-button">停止</button>
-                <button type="button" class="reset-button">リセット</button>
                 <button type="button" class="minus">ー</button>
                 <input type="number" name="numberSet1" class="number" min="0">
                 <button type="button" class="plus">＋</button>
@@ -61,7 +60,6 @@
                 <div class="time-display">00:00:00</div>
                 <button type="button" class="start-button">開始</button>
                 <button type="button" class="stop-button">停止</button>
-                <button type="button" class="reset-button">リセット</button>
                 <button type="button" class="minus">ー</button>
                 <input type="number" name="numberSet2" class="number" min="0">
                 <button type="button" class="plus">＋</button>
@@ -74,7 +72,6 @@
                 <div class="time-display">00:00:00</div>
                 <button type="button" class="start-button">開始</button>
                 <button type="button" class="stop-button">停止</button>
-                <button type="button" class="reset-button">リセット</button>
                 <button type="button" class="minus">ー</button>
                 <input type="number" name="numberSet3" class="number" min="0">
                 <button type="button" class="plus">＋</button>
