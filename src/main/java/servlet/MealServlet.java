@@ -40,7 +40,8 @@ public class MealServlet extends HttpServlet {
         AdditionalMealDAO additionalMealDAO = new AdditionalMealDAO();
         List<Meal_RecordDTO> mealsAddedOnSameDay = additionalMealDAO.getMealsAddedOnSameDay(userId);
      
-       
+        request.setAttribute("mealID", user.getFood_id());
+        
         // 取得したデータをリクエスト属性にセット
         request.setAttribute("mealsAddedOnSameDay", mealsAddedOnSameDay);
         System.out.println("Meals added on the same day: " + mealsAddedOnSameDay);

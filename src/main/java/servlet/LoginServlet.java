@@ -111,7 +111,6 @@ public class LoginServlet extends HttpServlet {
 					user.setFood_id(foodId);
 				}
 				
-				
 				// 最終ログイン日を更新する
 				UserDAO.updateLastLogin(user.getId());
 				
