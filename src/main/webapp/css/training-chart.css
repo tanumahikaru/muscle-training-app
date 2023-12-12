@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+/* メインコンテンツエリアのスタイリング */
+main {
+    text-align: center;
+    color: #333;
+    margin: 20px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.menu-list {
+    border-top: 2px solid red;
+}
+
+.menu-item {
+    width: 800px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto;
+    border-bottom: 1px solid #ccc;
+}
+
+.right {
+    margin-left: 500px;
+    text-align: right;
+   
+}
+
+.header-banner {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.menu-info {
+    text-align: left;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.menu-name,
+.menu-details {
+    margin: 0 5px;
+}
+
+.start-button {
+    background-color: #FFFF00;
+    border: none;
+    cursor: pointer;
+    height: 36px;
+    width: 80px;
+    border-radius: 8px;
+    color: black;
+}
+
+.start-button:hover {
+    background-color: #e6b800;
+}
+.button-group {
+    text-align: center; /* ボタンを中央に寄せるスタイル */
+    margin-top: 20px;
+}
+
+.button-group button {
+    height: 50px;
+    width: 150px;
+    border-radius: 25px;
+    border-color: #f0f0f0;
+    background-color: #2941bc;
+    color: white;
+    margin: 0; /* margin を 0 に設定して中央に寄せる */
+    text-align: center;
+}
+
+.button-group button:first-child {
+    margin: 0;
+    text-align: center; 
+}
