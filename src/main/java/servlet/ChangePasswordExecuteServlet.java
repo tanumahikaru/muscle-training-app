@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class LinkSendFormServlet
+ * Servlet implementation class ChangePasswordExecuteServlet
  */
-@WebServlet("/LinkSendFormServlet")
-public class LinkSendFormServlet extends HttpServlet {
+@WebServlet("/ChangePasswordExecuteServlet")
+public class ChangePasswordExecuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LinkSendFormServlet() {
+    public ChangePasswordExecuteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,11 +28,9 @@ public class LinkSendFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("error") != null) {
-			request.setAttribute("error", 1);
-		}
+		// ここにパスワード変更処理を記述する
 		
-		String view = "WEB-INF/view/link-send.jsp";
+		String view = "/";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}

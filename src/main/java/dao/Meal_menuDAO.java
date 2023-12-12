@@ -177,7 +177,7 @@ public class Meal_menuDAO {
 	}
 
 	// 今日の食事メニューを更新するメソッド
-	public static int updateFoodId(int userId, int foodId) {
+	public static int updateFoodId( int foodId, int userId) {
 		int result = 0; // 更新件数0のままだったら登録失敗
 		String sql = "UPDATE muscle_users SET food_id=? WHERE id=?";
 

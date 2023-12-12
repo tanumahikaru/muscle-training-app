@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,17 +20,12 @@
 
 	<%
 	request.setCharacterEncoding("UTF-8");
-	if(request.getParameter("error") != null){	
 	%>
-	<p style="color: red;">メールアドレスが間違っています</p>
-	<%} %>
 	<div id="main-contents">
 		<form action="CodeInputServlet" method="post"  id="link-send-form">
 			<h2 style="margin-top: 20px">パスワード変更</h2>
 			<div id="input-area">
-				<label>メールアドレス</label> <input id=mail type="text" name="mail"
-					placeholder="E-mail"
-					value="<%=(request.getParameter("mail") != null) ? request.getParameter("mail") : ""%>"><br>
+				<label>認証コードを入力してください</label> <input id=code type="text" name="code"><br>
 			</div>
 
 			<button type="submit">送信</button>
