@@ -41,14 +41,15 @@
 
      <div id="container">
         <div class="content">
-       <% 
-  		  Integer mealIDObject = (Integer) request.getAttribute("mealID");
-  		  int mealID = (mealIDObject != null) ? mealIDObject : 0;
+		<% 
+  		  Meal_menuDTO meal_menu = (Meal_menuDTO) request.getAttribute("meal");
 		%>
             <!-- 今日のおすすめメニューを表示 -->
         <h2>今日のおすすめメニュー:</h2>
-		<% if (mealID != 0) { %>
- 				<p>食べ物ID: <%= mealID %></p>
+		<% if (!meal_menu.getFood_name().isEmpty()) { %>
+ 				<p>食べ物ID: <%= meal_menu.getFood_id() %></p>
+ 				<p><%= meal_menu.getFood_name() %></p>
+ 				<a href="MealMenuDetailServlet?id=<%= meal_menu.getFood_id() %>">料理を作る</a>
 			<% } else { %>	
     			<p>提案されたメニューはありません。</p>
 		<% } %>

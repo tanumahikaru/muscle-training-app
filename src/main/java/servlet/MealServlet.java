@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.AdditionalMealDAO;
-import dao.MealSuggestionDAO;
+import dao.Meal_menuDAO;
 import dto.Meal_RecordDTO;
 import dto.Meal_menuDTO;
 import dto.UserDTO;
@@ -19,16 +19,9 @@ import dto.UserDTO;
 @WebServlet("/MealServlet")
 public class MealServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private MealSuggestionDAO mealSuggestionDAO;
-
-    public void init() {
-        mealSuggestionDAO = new MealSuggestionDAO();
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // ランダムで主菜フラグが true のデータを取得
-        Meal_menuDTO mealSuggestion = mealSuggestionDAO.selectRandomMealSuggestionWithMainDishFlag();
 
         // セッションなどからユーザーIDを取得（適切に実装してください）
         HttpSession session = request.getSession();
@@ -42,15 +35,12 @@ public class MealServlet extends HttpServlet {
      
         request.setAttribute("mealID", user.getFood_id());
         
+        Meal_menuDTO meal_menu = Meal_menuDAO.SelectMealMenuById(user.getFood_id());
+        request.setAttribute("meal", meal_menu);
+        
         // 取得したデータをリクエスト属性にセット
         request.setAttribute("mealsAddedOnSameDay", mealsAddedOnSameDay);
         System.out.println("Meals added on the same day: " + mealsAddedOnSameDay);
-
-
-        
-        // リクエスト属性に設定
-        request.setAttribute("mealSuggestion", mealSuggestion);
-
         // フォワード先のJSPでmealSuggestionを使いたい場合、リクエスト属性にセット
         request.getRequestDispatcher("WEB-INF/view/meal-list.jsp").forward(request, response);
     }
