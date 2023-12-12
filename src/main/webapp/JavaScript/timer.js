@@ -50,6 +50,10 @@ window.onload = function() {
       stopButton.addEventListener('click', () => {
           clearInterval(timerIntervals[index]);
           timerIntervals[index] = null;
+
+          // タイマーの値をフォームに設定
+          const timerValue = timeDisplays[index].innerText;
+          document.getElementById(`timer${index + 1}`).querySelector(".number").value = timerValue;
       });
   });
 
@@ -65,4 +69,3 @@ window.onload = function() {
       timeDisplays[index].innerText = `${minutes}:${seconds}.${milliseconds}`;
   }
 };
-
