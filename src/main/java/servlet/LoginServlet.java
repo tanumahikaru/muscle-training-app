@@ -114,6 +114,7 @@ public class LoginServlet extends HttpServlet {
 				
 				// 最終ログイン日を更新する
 				UserDAO.updateLastLogin(user.getId());
+				
 			}
 
 			MuscleRecord latestRecord = MuscleRecordDAO.selectLatestMuscleRecord();
