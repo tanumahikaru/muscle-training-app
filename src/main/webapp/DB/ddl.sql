@@ -50,6 +50,14 @@ CREATE TABLE muscle_users(
     FOREIGN KEY(food_id) REFERENCES meal_menus(food_id)
 );
 
+-- パスワード変更用テーブル
+CREATE TABLE onetime_passwords (
+    id    								SERIAL 			PRIMARY KEY,
+    onetime_password 	VARCHAR(6) 	NOT NULL,
+    user_id      					INTEGER  		NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES muscle_users(id)
+);
+
 -- weightテーブル(体重)
 CREATE TABLE weight (
     user_id    	SERIAL PRIMARY KEY,

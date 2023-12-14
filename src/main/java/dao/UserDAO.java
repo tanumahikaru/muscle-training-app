@@ -43,7 +43,7 @@ public class UserDAO {
 
 		try (
 				Connection con = getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql);){ // SQL文は、プリコンパイルされ、PreparedStatementオブジェクトに格納される
+				PreparedStatement pstmt = con.prepareStatement(sql);) { // SQL文は、プリコンパイルされ、PreparedStatementオブジェクトに格納される
 			// 値をバインドする
 			pstmt.setString(1, user.getName());
 			pstmt.setInt(2, user.getGender());
@@ -66,16 +66,15 @@ public class UserDAO {
 		} finally {
 			System.out.println(result + "件更新しました。");
 		}
-		return result;		// 更新件数を返す
+		return result; // 更新件数を返す
 	}
 
-	
 	// メールアドレスからソルトを取得するメソッド
 	public static String getSalt(String mail) {
 		String sql = "SELECT salt FROM muscle_users WHERE mail = ?";
 		try (
-			Connection con = getConnection();
-			PreparedStatement pstmt = con.prepareStatement(sql);) {
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, mail);
 			// sql実行
 			try (ResultSet rs = pstmt.executeQuery()) {
@@ -84,7 +83,7 @@ public class UserDAO {
 					return salt;
 				}
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
@@ -98,8 +97,8 @@ public class UserDAO {
 		String sql = "SELECT id FROM muscle_users WHERE mail = ?";
 		int userId = -1;
 		try (
-			Connection con = getConnection();
-		    PreparedStatement pstmt = con.prepareStatement(sql);) {
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, mail);
 			// sql実行
 			try (ResultSet rs = pstmt.executeQuery()) {
@@ -107,7 +106,7 @@ public class UserDAO {
 					userId = rs.getInt("id");
 				}
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
@@ -116,14 +115,13 @@ public class UserDAO {
 		return userId;
 	}
 
-	
 	//	体重を登録するメソッド
 	public static int registerWeight(WeightDTO weight) {
 		int result = 0;
 		String sql = "INSERT INTO weight VALUES(?, ?, ?)";
 		try (
-			Connection con = getConnection();
-			PreparedStatement pstmt = con.prepareStatement(sql);){
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setInt(1, weight.getUser_id());
 			pstmt.setTimestamp(2, new java.sql.Timestamp(weight.getDate().getTime()));
 			pstmt.setFloat(3, weight.getWeight());
@@ -139,14 +137,13 @@ public class UserDAO {
 		return result;
 	}
 
-	
 	// ログインするメソッド
 	public static UserDTO login(String mail, String hashedPw) {
 		String sql = "SELECT * FROM muscle_users WHERE mail = ? AND password = ?";
 
 		try (
-			Connection con = getConnection();
-			PreparedStatement pstmt = con.prepareStatement(sql);) {
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, mail);
 			pstmt.setString(2, hashedPw);
 
@@ -176,24 +173,68 @@ public class UserDAO {
 	}
 
 	// 最終ログイン日を更新するメソッド
-			public static int updateLastLogin(int userId) {
-				int result = 0; // 更新件数0のままだったら登録失敗
-				String sql = "UPDATE muscle_users SET last_login=NOW() WHERE id=?";
+	public static int updateLastLogin(int userId) {
+		int result = 0; // 更新件数0のままだったら登録失敗
+		String sql = "UPDATE muscle_users SET last_login=NOW() WHERE id=?";
 
-				try (
-						Connection con = getConnection();
-						PreparedStatement pstmt = con.prepareStatement(sql);){ // SQL文は、プリコンパイルされ、PreparedStatementオブジェクトに格納される
-					// 値をバインドする
-					pstmt.setInt(1, userId);
-					// sql実行
-					result = pstmt.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				} catch (URISyntaxException e) {
-					e.printStackTrace();
-				} finally {
-					System.out.println(result + "件更新しました。(最終ログイン日)");
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) { // SQL文は、プリコンパイルされ、PreparedStatementオブジェクトに格納される
+			// 値をバインドする
+			pstmt.setInt(1, userId);
+			// sql実行
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件更新しました。(最終ログイン日)");
+		}
+		return result; // 更新件数を返す
+	}
+	
+	//	ワンタイムパスワードを登録するメソッド
+	public static int registerOnetimePass(String code, int userId) {
+		int result = 0;
+		String sql = "INSERT INTO onetime_passwords(onetime_password, user_id) VALUES(?, ?)";
+		try (
+			Connection con = getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);){
+			pstmt.setString(1, code);
+			pstmt.setInt(2, userId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件更新しました。");
+		}
+		return result;
+	}
+	
+	// ワンタイムパスワードからユーザーIDを取り出すメソッド
+	public static int getUserIdByOnetimePass(String code) {
+		String sql = "SELECT id FROM onetime_passwords WHERE onetime_password = ?";
+		int userId = 0;
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setString(1, code);
+			// sql実行
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					userId = rs.getInt("id");
 				}
-				return result;		// 更新件数を返す
 			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return userId;
+	}
 }
