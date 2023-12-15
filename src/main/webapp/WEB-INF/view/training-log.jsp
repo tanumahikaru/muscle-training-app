@@ -36,11 +36,13 @@
    	  <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
 	</div>
     
-    <form action="SearchTrainingServlet" method="post">
-        <input type="text" name="searchKeyword" placeholder="検索したいメニューを入力してください">
-        <input type="submit" value="検索">
-    </form>
-   <form action="TrainingLogServlet" method="get" id="categoryForm">
+    <div class="search">
+    <form action="SearchTrainingServlet" method="post" id="searchForm" class="searchForm">
+    <input type="text" name="searchKeyword" placeholder="検索したいメニューを入力してください">
+    <input type="submit" value="検索">
+</form>
+</div>
+   <form action="TrainingLogServlet" method="get" id="categoryForm" class="button-container">
     <!-- positionIdをサーバーに送信するフォーム -->
     <input type="hidden" name="positionId" id="positionId" value="" />
 

@@ -1,5 +1,30 @@
 @charset "UTF-8";
 
-a {
-	text-decoration: none;
+.button-container {
+        display: flex;
+        justify-content: space-between; /* 必要に応じて調整してください */
+        align-items: center;
+    }
+
+#categoryForm {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
+
+#categoryForm button {
+    flex: 1; /* 各ボタンが均等のスペースを占めるように設定 */
+    padding: 7px;
+    /* 他のスタイルも必要に応じて追加してください */
+}
+.search {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        margin-top: 20px; /* 適切なマージンを設定 */
+    }
+
+    #searchForm input[type="text"],
+    #searchForm input[type="submit"] {
+        margin: 5px; /* 適切なマージンを設定 */
+    }
