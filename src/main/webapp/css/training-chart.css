@@ -10,6 +10,9 @@ main {
 h1 {
     margin-bottom: 10px;
 }
+p{
+	font-size: 30px;
+}
 
 .menu-list {
     border-top: 2px solid red;
@@ -81,4 +84,30 @@ h1 {
 .button-group button:first-child {
     margin: 0;
     text-align: center; 
+}
+.chart-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #myChart {
+        flex: 1;
+        margin-right: 50px; /* グラフとサマリーの間に余白を追加 */
+    }
+
+    .training-summary {
+        flex: 1;
+        font-size: 16px; /* フォントサイズの変更 */
+    }
+.graph-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.bar {
+    width: 100%;
+    height: 20px;
+    background-color: #3498db; /* バーの色 */
+    margin-bottom: 10px;
 }

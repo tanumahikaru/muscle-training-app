@@ -36,11 +36,22 @@
     </div>
 </header>
 <main>
-  <div class="button-group">
+<div class="button-group">
+            <!-- ボタングループはそのまま使用 -->
+        </div>
+        <div class="button-group center-button">
+            <!-- ボタングループはそのまま使用 -->
+        </div>
+        <!-- 棒グラフを表示するコンテナ -->
+        <div class="graph-container" id="calorieGraph">
+        </div>
+ <div class="button-group">
     <form action="TrainingLogServlet" method="post">
-    
         <button type="submit">トレーニング記録</button>
     </form>
+
+    <div class="space"></div> <!-- ここにスペースを追加 -->
+
     <form action="RecipeServlet" method="post">
         <button>食事記録</button>
     </form>
@@ -52,6 +63,6 @@
 </div>	
 </main>
 <script src="./JavaScript/home.js"></script>
-
+<script src="js/script.js"></script>
 </body>
 </html>

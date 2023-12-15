@@ -40,7 +40,7 @@ public class TrainingChartServlet extends HttpServlet {
 		session.setAttribute("detail", training);
 		
 		request.setAttribute("training", training);
-		String view = "WEB-INF/view/chart.jsp";
+		String view = "WEB-INF/view/training-chart.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}
