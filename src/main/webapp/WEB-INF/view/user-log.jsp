@@ -43,6 +43,7 @@
     </div>
 </header>
 <main>
+
     <!-- グラフ描画のための canvas 要素を追加 -->
     <div style="margin-top: 150px;">
         <canvas id="calorieGraph" width="800" height="400"></canvas>
@@ -137,5 +138,6 @@
         </form>
     </div>	
 </main>
+     <script src="./JavaScript/home.js"></script>
 </body>
 </html>
