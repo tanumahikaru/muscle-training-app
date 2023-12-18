@@ -76,12 +76,12 @@
     </div>
        
         <!-- 登録フォーム -->
-        <form action="RegistrationServlet" method="post">
+        <form action="RegistrationServlet2" method="post">
             <div class="underline-input-container">
                 <span style="border-bottom: solid 1px">
-                    <input type="text" id="mealName" name="mealName" class="small-rounded-input" placeholder="食べたものを入力">
+                    <input type="text" id="food_name" name="food_name" class="small-rounded-input" placeholder="食べたものを入力">
                 </span>
-                <input type="text" id="mealDescription" name="mealDescription" class="rounded-textarea" required>kcal
+                <input type="text" id="calorie" name="calorie" class="rounded-textarea" required>kcal
                 <button type="submit" class="margin-button" id="addButton">追加</button>
             </div>
         </form>
