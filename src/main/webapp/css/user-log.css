@@ -55,7 +55,7 @@ main {
 .button-group {
     display: flex;
     justify-content: space-between;
-    margin: 50px ;
+    margin: 20px ;
 }
 
 .spacer {
