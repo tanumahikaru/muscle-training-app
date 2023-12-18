@@ -12,7 +12,6 @@ import java.util.List;
 
 import dto.Meal_RecordDTO;
 
-
 public class AdditionalMealDAO {
     private static Connection getConnection() throws URISyntaxException, SQLException {
         try {
@@ -29,6 +28,7 @@ public class AdditionalMealDAO {
         return DriverManager.getConnection(dbUrl, username, password);
     }
 
+    
     public List<Meal_RecordDTO> getMealsAddedOnSameDay(int userId) {
         List<Meal_RecordDTO> meals = new ArrayList<>();
         try (Connection connection = getConnection()) {
