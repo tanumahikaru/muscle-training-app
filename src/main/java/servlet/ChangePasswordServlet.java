@@ -30,24 +30,40 @@ public class ChangePasswordServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		String code = request.getParameter("code");
-		int userId = UserDAO.getUserIdByOnetimePass(code);
-		if (userId == 0) {
+		String userId = UserDAO.getUserIdByOnetimePass(code);
+		if (userId.equals("")) {
 			// 認証コードが間違っていた場合の処理
-			String view = "/CodeInputServlet?error=1"; // URLはhttp://localhost:8080/MuscleTrainingApp/という意味
-			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-			dispatcher.forward(request, response);
+            // エラーページにフォワード
+            RequestDispatcher errorDispatcher = request.getRequestDispatcher("WEB-INF/view/code-input.jsp?error=1");
+            try {
+				errorDispatcher.forward(request, response);
+			} catch (ServletException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
 			return;
 		} else {
 			// 認証コードが合っていた場合は、パスワードを変更するユーザーのIDをセッションに保存し、パスワード入力画面に進む
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", userId);
+			System.out.println("セッションのuser_ID" + userId);
 
 			String view = "WEB-INF/view/change-password.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-			dispatcher.forward(request, response);
+			try {
+				dispatcher.forward(request, response);
+			} catch (ServletException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
 		}
 	}
 

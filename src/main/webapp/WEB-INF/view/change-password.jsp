@@ -27,7 +27,7 @@
 			<div id="input-area">
 				<label>パスワード<span class="input-format">※半角英数字8~16文字</span></label><br>
 				<div class="password-container">
-					<input type="password" name="password2" id="password1-input">
+					<input type="password" name="password1" id="password1-input">
 					<button type="button" id="toggle-password1"
 						style="font-family: 'Font Awesome 6 Free Solid';"></button>
 				</div><br>
@@ -40,7 +40,7 @@
 				</div>
 			</div>
 
-			<button type="submit">ログイン</button>
+			<button type="submit">変更</button>
 			<br> <a href="RegisterFormServlet" class="small-link">新規アカウント登録はこちら</a>
 			<a href="LinkSendFormServlet" class="small-link">パスワード変更はこちら</a>
 
