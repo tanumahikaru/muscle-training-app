@@ -87,7 +87,7 @@
         <p>クイズ正答数</p>
       </div>
     </div>
-  
+ <script src="./JavaScript/home.js"></script>
  <script>
     document.addEventListener("DOMContentLoaded", function () {
       // グラフのデータ
@@ -146,90 +146,7 @@
       });
     });
   </script>
-    <script src="./JavaScript/home.js"></script>
-  
-=======
-  <div class="graph-container">
-    <!-- 折れ線グラフの描画領域 -->
-    <canvas id="calorieLineChart" width="400" height="200"></canvas>
+   
 
-  <div class="graph-info">
-    <div>
-      <p>摂取カロリー</p>
-    </div>
-    <div class="vertical-divider"></div> <!-- 新しい垂直線 -->
-    <div>
-      <p>消費カロリー</p>
-    </div>
-    <div class="vertical-divider"></div> <!-- 新しい垂直線 -->
-    <div>
-      <p>クイズ正答数</p>
-    </div>
-  </div>
-</div>
-
-  <hr class="graph-divider"> <!-- 新しい水平線 -->
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // グラフのデータ
-      var calorieData = {
-        labels: ['日付1', '日付2', '日付3', '日付4', '日付5'],
-        datasets: [{
-          label: '摂取カロリー',
-          data: [30, 30, 30, 30, 30],
-          fill: false,
-          borderColor: 'blue',
-          borderWidth: 2,
-          pointRadius: 4
-        }]
-      };
-
-      // グラフ描画のためのCanvas要素
-      var ctx = document.getElementById('calorieLineChart').getContext('2d');
-
-      // グラフのオプション
-      var options = {
-        responsive: false,
-        layout: {
-          padding: {
-            left: 10,
-            right: 10,
-            top: 10,
-            bottom: 10
-          }
-        },
-        scales: {
-          xAxes: [{
-            type: 'category',
-            labels: calorieData.labels,
-            scaleLabel: {
-              display: true,
-              labelString: '日付'
-            }
-          }],
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            },
-            scaleLabel: {
-              display: true,
-              labelString: '摂取カロリー'
-            }
-          }]
-        }
-      };
-
-      // 折れ線グラフの描画
-      var lineChart = new Chart(ctx, {
-        type: 'line',
-        data: calorieData,
-        options: options
-      });
-    });
-  </script>
-  <script src="./JavaScript/home.js"></script>
-
->>>>>>> refs/heads/main
 </body>
 </html>
