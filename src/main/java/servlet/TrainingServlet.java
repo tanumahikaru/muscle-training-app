@@ -37,6 +37,9 @@ public class TrainingServlet extends HttpServlet {
 		MuscleDTO training = SampleMuscleDAO.SelectTrainingById(id);
 		
 		HttpSession session=request.getSession();
+		
+		System.out.println("トレーニングID(セッション格納前)" + training.getTraining_event_id());
+		
 		session.setAttribute("detail", training);
 		
 		request.setAttribute("training", training);
