@@ -44,6 +44,7 @@ public class RegisterServlets2 extends HttpServlet {
 			return;
 		}
 		
+		
 		// 正常な画面を表示
 		String view = "WEB-INF/view/home.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
