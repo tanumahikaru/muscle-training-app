@@ -15,14 +15,14 @@ import dto.UserDTO;
 /**
  * Servlet implementation class TopServlet
  */
-@WebServlet("/TopServlet2")
-public class TopServlet2 extends HttpServlet {
+@WebServlet("/RegisterServlets2")
+public class RegisterServlets2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TopServlet2() {
+    public RegisterServlets2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,6 +43,7 @@ public class TopServlet2 extends HttpServlet {
 			dispatcher.forward(request, response);
 			return;
 		}
+		
 		
 		// 正常な画面を表示
 		String view = "WEB-INF/view/home.jsp";
