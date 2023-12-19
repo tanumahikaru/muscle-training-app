@@ -89,7 +89,6 @@
 	</div>
 	
 </form>
-
    		<a onclick="goBack()">戻る</a>
 
     <script src="./JavaScript/home.js"></script>

@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.SampleMuscleDAO;
-import dto.MuscleDTO;
+import dto.UserDTO;
 
 /**
- * Servlet implementation class TrainingServlet
+ * Servlet implementation class TopServlet
  */
-@WebServlet("/TrainingServlet")
-public class TrainingServlet extends HttpServlet {
+@WebServlet("/TopServlet2")
+public class TopServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TrainingServlet() {
+    public TopServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +31,21 @@ public class TrainingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
+		//処理の始めにログイン状態のチェックを行う。
+		HttpSession session = request.getSession();
+		UserDTO users = (UserDTO)session.getAttribute("user");
+		System.out.println("Session User: " + users);
+		if(users == null){
+			//セッションの中身がnullであれば不正アクセスと判断し
+			//ログイン画面へ戻る
+			String view = "./";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+			dispatcher.forward(request, response);
+			return;
+		}
 		
-		MuscleDTO training = SampleMuscleDAO.SelectTrainingById(id);
-		
-		HttpSession session=request.getSession();
-		
-		System.out.println("セッションに格納するトレーニングのID" + training.getTraining_event_id());
-
-		
-		session.setAttribute("detail", training);
-		
-		request.setAttribute("training", training);
-		String view = "WEB-INF/view/training.jsp";
+		// 正常な画面を表示
+		String view = "WEB-INF/view/home.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}
