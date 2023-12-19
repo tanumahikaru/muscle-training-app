@@ -216,9 +216,9 @@ public class UserDAO {
 	}
 
 	// ワンタイムパスワードからユーザーIDを取り出すメソッド
-	public static int getUserIdByOnetimePass(String code) {
-		String sql = "SELECT id FROM onetime_passwords WHERE onetime_password = ?";
-		int userId = 0;
+	public static String getUserIdByOnetimePass(String code) {
+		String sql = "SELECT user_id FROM onetime_passwords WHERE onetime_password = ?";
+		String userId = "";
 		try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
@@ -226,7 +226,7 @@ public class UserDAO {
 			// sql実行
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
-					userId = rs.getInt("id");
+					userId = rs.getString("user_id");
 				}
 			}
 
@@ -235,6 +235,7 @@ public class UserDAO {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
+		System.out.println("ワンタイムパスワードuserID" + userId);
 		return userId;
 	}
 

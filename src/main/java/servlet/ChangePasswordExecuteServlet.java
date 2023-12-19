@@ -54,7 +54,7 @@ public class ChangePasswordExecuteServlet extends HttpServlet {
         }
         
         HttpSession session = request.getSession();
-        int userId = (int)session.getAttribute("userId");
+        int userId = Integer.parseInt((String)session.getAttribute("userId"));
         
         if(UserDAO.updatePassword(password1, userId) == 0) {
         	// 更新出来ない場合の処理を書く

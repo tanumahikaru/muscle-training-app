@@ -22,7 +22,7 @@
 	request.setCharacterEncoding("UTF-8");
 	%>
 	<div id="main-contents">
-		<form action="CodeInputServlet" method="post"  id="link-send-form">
+		<form action="ChangePasswordServlet" method="post"  id="link-send-form">
 			<h2 style="margin-top: 20px">パスワード変更</h2>
 			<div id="input-area">
 				<label>認証コードを入力してください</label> <input id=code type="text" name="code"><br>
