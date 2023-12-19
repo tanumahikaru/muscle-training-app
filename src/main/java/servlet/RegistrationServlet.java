@@ -1,5 +1,4 @@
 package servlet;
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -20,6 +19,7 @@ public class RegistrationServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
         // セッションからユーザーIDを取得
         HttpSession session = request.getSession();
         UserDTO user = (UserDTO) session.getAttribute("user");
@@ -37,6 +37,11 @@ public class RegistrationServlet extends HttpServlet {
             // meal_record テーブルにデータを登録
             RegistrationDAO.insertMealRecord(userId, foodName, calorie, foodId);
         }
+        session.setAttribute("meal_menu", menu);
+
+        // セッションに今日のおすすめメニューをセット
+        // ここでMeal_menuDTOをセッションにセットする
+        // 例：session.setAttribute("meal_menu", meal_menu);
 
         // JSPに転送
         String view = "WEB-INF/view/meal-list.jsp";
