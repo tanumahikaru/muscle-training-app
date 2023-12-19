@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.UserDAO;
 
 /**
  * Servlet implementation class ChangePasswordExecuteServlet
@@ -29,10 +32,43 @@ public class ChangePasswordExecuteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// ここにパスワード変更処理を記述する
+		String password1 = request.getParameter("password1");
+		String password2 = request.getParameter("password2");
 		
-		String view = "/";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
+	     // パスワードの長さが8~16文字でない場合にエラー処理
+        if (password1.length() < 8 || password1.length() > 16) {
+            // エラーメッセージをリクエスト属性にセット
+            request.setAttribute("error", "パスワードは8~16文字で入力してください。");
+
+            // エラーページにフォワード
+            RequestDispatcher errorDispatcher = request.getRequestDispatcher("WEB-INF/view/change-password.jsp?error=1");
+            errorDispatcher.forward(request, response);
+            return;
+        } else if(!password1.equals(password2)) {
+        	// エラーメッセージをリクエスト属性にセット
+            request.setAttribute("error", "パスワードを正しく入力してください");
+
+            // エラーページにフォワード
+            RequestDispatcher errorDispatcher = request.getRequestDispatcher("WEB-INF/view/change-password.jsp?error=1");
+            errorDispatcher.forward(request, response);
+        }
+        
+        HttpSession session = request.getSession();
+        int userId = (int)session.getAttribute("userId");
+        
+        if(UserDAO.updatePassword(password1, userId) == 0) {
+        	// 更新出来ない場合の処理を書く
+        	// エラーメッセージをリクエスト属性にセット
+            request.setAttribute("error", "パスワードの変更に失敗しました");
+            // エラーページにフォワード
+            RequestDispatcher errorDispatcher = request.getRequestDispatcher("WEB-INF/view/change-password.jsp?error=1");
+            errorDispatcher.forward(request, response);
+        } else {
+    		String view = "/";
+    		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+    		dispatcher.forward(request, response);
+        }
+        
 	}
 
 	/**

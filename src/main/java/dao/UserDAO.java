@@ -193,17 +193,17 @@ public class UserDAO {
 		}
 		return result; // 更新件数を返す
 	}
-	
+
 	//	ワンタイムパスワードを登録するメソッド
 	public static int registerOnetimePass(String code, int userId) {
 		int result = 0;
 		String sql = "INSERT INTO onetime_passwords(onetime_password, user_id) VALUES(?, ?)";
 		try (
-			Connection con = getConnection();
-			PreparedStatement pstmt = con.prepareStatement(sql);){
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, code);
 			pstmt.setInt(2, userId);
-			
+
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -214,7 +214,7 @@ public class UserDAO {
 		}
 		return result;
 	}
-	
+
 	// ワンタイムパスワードからユーザーIDを取り出すメソッド
 	public static int getUserIdByOnetimePass(String code) {
 		String sql = "SELECT id FROM onetime_passwords WHERE onetime_password = ?";
@@ -236,5 +236,35 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return userId;
+	}
+
+	// パスワードを更新するメソッドを更新するメソッド
+	public static int updatePassword(String password, int userId) {
+		int result = 0; // 更新件数0のままだったら登録失敗
+		
+		// ランダムなソルトの取得(今回は32桁で実装)
+				String salt = GenerateSalt.getSalt(32);
+				// 取得したソルトを使って平文PWをハッシュ
+				String hashedPw = GenerateHashedPw.getSafetyPassword(password, salt);
+				
+		String sql = "UPDATE muscle_users SET salt=?, password=? WHERE id=?";
+
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) { // SQL文は、プリコンパイルされ、PreparedStatementオブジェクトに格納される
+			// 値をバインドする
+			pstmt.setString(1, salt);
+			pstmt.setString(2, hashedPw);
+			pstmt.setInt(3, userId);
+			// sql実行
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件更新しました。(トレプロID)");
+		}
+		return result; // 更新件数を返す
 	}
 }
