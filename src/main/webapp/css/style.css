@@ -43,3 +43,34 @@ body{
 	margin-top: 150px;
 
 }
+.graph-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.graph-info {
+  text-align: right;
+}
+
+.graph-info p {
+  margin: 0;
+}
+
+.graph-divider {
+  border-right: 1px solid #ccc;
+  height: 100%;
+  margin-right: 20px; /* 必要に応じて調整してください */
+}
+
+hr.graph-divider {
+  border: 0;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 0; /* 必要に応じて調整してください */
+}
+.vertical-divider {
+  border-left: 1px solid #ccc;
+  height: 1000px; /* 適切な高さに調整してください */
+  margin-right: 1000px; /* 必要に応じて調整してください */
+}
