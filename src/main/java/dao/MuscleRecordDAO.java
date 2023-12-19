@@ -158,4 +158,38 @@ public class MuscleRecordDAO {
 	        e.printStackTrace();
 	    }
 	}
+	
+	public static String getEventNameById(int training_event_id) {
+	    String sql = "SELECT event_name FROM types_of_training WHERE training_event_id = ?";
+	    String EventName = null;
+	    try (
+	        Connection con = getConnection();
+	        PreparedStatement pstmt = con.prepareStatement(sql);
+	    ) {
+	        pstmt.setInt(1, training_event_id);
+	        
+	        // Debug: training_event_id の値を確認
+	        System.out.println("Training Event ID in DAO: " + training_event_id);
+	        
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            if (rs.next()) {
+	                EventName = rs.getString("event_name");
+	            }
+	        }
+	    } catch (SQLException | URISyntaxException e) {
+	        e.printStackTrace();
+	    }
+	    return EventName;
+	}
+
+	
+	 // トータルカロリーを計算するメソッド
+    public static double calculateTotalCalories(List<Double> record) {
+        double totalCalories = 0.0;
+        for (Double calories : record) {
+            totalCalories += calories;
+        }
+        return totalCalories;
+    }
 }
+	

@@ -13,16 +13,24 @@ import javax.servlet.http.HttpSession;
 import dao.MuscleRecordDAO;
 import dto.MuscleDTO;
 import dto.UserDTO;
-
 /**
  * Servlet implementation class FreeTrainingResultServlet
  */
 @WebServlet("/FreeTrainingResultServlet")
 public class FreeTrainingResultServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+    
+    public FreeTrainingResultServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { 	
+    	
+    	System.out.println("doGet method is called.");  // 追加した行
+
+    	
     	//各セットの回数の値を取得
     	int numberSet1 = Integer.parseInt(request.getParameter("numberSet1"));
         int numberSet2 = Integer.parseInt(request.getParameter("numberSet2"));
@@ -38,7 +46,7 @@ public class FreeTrainingResultServlet extends HttpServlet {
         double double_timerValue3 = Double.parseDouble(timerValue3);
         
         
-    	HttpSession session = request.getSession();
+    	HttpSession session = request.getSession(true);
         UserDTO user = (UserDTO) session.getAttribute("user");
         MuscleDTO training = (MuscleDTO) session.getAttribute("detail");
         
@@ -48,8 +56,11 @@ public class FreeTrainingResultServlet extends HttpServlet {
         
         // トレーニングオブジェクトからトレーニングイベントIDを取得
         int trainingEventId = training.getTraining_event_id();
-        
+        System.out.println(trainingEventId);
+        String eventName = MuscleRecordDAO.getEventNameById(trainingEventId);
+        System.out.println("Event Name: " + eventName);
         // それぞれをリクエスト属性として設定
+        request.setAttribute("event_name", eventName);
         request.setAttribute("user_id", userId);
         request.setAttribute("training_event_id", trainingEventId);
         
@@ -69,7 +80,7 @@ public class FreeTrainingResultServlet extends HttpServlet {
         MuscleRecordDAO.insertTrainingRecord(userId, trainingEventId, numberSet2, double_timerValue2, weight, mets);
         //3セット目の値をデータベースに挿入
         MuscleRecordDAO.insertTrainingRecord(userId, trainingEventId, numberSet3, double_timerValue3, weight, mets);
-        
+   
         String view = "WEB-INF/view/training-result.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(view);
         dispatcher.forward(request, response);
