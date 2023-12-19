@@ -43,86 +43,86 @@
     </div>
 </header>
 <main>
+<!-- グラフ描画のための canvas 要素を追加 -->
+<div style="margin-top: 100px;">
+    <canvas id="calorieGraph" width="800" height="370"></canvas>
+</div>
 
-    <!-- グラフ描画のための canvas 要素を追加 -->
-    <div style="margin-top: 150px;">
-        <canvas id="calorieGraph" width="800" height="400"></canvas>
-    </div>
-
-   <script>
-   document.addEventListener("DOMContentLoaded", function () {
-	    var trainingData = {
-	        labels: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-03', '2023-01-04'],
-	        datasets: [{
-	            label: '回数',
-	            data: [5, 8, 3, 10, 6, 12, 4, 9, 7, 11, 8, 5, 10, 6],
-	            backgroundColor: ['#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC'],
-	            borderColor: ['#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC', '#21BC'],
-	            borderWidth: 1
-	        }, {
-	            label: '別のデータ',
-	            data: [-8, -4, -6, -9, -5, -11, -7, -10, -8, -3, -12, -6, -9, -7],
-	            backgroundColor: ['#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733'],
-	            borderColor: ['#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733', '#FF5733'],
-	            borderWidth: 1,
-	            yAxisID: 'y-axis-1'
-	        }]
-	    };
-
-	    // 別のデータの数値だけを絶対値に変換
-	    trainingData.datasets[1].data = trainingData.datasets[1].data.map(Math.abs);
-
-	    var ctx = document.getElementById('calorieGraph').getContext('2d');
-	    var myChart = new Chart(ctx, {
-	        type: 'bar',
-	        data: trainingData,
-	        options: {
-	            responsive: false,
-	            layout: {
-	                padding: {
-	                    left: 110,
-	                    top: 10,
-	                    right: 10,
-	                    bottom: 150
-	                }
-	            },
-	            scales: {
-	                xAxes: [{
-	                    type: 'category',
-	                    labels: ['日付'].concat(trainingData.labels)
-	                }],
-	                yAxes: [{
-	                    ticks: {
-	                        beginAtZero: false,
-	                    },
-	                    position: 'right'
-	                }, {
-	                    id: 'y-axis-1',
-	                    ticks: {
-	                        beginAtZero: false,
-	                    },
-	                    position: 'left'
-	                }]
-	            },
-	            plugins: {
-	                backgroundColorPlugin: {
-	                    beforeDraw: function (chart) {
-	                        var ctx = chart.canvas.getContext('2d');
-	                        ctx.save();
-	                        ctx.globalCompositeOperation = 'destination-over';
-	                        ctx.fillStyle = 'white';
-	                        ctx.fillRect(0, 0, chart.width, chart.height);
-	                        ctx.restore();
-	                    }
-	                }
-	            }
-	        }
-	    });
-	});
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    	var trainingData = {
+    		    labels: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-03', '2023-01-04'],
+    		    datasets: [{
+    		        label: '摂取カロリー',
+    		        data: [5, 8, 3, 10, 6, 12, 4, 9, 7, 11, 38, 45, 10, 6],
+    		        backgroundColor: 'rgba(33, 187, 504, 0.7)', // 透明度を設定
+    		        borderColor: 'rgba(33, 187, 204, 1)',
+    		        borderWidth: 1,
+    		        type: 'bar'
+    		    }, {
+    		        label: '消費カロリー',
+    		        data: [-8, -40, -6, -9, -5, -11, -7, -10, -8, -3, -12, -6, -9, -7],
+    		        backgroundColor: 'rgba(255, 87, 51, 0.7)', // 透明度を設定
+    		        borderColor: 'rgba(255, 87, 51, 1)',
+    		        borderWidth: 1,
+    		        type: 'bar'
+    		    }, {
+    		        label: 'カロリー差分',
+    		        data: [-3, -32, -3, 1, 1, 1, -3, 9, -1, 11, 26, 39, 1, -1],
+    		        fill: false,
+    		        backgroundColor:'#4CAF50', 
+    		        borderColor: '#4CAF50',
+    		        borderWidth: 2,
+    		        pointRadius: 4,
+    		        yAxisID: 'calorieSum',
+    		        type: 'line' // 折れ線グラフに変更
+    		    }]
+    		};
 
 
+        var ctx = document.getElementById('calorieGraph').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: trainingData,
+            options: {
+                responsive: false,
+                layout: {
+                    padding: {
+                        left: 60,
+                        top: 10,
+                        right: 10,
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        type: 'category',
+                        labels: ['日付'].concat(trainingData.labels)
+                    }],
+                    yAxes: [{
+                        id: 'calorieSum',
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                plugins: {
+                    backgroundColorPlugin: {
+                        beforeDraw: function (chart) {
+                            var ctx = chart.canvas.getContext('2d');
+                            ctx.save();
+                            ctx.globalCompositeOperation = 'destination-over';
+                            ctx.fillStyle = 'white';
+                            ctx.fillRect(0, 0, chart.width, chart.height);
+                            ctx.restore();
+                        }
+                    }
+                }
+            }
+        });
+    });
 </script>
-
     <div class="button-group">
         <form action="TrainingLogServlet" method="post">
             <button type="submit">トレーニング記録</button>
@@ -138,6 +138,5 @@
         </form>
     </div>	
 </main>
-     <script src="./JavaScript/home.js"></script>
 </body>
 </html>
