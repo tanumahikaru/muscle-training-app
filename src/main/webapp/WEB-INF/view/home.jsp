@@ -10,8 +10,41 @@
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/training_suggestion.css">
   <link rel="stylesheet" href="css/home.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
   <title>TOP</title>
+  <style>
+    /* 既存のスタイル */
+
+    /* 新しいスタイル */
+    hr.graph-divider {
+      border: 0;
+      height: 1px;
+      background-color: #ccc;
+      margin: 10px 0; /* 必要に応じて調整してください */
+    }
+
+    .graph-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .graph-info {
+      text-align: right;
+    }
+
+    .graph-info p {
+      margin: 0;
+    }
+
+    .graph-divider {
+      border-right: 1px solid #ccc;
+      height: 100%;
+      margin-right: 20px; /* 必要に応じて調整してください */
+    }
+  </style>
 </head>
 
 <body>
@@ -31,26 +64,96 @@
       <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
    	  <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
 	</div>
+  <!-- 折れ線グラフの描画領域 -->
+    <canvas id="calorieLineChart" width="400" height="200"></canvas>
+    
+    <!-- 消費カロリーの表示 ... -->
+     <% MuscleRecord latestRecord = (MuscleRecord)request.getAttribute("latestRecord"); %>
+    <% if (latestRecord != null) { %>
+      <p>calories_burned: <%= latestRecord.getCalories_burned() %></p>
+    <% } %>
+    
   <form action="RegisterWeightServlet" method="post">
     今日の体重を記録：<input type="text" name="weight" placeholder="体重を入力してください"><br>
     <input type="submit" value="記録">
   </form>
-  
- <div>
-  <p>摂取カロリー</p>
-  
-  <p>消費カロリー</p>
-  
-   <% MuscleRecord latestRecord = (MuscleRecord)request.getAttribute("latestRecord"); %>
-        <% if (latestRecord != null) { %>
-            <p>calories_burned: <%= latestRecord.getCalories_burned() %></p>
-        <% } %>
-  </div>
-  
-  <p>クイズ正答数</p>
-  
 
-  <script src="./JavaScript/home.js"></script>
+  <hr class="graph-divider"> <!-- 新しい水平線 -->
+  
+  <div class="graph-container">
+    <!-- 折れ線グラフの描画領域 -->
+    <canvas id="calorieLineChart" width="400" height="200"></canvas>
+
+      <div>
+        <p>摂取カロリー</p>
+      </div>
+      <div>
+        <p>消費カロリー</p>
+      </div>
+      <div>
+        <p>クイズ正答数</p>
+      </div>
+    </div>
+  
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // グラフのデータ
+      var calorieData = {
+        labels: ['日付1', '日付2', '日付3', '日付4', '日付5'],
+        datasets: [{
+          label: '摂取カロリー',
+          data: [30, 30, 30, 30, 30],
+          fill: false,
+          borderColor: 'blue',
+          borderWidth: 2,
+          pointRadius: 4
+        }]
+      };
+
+      // グラフ描画のためのCanvas要素
+      var ctx = document.getElementById('calorieLineChart').getContext('2d');
+
+      // グラフのオプション
+      var options = {
+        responsive: false,
+        layout: {
+          padding: {
+            left: 10,
+            right: 10,
+            top: 10,
+            bottom: 10
+          }
+        },
+        scales: {
+          xAxes: [{
+            type: 'category',
+            labels: calorieData.labels,
+            scaleLabel: {
+              display: true,
+              labelString: '日付'
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            },
+            scaleLabel: {
+              display: true,
+              labelString: '摂取カロリー'
+            }
+          }]
+        }
+      };
+
+      // 折れ線グラフの描画
+      var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: calorieData,
+        options: options
+      });
+    });
+  </script>
+    <script src="./JavaScript/home.js"></script>
+  
 </body>
-
 </html>
