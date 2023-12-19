@@ -8,11 +8,11 @@ public class MuscleRecord {
 	private int  training_event_id;
 	private Date date;
 	private int number;
-	private int time;
-	private int calories_burned;
+	private double time;
+	private double calories_burned;
 	
-	public MuscleRecord(int training_record_id, int user_id, int training_event_id, Date date, int number, int time,
-			int calories_burned) {
+	public MuscleRecord(int training_record_id, int user_id, int training_event_id, Date date, int number, double time,
+			double calories_burned) {
 		super();
 		this.training_record_id = training_record_id;
 		this.user_id = user_id;
@@ -53,16 +53,16 @@ public class MuscleRecord {
 	public void setNumber(int number) {
 		this.number = number;
 	}
-	public int getTime() {
+	public double getTime() {
 		return time;
 	}
-	public void setTime(int time) {
+	public void setTime(double time) {
 		this.time = time;
 	}
-	public int getCalories_burned() {
+	public double getCalories_burned() {
 		return calories_burned;
 	}
-	public void setCalories_burned(int calories_burned) {
+	public void setCalories_burned(double calories_burned) {
 		this.calories_burned = calories_burned;
 	}
 	
