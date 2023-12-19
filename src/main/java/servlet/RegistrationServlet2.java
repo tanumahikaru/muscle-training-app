@@ -26,6 +26,7 @@ public class RegistrationServlet2 extends HttpServlet {
             response.sendRedirect("login.jsp"); // ログインページのパスに変更してください
             return;
         }
+        
 
         int userId = user.getId();
 
