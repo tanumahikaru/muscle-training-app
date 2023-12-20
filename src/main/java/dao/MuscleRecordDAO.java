@@ -70,8 +70,8 @@ public class MuscleRecordDAO {
 				int training_event_id = rs.getInt("training_event_id");
 				Date date = rs.getDate("date");
 				int number = rs.getInt("number");
-				int time = rs.getInt("time");
-				int calories_burned = rs.getInt("calories_burned");
+				double time = rs.getDouble("time");
+				double calories_burned = rs.getDouble("calories_burned");
 
 				latestRecord = new MuscleRecord(training_record_id, user_id, training_event_id, date, number, time,
 						calories_burned);
@@ -182,14 +182,45 @@ public class MuscleRecordDAO {
 	    return EventName;
 	}
 
-	
-	 // トータルカロリーを計算するメソッド
-    public static double calculateTotalCalories(List<Double> record) {
+	 // 下から3件の消費カロリーの合計を計算するメソッド
+    public static double calculateTotalCalories(List<Double> caloriesList) {
         double totalCalories = 0.0;
-        for (Double calories : record) {
+        for (Double calories : caloriesList) {
             totalCalories += calories;
         }
         return totalCalories;
     }
+
+    // 下から3件の消費カロリーを取得するメソッド
+    public static List<Double> selectLast3Calories(int userId) {
+        // 実行するSQL
+        String sql = "SELECT calories_burned FROM training_records WHERE user_id = ? ORDER BY training_record_id DESC LIMIT 3";
+
+        // 返却用のListインスタンス
+        List<Double> result = new ArrayList<>();
+        try (
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setInt(1, userId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    double caloriesBurned = rs.getDouble("calories_burned");
+                    result.add(caloriesBurned);
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    // 下から3件の消費カロリーの合計を取得するメソッド
+    public static double getTotalCaloriesLast3(int userId) {
+        List<Double> last3Calories = selectLast3Calories(userId);
+        return calculateTotalCalories(last3Calories);
+    }
 }
+
 	
