@@ -14,8 +14,10 @@
   <link rel="stylesheet" href="css/home.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
   <title>TOP</title>
- <style>
+<style>
   .vertical-line {
+    display: flex; /* フレックスボックスを使用して子要素を横に配置 */
+    align-items: center; /* 子要素を垂直方向に中央に配置 */
     border-right: 2px solid #000000; /* 縦線のスタイル */
     margin: 0 auto; /* 左右のマージンを自動で調整 */
   }
@@ -27,8 +29,16 @@
   }
 
   .info-item {
-    flex: 1;
+    flex: 5;
     text-align: center;
+  }
+
+  .info-text {
+    margin-left: 50px;
+    margin: 80px; /* 適切なマージンに調整 */
+    display: flex; /* フレックスボックスを使用して子要素を横に配置 */
+    align-items: center; /* 子要素を垂直方向に中央に配置 */
+    border-left: 2px solid #000000; /* 縦線のスタイル */
   }
 </style>
 </head>
@@ -52,38 +62,23 @@
     <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
   </div>
 
-  <!-- 折れ線グラフの描画領域 -->
   <div class="vertical-line">
-    <canvas id="calorieLineChart" width="900" height="400"></canvas>
- 
+  <canvas id="calorieLineChart" width="900" height="400"></canvas>
 
-  <!-- 消費カロリー、クイズ正当数の表示 -->
-  <div class="info-container">
-    <div class="info-item">
-      <p>消費カロリー</p>
-      <% MuscleRecord latestRecord = (MuscleRecord)request.getAttribute("latestRecord"); %>
-      <% if (latestRecord != null) { %>
-        <p><%= latestRecord.getCalories_burned() %></p>
-      <% } %>
-    </div>
-
-    <div class="info-item">
-      <p>摂取カロリー</p>
-      <!-- ここに摂取カロリーのデータを表示するコードを追加 -->
-    </div>
-
-    <div class="info-item">
-      <p>クイズ正答数</p>
-      <!-- ここにクイズ正答数のデータを表示するコードを追加 -->
-    </div>
+  <div class="info-text">
+    <p>消費カロリー</p>
+    <p>摂取カロリー</p>
+    <p>クイズ正答数</p>
   </div>
+</div>
 
+<!-- 体重記録フォーム -->
+<div class="down" style="text-align:center;">
   <form action="RegisterWeightServlet" method="post" style="text-align:center;">
     今日の体重を記録：<input type="text" name="weight" placeholder="体重を入力してください" style="text-align:center;"><br>
     <input type="submit" value="記録">
   </form>
-   </div>
-
+</div>
   <script src="./JavaScript/home.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
