@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
         graphContainer.appendChild(burnedBar);
     }
     
-
     // グラフを描画
     drawCalorieGraph();
 });
