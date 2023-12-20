@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         burnedBar.style.backgroundColor = "#e74c3c"; // 消費カロリーバーの色
         graphContainer.appendChild(burnedBar);
     }
+    
 
     // グラフを描画
     drawCalorieGraph();
