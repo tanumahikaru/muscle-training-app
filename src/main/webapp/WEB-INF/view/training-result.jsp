@@ -32,12 +32,14 @@
     
    	 <h2>トレーニングの種目名:</h2>
         <%
-            // JSP内でアトリビュートを取得
-            String eventName = (String) request.getAttribute("event_name");
-            
-            // 取得したトレーニングの種目名を表示
-            out.println("<p>Event Name: " + eventName + "</p>");
+	     	// JSP内でアトリビュートを取得
+	        String eventName = (String) request.getAttribute("event_name");
+	        Double totalCaloriesObj = (Double) request.getAttribute("totalCaloriesLast3");
+	        double totalCalories = (totalCaloriesObj != null) ? totalCaloriesObj : 0.0;
         %>
+        
+        <p>種目名:<%=eventName %></p>
+        <p>消費カロリー:<%=totalCalories %></p>
     <script src="./JavaScript/home.js"></script>
 </body>
 </html>

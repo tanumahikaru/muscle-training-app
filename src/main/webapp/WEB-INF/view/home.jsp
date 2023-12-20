@@ -78,9 +78,6 @@
     </div>
   </div>
 
-  <!-- 折れ線グラフの描画領域 -->
-  <canvas id="calorieLineChart"></canvas>
-
   <form action="RegisterWeightServlet" method="post" style="text-align:center;">
     今日の体重を記録：<input type="text" name="weight" placeholder="体重を入力してください" style="text-align:center;"><br>
     <input type="submit" value="記録">
