@@ -29,11 +29,9 @@ public class RegistrationServlet2 extends HttpServlet {
         	String FoodStr = request.getParameter("calorie");
         	int calorie = Integer.parseInt(FoodStr);
             
-            
             System.out.println("ゆーざiD"+userId);
             System.out.println("食べ物の名前"+foodName);
             System.out.println("カロリー"+calorie);
-          
             
             // meal_record テーブルにデータを登録
             RegistrationDAO.insertMealRecord2(userId, foodName, calorie);
@@ -42,9 +40,9 @@ public class RegistrationServlet2 extends HttpServlet {
             System.out.println("カロリー"+calorie);
            
         // JSPに転送
-            String view = "WEB-INF/view/meal-list.jsp";
+            String view = "/MealServlet";
             RequestDispatcher dispatcher = request.getRequestDispatcher(view);
             dispatcher.forward(request, response);
-        
+        return;
     }
 }
