@@ -49,6 +49,8 @@ public class LoginServlet extends HttpServlet {
 		// 入力されたIDをもとにソルトを取得する。
 		String salt = UserDAO.getSalt(mail);
 
+		
+
 		// 取得したソルトがnullの場合は対象のユーザがいないので、Errorでログイン画面に戻す
 		if (salt == null) {
 			String view = "/?error=1"; // URLはhttp://localhost:8080/MuscleTrainingApp/という意味
@@ -57,18 +59,25 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 
+		
+		
 		// 取得したソルトを使って入力したPWをハッシュ化
 		String hashedPw = GenerateHashedPw.getSafetyPassword(pw, salt);
 
+
+		
 		// 入力されたID、ハッシュ化したPWに一致するユーザを検索する
 		UserDTO user = UserDAO.login(mail, hashedPw);
+
+
 
 		if (user == null) {
 			// ログイン失敗時index.htmlを表示
 			String view = "/?error=1";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
-		} else {
+		} else
+  	    {
 			// ログイン成功時の処理
 			// 初回ログインかどうかの判定
 			String today = new java.sql.Date(new java.util.Date().getTime()).toString(); // 現在日時を取得
@@ -80,6 +89,9 @@ public class LoginServlet extends HttpServlet {
             // ログイン情報をセッションに登録
 			  HttpSession session = request.getSession();
 	          session.setAttribute("user", user);
+	          
+			System.out.println(lastLogin);
+			System.out.println(today);
 			
 			if (!lastLogin.equals(today)) {
 				System.out.println("初回ログイン！");
@@ -117,15 +129,26 @@ public class LoginServlet extends HttpServlet {
 			}
 
 			MuscleRecord latestRecord = MuscleRecordDAO.selectLatestMuscleRecord();
+			
+					
 			if (latestRecord != null) {
+				System.out.println("latestRecord != null >> " + latestRecord.getUser_id() + "<<");
+				
 				request.setAttribute("latestRecord", latestRecord);
 			}
+			
 
 			// ログイン後のホーム画面へ遷移
-			String view = "WEB-INF/view/home.jsp";
+			String view = "WEB-INF/view/home.jsp";			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+			
+System.out.println( "dispather");
+
 			dispatcher.forward(request, response);
+		
 		}
+	
+		
 	}
 
 	/**

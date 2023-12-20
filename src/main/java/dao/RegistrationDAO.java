@@ -65,5 +65,47 @@ public class RegistrationDAO {
 	            }
 	        }
 	    }
+	}
+	    public static void insertMealRecord2(int userId, String foodName, int calorie) {
+		    Connection connection = null;
+		    PreparedStatement preparedStatement = null;
+
+		    try {
+		        // データベースへの接続を取得
+		        connection = getConnection();
+
+		        // SQL文の準備
+		        String sql = "INSERT INTO meal_record (user_id, food_name, calorie, food_id) VALUES (?, ?, ?, null)";
+		        preparedStatement = connection.prepareStatement(sql);
+
+		        // プレースホルダに値を設定
+		        preparedStatement.setInt(1, userId);
+		        preparedStatement.setString(2, foodName);
+		        preparedStatement.setInt(3, calorie);
+
+		        // SQL文を実行
+		        preparedStatement.executeUpdate();
+
+		    } catch (SQLException e) {
+		        e.printStackTrace(); // エラーハンドリングは適切に行ってください
+		    } catch (URISyntaxException e) {
+		        e.printStackTrace(); // URISyntaxException のエラーハンドリング
+		    } finally {
+		        // リソースの解放
+		        if (preparedStatement != null) {
+		            try {
+		                preparedStatement.close();
+		            } catch (SQLException e) {
+		                e.printStackTrace();
+		            }
+		        }
+		        if (connection != null) {
+		            try {
+		                connection.close();
+		            } catch (SQLException e) {
+		                e.printStackTrace();
+		            }
+		        }
+		    }
 }
 }
