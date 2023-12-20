@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.HttpSession" %>
 <%@ page import="dto.MuscleDTO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
@@ -37,9 +38,9 @@
 <main>
   <h1>あなたの今日のメニュー</h1>
   <div class="menu-list">
-    <%
-		List<MuscleDTO> training = (ArrayList<MuscleDTO>)request.getAttribute("list");
-		for(MuscleDTO m : training) {
+    <%	
+		ArrayList<MuscleDTO> training_menus = (ArrayList<MuscleDTO>)session.getAttribute("training_list");
+		for(MuscleDTO m : training_menus) {
 	%>
     <div class="menu-item">
       <div class="icon">&#9742;</div>
@@ -55,7 +56,7 @@
   </div>
   <div class="button-group">
     <button>TOP</button>
-    <button>START</button>
+    <button onclick="location.href='NextTrainingServlet'">START</button>
   </div>
 </main>
 

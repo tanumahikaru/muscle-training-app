@@ -11,21 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.MuscleDAO;
 import dto.MuscleDTO;
-import dto.UserDTO;
 
 /**
- * Servlet implementation class TrainingSuggestionServlet
+ * Servlet implementation class NextTrainingServlet
  */
-@WebServlet("/TrainingSuggestionServlet")
-public class TrainingSuggestionServlet extends HttpServlet {
+@WebServlet("/NextTrainingServlet")
+public class NextTrainingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TrainingSuggestionServlet() {
+    public NextTrainingServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,15 +33,13 @@ public class TrainingSuggestionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		UserDTO user = (UserDTO)session.getAttribute("user"); 
-		int training_program_id = user.getTraining_program_id();  // 本当は今日のトレーニングプログラムを書く
-		System.out.println(training_program_id);
-		ArrayList<MuscleDTO> training = (ArrayList<MuscleDTO>) MuscleDAO.selectTrainingsByTrainingProgram(training_program_id);
+		ArrayList<MuscleDTO> training_menus = (ArrayList<MuscleDTO>)session.getAttribute("training_list");
+		MuscleDTO training =  training_menus.remove(0);
 		
-		session.setAttribute("training_list", training);
-//		request.setAttribute("list", training);
+		session.setAttribute("detail", training);
 		
-		String view = "WEB-INF/view/training_suggestion.jsp";
+		request.setAttribute("training", training);
+		String view = "WEB-INF/view/training.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}

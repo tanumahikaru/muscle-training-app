@@ -114,7 +114,16 @@ INSERT INTO types_of_training (event_name, mets, movie_url, default_number, defa
 INSERT INTO types_of_training (event_name, mets, movie_url, default_number, default_time) VALUES('背筋',3.5,'<iframe width="560" height="315" src="https://www.youtube.com/embed/cPmZpupDLrE?si=__fsLiOMay7MT8z6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',10,-1);
 INSERT INTO types_of_training (event_name, mets, movie_url, default_number, default_time) VALUES('プランク',8,'<iframe width="560" height="315" src="https://www.youtube.com/embed/lSKmC3kLT6w?si=B3H8aaMBADVDtV_7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',-1,20);
 
---トレーニングプログラム詳細
+--トレーニング説明テーブル
+CREATE TABLE training_descriptions(
+  training_event_id 	INTEGER,
+  step 							INTEGER,
+  explanation 				TEXT,
+  PRIMARY KEY(training_event_id, step),
+  FOREIGN KEY(training_event_id) REFERENCES types_of_training(training_event_id)
+);
+
+--トレーニングプログラム詳細テーブル
 CREATE TABLE traning_programs_detail(
     detail_id             					SERIAL PRIMARY KEY,
     training_program_id   		INTEGER,
@@ -142,7 +151,7 @@ CREATE TABLE training_records(
   FOREIGN KEY(user_id) REFERENCES muscle_users(id),
   FOREIGN KEY(training_event_id) REFERENCES types_of_training(training_event_id)
 );
-
+--テストデータ
 INSERT INTO training_records (user_id, training_event_id, date, number, time, calories_burned)
 VALUES
 (2, 1, '2023-01-05', 10, 0, 300),
