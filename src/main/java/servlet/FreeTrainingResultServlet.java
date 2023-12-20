@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -56,7 +57,7 @@ public class FreeTrainingResultServlet extends HttpServlet {
         
         // トレーニングオブジェクトからトレーニングイベントIDを取得
         int trainingEventId = training.getTraining_event_id();
-        System.out.println(trainingEventId);
+        System.out.println("トレーニングID:"+trainingEventId);
         String eventName = MuscleRecordDAO.getEventNameById(trainingEventId);
         System.out.println("Event Name: " + eventName);
         // それぞれをリクエスト属性として設定
@@ -80,7 +81,15 @@ public class FreeTrainingResultServlet extends HttpServlet {
         MuscleRecordDAO.insertTrainingRecord(userId, trainingEventId, numberSet2, double_timerValue2, weight, mets);
         //3セット目の値をデータベースに挿入
         MuscleRecordDAO.insertTrainingRecord(userId, trainingEventId, numberSet3, double_timerValue3, weight, mets);
-   
+        
+        List<Double> last3Calories = MuscleRecordDAO.selectLast3Calories(userId);
+        
+        // 下から3件の消費カロリーの合計を取得
+        double totalCalories = MuscleRecordDAO.getTotalCaloriesLast3(userId);
+
+        // リクエスト属性としてJSPに渡す
+        request.setAttribute("totalCaloriesLast3", totalCalories);
+        
         String view = "WEB-INF/view/training-result.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(view);
         dispatcher.forward(request, response);
