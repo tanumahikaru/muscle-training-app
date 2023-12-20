@@ -36,7 +36,7 @@ public class MealServlet extends HttpServlet {
         request.setAttribute("mealID", user.getFood_id());
         
         Meal_menuDTO meal_menu = Meal_menuDAO.SelectMealMenuById(user.getFood_id());
-        session.setAttribute("meal", meal_menu);
+        request.setAttribute("meal", meal_menu);
         
         // 取得したデータをリクエスト属性にセット
         request.setAttribute("mealsAddedOnSameDay", mealsAddedOnSameDay);
