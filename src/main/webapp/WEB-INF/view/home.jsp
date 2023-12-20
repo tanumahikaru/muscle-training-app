@@ -60,10 +60,10 @@
   <!-- 折れ線グラフの描画領域 -->
   <canvas id="calorieLineChart" width="400" height="200"></canvas>
 
-  <!-- 消費カロリーの表示 ... -->
+  <!-- 消費カロリーの表示  -->
   <% MuscleRecord latestRecord = (MuscleRecord)request.getAttribute("latestRecord"); %>
-  <% if (latestRecord != null) { %>
-    <p>calories_burned: <%= latestRecord.getCalories_burned() %></p>
+  <%  if(latestRecord != null) {  %>
+    <p>calories_burned:<%= latestRecord.getCalories_burned() %></p>
   <% } %>
 
   <form action="RegisterWeightServlet" method="post">
