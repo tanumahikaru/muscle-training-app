@@ -137,7 +137,7 @@ CREATE TABLE training_records(
   training_event_id 	INTEGER,
   date DATE,
   number INTEGER DEFAULT 0,
-  time INTEGER DEFAULT 0,
+  time DOUBLE DEFAULT 0,
   calories_burned INTEGER DEFAULT 0,
   FOREIGN KEY(user_id) REFERENCES muscle_users(id),
   FOREIGN KEY(training_event_id) REFERENCES types_of_training(training_event_id)
@@ -178,3 +178,16 @@ CREATE TABLE meal_menu_by_category(
   FOREIGN KEY(category_id) REFERENCES category(category_id),
   FOREIGN KEY(food_id) REFERENCES meal_menus(food_id)
 );
+
+--食事記録
+CREATE TABLE meal_record(
+  id 					SERIAL 					PRIMARY KEY,
+  user_id 			INTEGER,
+  date 				DATE 						DEFAULT CURRENT_DATE,
+  food_name 	VARCHAR(128),
+  calorie 			INTEGER,
+  food_id 		INTEGER,
+  FOREIGN KEY(user_id) REFERENCES muscle_users(id),
+  FOREIGN KEY(food_id) REFERENCES meal_menus(food_id)
+);
+
