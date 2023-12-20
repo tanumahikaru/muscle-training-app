@@ -44,7 +44,7 @@ public class RegistrationServlet extends HttpServlet {
         // 例：session.setAttribute("meal_menu", meal_menu);
 
         // JSPに転送
-        String view = "WEB-INF/view/meal-list.jsp";
+        String view = "/MealServlet";
         RequestDispatcher dispatcher = request.getRequestDispatcher(view);
         dispatcher.forward(request, response);
     }
