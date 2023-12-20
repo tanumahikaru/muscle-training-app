@@ -42,7 +42,7 @@
      <div id="container">
         <div class="content">
 		<% 
-  		  Meal_menuDTO meal_menu = (Meal_menuDTO) session.getAttribute("meal");
+  		  Meal_menuDTO meal_menu = (Meal_menuDTO) request.getAttribute("meal");
 		%>
             <!-- 今日のおすすめメニューを表示 -->
         <h2>今日のおすすめメニュー:</h2>
