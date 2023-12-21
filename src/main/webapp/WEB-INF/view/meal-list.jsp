@@ -66,14 +66,21 @@
     <% if (request.getAttribute("mealsAddedOnSameDay") != null) { 
         List<Meal_RecordDTO> mealsAddedOnSameDay = (List<Meal_RecordDTO>) request.getAttribute("mealsAddedOnSameDay");
         for (Meal_RecordDTO meal : mealsAddedOnSameDay) { %>
-            <p>食べ物ID: <%= meal.getId() %></p>
-            <p>食べ物名: <%= meal.getFood_name() %></p>
+            <div class="meal-entry">
+                <p>食べ物ID: <%= meal.getId() %></p>
+                <p>食べ物名: <%= meal.getFood_name() %></p>
+                <!-- アイコンを追加して削除機能を実装 -->
+                <a href="DeleteMealServlet?id=<%= meal.getId() %>">
+                    <i class="fa fa-trash" aria-hidden="true"></i> 削除
+                </a>
+            </div>
             <br>
         <% }
     } else { %>
         <p>今日はまだ何も食べていません。</p>
     <% } %>
-    </div>
+</div>
+
        
         <!-- 登録フォーム -->
         <form action="RegistrationServlet2" method="post">
