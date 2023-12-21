@@ -1,7 +1,7 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,9 +38,10 @@ public class TrainingSuggestionServlet extends HttpServlet {
 		UserDTO user = (UserDTO)session.getAttribute("user"); 
 		int training_program_id = user.getTraining_program_id();  // 本当は今日のトレーニングプログラムを書く
 		System.out.println(training_program_id);
-		List<MuscleDTO> training = MuscleDAO.selectTrainingsByTrainingProgram(training_program_id);
+		ArrayList<MuscleDTO> training = (ArrayList<MuscleDTO>) MuscleDAO.selectTrainingsByTrainingProgram(training_program_id);
 		
-		request.setAttribute("list", training);
+		session.setAttribute("training_list", training);
+//		request.setAttribute("list", training);
 		
 		String view = "WEB-INF/view/training_suggestion.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);

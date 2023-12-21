@@ -142,7 +142,7 @@ public class LoginServlet extends HttpServlet {
 			String view = "WEB-INF/view/home.jsp";			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			
-System.out.println( "dispather");
+			System.out.println( "dispather");
 
 			dispatcher.forward(request, response);
 		

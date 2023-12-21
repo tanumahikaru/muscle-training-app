@@ -39,6 +39,7 @@ public class TrainingServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		
 		System.out.println("セッションに格納するトレーニングのID" + training.getTraining_event_id());
+
 		
 		session.setAttribute("detail", training);
 		
