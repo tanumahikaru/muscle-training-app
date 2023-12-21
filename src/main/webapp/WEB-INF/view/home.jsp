@@ -15,13 +15,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
   <title>TOP</title>
 <style>
-  .vertical-line {
-    display: flex; /* フレックスボックスを使用して子要素を横に配置 */
-    align-items: center; /* 子要素を垂直方向に中央に配置 */
-    border-right: 2px solid #000000; /* 縦線のスタイル */
-    margin: 0 auto; /* 左右のマージンを自動で調整 */
-  }
-
   .info-container {
     display: flex;
     justify-content: space-between;
@@ -35,11 +28,12 @@
 
   .info-text {
     margin-left: 50px;
-    margin: 80px; /* 適切なマージンに調整 */
+    margin: 10px; /* 適切なマージンに調整 */
     display: flex; /* フレックスボックスを使用して子要素を横に配置 */
     align-items: center; /* 子要素を垂直方向に中央に配置 */
     border-left: 2px solid #000000; /* 縦線のスタイル */
   }
+ 
 </style>
 </head>
 
@@ -62,15 +56,16 @@
     <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
   </div>
 
-  <div class="vertical-line">
   <canvas id="calorieLineChart" width="900" height="400"></canvas>
 
   <div class="info-text">
-    <p>消費カロリー</p>
-    <p>摂取カロリー</p>
-    <p>クイズ正答数</p>
+    <p>消費カロリー</p><br>
   </div>
-</div>
+  <div class="info-text">
+  <p>摂取カロリー</p><br>
+  </div>
+  <div class="info-text">
+    <p>クイズ正答数</p></div>
 
 <!-- 体重記録フォーム -->
 <div class="down" style="text-align:center;">
