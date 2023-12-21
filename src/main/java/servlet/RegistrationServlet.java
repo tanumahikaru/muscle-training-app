@@ -38,6 +38,70 @@ public class RegistrationServlet extends HttpServlet {
             RegistrationDAO.insertMealRecord(userId, foodName, calorie, foodId);
         }
         session.setAttribute("meal_menu", menu);
+        
+        //ここから考えて
+       
+      
+        // 選択されたオプションを取得
+        String option = request.getParameter("kome");
+        
+        // データベースへの登録
+        if (option != null) {
+        	String foodName = "ご飯";
+            int calorie = 0;
+            switch (option) {
+                case "1":
+                    // 大(200g)が選択された場合の処理
+                	calorie = 200;
+                    RegistrationDAO.insertMealRecord2(userId, foodName, calorie);
+                    break;
+                case "2":
+                    // 中(150g)が選択された場合の処理
+                	calorie = 100;
+                    RegistrationDAO.insertMealRecord2(userId, foodName, calorie);
+                    break;
+                case "3":
+                    // 小(100g)が選択された場合の処理
+                	calorie = 50;
+                    RegistrationDAO.insertMealRecord2(userId, foodName, calorie);
+                    break;
+                default:
+                    // 何も選択されていない場合の処理
+                    break;
+            }
+        }
+            // パンの選択されたオプションを取得
+            String breadOption = request.getParameter("pan");
+            
+            // データベースへの登録
+            if (breadOption != null) {
+                String foodName = "食パン"; // 適切な食品名を設定する
+                int calorie = 0;
+                switch (breadOption) {
+                    case "4":
+                        // プレーンが選択された場合の処理
+                        calorie = 100; // 適切なカロリーを設定する
+                        RegistrationDAO.insertMealRecord2(userId, foodName, calorie);
+                        break;
+                    case "5":
+                        // ジャムが選択された場合の処理
+                        calorie = 150; // 適切なカロリーを設定する
+                        RegistrationDAO.insertMealRecord2(userId, foodName, calorie);
+                        break;
+                    case "6":
+                        // マーガリンが選択された場合の処理
+                        calorie = 120; // 適切なカロリーを設定する
+                        RegistrationDAO.insertMealRecord2(userId, foodName, calorie);
+                        break;
+                    case "7":
+                        // バターが選択された場合の処理
+                        calorie = 180; // 適切なカロリーを設定する
+                        RegistrationDAO.insertMealRecord2(userId, foodName, calorie);
+                        break;
+                    default:
+                        // 何も選択されていない場合の処理
+                        break;
+            }
 
         // セッションに今日のおすすめメニューをセット
         // ここでMeal_menuDTOをセッションにセットする
@@ -48,4 +112,5 @@ public class RegistrationServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher(view);
         dispatcher.forward(request, response);
     }
+   }
 }

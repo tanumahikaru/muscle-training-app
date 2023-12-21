@@ -103,27 +103,22 @@
 
 			<div id="option">
 				<br>
-				<h3>食べた量</h3>
-				<div class="button-group">
-					<button>25%</button>
-					<button>50%</button>
-					<button>75%</button>
-					<button>100%</button>
-				</div>
+				<form action="RegistrationServlet" method="post">
+				
 				<h3>白米</h3>
 				<div class="button-group">
-					<button>大(200g)</button>
-					<button>中(150g)</button>
-					<button>小(100g)</button>
+					<p><input type="radio" name="kome" value="1">大(200g)</p>
+					<p><input type="radio" name="kome" value="2">中(150g)</p>
+					<p><input type="radio" name="kome" value="3">小(100g)</p>
 				</div>
 				<h3>食パン</h3>
 				<div class="button-group">
-					<button>プレーン</button>
-					<button>ジャム</button>
-					<button>マーガリン</button>
-					<button>バター</button>
+					<p><input type="radio" name="pan" value="4">プレーン</p>
+					<p><input type="radio" name="pan" value="5">ジャム</p>
+					<p><input type="radio" name="pan" value="6">マーガリン</p>
+					<p><input type="radio" name="pan" value="7">バター</p>
 				</div>
-				<form action="RegistrationServlet" method="post">
+				
    				 <!-- フォームの内容 -->
    					 <button type="submit" class="margin-button" id="addButton">追加</button>
 				</form>
