@@ -38,38 +38,37 @@ public class RegisterExecuteServlet extends HttpServlet {
 		// 入力データの取得
 		UserDTO user = (UserDTO)session.getAttribute("input_data");
 		WeightDTO we = (WeightDTO)session.getAttribute("weight_data");
-		
-		// 登録処理
-		int result = UserDAO.registerUser(user);
-        
-        int userId = UserDAO.getUserIdByMail(user.getMail());
-        System.out.println(userId);
-        we.setUser_id(userId);
-        int result2 = UserDAO.registerWeight(we);
-		
-		String path = "";
+		// ユーザーの登録処理を行い、ユーザーIDを取得
+		int userId = UserDAO.registerUserAndGetUserId(user);
+	    System.out.println(userId);
 
-		if(result == 1) {
-			if(result2 == 1) {
+	    if (userId != -1) {
+	    	
+	    	we.setUser_id(userId);
+	    	
+	        // 体重の登録処理
+	        int result2 = UserDAO.registerWeight(we);
 
-			// 登録に成功したので、sessionのデータを削除
-			session.removeAttribute("input_data");
-			session.removeAttribute("weight_data");
-			
-			path = "WEB-INF/view/home.jsp";
-			}else {
-				// 失敗した場合はパラメータ付きで登録画面に戻す
-				path = "WEB-INF/view/register-user.jsp?error=1";
-			}
-		} else {
-			// 失敗した場合はパラメータ付きで登録画面に戻す
-			path = "WEB-INF/view/register-user.jsp?error=1";
-		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-		dispatcher.forward(request, response);
+	        String path = "";
+
+	        if (result2 == 1) {
+	            // 登録に成功したので、sessionのデータを削除
+	            session.removeAttribute("input_data");
+
+	            path = "WEB-INF/view/home.jsp";
+	        } else {
+	            // 失敗した場合はパラメータ付きで登録画面に戻す
+	            path = "WEB-INF/view/register-user.jsp?error=1";
+	        }
+	        RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+	        dispatcher.forward(request, response);
+	    } else {
+	        // 登録に失敗した場合の処理
+	        request.setAttribute("error", "ユーザーの登録に失敗しました。");
+	        RequestDispatcher errorDispatcher = request.getRequestDispatcher("WEB-INF/view/register-user.jsp?error=2");
+	        errorDispatcher.forward(request, response);
+	    }
 	}
-
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

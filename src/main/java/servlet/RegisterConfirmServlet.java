@@ -72,7 +72,7 @@ public class RegisterConfirmServlet extends HttpServlet {
 
             
             UserDTO user = new UserDTO(-1, name, gender, birth, height, mail, null, password, null, -1, 1, 1, Lastlogin);
-            WeightDTO we = new WeightDTO(0, date, weight);
+            WeightDTO we = new WeightDTO(-1, -1, date, weight);
 
 
             	// ... (セッションへの保存とフォワードの処理)
@@ -83,7 +83,6 @@ public class RegisterConfirmServlet extends HttpServlet {
             	// セッションスコープに値の保存
             	session.setAttribute("input_data", user);
             	session.setAttribute("weight_data", we);
-            
 
             	String view = "WEB-INF/view/register-user-confirm.jsp";
             	RequestDispatcher dispatcher = request.getRequestDispatcher(view);
