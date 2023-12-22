@@ -118,7 +118,7 @@ public class UserDAO {
 	//	体重を登録するメソッド
 	public static int registerWeight(WeightDTO weight) {
 		int result = 0;
-		String sql = "INSERT INTO weight VALUES(?, ?, ?)";
+		String sql = "INSERT INTO weight VALUES(default, ?, ?, ?)";
 		try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
@@ -267,5 +267,44 @@ public class UserDAO {
 			System.out.println(result + "件更新しました。(トレプロID)");
 		}
 		return result; // 更新件数を返す
+	}
+	
+	//体重を更新するメソッド
+	public static int updateWeight(WeightDTO weight) {
+	    int result = 0;
+	    String sql = "UPDATE weight SET weight = ?, date = ? WHERE user_id = ?";
+
+	    try (
+	        Connection con = getConnection();
+	        PreparedStatement pstmt = con.prepareStatement(sql);
+	    ) {
+	        pstmt.setFloat(1, weight.getWeight());
+	        pstmt.setDate(2, new java.sql.Date(weight.getDate().getTime())); // java.util.Dateからjava.sql.Dateに変換
+	        pstmt.setInt(3, weight.getUser_id());
+
+	        result = pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } catch (URISyntaxException e) {
+	        e.printStackTrace();
+	    } finally {
+	        System.out.println(result + "件更新しました。");
+	    }
+	    return result;
+	}
+	
+	// ユーザーを登録してユーザーIDを取得するメソッド
+	public static int registerUserAndGetUserId(UserDTO user) {
+	    int userId = -1; // 初期値
+
+	    // 通常のユーザー登録処理
+	    int result = registerUser(user);
+
+	    if (result == 1) {
+	        // 登録成功時にユーザーIDを取得
+	        userId = getUserIdByMail(user.getMail());
+	    }
+
+	    return userId;
 	}
 }
