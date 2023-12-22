@@ -39,49 +39,46 @@
         </div>
     </header>
 
-     <div id="container">
-        <div class="content">
-		<% 
-  		  Meal_menuDTO meal_menu = (Meal_menuDTO) request.getAttribute("meal");
-		%>
-            <!-- 今日のおすすめメニューを表示 -->
+  <div id="container">
+    <div class="content">
+        <% 
+            Meal_menuDTO meal_menu = (Meal_menuDTO) request.getAttribute("meal");
+        %>
+        <!-- 今日のおすすめメニューを表示 -->
         <h2>今日のおすすめメニュー:</h2>
-		<% if (!meal_menu.getFood_name().isEmpty()) { %>
- 				<p>食べ物ID: <%= meal_menu.getFood_id() %></p>
- 				<p><%= meal_menu.getFood_name() %></p>
- 				<a href="MealMenuDetailServlet?id=<%= meal_menu.getFood_id() %>">料理を作る</a>
-			<% } else { %>	
-    			<p>提案されたメニューはありません。</p>
-		<% } %>
-     </div>
-        
+        <% if (!meal_menu.getFood_name().isEmpty()) { %>
+            <p>食べ物ID: <%= meal_menu.getFood_id() %></p>
+            <p><%= meal_menu.getFood_name() %></p>
+            <a href="MealMenuDetailServlet?id=<%= meal_menu.getFood_id() %>">料理を作る</a>
+        <% } else { %>    
+            <p>提案されたメニューはありません。</p>
+        <% } %>
+    </div>
+    
+    <div class="content-container">
         <!-- レシピ検索で追加ボタン -->
-       <a href="RecipeServlet" class="recipe-button" id="recipeAddButton">レシピ検索で追加</a><br>
-       
-          <!-- 新しく作りたいメニューを表示 -->
-   <!-- 新しく作りたいメニューを表示 -->
-<div class="content">
-    <h2>今日の食べたメニュー:</h2>
-    <!-- 表示コードを追加 -->
-    <% if (request.getAttribute("mealsAddedOnSameDay") != null) { 
-        List<Meal_RecordDTO> mealsAddedOnSameDay = (List<Meal_RecordDTO>) request.getAttribute("mealsAddedOnSameDay");
-        for (Meal_RecordDTO meal : mealsAddedOnSameDay) { %>
-            <div class="meal-entry">
-                <p>食べ物ID: <%= meal.getId() %></p>
-                <p>食べ物名: <%= meal.getFood_name() %></p>
-                <!-- アイコンを追加して削除機能を実装 -->
-                <a href="DeleteMealServlet?id=<%= meal.getId() %>">
-                    <i class="fa fa-trash" aria-hidden="true"></i> 削除
-                </a>
-            </div>
-            <br>
-        <% }
-    } else { %>
-        <p>今日はまだ何も食べていません。</p>
-    <% } %>
-</div>
-
-       
+        <a href="RecipeServlet" class="recipe-button" id="recipeAddButton">レシピ検索で追加</a><br>
+        
+        <!-- 新しく作りたいメニューと登録フォームを一つの箱に表示 -->
+    
+        <h2>今日の食べたメニュー:</h2>
+        <!-- 表示コードを追加 -->
+        <% if (request.getAttribute("mealsAddedOnSameDay") != null) { 
+            List<Meal_RecordDTO> mealsAddedOnSameDay = (List<Meal_RecordDTO>) request.getAttribute("mealsAddedOnSameDay");
+            for (Meal_RecordDTO meal : mealsAddedOnSameDay) { %>
+                <div class="meal-entry">
+                    <p><%= meal.getFood_name() %></p>
+                    <p><%= meal.getCalorie() %>kcal</p>
+                    <!-- アイコンを追加して削除機能を実装 -->
+                    <a href="DeleteMealServlet?id=<%= meal.getId() %>">
+                        <i class="fa fa-trash" aria-hidden="true"></i> 削除
+                    </a>
+                </div>
+            <% }
+        } else { %>
+            <p>今日はまだ何も食べていません。</p>
+        <% } %>
+    
         <!-- 登録フォーム -->
         <form action="RegistrationServlet2" method="post">
             <div class="underline-input-container">
@@ -93,12 +90,7 @@
             </div>
         </form>
     </div>
-    <!-- 作るボタン -->
-    <button class="action-button" id="createButton">作る</button>
-    
-    <!-- TOPボタン -->
-    <button class="action-button" id="topButton">TOP</button>
-
+</div>
     <!-- ここに食事に関する情報やコンテンツを追加 -->
     <script src="./JavaScript/home.js"></script>
 </body>
