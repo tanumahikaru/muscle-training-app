@@ -10,6 +10,7 @@
 .content {
     box-sizing: border-box; /* ボーダーボックスモデルを適用 */
     width: 45%;
+    margin-left: 60px; /* 下側のマージンを追加 */
 }
 
 .content-container {
@@ -20,6 +21,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 45%;
     margin-bottom: 20px; /* 下側のマージンを追加 */
+    margin-right: 50px; /* 下側のマージンを追加 */
 }
 /* 新しく作りたいメニューのスタイル */
 .meal-entry {
