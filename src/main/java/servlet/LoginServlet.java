@@ -18,6 +18,7 @@ import dao.MuscleRecordDAO;
 import dao.UserDAO;
 import dto.MuscleRecord;
 import dto.UserDTO;
+import dto.WeightDTO;
 import util.GenerateHashedPw;
 
 /**
@@ -137,14 +138,16 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("latestRecord", latestRecord);
 			}
 			
+			WeightDTO weight = UserDAO.SelectWeight(user.getId());
+			System.out.print("ユーザーID"+user.getId());
+
+			request.setAttribute("weight", weight);
 
 			// ログイン後のホーム画面へ遷移
 			String view = "WEB-INF/view/home.jsp";			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-			
-			System.out.println( "dispather");
-
 			dispatcher.forward(request, response);
+
 		
 		}
 	

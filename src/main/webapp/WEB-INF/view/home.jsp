@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
+<%@ page import="dto.WeightDTO" %>
 <%@ page import="dto.MuscleRecord" %>
 <%@ page import="dao.MuscleRecordDAO" %>
 <%@ page import="dto.UserDTO" %>
@@ -75,20 +76,23 @@
   </form>
 </div>
   <script src="./JavaScript/home.js"></script>
+  <% 
+  WeightDTO weight = (WeightDTO) request.getAttribute("weight");
+		%>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // グラフのデータ
       var calorieData = {
         labels: ['日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5'],
         datasets: [{
-          label: '摂取カロリー',
-          data: [30, 10, 0, 50, 30,50, 40, 80, 70, 30,50, 30, 30, 0, 70,30, 70, 30, 10, 80,20, 30, 60, 60, 30,50, 30, 30, 0, 70],
-          fill: false,
-          borderColor: 'blue',
-          borderWidth: 2,
-          pointRadius: 4
-        }]
-      };
+            label: 'あなたの体重',
+            data: [<%= weight.getWeight() %>, 10, 0, 50, 30, 50, 40, 80, 70, 30, 50, 30, 30, 0, 70, 30, 70, 30, 10, 80, 20, 30, 60, 60, 30, 50, 30, 30, 0, 70],
+            fill: false,
+            borderColor: 'blue',
+            borderWidth: 2,
+            pointRadius: 4
+          }]
+        };
 
       // グラフ描画のためのCanvas要素
       var ctx = document.getElementById('calorieLineChart').getContext('2d');

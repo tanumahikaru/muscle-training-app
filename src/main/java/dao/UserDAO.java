@@ -15,6 +15,8 @@ import util.GenerateHashedPw;
 import util.GenerateSalt;
 
 public class UserDAO {
+	private static java.util.Date date;
+
 	// DBに接続するメソッド
 	private static Connection getConnection() throws URISyntaxException, SQLException {
 		try {
@@ -136,6 +138,37 @@ public class UserDAO {
 		}
 		return result;
 	}
+	
+    // ユーザーの最新の体重を取得するメソッド
+    public static WeightDTO SelectWeight(int Id) {
+        String sql = "SELECT * FROM weight WHERE user_id = ? ORDER BY date DESC LIMIT 1";
+        System.out.println("撮れてる～～？"+Id);
+        WeightDTO weight = null;
+
+        try (
+                Connection con = getConnection();
+                PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setInt(1, Id);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    int weightId = rs.getInt("weight_id");
+                    int retrievedUserId = rs.getInt("user_id");
+                    Date date = rs.getDate("date");
+                    float retrievedWeight = rs.getFloat("weight");
+
+                    // 取得したデータでWeightDTOオブジェクトを作成
+                    weight = new WeightDTO(weightId, retrievedUserId, date, retrievedWeight);
+                }
+            }
+
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        return weight;
+    }
 
 	// ログインするメソッド
 	public static UserDTO login(String mail, String hashedPw) {
