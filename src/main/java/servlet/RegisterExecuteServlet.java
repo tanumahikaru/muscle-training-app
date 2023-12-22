@@ -54,8 +54,8 @@ public class RegisterExecuteServlet extends HttpServlet {
 	        if (result2 == 1) {
 	            // 登録に成功したので、sessionのデータを削除
 	            session.removeAttribute("input_data");
-
-	            path = "WEB-INF/view/home.jsp";
+	            session.removeAttribute("weight_data");
+	            path = "index.jsp";
 	        } else {
 	            // 失敗した場合はパラメータ付きで登録画面に戻す
 	            path = "WEB-INF/view/register-user.jsp?error=1";
