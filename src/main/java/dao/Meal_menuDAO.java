@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.Meal_menuDTO;
+import dto.RecipeDTO;
 
 public class Meal_menuDAO {
 	private static Connection getConnection() throws URISyntaxException, SQLException {
@@ -199,4 +200,33 @@ public class Meal_menuDAO {
 		return result; // 更新件数を返す
 	}
 
-}
+	public static List<RecipeDTO> selectRecipeByFoodIdAndStep(int foodId) {
+	    // 実行するSQL
+	    String sql = "SELECT * FROM recipe WHERE food_id = ?";
+
+	    // 返却用のListインスタンス
+	    List<RecipeDTO> result = new ArrayList<>();
+
+	    try (
+	        Connection con = getConnection();
+	        PreparedStatement pstmt = con.prepareStatement(sql);
+	    ) {
+	        pstmt.setInt(1, foodId);
+
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            while (rs.next()) {
+	                int recipeFoodId = rs.getInt("food_id");
+	                int recipeStep = rs.getInt("step");
+	                String explanation = rs.getString("explanation");
+
+	                RecipeDTO recipe = new RecipeDTO(recipeFoodId, recipeStep, explanation);
+	                result.add(recipe);
+	            }
+	        }
+	    } catch (SQLException | URISyntaxException e) {
+	        e.printStackTrace();
+	    }
+
+	    return result;
+	}
+	}

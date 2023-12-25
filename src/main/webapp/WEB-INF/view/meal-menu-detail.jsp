@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dto.Meal_menuDTO"%>
 <%@ page import="dto.MaterialDTO"%>
+<%@ page import="dto.RecipeDTO"%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -54,13 +55,33 @@
 		Meal_menuDTO menu = (Meal_menuDTO) request.getAttribute("menu");
 	%>
 	
-
-
+	<% List<RecipeDTO> recipes = (List<RecipeDTO>) request.getAttribute("recipeList"); %>
+	
 	<div id="main-contents">
 		<div id="left-contents">
 			<img id="meal-img" src="images/meal.png" alt="食事メニュー画像">
 			<h2 id="menu-title"><%=menu.getFood_name()%></h2>
-		</div>
+			
+			<!-- JSP ページの該当部分に追加 -->
+<%
+    if (recipes != null && !recipes.isEmpty()) {
+%>
+    <h3>レシピ</h3>
+    <ol>
+<% for (RecipeDTO recipe : recipes) { %>
+    <li> <%= recipe.getExplanation() %></li>
+<% } %>
+    </ol>
+<%
+    } else {
+%>
+    <p>レシピがありません。food_id=<%= menu.getFood_id() %> のレシピがデータベースに存在するか確認してください。</p>
+<%
+    }
+%>
+	
+        </div>
+		
 
 		<div id="right-contents">
 			<button class="back-button" onclick="goBack()">戻る</button>
@@ -79,6 +100,8 @@
 				<div class="carbo">
 					糖質<br><%=menu.getCarbo() %>
 				</div>
+				
+				
 			</div>
 
 		 <div class="card-container type2">
