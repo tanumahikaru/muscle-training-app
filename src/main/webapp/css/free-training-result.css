@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.result-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.result-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+ .result-item {
+    margin: 20px;
+    padding: 20px;
+   	background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.result-item p {
+    margin: 15px 0;
+    font-size: 18px;
+    font-weight: bold; /* 種目名と消費カロリーを太字にする */
+}
+
+h2 {
+    margin-bottom: 20px;
+}

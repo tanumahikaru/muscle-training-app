@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/free-training-result.css">
     <title>トレーニング結果</title>
     <link rel="stylesheet" href="training_result.css">
 </head>
@@ -29,17 +30,21 @@
         <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
         <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
     </div>
-    
-   	 <h2>トレーニングの種目名:</h2>
-        <%
-	     	// JSP内でアトリビュートを取得
-	        String eventName = (String) request.getAttribute("event_name");
-	        Double totalCaloriesObj = (Double) request.getAttribute("totalCaloriesLast3");
-	        double totalCalories = (totalCaloriesObj != null) ? totalCaloriesObj : 0.0;
-        %>
-        
-        <p>種目名:<%=eventName %></p>
-        <p>消費カロリー:<%=totalCalories %></p>
+     <%
+        String eventName = (String) request.getAttribute("event_name");
+	    Double totalCaloriesObj = (Double) request.getAttribute("totalCaloriesLast3");
+	    double totalCalories = (totalCaloriesObj != null) ? totalCaloriesObj : 0.0;
+     %>
+   	  <div class="result-container">
+        <h2>トレーニングの結果</h2>
+        <ul class="result-list">
+            <li class="result-item">
+                <p>種目名: <%= eventName %></p>
+                <p>消費カロリー: <%= totalCalories %></p>
+            </li>
+            <!-- 必要に応じて他のアイテムも追加 -->
+        </ul>
+    </div>
     <script src="./JavaScript/home.js"></script>
 </body>
 </html>
