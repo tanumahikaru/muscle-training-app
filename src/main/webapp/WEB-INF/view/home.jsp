@@ -74,66 +74,68 @@
   </form>
 </div>
   <script src="./JavaScript/home.js"></script>
-  <% 
-  WeightDTO weight = (WeightDTO) request.getAttribute("weight");
-		%>
-  <script>
+<%
+    List<Double> weightData = (List<Double>) request.getAttribute("weightData");
+%>
+
+<script>
     document.addEventListener("DOMContentLoaded", function () {
-      // グラフのデータ
-      var calorieData = {
-        labels: ['日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5'],
-        datasets: [{
-            label: 'あなたの体重',
-            data: [<%= (weight != null) ? weight.getWeight() : 0%>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>],
-            fill: false,
-            borderColor: 'blue',
-            borderWidth: 2,
-            pointRadius: 4
-          }]
+        // グラフのデータ
+        var calorieData = {
+            labels: ['日付1', '日付2', '日付3', '日付4', '日付5'],
+            datasets: [{
+                label: 'あなたの体重',
+                data: [<%= weightData.get(0) %>, <%= weightData.get(1) %>, <%= weightData.get(2) %>, <%= weightData.get(3) %>, <%= weightData.get(4) %>],
+                fill: false,
+                borderColor: 'blue',
+                borderWidth: 2,
+                pointRadius: 4
+            }]
         };
 
-      // グラフ描画のためのCanvas要素
-      var ctx = document.getElementById('calorieLineChart').getContext('2d');
+        // グラフ描画のためのCanvas要素
+        var ctx = document.getElementById('calorieLineChart').getContext('2d');
 
-      // グラフのオプション
-      var options = {
-        responsive: false,
-        layout: {
-          padding: {
-            left: 250,
-            top: 0,
-            bottom: 10
-          }
-        },
-        scales: {
-          xAxes: [{
-            type: 'category',
-            labels: calorieData.labels,
-            scaleLabel: {
-              display: true,
-              labelString: '日付'
-            }
-          }],
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
+        // グラフのオプション
+        var options = {
+            responsive: false,
+            layout: {
+                padding: {
+                    left: 250,
+                    top: 0,
+                    bottom: 10
+                }
             },
-            scaleLabel: {
-              display: true,
-              labelString: '摂取カロリー'
+            scales: {
+                xAxes: [{
+                    type: 'category',
+                    labels: calorieData.labels,
+                    scaleLabel: {
+                        display: true,
+                        labelString: '日付'
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: '摂取カロリー'
+                    }
+                }]
             }
-          }]
-        }
-      };
+        };
 
-      // 折れ線グラフの描画
-      var lineChart = new Chart(ctx, {
-        type: 'line',
-        data: calorieData,
-        options: options
-      });
+        // 折れ線グラフの描画
+        var lineChart = new Chart(ctx, {
+            type: 'line',
+            data: calorieData,
+            options: options
+        });
     });
-  </script>
+</script>
+
 </body>
 
 </html>

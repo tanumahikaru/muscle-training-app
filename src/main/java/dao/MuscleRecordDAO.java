@@ -83,26 +83,28 @@ public class MuscleRecordDAO {
 		return latestRecord;
 	}
 	
-	public static double getWeightByUserId(int user_id) {
-		String sql = "SELECT weight FROM weight WHERE user_id = ?";
-		double weight = -1;
-		try (
-			Connection con = getConnection();
-		    PreparedStatement pstmt = con.prepareStatement(sql);) {
-			pstmt.setInt(1, user_id);
-			// sql実行
-			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs.next()) {
-					weight = rs.getDouble("weight");
-				}
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		return weight;
+	public static List<Double> getWeightsByUserId(int user_id) {
+	    String sql = "SELECT weight FROM weight WHERE user_id = ?";
+	    List<Double> weights = new ArrayList<>();
+
+	    try (
+	        Connection con = getConnection();
+	        PreparedStatement pstmt = con.prepareStatement(sql);
+	    ) {
+	        pstmt.setInt(1, user_id);
+	        // SQL実行
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            while (rs.next()) {
+	                double weight = rs.getDouble("weight");
+	                weights.add(weight);
+	            }
+	        }
+
+	    } catch (SQLException | URISyntaxException e) {
+	        e.printStackTrace();
+	    }
+
+	    return weights;
 	}
 	
 	public static int getMetsByTrainingEventId(int training_event_id) {

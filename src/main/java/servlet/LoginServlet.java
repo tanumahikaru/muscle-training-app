@@ -137,6 +137,11 @@ public class LoginServlet extends HttpServlet {
 				
 				request.setAttribute("latestRecord", latestRecord);
 			}
+//			作成中
+	        List<Double> weightData = MuscleRecordDAO.getWeightsByUserId(user.getId()); // WeightDAOはデータベースからデータを取得するメソッドを実装していると仮定
+
+	        // リクエスト属性に weight データをセット
+	        request.setAttribute("weightData", weightData);
 			
 			 // 本日の摂取カロリーを取得
 	        AdditionalMealDAO additionalMealDAO = new AdditionalMealDAO();
@@ -144,9 +149,7 @@ public class LoginServlet extends HttpServlet {
 	        System.out.println("カロリーを"+additionalMealDAO);
 	        // リクエストスコープに設定
 	     // セッションに設定
-	        session.setAttribute("totalCaloriesConsumed", totalCaloriesConsumed);
-
-	        
+	        session.setAttribute("totalCaloriesConsumed", totalCaloriesConsumed);	        
 
 			// ログイン後のホーム画面へ遷移
 			String view = "WEB-INF/view/home.jsp";			
