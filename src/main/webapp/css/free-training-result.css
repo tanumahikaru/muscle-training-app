@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.result-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.result-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+ .result-item {
+    margin: 20px;
+    padding: 20px;
+   	background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.result-item p {
+    margin: 15px 0;
+    font-size: 18px;
+    font-weight: bold; /* 種目名と消費カロリーを太字にする */
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.back {
+	height: 40px;
+    width: 100px;
+    border-radius: 25px;
+    border-color: #f0f0f0;
+    background-color: #2941bc;
+    color: white;
+    margin: 10px auto; /* 上下10px、左右は自動で中央寄せ */
+    display: block; /* ボタンをブロック要素に変更 */
+}

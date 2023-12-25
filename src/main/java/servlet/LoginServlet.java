@@ -1,8 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -117,8 +117,8 @@ public class LoginServlet extends HttpServlet {
 
 				// 今日の食事メニューをランダムで選択し、更新する
 				List<Integer> foodIdList = Meal_menuDAO.selectAllMainDishesId();
-				Random rand = new Random();
-				int foodId = rand.nextInt(foodIdList.size());
+				Collections.shuffle(foodIdList);
+				int foodId = foodIdList.get(0);
 				System.out.println("食事メニューID" + foodId);
 				if(Meal_menuDAO.updateFoodId(foodId, user.getId()) == 1) {
 					user.setFood_id(foodId);
@@ -145,11 +145,20 @@ public class LoginServlet extends HttpServlet {
 			
 			 // 本日の摂取カロリーを取得
 	        AdditionalMealDAO additionalMealDAO = new AdditionalMealDAO();
-	        int totalCaloriesConsumed = additionalMealDAO.getTotalCaloriesConsumedOnSameDay(user.getId());
-	        System.out.println("カロリーを"+additionalMealDAO);
+	        int totalCalorieIntake = additionalMealDAO.getTotaltotalCalorieIntakeOnSameDay(user.getId());
+	        System.out.println("総接種カロリーを"+totalCalorieIntake);
+	        // リクエストスコープに設定
+	     // セッションに設定
+	        session.setAttribute("totalCalorieIntake", totalCalorieIntake);
+
+	   	 // 本日の消費カロリーを取得
+	        MuscleRecordDAO musclerecordDAO = new MuscleRecordDAO();
+	        int totalCaloriesConsumed = musclerecordDAO.getTotalCaloriesConsumedOnSameDay(user.getId());
+	        System.out.println("総消費カロリー"+totalCaloriesConsumed);
 	        // リクエストスコープに設定
 	     // セッションに設定
 	        session.setAttribute("totalCaloriesConsumed", totalCaloriesConsumed);	        
+
 
 			// ログイン後のホーム画面へ遷移
 			String view = "WEB-INF/view/home.jsp";			

@@ -23,6 +23,11 @@ public class MuscleRecord {
 		this.calories_burned = calories_burned;
 	}
 	
+	public MuscleRecord(int training_event_id, double calories_burned) {
+		this.training_event_id = training_event_id;
+		this.calories_burned = calories_burned;
+	}
+
 	public int getTraining_record_id() {
 		return training_record_id;
 	}

@@ -60,10 +60,10 @@
   <canvas id="calorieLineChart" width="900" height="400"></canvas>
 
   <div class="info-text">
-    <p>摂取カロリー： <%= session.getAttribute("totalCaloriesConsumed") %></p><br>
+    <p>摂取カロリー： <%= session.getAttribute("totalCalorieIntake") %>kcal</p><br>
   </div>
   <div class="info-text">
-  <p>消費カロリー：</p><br>
+  <p>消費カロリー：<%= session.getAttribute("totalCaloriesConsumed") %>kcal</p><br>
   </div>
 
 <!-- 体重記録フォーム -->
