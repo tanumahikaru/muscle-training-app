@@ -9,18 +9,21 @@
 <head>
 <meta charset="UTF-8">
 <title>トレーニング結果</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style2.css">
 <link rel="stylesheet" href="css/home.css">
-<link rel="stylesheet" href="css/free-training-result.css">
 <link rel="stylesheet" href="training_result.css">
 </head>
 <body>
-	<div class="header-banner">
+	<header>
 		<button type="button" class="menu-btn">
-			<i class="fa fa-bars" aria-hidden="true"></i>
-		</button>
-		<h1>筋トレ</h1>
-	</div>
+		<h1 id="header-title">筋トレ</h1>
+		<div class="right">
+			<div id="user-level">Lv.13</div>
+			<div class="user-icon">
+				<img src="../training_result/user.png" alt="ユーザー画像">
+			</div>
+		</div>
+	</header>
 	<div class="menu">
 		<div class="menu__item">
 			<a href="TopServlet">ホーム</a>
@@ -47,15 +50,24 @@
 			<a href="LogoutServlet">ログアウト</a>
 		</div>
 	</div>
-	<h2>トレーニング結果</h2>
-	<%
-	List<MuscleRecord> results = (List<MuscleRecord>) request.getAttribute("result");
-	int total = 0;
-	for (MuscleRecord re : results) {
-	%>
-	<%=MuscleDAO.SelectMuscleEventById(re.getTraining_event_id()).getEvent_name()%>
-	<%=re.getCalories_burned()%>
+	
+	<main>
+  <h1>今日の消費カロリー</h1>
+  <div id="total_cal"></div>
 
+  <div id="training-list">
+    <%
+    List<MuscleRecord> results = (List<MuscleRecord>) request.getAttribute("result");
+    int total = 0;
+    for (MuscleRecord re : results) {
+    %>
+    <div class="training">
+      <div><%=MuscleDAO.SelectMuscleEventById(re.getTraining_event_id()).getEvent_name()%></div>
+      <div><%=re.getCalories_burned()%></div>
+    </div>
+  </div>
+
+</main>
 	<%
 	total += re.getCalories_burned();
 	%>
@@ -63,8 +75,14 @@
 	<%
 	}
 	%>
-	<%=total%>kcal
 	
+	<script>
+	  let div = document.getElementById('total_cal')
+	  div.innerText = <%=total%>+'kcal'
+	</script>
+    
+    
+    
 	<script src="./JavaScript/home.js"></script>
 </body>
 </html>
