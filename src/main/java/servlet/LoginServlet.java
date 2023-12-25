@@ -1,8 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -117,8 +117,8 @@ public class LoginServlet extends HttpServlet {
 
 				// 今日の食事メニューをランダムで選択し、更新する
 				List<Integer> foodIdList = Meal_menuDAO.selectAllMainDishesId();
-				Random rand = new Random();
-				int foodId = rand.nextInt(foodIdList.size());
+				Collections.shuffle(foodIdList);
+				int foodId = foodIdList.get(0);
 				System.out.println("食事メニューID" + foodId);
 				if(Meal_menuDAO.updateFoodId(foodId, user.getId()) == 1) {
 					user.setFood_id(foodId);
