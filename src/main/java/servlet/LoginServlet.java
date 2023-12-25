@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.AdditionalMealDAO;
 import dao.Meal_menuDAO;
 import dao.MuscleDAO;
 import dao.MuscleRecordDAO;
@@ -137,6 +138,15 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("latestRecord", latestRecord);
 			}
 			
+			 // 本日の摂取カロリーを取得
+	        AdditionalMealDAO additionalMealDAO = new AdditionalMealDAO();
+	        int totalCaloriesConsumed = additionalMealDAO.getTotalCaloriesConsumedOnSameDay(user.getId());
+	        System.out.println("カロリーを"+additionalMealDAO);
+	        // リクエストスコープに設定
+	     // セッションに設定
+	        session.setAttribute("totalCaloriesConsumed", totalCaloriesConsumed);
+
+	        
 
 			// ログイン後のホーム画面へ遷移
 			String view = "WEB-INF/view/home.jsp";			

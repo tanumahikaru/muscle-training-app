@@ -59,13 +59,11 @@
   <canvas id="calorieLineChart" width="900" height="400"></canvas>
 
   <div class="info-text">
-    <p>消費カロリー</p><br>
+    <p>摂取カロリー： <%= session.getAttribute("totalCaloriesConsumed") %></p><br>
   </div>
   <div class="info-text">
-  <p>摂取カロリー</p><br>
+  <p>消費カロリー：</p><br>
   </div>
-  <div class="info-text">
-    <p>クイズ正答数</p></div>
 
 <!-- 体重記録フォーム -->
 <div class="down" style="text-align:center;">

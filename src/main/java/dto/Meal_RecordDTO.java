@@ -10,6 +10,7 @@ public class Meal_RecordDTO {
 	private int calorie;
 	private int food_id;
 	
+	
 	public Meal_RecordDTO(int id, int user_id, Date date, String food_name, int calorie, int food_id) {	
 		super();
 		this.id = id;
