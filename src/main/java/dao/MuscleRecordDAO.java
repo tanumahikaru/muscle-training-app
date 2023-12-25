@@ -103,7 +103,6 @@ public class MuscleRecordDAO {
 	    } catch (SQLException | URISyntaxException e) {
 	        e.printStackTrace();
 	    }
-
 	    return weights;
 	}
 	

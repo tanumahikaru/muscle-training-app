@@ -77,7 +77,6 @@
 <%
     List<Double> weightData = (List<Double>) request.getAttribute("weightData");
 %>
-
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // グラフのデータ

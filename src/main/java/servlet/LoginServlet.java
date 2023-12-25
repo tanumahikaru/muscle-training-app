@@ -157,8 +157,7 @@ public class LoginServlet extends HttpServlet {
 	        System.out.println("総消費カロリー"+totalCaloriesConsumed);
 	        // リクエストスコープに設定
 	     // セッションに設定
-	        session.setAttribute("totalCaloriesConsumed", totalCaloriesConsumed);	        
-
+	        session.setAttribute("totalCaloriesConsumed", totalCaloriesConsumed);	   
 
 			// ログイン後のホーム画面へ遷移
 			String view = "WEB-INF/view/home.jsp";			
