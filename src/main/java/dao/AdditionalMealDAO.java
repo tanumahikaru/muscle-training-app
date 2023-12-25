@@ -58,7 +58,7 @@ public class AdditionalMealDAO {
     }
  // 既存のAdditionalMealDAOクラスにこのメソッドを追加してください
 
-    public int getTotalCaloriesConsumedOnSameDay(int userId) {
+    public int getTotaltotalCalorieIntakeOnSameDay(int userId) {
         int totalCalories = 0;
         try (Connection connection = getConnection()) {
             // SQLクエリ内でcurrent_dateを使用する
