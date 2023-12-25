@@ -1,1 +1,34 @@
 @charset "UTF-8";
+/* #containerに追加するスタイル */
+#container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* 上寄せに変更 */
+    flex-wrap: wrap; /* flexアイテムを折り返し表示する */
+}
+
+.content {
+    box-sizing: border-box; /* ボーダーボックスモデルを適用 */
+    width: 45%;
+    margin-left: 60px; /* 下側のマージンを追加 */
+}
+
+.content-container {
+    box-sizing: border-box; /* ボーダーボックスモデルを適用 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    margin-bottom: 20px; /* 下側のマージンを追加 */
+    margin-right: 50px; /* 下側のマージンを追加 */
+}
+/* 新しく作りたいメニューのスタイル */
+.meal-entry {
+    margin-bottom: 10px;
+}
+
+/* 登録フォームのスタイル */
+.underline-input-container {
+    margin-bottom: 20px;
+}

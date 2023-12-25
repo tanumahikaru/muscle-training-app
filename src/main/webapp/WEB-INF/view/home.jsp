@@ -60,13 +60,11 @@
   <canvas id="calorieLineChart" width="900" height="400"></canvas>
 
   <div class="info-text">
-    <p>消費カロリー</p><br>
+    <p>摂取カロリー： <%= session.getAttribute("totalCaloriesConsumed") %></p><br>
   </div>
   <div class="info-text">
-  <p>摂取カロリー</p><br>
+  <p>消費カロリー：</p><br>
   </div>
-  <div class="info-text">
-    <p>クイズ正答数</p></div>
 
 <!-- 体重記録フォーム -->
 <div class="down" style="text-align:center;">
@@ -86,7 +84,7 @@
         labels: ['日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5'],
         datasets: [{
             label: 'あなたの体重',
-            data: [<%= weight.getWeight()%>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>],
+            data: [<%= (weight != null) ? weight.getWeight() : 0%>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>,<%= (weight != null) ? weight.getWeight() : 0 %>],
             fill: false,
             borderColor: 'blue',
             borderWidth: 2,

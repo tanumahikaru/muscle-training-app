@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.AdditionalMealDAO;
 import dao.Meal_menuDAO;
 import dao.MuscleDAO;
 import dao.MuscleRecordDAO;
 import dao.UserDAO;
 import dto.MuscleRecord;
 import dto.UserDTO;
-import dto.WeightDTO;
 import util.GenerateHashedPw;
 
 /**
@@ -138,16 +138,23 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("latestRecord", latestRecord);
 			}
 			
-			WeightDTO weight = UserDAO.SelectWeight(user.getId());
-			System.out.print("ユーザーID"+user.getId());
+			 // 本日の摂取カロリーを取得
+	        AdditionalMealDAO additionalMealDAO = new AdditionalMealDAO();
+	        int totalCaloriesConsumed = additionalMealDAO.getTotalCaloriesConsumedOnSameDay(user.getId());
+	        System.out.println("カロリーを"+additionalMealDAO);
+	        // リクエストスコープに設定
+	     // セッションに設定
+	        session.setAttribute("totalCaloriesConsumed", totalCaloriesConsumed);
 
-			request.setAttribute("weight", weight);
+	        
 
 			// ログイン後のホーム画面へ遷移
 			String view = "WEB-INF/view/home.jsp";			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-			dispatcher.forward(request, response);
+			
+			System.out.println( "dispather");
 
+			dispatcher.forward(request, response);
 		
 		}
 	
