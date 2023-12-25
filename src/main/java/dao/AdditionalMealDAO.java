@@ -56,5 +56,25 @@ public class AdditionalMealDAO {
         }
         return meals;
     }
+ // 既存のAdditionalMealDAOクラスにこのメソッドを追加してください
 
+    public int getTotalCaloriesConsumedOnSameDay(int userId) {
+        int totalCalories = 0;
+        try (Connection connection = getConnection()) {
+            // SQLクエリ内でcurrent_dateを使用する
+            String query = "SELECT SUM(calorie) as total_calories FROM meal_record WHERE user_id = ? AND date = CURRENT_DATE";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, userId);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        totalCalories = resultSet.getInt("total_calories");
+                    }
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return totalCalories;
+    }
 }
