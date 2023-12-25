@@ -221,6 +221,24 @@ public class MuscleRecordDAO {
         List<Double> last3Calories = selectLast3Calories(userId);
         return calculateTotalCalories(last3Calories);
     }
-}
+    
+    public int getTotalCaloriesConsumedOnSameDay(int userId) {
+        int totalCalories_burned = 0;
+        try (Connection connection = getConnection()) {
+            // SQLクエリ内でcurrent_dateを使用する
+            String query = "SELECT SUM(calories_burned) as totalCalories_burned FROM training_records WHERE user_id = ? AND date = CURRENT_DATE";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, userId);
 
-	
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        totalCalories_burned = resultSet.getInt("totalCalories_burned");
+                    }
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return totalCalories_burned;
+    }
+}

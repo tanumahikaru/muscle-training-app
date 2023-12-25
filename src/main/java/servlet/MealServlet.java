@@ -38,6 +38,11 @@ public class MealServlet extends HttpServlet {
         Meal_menuDTO meal_menu = Meal_menuDAO.SelectMealMenuById(user.getFood_id());
         request.setAttribute("meal", meal_menu);
         
+     // 本日の摂取カロリーを取得し、セッションに設定
+        int totalCalorieIntake = additionalMealDAO.getTotaltotalCalorieIntakeOnSameDay(userId);
+        System.out.println("総摂取カロリーを: " + totalCalorieIntake);
+        session.setAttribute("totalCalorieIntake", totalCalorieIntake);
+        
         // 取得したデータをリクエスト属性にセット
         request.setAttribute("mealsAddedOnSameDay", mealsAddedOnSameDay);
         System.out.println("Meals added on the same day: " + mealsAddedOnSameDay);

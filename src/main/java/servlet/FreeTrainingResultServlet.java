@@ -90,6 +90,13 @@ public class FreeTrainingResultServlet extends HttpServlet {
         // リクエスト属性としてJSPに渡す
         request.setAttribute("totalCaloriesLast3", totalCalories);
         
+        MuscleRecordDAO muscleRecordDAO = new MuscleRecordDAO();
+
+     // インスタンスを使ってメソッドを呼び出す
+     int totalCaloriesConsumed = muscleRecordDAO.getTotalCaloriesConsumedOnSameDay(userId);
+     System.out.println("総摂取カロリーを: " + totalCaloriesConsumed);
+     session.setAttribute("totalCaloriesConsumed", totalCaloriesConsumed);
+        
         String view = "WEB-INF/view/training-result.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(view);
         dispatcher.forward(request, response);
