@@ -33,18 +33,21 @@
      <%
         String eventName = (String) request.getAttribute("event_name");
 	    Double totalCaloriesObj = (Double) request.getAttribute("totalCaloriesLast3");
-	    double totalCalories = (totalCaloriesObj != null) ? totalCaloriesObj : 0.0;
+	    String formattedCalories = (totalCaloriesObj != null) ? String.format("%.1f", totalCaloriesObj) : "0.0";
      %>
    	  <div class="result-container">
         <h2>トレーニングの結果</h2>
         <ul class="result-list">
             <li class="result-item">
                 <p>種目名: <%= eventName %></p>
-                <p>消費カロリー: <%= totalCalories %></p>
+                <p>消費カロリー: <%= formattedCalories %></p>
             </li>
             <!-- 必要に応じて他のアイテムも追加 -->
         </ul>
     </div>
+    <form action="FreeTrainingServlet" method="post">
+    	<input type="submit" value="戻る" class="back">
+    </form>
     <script src="./JavaScript/home.js"></script>
 </body>
 </html>

@@ -31,3 +31,14 @@
 h2 {
     margin-bottom: 20px;
 }
+
+.back {
+	height: 40px;
+    width: 100px;
+    border-radius: 25px;
+    border-color: #f0f0f0;
+    background-color: #2941bc;
+    color: white;
+    margin: 10px auto; /* 上下10px、左右は自動で中央寄せ */
+    display: block; /* ボタンをブロック要素に変更 */
+}
