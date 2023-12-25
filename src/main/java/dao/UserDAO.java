@@ -269,30 +269,7 @@ public class UserDAO {
 		return result; // 更新件数を返す
 	}
 	
-	//体重を更新するメソッド
-	public static int updateWeight(WeightDTO weight) {
-	    int result = 0;
-	    String sql = "UPDATE weight SET weight = ?, date = ? WHERE user_id = ?";
 
-	    try (
-	        Connection con = getConnection();
-	        PreparedStatement pstmt = con.prepareStatement(sql);
-	    ) {
-	        pstmt.setFloat(1, weight.getWeight());
-	        pstmt.setDate(2, new java.sql.Date(weight.getDate().getTime())); // java.util.Dateからjava.sql.Dateに変換
-	        pstmt.setInt(3, weight.getUser_id());
-
-	        result = pstmt.executeUpdate();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } catch (URISyntaxException e) {
-	        e.printStackTrace();
-	    } finally {
-	        System.out.println(result + "件更新しました。");
-	    }
-	    return result;
-	}
-	
 	// ユーザーを登録してユーザーIDを取得するメソッド
 	public static int registerUserAndGetUserId(UserDTO user) {
 	    int userId = -1; // 初期値
