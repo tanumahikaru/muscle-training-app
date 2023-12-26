@@ -11,8 +11,8 @@
 <title>トレーニング結果</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/home.css">
-<link rel="stylesheet" href="training_result.css">
-<link rel="stylesheet" href="header.css">
+<link rel="stylesheet" href="css/training_result.css">
+<link rel="stylesheet" href="css/header.css">
 
 </head>
 <body>
@@ -35,7 +35,7 @@
   </div>
 	
 	<main>
-  <h1>今日の消費カロリー</h1>
+  <h2 style="margin-top: 110px;">今日の消費カロリー</h2>
   <div id="total_cal"></div>
 
   <div id="training-list">
@@ -46,7 +46,8 @@
     %>
     <div class="training">
       <div><%=MuscleDAO.SelectMuscleEventById(re.getTraining_event_id()).getEvent_name()%></div>
-      <div><%=re.getCalories_burned()%></div>
+      <% String calorie = String.format("%.1f", re.getCalories_burned()); %>
+      <div><%=calorie %></div>
     </div>
   </div>
 
@@ -54,7 +55,6 @@
 	<%
 	total += re.getCalories_burned();
 	%>
-	<br>
 	<%
 	}
 	%>
