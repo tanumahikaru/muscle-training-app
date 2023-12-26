@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .titile{
-	margin-left: 580px;
+	text-align: center;
 }
 
 .set {
@@ -118,4 +118,15 @@ h3 {
   border: none;
   background: transparent;
   font-size: 20px;
+}
+
+.explanation {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center; /* 要素を横方向に中央寄せするための追加スタイル */
+}
+
+.explanation p {
+    margin: 0;
 }

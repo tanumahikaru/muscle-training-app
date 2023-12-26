@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="dto.MuscleDTO" %>
+<%@ page import="dto.ExplanationDTO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,16 +91,24 @@
     <h3>やり方</h3>
 
     <hr>
-
-    <h1>ここに説明が入ります</h1>
-
+	
+	 <%
+        List<ExplanationDTO> ex = (ArrayList< ExplanationDTO>)request.getAttribute("explanation");
+        for( ExplanationDTO e : ex) {
+     %>
+	<div class="explanation">
+	    <p>step:<%=e.getStep() %></p>
+	    <p><%=e.getExplanation() %></p>
+	</div>
+	<%} %>
     <script src="./JavaScript/home.js"></script>
     <script src="./JavaScript/timer.js"></script>
     <script>
     function recordTraining() {
-        var numberSet1 = document.getElementById("timer1").querySelector("input").value;
-        var numberSet2 = document.getElementById("timer2").querySelector("input").value;
-        var numberSet3 = document.getElementById("timer3").querySelector("input").value;
+    	 var numberSet1 = document.getElementById("timer1").querySelector("input").value || 0;
+    	 var numberSet2 = document.getElementById("timer2").querySelector("input").value || 0;
+    	 var numberSet3 = document.getElementById("timer3").querySelector("input").value || 0;
+    	        
 
         // 時間の値を数値に変換
         var timerValue1 = convertTimeToNumber(document.getElementById("timer1").querySelector(".time-display").innerText);

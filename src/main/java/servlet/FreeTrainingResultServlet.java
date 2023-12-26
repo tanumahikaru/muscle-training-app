@@ -33,9 +33,15 @@ public class FreeTrainingResultServlet extends HttpServlet {
 
     	
     	//各セットの回数の値を取得
-    	int numberSet1 = Integer.parseInt(request.getParameter("numberSet1"));
-        int numberSet2 = Integer.parseInt(request.getParameter("numberSet2"));
-        int numberSet3 = Integer.parseInt(request.getParameter("numberSet3"));
+    	String numberSet1Param = request.getParameter("numberSet1");
+    	int numberSet1 = (numberSet1Param != null) ? Integer.parseInt(numberSet1Param) : 0;
+    	System.out.println(numberSet1);
+    	String numberSet2Param = request.getParameter("numberSet2");
+    	int numberSet2 = (numberSet2Param != null) ? Integer.parseInt(numberSet2Param) : 0;
+    	System.out.println(numberSet2);
+    	String numberSet3Param = request.getParameter("numberSet3");
+    	int numberSet3 = (numberSet3Param != null) ? Integer.parseInt(numberSet3Param) : 0;
+    	System.out.println(numberSet3);
     	
         // 各セットのタイマーの値を取得
         String timerValue1 = request.getParameter("timerValue1");
