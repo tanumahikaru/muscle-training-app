@@ -1,30 +1,111 @@
 @charset "UTF-8";
 
-.button-container {
-        display: flex;
-        justify-content: space-between; /* 必要に応じて調整してください */
-        align-items: center;
-    }
-
-#categoryForm {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-#categoryForm button {
-    flex: 1; /* 各ボタンが均等のスペースを占めるように設定 */
-    padding: 7px;
-    /* 他のスタイルも必要に応じて追加してください */
-}
 .search {
-        display: flex;
-        text-align: center;
-        justify-content: center;
-        margin-top: 20px; /* 適切なマージンを設定 */
-    }
+  text-align: center; /* フォームを中央に寄せる */
+  padding: 20px; /* 上下左右の余白を追加 */
+  display:flex
+}
 
-    #searchForm input[type="text"],
-    #searchForm input[type="submit"] {
-        margin: 5px; /* 適切なマージンを設定 */
-    }
+.search input[type="text"] {
+  width: 300px; /* 入力フィールドの幅を設定 */
+  padding: 8px; /* 入力フィールドの内側の余白を追加 */
+  font-size: 12px; /* フォントサイズを調整 */
+}
+
+.search input[type="submit"] {
+  padding: 8px 25px; /* ボタンの上下左右の余白を追加 */
+  font-size: 12px; /* フォントサイズを調整 */
+  height: 35px;
+  background-color: #6fa24a; /* ボタンの背景色 */
+  color: #fff; /* ボタンのテキスト色 */
+  border: none; /* ボーダーを削除 */
+  border-radius: 4px; /* ボーダーの角を丸くする */
+  cursor: pointer; /* カーソルをポインターに変更 */
+  transition: background-color 0.3s ease; /* ホバーエフェクトを追加 */
+}
+
+.search input[type="submit"]:hover {
+  background-color: #4c8031; /* ホバー時の背景色 */
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* 高さを揃える */
+  margin-bottom: 20px; /* ボタンと下部の余白を追加 */
+}
+
+/* button-styles.css */
+.button-outline {
+  flex: 1; /* フレックスアイテムが均等に幅を分ける */
+  box-sizing: border-box; /* border, padding を含めたボックスモデルを使用 */
+  display: inline-block;
+  font-size: 1rem;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border: 2px solid #6fa24a; /* アウトラインの色を指定 */
+  border-radius: 0rem;
+  background-color: transparent; /* 背景色を透明に設定 */
+}
+
+.button-outline:hover {
+  background-color: #fafad2;
+}
+
+/*----------------------------------------------
+type2
+----------------------------------------------*/
+.card-container.type2 {
+  display: flex;
+  flex-wrap: wrap; /* 複数行に折り返す */
+  justify-content: flex-start; /* カードを左寄せに */
+  gap: 20px; /* カードの間隔（必要に応じて調整） */
+  margin-left: 20px; /* 左端から10pxずらす（必要に応じて調整） */
+}
+
+.card-container.type2 .card-body {
+  width: calc(20% - 30px); /* カードの幅（5つ横に並べるために調整） */
+  margin-bottom: 20px; /* カードの下部に20pxの余白を追加 */
+  border: 2px solid #6fa24a;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 15px;
+  overflow: hidden; /* カード内の余分な部分を隠す */
+  display: flex;
+  flex-direction: column; /* これを追加してフレックスコンテナにする */
+  text-align: center; /* テキストを中央揃えに */
+}
+
+.card-container.type2 .card-body img {
+  flex: 1; /* これにより画像が利用可能なスペースを占めるようになります */
+  width: 100%; /* カード内に収めるために横幅を100%に */
+  height: 100%; /* カード内に収めるために高さを100%に */
+  object-fit: cover; /* アスペクト比を保ちつつカード内に画像をフィットさせる */
+  display: block; /* 不要な余白を削除するためにブロック要素に変更 */
+  margin: 0 auto; /* カード内で水平方向に中央寄せ */
+}
+
+.card-container.type2 .card-body h2,
+.card-container.type2 .card-body h1 {
+  margin: 0; /* マージンをリセットして余白を削除 */
+}
+
+.back {
+	height: 35px;
+    width: 80px;
+    border-radius: 25px;
+    border-color: #f0f0f0;
+    background-color: #2941bc;
+    color: white;
+    margin-left: 10px;
+    text-decoration: none; /* 下線を削除 */
+}

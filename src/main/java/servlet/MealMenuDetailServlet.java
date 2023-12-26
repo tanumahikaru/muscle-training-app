@@ -15,6 +15,7 @@ import dao.MaterialDAO;
 import dao.Meal_menuDAO;
 import dto.MaterialDTO;
 import dto.Meal_menuDTO;
+import dto.RecipeDTO;
 
 /**
  * Servlet implementation class MealMenuDetailServlet
@@ -34,26 +35,31 @@ public class MealMenuDetailServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        System.out.println(id);
-        
+
         Meal_menuDTO menu = Meal_menuDAO.SelectMealMenuById(id);
         List<MaterialDTO> materials = MaterialDAO.SelectMaterialsByFoodId(id);
-        System.out.println(menu.getFood_name());
-
+        List<RecipeDTO> recipes = Meal_menuDAO.selectRecipeByFoodIdAndStep(menu.getFood_id());
+        
+        System.out.println("取れてる？"+menu.getFood_id());
+        
         HttpSession session = request.getSession();
         session.setAttribute("detail", menu);
         session.setAttribute("materials", materials);
+        session.setAttribute("recipeList", recipes); 
 
         request.setAttribute("menu", menu);
-        request.setAttribute("materials", materials); // この行を追加
+        request.setAttribute("materials", materials);
+        request.setAttribute("recipeList", recipes);
+        
 
         String view = "WEB-INF/view/meal-menu-detail.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(view);
         dispatcher.forward(request, response);
     }
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

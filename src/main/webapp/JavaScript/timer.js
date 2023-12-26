@@ -24,6 +24,8 @@ window.onload = function() {
   minusButtons.forEach((minusButton, index) => {
       minusButton.addEventListener('click', () => {
           numbers[index].stepDown();
+          
+          numbers[index].value = numbers[index].value || 0; // 回数の値が未入力の場合はデフォルトで 0 を表示
       });
   });
 
@@ -31,6 +33,8 @@ window.onload = function() {
   plusButtons.forEach((plusButton, index) => {
       plusButton.addEventListener('click', () => {
           numbers[index].stepUp();
+          
+          numbers[index].value = numbers[index].value || 0; // 回数の値が未入力の場合はデフォルトで 0 を表示
       });
   });
 
@@ -43,7 +47,9 @@ window.onload = function() {
 
           // タイマーの値をフォームに設定
           const timerValue = timeDisplays[index].innerText;
-          document.getElementById(`timer${index + 1}`).querySelector(".number").value = timerValue;
+          
+           // 回数の値をフォームに設定
+          numbers[index].value = numbers[index].value || 0;
       });
   });
 
@@ -57,5 +63,6 @@ window.onload = function() {
       const milliseconds = Math.floor(timeElapsed.getMilliseconds() / 10).toString().padStart(2, '0');
 
       timeDisplays[index].innerText = `${minutes}:${seconds}.${milliseconds}`;
+      numbers[index].value = numbers[index].value || 0;  // 回数の値が未入力の場合はデフォルトで 0 を表示
   }
 };
