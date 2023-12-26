@@ -40,7 +40,7 @@
   </div>
 </header>
 
- 	<form action="SearchRecipeServlet" method="post">
+ 	<form action="SearchRecipeServlet" method="post" class= "search">
         <input type="text" name="searchKeyword" placeholder="検索したいメニューを入力してください">
         <input type="submit" value="検索">
     </form>
@@ -57,7 +57,7 @@
 <form action="<%=servletURL%>" method="post" id="categoryForm">
     <!-- positionIdをサーバーに送信するフォーム -->
     <input type="hidden" name="category_Id" id="category_Id" value="" />
-
+	<div class = "form-buttons">
     <!-- ボタンがクリックされたときにJavaScriptでpositionIdを設定し、フォームをサーバーに送信する -->
     <button type="button" class="button-outline" onclick="setAndSubmitForm(1)">肉</button>
 	<button type="button" class="button-outline" onclick="setAndSubmitForm(2)">魚</button>
@@ -67,7 +67,7 @@
 	<button type="button" class="button-outline" onclick="setAndSubmitForm(6)">野菜</button>
 	<button type="button" class="button-outline" onclick="setAndSubmitForm(7)">果実</button>
 	<button type="button" class="button-outline" onclick="setAndSubmitForm(8)">その他</button>
-    
+    </div>
 
    	<%-- カテゴリー名を表示 --%>
 	<h2><%= request.getAttribute("categoryName") %>のレシピ一覧</h2>
@@ -86,10 +86,9 @@
 			<a href="MealMenuDetailServlet?id=<%=m.getFood_id() %>">料理を作る</a>
 		</div>
 		<%} %>
-	</div>
-	
+	</div>	
 </form>
-   		<a onclick="goBack()">戻る</a>
+   		<a onclick="goBack()" class="back">戻る</a>
 
     <script src="./JavaScript/home.js"></script>
     <script src="./JavaScript/meal_menu.js"></script>
