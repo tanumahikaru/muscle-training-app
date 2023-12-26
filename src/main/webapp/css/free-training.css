@@ -1,33 +1,5 @@
 @charset "UTF-8";
 
-.search {
-  text-align: center; /* フォームを中央に寄せる */
-  padding: 20px; /* 上下左右の余白を追加 */
-  display:flex
-}
-
-.search input[type="text"] {
-  width: 300px; /* 入力フィールドの幅を設定 */
-  padding: 8px; /* 入力フィールドの内側の余白を追加 */
-  font-size: 12px; /* フォントサイズを調整 */
-}
-
-.search input[type="submit"] {
-  padding: 8px 25px; /* ボタンの上下左右の余白を追加 */
-  font-size: 12px; /* フォントサイズを調整 */
-  height: 35px;
-  background-color: #6fa24a; /* ボタンの背景色 */
-  color: #fff; /* ボタンのテキスト色 */
-  border: none; /* ボーダーを削除 */
-  border-radius: 4px; /* ボーダーの角を丸くする */
-  cursor: pointer; /* カーソルをポインターに変更 */
-  transition: background-color 0.3s ease; /* ホバーエフェクトを追加 */
-}
-
-.search input[type="submit"]:hover {
-  background-color: #4c8031; /* ホバー時の背景色 */
-}
-
 .form-buttons {
   display: flex;
   justify-content: space-between;
@@ -99,13 +71,52 @@ type2
   margin: 0; /* マージンをリセットして余白を削除 */
 }
 
-.back {
-	height: 35px;
-    width: 80px;
+/* a タグを中央に寄せるための親要素のスタイル */
+.centered-link-container {
+    text-align: center;
+}
+
+/* a タグのスタイル */
+.centered-link-container a {
+    display: inline-block;
+    height: 50px; /* 例: 適切な高さに調整 */
+    width: 150px; /* 例: 適切な幅に調整 */
+    line-height: 50px; /* 高さと同じ値に設定して中央に寄せる */
     border-radius: 25px;
     border-color: #f0f0f0;
     background-color: #2941bc;
     color: white;
     margin-left: 10px;
-    text-decoration: none; /* 下線を削除 */
+    text-decoration: none;
+    text-align: center; /* テキストを中央寄せにする */
+}
+
+.search-menu {
+  display: flex; /* 横並びにする */
+  justify-content: center; /* 中央寄せ */
+  align-items: center; /* 縦方向に中央寄せ（必要に応じて追加） */
+  padding: 20px;
+}
+
+.search-menu input[type="text"] {
+  width: 300px;
+  padding: 8px;
+  font-size: 12px;
+}
+
+.search-menu input[type="submit"] {
+  margin-left: 10px; /* ボタンと入力欄の間に余白を追加 */
+  padding: 8px 25px;
+  font-size: 12px;
+  height: 35px;
+  background-color: #6fa24a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-menu input[type="submit"]:hover {
+  background-color: #4c8031;
 }
