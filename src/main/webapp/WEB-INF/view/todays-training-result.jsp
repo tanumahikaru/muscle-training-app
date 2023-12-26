@@ -9,47 +9,30 @@
 <head>
 <meta charset="UTF-8">
 <title>トレーニング結果</title>
-<link rel="stylesheet" href="css/style2.css">
+<link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="training_result.css">
+<link rel="stylesheet" href="header.css">
+
 </head>
 <body>
-	<header>
-		<button type="button" class="menu-btn">
-		<h1 id="header-title">筋トレ</h1>
-		<div class="right">
-			<div id="user-level">Lv.13</div>
-			<div class="user-icon">
-				<img src="../training_result/user.png" alt="ユーザー画像">
-			</div>
-		</div>
-	</header>
-	<div class="menu">
-		<div class="menu__item">
-			<a href="TopServlet">ホーム</a>
-		</div>
-		<div class="menu__item">
-			<a href="TrainingSuggestionServlet">今日のトレーニング</a>
-		</div>
-		<div class="menu__item">
-			<a href="MealServlet">食事</a>
-		</div>
-		<div class="menu__item">
-			<a href="FreeTrainingServlet">フリートレーニング</a>
-		</div>
-		<div class="menu__item">
-			<a href="RecipeServlet">レシピ検索</a>
-		</div>
-		<div class="menu__item">
-			<a href="UserLogServlet">記録</a>
-		</div>
-		<div class="menu__item">
-			<a href="QuizServlet">クイズ</a>
-		</div>
-		<div class="menu__item">
-			<a href="LogoutServlet">ログアウト</a>
-		</div>
-	</div>
+	<div class="header-banner">
+    <button type="button" class="menu-btn">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+    <h1>筋トレ</h1>
+  </div>
+
+  <div class="menu">
+    <div class="menu__item"><a href="TopServlet">ホーム</a></div>
+    <div class="menu__item"><a href="TrainingSuggestionServlet">今日のトレーニング</a></div>
+    <div class="menu__item"><a href="MealServlet">食事</a></div>
+    <div class="menu__item"><a href="FreeTrainingServlet">フリートレーニング</a></div>
+    <div class="menu__item"><a href="RecipeServlet">レシピ検索</a></div>
+    <div class="menu__item"><a href="UserLogServlet">記録</a></div>
+    <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
+    <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
+  </div>
 	
 	<main>
   <h1>今日の消費カロリー</h1>

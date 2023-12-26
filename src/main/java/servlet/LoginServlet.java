@@ -80,7 +80,6 @@ public class LoginServlet extends HttpServlet {
 		} else
   	    {
 			// ログイン成功時の処理
-			// 初回ログインかどうかの判定
 			String today = new java.sql.Date(new java.util.Date().getTime()).toString(); // 現在日時を取得
 			String lastLogin = new java.sql.Date(user.getLast_login().getTime()).toString();
 			
@@ -90,10 +89,8 @@ public class LoginServlet extends HttpServlet {
             // ログイン情報をセッションに登録
 			  HttpSession session = request.getSession();
 	          session.setAttribute("user", user);
-	          
-			System.out.println(lastLogin);
-			System.out.println(today);
 			
+	       // 初回ログインかどうかの判定
 			if (!lastLogin.equals(today)) {
 				System.out.println("初回ログイン！");
 
@@ -161,10 +158,7 @@ public class LoginServlet extends HttpServlet {
 			System.out.println( "dispather");
 
 			dispatcher.forward(request, response);
-		
-		}
-	
-		
+		}		
 	}
 
 	/**
