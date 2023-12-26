@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.ExplanationDTO;
 import dto.MuscleDTO;
 
 public class SampleMuscleDAO {
@@ -147,7 +148,36 @@ public class SampleMuscleDAO {
 
         return positionName;
     }
+	
+	public static List< ExplanationDTO> selectExplanationById(int training_event_id) {
+		String sql = "SELECT step, explanation FROM training_descriptions WHERE training_event_id = ?";
+		
+		  // 返却用のListインスタンス
+        List< ExplanationDTO> result = new ArrayList<>();
+        
+        try (
+                Connection con = getConnection();
+                PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setInt(1, training_event_id);
 
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    int step = rs.getInt("step");
+                    String explanation = rs.getString("explanation");
+                    
+
+                    ExplanationDTO ex = new  ExplanationDTO(training_event_id, step, explanation);
+                    result.add(ex);
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        
+        return result;
+    }
+	
 }
 
 

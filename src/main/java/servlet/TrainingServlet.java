@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.SampleMuscleDAO;
+import dto.ExplanationDTO;
 import dto.MuscleDTO;
 
 /**
@@ -39,10 +41,12 @@ public class TrainingServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		
 		System.out.println("セッションに格納するトレーニングのID" + training.getTraining_event_id());
-
+		int trainingEventId = training.getTraining_event_id();
+		System.out.println(trainingEventId);
 		
+		List<ExplanationDTO> ex = SampleMuscleDAO.selectExplanationById(trainingEventId);
 		session.setAttribute("detail", training);
-		
+		request.setAttribute("explanation", ex);
 		request.setAttribute("training", training);
 		String view = "WEB-INF/view/training.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
