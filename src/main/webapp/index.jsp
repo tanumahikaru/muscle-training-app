@@ -40,7 +40,6 @@
 			<button type="submit">ログイン</button>
 			<br> <a href="RegisterFormServlet" class="small-link">新規アカウント登録はこちら</a>
 			<a href="LinkSendFormServlet" class="small-link">パスワード変更はこちら</a>
-
 		</form>
 	</div>
 
