@@ -212,3 +212,32 @@ CREATE TABLE meal_record(
   FOREIGN KEY(food_id) REFERENCES meal_menus(food_id)
 );
 
+--クイズ
+CREATE TABLE quiz(
+  quiz_id INTEGER PRIMARY KEY,
+  question TEXT, 
+  title VARCHAR(128),
+  choices_1 VARCHAR(128),
+  choices_2 VARCHAR(128),
+  choices_3 VARCHAR(128),
+  choices_4 VARCHAR(128),
+  correct  INTEGER,
+  explanation TEXT
+);
+
+--回答状況
+CREATE TABLE answer_record(
+  user_id INTEGER,
+  quiz_id INTEGER,
+  status INTEGER DEFAULT 1,
+  PRIMARY KEY(user_id, quiz_id),
+  FOREIGN KEY(user_id) REFERENCES muscle_users(id),
+  FOREIGN KEY(quiz_id) REFERENCES quiz(quiz_id)
+);
+
+--マッスルコール
+CREATE TABLE muscle_call(
+  id SERIAL PRIMARY KEY,
+  call VARCHAR(32),
+  evaluation INTEGER
+ );
