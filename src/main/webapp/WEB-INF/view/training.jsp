@@ -97,8 +97,7 @@
         for( ExplanationDTO e : ex) {
      %>
 	<div class="explanation">
-	    <p>step:<%=e.getStep() %></p>
-	    <p><%=e.getExplanation() %></p>
+    <p data-step="<%=e.getStep() %>" data-explanation="<%=e.getExplanation() %>"></p>
 	</div>
 	<%} %>
     <script src="./JavaScript/home.js"></script>
