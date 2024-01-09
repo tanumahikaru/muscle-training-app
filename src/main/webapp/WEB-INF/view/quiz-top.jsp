@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="dto.UserDTO" %>
+<%@ page import="dto.Quiz" %>
+<%@ page import="dao.QuizDAO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,39 +27,62 @@
   <h1 id="page-title">筋トレクイズ</h1>
   <div id="quiz-chart">
     <div id="quiz-records">
-      <span class="records" style="color: #B01B3C">正解:30</span>
-      <span class="records" style="color: #2941BC">不正解:10</span>
-      <span class="records" style="color: #aac">未回答:60</span>
+    <% 
+    UserDTO user = (UserDTO)session.getAttribute("user"); 
+    int countCorrect = QuizDAO.CountCorrect(user.getId());
+    int countAns = QuizDAO.CountAns(user.getId());
+    int countFail = countAns - countCorrect;
+    int notAns = 100 - countAns;
+    %>
+    
+      <span class="records" style="color: #B01B3C">正解:<%=countCorrect %></span>
+      <span class="records" style="color: #2941BC">不正解:<%=countFail %></span>
+      <span class="records" style="color: #aac">未回答:<%=notAns %></span>
     </div>
     <div id="chart">
-      <div class="bad" data-good="30">
-        <div class="good" data-bad="10"></div>
+      <div class="bad" data-bad="<%=countAns %>">
+        <div class="good" data-good="<%=countCorrect %>"></div>
       </div>
     </div>
   </div>
   <div id="quiz-list">
     <!--  このクイズ一つ一つをfor文で繰り返す  -->
-    <a href="">
+    <%
+    ArrayList<Quiz> quizList = (ArrayList<Quiz>)request.getAttribute("quizList");
+    for (Quiz q: quizList){
+    %>
+    <a href="#">
       <div class="quiz">
-        <div class="quiz-num">問題1</div>
-        <div class="quiz-title">プロテインを摂取するタイミング</div>
-        <div class="quiz-status">◯</div>
+        <div class="quiz-num">問題<%=q.getQuizId() %></div>
+        <div class="quiz-title"><%=q.getTitle() %></div>
+        <div class="quiz-status">
+        <% if(q.getStatus() == 0){ %>
+        	ー
+        <% } else if(q.getStatus() == 1){ %>
+            ◯
+        <% } else{ %>
+        	✕
+        <% } %>
+        </div>
       </div>
     </a>
+    <% } %>
   </div>
   <button>TOP</button>
 </div>
 <div class="right-upper-contents">
-  <div id="correct-answers">正当数 <span class="correct-count">100</span>/100</div>
+  <div id="correct-answers">正当数 <span class="correct-count"><%=countCorrect %></span>/100</div>
   <button>ランダム出題</button>
 </div>
 
 <script>
   let bad = document.querySelector(".bad")
-  bad.style.width = ((100 - 60) * 6) + 'px'
+  let badCount = document.querySelector(".bad").dataset.bad;
+  bad.style.width = (badCount * 6) + 'px'
 
   let good = document.querySelector(".good")
-  good.style.width = (30 * 6) + 'px'
+let goodCount = document.querySelector(".good").dataset.good;
+  good.style.width = (goodCount * 6) + 'px'
 
 </script>
 </body>
