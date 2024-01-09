@@ -51,7 +51,7 @@
     ArrayList<Quiz> quizList = (ArrayList<Quiz>)request.getAttribute("quizList");
     for (Quiz q: quizList){
     %>
-    <a href="#">
+    <a href="QuizTryServlet?quizId=<%=q.getQuizId() %>">
       <div class="quiz">
         <div class="quiz-num">問題<%=q.getQuizId() %></div>
         <div class="quiz-title"><%=q.getTitle() %></div>

@@ -1,0 +1,56 @@
+.back-button {
+    position: absolute;
+    right: 20px;
+    margin-top: 20px;
+    height: 48px;
+    width: 150px;
+    border-radius: 24px;
+
+    color: white;
+    background-color: #2941BC;
+}
+
+#quiz {
+    margin: 90px auto 0;
+    width: 1000px;
+    height: 500px;
+    background-color: white;
+
+    position: relative;
+}
+
+h2 {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    font-size: 36px;
+    font-weight: normal;
+}
+
+p {
+    position: absolute;
+    top: 64px;
+    left: 30px;
+
+    overflow-wrap: break-word;
+}
+
+#answer {
+    position: absolute;
+    top: 150px;
+    left: 150px;
+    display: flex;
+    gap: 80px;
+
+    flex-wrap: wrap;
+}
+
+.ans-button {
+    width: 300px;
+    height: 120px;
+    border-radius: 16px;
+    background-color: #FFFF00;
+
+    font-size: 26px;
+}

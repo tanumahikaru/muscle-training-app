@@ -1,0 +1,35 @@
+#result {
+    margin-top: 30px;
+}
+
+#result > .res {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 64px;
+}
+button {
+    margin: 20px 60px;
+    height: 48px;
+    width: 150px;
+    border-radius: 24px;
+
+    color: white;
+    background-color: #2941BC;
+}
+
+#ex-title {
+    position: relative;
+    left: -550px;
+
+    font-size: 32px;
+    font-weight: normal;
+    font-family: 'メイリオ', 'Meiryo', sans-serif;
+}
+
+#explanation {
+    margin: auto;
+    font-family: 'メイリオ', 'Meiryo', sans-serif;
+    width: 800px;
+}
+
+

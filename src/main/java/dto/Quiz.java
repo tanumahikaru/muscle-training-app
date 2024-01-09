@@ -31,7 +31,7 @@ public class Quiz {
 
 	// コンストラクタ
 	public Quiz(int quizId, String question, String title, String choices_1, String choices_2, String choices_3,
-			String choices_4, int correct, int status) {
+			String choices_4, int correct, String explanation) {
 		super();
 		this.quizId = quizId;
 		this.question = question;
@@ -41,7 +41,7 @@ public class Quiz {
 		this.choices_3 = choices_3;
 		this.choices_4 = choices_4;
 		this.correct = correct;
-		this.status = status;
+		this.explanation = explanation;
 	}
 
 	
