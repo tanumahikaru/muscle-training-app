@@ -212,3 +212,44 @@ CREATE TABLE meal_record(
   FOREIGN KEY(food_id) REFERENCES meal_menus(food_id)
 );
 
+--クイズ
+CREATE TABLE quiz(
+  quiz_id INTEGER PRIMARY KEY,
+  question TEXT, 
+  title VARCHAR(128),
+  choices_1 VARCHAR(128),
+  choices_2 VARCHAR(128),
+  choices_3 VARCHAR(128),
+  choices_4 VARCHAR(128),
+  correct  INTEGER,
+  explanation TEXT
+);
+
+INSERT INTO quiz (quiz_id, question, title, choices_1, choices_2, choices_3, choices_4, correct) VALUES
+(1,'筋肉の成長を促進するためには、どの栄養素が必要?','筋肉と栄養素','タンパク質','脂質','炭水化物','ビタミンC',1),
+(2,'筋肉が1kg増えたときの基礎代謝の増加量は何kcal?','筋肉と基礎代謝','3kcal','13kcal','23kcal','33kcal',2),
+(3,'筋トレの効果が目視できるまでどれくらいかかる?','成果が見えるまで','1週間','1ヶ月','3ヶ月','半年',3),
+(4,'筋トレは筋肉以外にどんな効果を及ぼす?','筋トレと脳1','記憶力が良くなる','ストレス耐性がつく','頭の回転が早くなる','1, 2, 3全て',4),
+(5,'筋トレによって脳を活性化する最適な運動法は？','筋トレと脳2','10分程度の有酸素運動','30分程度の有酸素運動','30分程度の筋トレ','1時間程度の筋トレ',2),
+(6,'筋肥大が目的の場合、セット間の休憩時間は？','セット間の休憩1','0~90秒','1~2分','3~5分','5分以上',2),
+(7,'筋力向上が目的の場合、セット間の休憩時間は？','セット間の休憩2','0~90秒','1~2分','3~5分','5分以上',3),
+(8,'持久力向上が目的の場合、セット間の休憩時間は？','セット間の休憩3','0~90秒','1~2分','3~5分','5分以上',1),
+(9,'筋肥大が目的の場合、Max重量の何%でトレーニングすると良い？','負荷のかけ方1','~59%','60~66%','67~86%','87~100%',3),
+(10,'筋力向上が目的の場合、Max重量の何%でトレーニングすると良い？','負荷のかけ方2','~59%','60~66%','67~86%','87~100%',4);
+
+--回答状況
+CREATE TABLE answer_record(
+  user_id INTEGER,
+  quiz_id INTEGER,
+  status INTEGER DEFAULT 1,
+  PRIMARY KEY(user_id, quiz_id),
+  FOREIGN KEY(user_id) REFERENCES muscle_users(id),
+  FOREIGN KEY(quiz_id) REFERENCES quiz(quiz_id)
+);
+
+--マッスルコール
+CREATE TABLE muscle_call(
+  id SERIAL PRIMARY KEY,
+  call VARCHAR(32),
+  evaluation INTEGER
+ );
