@@ -119,14 +119,31 @@ h3 {
   background: transparent;
   font-size: 20px;
 }
-
+/*
 .explanation {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center; /* 要素を横方向に中央寄せするための追加スタイル */
+    flex-direction: column; 
+    align-items: center;
+    justify-content: initial; 
 }
 
 .explanation p {
     margin: 0;
+    text-align: left; 
+    display: flex;
+    align-items: center; 
+}
+*/
+.explanation p::before {
+    content: "Step " attr(data-step) ": ";
+    font-weight: bold; 
+    margin-right: 10px; 
+}
+
+.explanation p::after {
+    content: attr(data-explanation);
+}
+
+.explanation {
+	margin-left: 370px;
 }
