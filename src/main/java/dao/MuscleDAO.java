@@ -31,9 +31,9 @@ public class MuscleDAO {
 
 	public static List<MuscleDTO> selectTrainingsByTrainingProgram(int training_program_id) {
 		// 実行するSQL
-		String sql = "SELECT * FROM types_of_training JOIN traning_programs_detail ON"
-				+ " types_of_training.training_event_id=traning_programs_detail.training_event_id "
-				+ "WHERE traning_programs_detail.training_program_id=? ORDER BY step";
+		String sql = "SELECT * FROM types_of_training JOIN training_programs_detail ON"
+				+ " types_of_training.training_event_id=training_programs_detail.training_event_id "
+				+ "WHERE training_programs_detail.training_program_id=? ORDER BY step";
 		// 返却用のListインスタンス
 		List<MuscleDTO> result = new ArrayList<>();
 
@@ -222,4 +222,24 @@ public class MuscleDAO {
 		return result; // 更新件数を返す
 	}
 
+	
+	// 	トレーニングIDからトレーニングの説明を取得するメソッド
+		public static List<String> selectTrainingExplanation(int training_id) {
+			String sql = "SELECT explanation from training_descriptions WHERE training_event_id = ? ORDER BY step";
+			List<String> result = new ArrayList<>();
+			try (
+					Connection con = getConnection();
+					PreparedStatement pstmt = con.prepareStatement(sql);) {
+				pstmt.setInt(1, training_id);
+				try (ResultSet rs = pstmt.executeQuery()) {
+					while (rs.next()) {
+						String explanation = rs.getString("explanation");
+						result.add(explanation);
+					}
+				}
+			} catch (SQLException | URISyntaxException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
 }
