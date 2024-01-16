@@ -71,8 +71,8 @@
   <button>TOP</button>
 </div>
 <div class="right-upper-contents">
-  <div id="correct-answers">正当数 <span class="correct-count"><%=countCorrect %></span>/100</div>
-  <button>ランダム出題</button>
+  <div id="correct-answers">正答数 <span class="correct-count"><%=countCorrect %></span>/100</div>
+  <!-- <button>ランダム出題</button> -->
 </div>
 
 <script>

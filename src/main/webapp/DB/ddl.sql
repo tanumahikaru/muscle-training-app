@@ -1,4 +1,6 @@
 -- 筋トレアプリテーブル定義
+--HerokuPostgresへのログインURI
+psql postgres://zpqrhfwahxdwsg:4e2c34f1101bad9c2fed99138bd483c52fc28044ff496ef60afc9d8b10d5aba7@ec2-44-213-151-75.compute-1.amazonaws.com:5432/dauua6g9uc8vpg
 
 -- training_programsテーブル
 CREATE TABLE training_programs(
