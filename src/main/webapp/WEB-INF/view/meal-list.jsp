@@ -47,7 +47,7 @@
         <!-- 今日のおすすめメニューを表示 -->
         <h2>今日のおすすめメニュー:</h2>
         <% if (!meal_menu.getFood_name().isEmpty()) { %>
-            <p>食べ物ID: <%= meal_menu.getFood_id() %></p>
+           <img id="meal-img" src="images/<%= meal_menu.getFood_id() %>.png" alt="食事メニュー画像">
             <p><%= meal_menu.getFood_name() %></p>
             <a href="MealMenuDetailServlet?id=<%= meal_menu.getFood_id() %>">料理を作る</a>
         <% } else { %>    

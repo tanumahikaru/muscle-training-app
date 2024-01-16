@@ -32,3 +32,10 @@
 .underline-input-container {
     margin-bottom: 20px;
 }
+
+#meal-img {
+    max-width: 530px; /* 画像の最大幅を指定 */
+    height: auto; /* アスペクト比を維持しつつ、高さを自動調整 */
+    display: block; /* 不要な余白を削除するために追加 */
+    margin: 0 auto; /* 画像を中央に配置するために追加 */
+}
