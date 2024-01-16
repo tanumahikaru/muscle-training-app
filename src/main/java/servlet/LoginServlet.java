@@ -80,6 +80,7 @@ public class LoginServlet extends HttpServlet {
 		} else
   	    {
 			// ログイン成功時の処理
+			// 初回ログインかどうかの判定
 			String today = new java.sql.Date(new java.util.Date().getTime()).toString(); // 現在日時を取得
 			String lastLogin = new java.sql.Date(user.getLast_login().getTime()).toString();
 			
@@ -89,8 +90,10 @@ public class LoginServlet extends HttpServlet {
             // ログイン情報をセッションに登録
 			  HttpSession session = request.getSession();
 	          session.setAttribute("user", user);
+	          
+			System.out.println(lastLogin);
+			System.out.println(today);
 			
-	       // 初回ログインかどうかの判定
 			if (!lastLogin.equals(today)) {
 				System.out.println("初回ログイン！");
 
@@ -123,6 +126,7 @@ public class LoginServlet extends HttpServlet {
 				
 				// 最終ログイン日を更新する
 				UserDAO.updateLastLogin(user.getId());
+				
 			}
 
 			MuscleRecord latestRecord = MuscleRecordDAO.selectLatestMuscleRecord();
@@ -133,6 +137,11 @@ public class LoginServlet extends HttpServlet {
 				
 				request.setAttribute("latestRecord", latestRecord);
 			}
+//			作成中
+	        List<Double> weightData = MuscleRecordDAO.getWeightsByUserId(user.getId()); // WeightDAOはデータベースからデータを取得するメソッドを実装していると仮定
+
+	        // リクエスト属性に weight データをセット
+	        request.setAttribute("weightData", weightData);
 			
 			 // 本日の摂取カロリーを取得
 	        AdditionalMealDAO additionalMealDAO = new AdditionalMealDAO();
@@ -148,7 +157,7 @@ public class LoginServlet extends HttpServlet {
 	        System.out.println("総消費カロリー"+totalCaloriesConsumed);
 	        // リクエストスコープに設定
 	     // セッションに設定
-	        session.setAttribute("totalCaloriesConsumed", totalCaloriesConsumed);
+	        session.setAttribute("totalCaloriesConsumed", totalCaloriesConsumed);	   
 
 			// ログイン後のホーム画面へ遷移
 			String view = "WEB-INF/view/home.jsp";			
@@ -157,7 +166,10 @@ public class LoginServlet extends HttpServlet {
 			System.out.println( "dispather");
 
 			dispatcher.forward(request, response);
-		}		
+		
+		}
+	
+		
 	}
 
 	/**

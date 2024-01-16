@@ -14,27 +14,26 @@
   <link rel="stylesheet" href="css/home.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
   <title>TOP</title>
-<style>
-  .info-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1px;
-  }
+  <style>
+    .info-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1px;
+    }
 
-  .info-item {
-    flex: 5;
-    text-align: center;
-  }
+    .info-item {
+      flex: 5;
+      text-align: center;
+    }
 
-  .info-text {
-    margin-left: 50px;
-    margin: 10px; /* 適切なマージンに調整 */
-    display: flex; /* フレックスボックスを使用して子要素を横に配置 */
-    align-items: center; /* 子要素を垂直方向に中央に配置 */
-    border-left: 2px solid #000000; /* 縦線のスタイル */
-  }
- 
-</style>
+    .info-text {
+      margin-left: 50px;
+      margin: 10px; /* 適切なマージンに調整 */
+      display: flex; /* フレックスボックスを使用して子要素を横に配置 */
+      align-items: center; /* 子要素を垂直方向に中央に配置 */
+      border-left: 2px solid #000000; /* 縦線のスタイル */
+    }
+  </style>
 </head>
 
 <body>
@@ -56,7 +55,7 @@
     <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
   </div>
 
-  <canvas id="calorieLineChart" width="900" height="400"></canvas>
+  <canvas id="calorieLineChart" width="1000" height="400"></canvas>
 
   <div class="info-text">
     <p>摂取カロリー： <%= session.getAttribute("totalCalorieIntake") %>kcal</p><br>
@@ -65,28 +64,58 @@
     <p>消費カロリー：<%= session.getAttribute("totalCaloriesConsumed") %>kcal</p><br>
   </div>
 
-<!-- 体重記録フォーム -->
-<div class="down" style="text-align:center;">
-  <form action="RegisterWeightServlet" method="post" style="text-align:center;">
-    今日の体重を記録：<input type="text" name="weight" placeholder="体重を入力してください" style="text-align:center;"><br>
-    <input type="submit" value="記録">
-  </form>
-</div>
+  <!-- 体重記録フォーム -->
+  <div class="down" style="text-align:center;">
+    <form action="RegisterWeightServlet" method="post" style="text-align:center;">
+      今日の体重を記録：<input type="text" name="weight" placeholder="体重を入力してください" style="text-align:center;"><br>
+      <input type="submit" value="記録">
+    </form>
+  </div>
   <script src="./JavaScript/home.js"></script>
+  <%
+    List<Double> weightData = (List<Double>) request.getAttribute("weightData");
+  %>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // グラフのデータ
+      var today = new Date();
+      var oneWeekAgo = new Date(today);
+      oneWeekAgo.setDate(today.getDate() - 7);
+
+      var labels = [];
+      for (var i = 8; i >= 0; i--) { // 今日を中心に後ろ10日間分の日付を取得
+          var date = new Date(today);
+          date.setDate(today.getDate() - i);
+          labels.push(date.toLocaleDateString());
+      }
+      console.log("Labels: ", labels); // デバッグステートメント
+
+      var weightData = [
+        <%= weightData != null && weightData.size() > 0 ? weightData.get(1) : 0 %>,
+        <%= weightData != null && weightData.size() > 1 ? weightData.get(2) : 0 %>,
+        <%= weightData != null && weightData.size() > 2 ? weightData.get(3) : 0 %>,
+        <%= weightData != null && weightData.size() > 3 ? weightData.get(4) : 0 %>,
+        <%= weightData != null && weightData.size() > 4 ? weightData.get(5) : 0 %>,
+        <%= weightData != null && weightData.size() > 5 ? weightData.get(10) : 0 %>,
+        <%= weightData != null && weightData.size() > 6 ? weightData.get(11) : 0 %>,
+        <%= weightData != null && weightData.size() > 7 ? weightData.get(12) : 0 %>,
+        <%= weightData != null && weightData.size() > 8 ? weightData.get(15) : 0 %>        
+      ];
+
+      console.log("Weight Data: ", weightData); // デバッグステートメント
+
       var calorieData = {
-        labels: ['日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5','日付1', '日付2', '日付3', '日付4', '日付5'],
+        labels: labels,
         datasets: [{
-          label: '摂取カロリー',
-          data: [30, 10, 0, 50, 30,50, 40, 80, 70, 30,50, 30, 30, 0, 70,30, 70, 30, 10, 80,20, 30, 60, 60, 30,50, 30, 30, 0, 70],
+          label: 'あなたの体重',
+          data: weightData,
           fill: false,
           borderColor: 'blue',
           borderWidth: 2,
-          pointRadius: 4
         }]
       };
+
+      console.log("Calorie Data: ", calorieData); // デバッグステートメント
 
       // グラフ描画のためのCanvas要素
       var ctx = document.getElementById('calorieLineChart').getContext('2d');
@@ -130,6 +159,7 @@
       });
     });
   </script>
+
 </body>
 
 </html>

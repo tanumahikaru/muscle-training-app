@@ -14,7 +14,7 @@ import java.util.List;
 import dto.MuscleRecord;
 
 public class MuscleRecordDAO {
-	private static Connection getConnection() throws URISyntaxException, SQLException {
+	public static Connection getConnection() throws URISyntaxException, SQLException {
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
@@ -83,26 +83,27 @@ public class MuscleRecordDAO {
 		return latestRecord;
 	}
 	
-	public static double getWeightByUserId(int user_id) {
-		String sql = "SELECT weight FROM weight WHERE user_id = ?";
-		double weight = -1;
-		try (
-			Connection con = getConnection();
-		    PreparedStatement pstmt = con.prepareStatement(sql);) {
-			pstmt.setInt(1, user_id);
-			// sql実行
-			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs.next()) {
-					weight = rs.getDouble("weight");
-				}
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		return weight;
+	public static List<Double> getWeightsByUserId(int user_id) {
+	    String sql = "SELECT weight FROM weight WHERE user_id = ?";
+	    List<Double> weights = new ArrayList<>();
+
+	    try (
+	        Connection con = getConnection();
+	        PreparedStatement pstmt = con.prepareStatement(sql);
+	    ) {
+	        pstmt.setInt(1, user_id);
+	        // SQL実行
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            while (rs.next()) {
+	                double weight = rs.getDouble("weight");
+	                weights.add(weight);
+	            }
+	        }
+
+	    } catch (SQLException | URISyntaxException e) {
+	        e.printStackTrace();
+	    }
+	    return weights;
 	}
 	
 	public static int getMetsByTrainingEventId(int training_event_id) {
@@ -241,4 +242,9 @@ public class MuscleRecordDAO {
         }
         return totalCalories_burned;
     }
+
+	public static double getWeightByUserId(int userId) {
+		// TODO 自動生成されたメソッド・スタブ
+		return 0;
+	}
 }
