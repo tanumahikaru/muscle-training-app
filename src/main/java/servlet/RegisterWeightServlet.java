@@ -26,11 +26,18 @@ public class RegisterWeightServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        UserDTO user = (UserDTO) session.getAttribute("user");
+        int userId = -1;
+        UserDTO user1 = (UserDTO) session.getAttribute("user");
 
-        int userId = UserDAO.getUserIdByMail(user.getMail());
-        
-        System.out.println(userId);
+        if (user1 != null) {
+            String mail = user1.getMail();
+            if (mail != null && !mail.isEmpty()) {
+                userId = UserDAO.getUserIdByMail(mail);
+                
+            }
+        }
+
+        System.out.println(userId);        
         
         String weightStr = request.getParameter("weight");
 
@@ -49,6 +56,7 @@ public class RegisterWeightServlet extends HttpServlet {
         String view = "WEB-INF/view/home.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(view);
         dispatcher.forward(request, response);
+        
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -211,6 +211,7 @@ public class UserDAO {
 			e.printStackTrace();
 		} finally {
 			System.out.println(result + "件更新しました。");
+			
 		}
 		return result;
 	}
