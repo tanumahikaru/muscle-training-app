@@ -43,7 +43,7 @@
 		for(MuscleDTO m : training_menus) {
 	%>
     <div class="menu-item">
-      <div class="icon">&#9742;</div>
+      <div class="icon" style="font-family: 'Font Awesome 6 Free Solid'; font-size: 20px;"></div>
       <div class="menu-info">
         <span class="menu-name"><%=m.getEvent_name() %></span>
         <span class="menu-details"><%=m.getDefault_number() %>回</span>
