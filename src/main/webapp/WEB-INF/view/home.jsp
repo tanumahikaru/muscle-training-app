@@ -91,17 +91,22 @@
       console.log("Labels: ", labels); // デバッグステートメント
 
       var weightData = [
-    	    <%= weightData != null && weightData.size() > 0 ? weightData.get(0) : 0 %>,
-    	    <%= weightData != null && weightData.size() > 1 ? weightData.get(1) : 0 %>,
-    	    <%= weightData != null && weightData.size() > 2 ? weightData.get(2) : 0 %>,
-    	    <%= weightData != null && weightData.size() > 3 ? weightData.get(3) : 0 %>,
-    	    <%= weightData != null && weightData.size() > 4 ? weightData.get(4) : 0 %>,
-    	    <%= weightData != null && weightData.size() > 5 ? weightData.get(5) : 0 %>,
-    	    <%= weightData != null && weightData.size() > 6 ? weightData.get(6) : 0 %>,
-    	    <%= weightData != null && weightData.size() > 7 ? weightData.get(7) : 0 %>,
-    	    <%= weightData != null && weightData.size() > 8 ? weightData.get(8) : 0 %>        
+    	    <% 
+    	        if (weightData != null) {
+    	            for (int i = 16; i > 0; i--) { 
+    	    %>
+    	                <%= i < weightData.size() ? weightData.get(i) : 0 %>,
+    	    <% 
+    	            }
+    	        } else {
+    	            for (int i = 16; i > 0; i--) { 
+    	    %>
+    	                0,
+    	    <%
+    	            }
+    	        }
+    	    %>
     	];
-
 
       console.log("Weight Data: ", weightData); // デバッグステートメント
 
