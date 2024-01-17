@@ -66,7 +66,7 @@
         %>
         
         <div class="card-body">
-        	<figure class="image"><img src="images/user_icon.png" alt="" style="width: 50px; height: 50px;"></figure>    
+        	<figure class="image" style="font-family: 'Font Awesome 6 Free Solid'; font-size: 50px;"></figure>    
             <h2><a href="TrainingServlet?id=<%=m.getTraining_event_id() %>"><%=m.getEvent_name() %></a></h2>
             <h1><%=m.getMets() %>Met's</h1>
         </div>
