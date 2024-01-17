@@ -136,6 +136,56 @@ public class UserDAO {
 		}
 		return result;
 	}
+	
+//	体重を更新するメソッド
+	public static int UpdateWeight(WeightDTO weight) {
+		int result = 0;
+		String sql = "UPDATE weight SET weight=? WHERE user_id=? AND date=?";
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setFloat(1, weight.getWeight());
+			pstmt.setInt(2, weight.getUser_id());
+			pstmt.setTimestamp(3, new java.sql.Timestamp(weight.getDate().getTime()));
+
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件更新しました。");
+		}
+		return result;
+	}
+	
+	
+	// 今日の体重を取得するメソッド
+	public static int getTodaysWeight(WeightDTO weight) {
+		String sql = "SELECT * FROM weight WHERE user_id=? AND date=?";
+		int userId = 0;
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setInt(1, weight.getUser_id());
+			pstmt.setTimestamp(2, new java.sql.Timestamp(weight.getDate().getTime()));
+			// sql実行
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					userId = rs.getInt("user_id");
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		System.out.println("ワンタイムパスワードuserID" + userId);
+		return userId;
+	}
+	
 
 	// ログインするメソッド
 	public static UserDTO login(String mail, String hashedPw) {

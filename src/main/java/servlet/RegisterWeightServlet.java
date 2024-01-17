@@ -50,7 +50,12 @@ public class RegisterWeightServlet extends HttpServlet {
             
             WeightDTO we = new WeightDTO(-1, userId, today, weight);
             // 体重を更新するメソッドを呼び出し
-            UserDAO.registerWeight(we);
+            
+            if(UserDAO.getTodaysWeight(we) == 0) {
+            	UserDAO.registerWeight(we);
+            } else {
+            	UserDAO.UpdateWeight(we);
+            }
         }
 
         String view = "WEB-INF/view/home.jsp";

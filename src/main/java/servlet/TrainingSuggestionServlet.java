@@ -41,7 +41,7 @@ public class TrainingSuggestionServlet extends HttpServlet {
 		ArrayList<MuscleDTO> training = (ArrayList<MuscleDTO>) MuscleDAO.selectTrainingsByTrainingProgram(training_program_id);
 		
 		session.setAttribute("training_list", training);
-//		request.setAttribute("list", training);
+		session.setAttribute("trIndex", 0);
 		
 		String view = "WEB-INF/view/training_suggestion.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);

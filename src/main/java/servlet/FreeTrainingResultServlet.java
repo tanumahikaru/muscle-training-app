@@ -72,7 +72,7 @@ public class FreeTrainingResultServlet extends HttpServlet {
         request.setAttribute("training_event_id", trainingEventId);
         
         //ユーザIDをもとに体重の記録を取得
-        double weight = MuscleRecordDAO.getWeightByUserId(userId);
+        double weight = MuscleRecordDAO.getWeightsByUserId(userId).get(0);
         
         
         //トレーニングイベントIDをもとにmetsを取得
