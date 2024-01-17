@@ -83,8 +83,8 @@ public class MuscleRecordDAO {
 		return latestRecord;
 	}
 	
-	public static List<Double> getWeightsByUserId(int user_id, Date today) {
-	    String sql = "SELECT weight FROM weight WHERE user_id = ? AND date = ?";
+	public static List<Double> getWeightsByUserId(int user_id) {
+	    String sql = "SELECT weight FROM weight WHERE user_id = ? ORDER BY date";
 	    List<Double> weights = new ArrayList<>();
 
 	    try (
@@ -92,7 +92,6 @@ public class MuscleRecordDAO {
 	        PreparedStatement pstmt = con.prepareStatement(sql);
 	    ) {
 	        pstmt.setInt(1, user_id);
-	        pstmt.setDate(2, new java.sql.Date(today.getTime())); // 今日の日付を設定
 
 	        try (ResultSet rs = pstmt.executeQuery()) {
 	            while (rs.next()) {
@@ -244,8 +243,4 @@ public class MuscleRecordDAO {
         return totalCalories_burned;
     }
 
-	public static double getWeightByUserId(int userId) {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
-	}
 }

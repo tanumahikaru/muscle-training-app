@@ -31,9 +31,8 @@
         MuscleDTO training = (MuscleDTO) request.getAttribute("training");
     %>
     
-    
+            <a href="TopServlet"><button class="breakBtn">中断</button></a>
     <form action="TrainingProgramServlet" method="post" id="form">
-        <button class="breakBtn">中断</button>
 
     <h1 class="titile"><%=training.getEvent_name()%></h1>
     

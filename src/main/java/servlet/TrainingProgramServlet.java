@@ -71,7 +71,7 @@ public class TrainingProgramServlet extends HttpServlet {
         request.setAttribute("training_event_id", trainingEventId);
         
         //ユーザIDをもとに体重の記録を取得
-        double weight = MuscleRecordDAO.getWeightByUserId(userId);
+        double weight = MuscleRecordDAO.getWeightsByUserId(userId).get(0);
         
         //トレーニングイベントIDをもとにmetsを取得
         int mets = MuscleRecordDAO.getMetsByTrainingEventId(trainingEventId);
@@ -91,6 +91,11 @@ public class TrainingProgramServlet extends HttpServlet {
         // リクエスト属性としてJSPに渡す
         request.setAttribute("totalCaloriesLast3", totalCalories);
         
+        int trIndex = (int)session.getAttribute("trIndex");
+        trIndex++;
+		session.setAttribute("trIndex", trIndex);
+		System.out.println(trIndex);
+		
         String view = "/NextTrainingServlet";
         RequestDispatcher dispatcher = request.getRequestDispatcher(view);
         dispatcher.forward(request, response);

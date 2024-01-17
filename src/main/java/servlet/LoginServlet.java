@@ -138,7 +138,7 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("latestRecord", latestRecord);
 			}
 //			作成中
-	        double weightData = MuscleRecordDAO.getWeightByUserId(user.getId()); // WeightDAOはデータベースからデータを取得するメソッドを実装していると仮定
+	        List<Double> weightData = MuscleRecordDAO.getWeightsByUserId(user.getId()); // WeightDAOはデータベースからデータを取得するメソッドを実装していると仮定
 
 	        // リクエスト属性に weight データをセット
 	        request.setAttribute("weightData", weightData);

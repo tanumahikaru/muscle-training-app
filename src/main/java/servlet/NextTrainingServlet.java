@@ -41,7 +41,10 @@ public class NextTrainingServlet extends HttpServlet {
 		UserDTO user = (UserDTO)session.getAttribute("user");
 		ArrayList<MuscleDTO> training_menus = (ArrayList<MuscleDTO>) session.getAttribute("training_list");
 		MuscleDTO training = null;
-		if (training_menus.isEmpty()) {
+		
+		int trIndex = (int)session.getAttribute("trIndex");
+		
+		if (trIndex == 5) {
 			List<MuscleRecord> result = MuscleDAO.selectTodaysTrainingRecords(user.getId());
 			request.setAttribute("result", result);
 			
@@ -50,7 +53,7 @@ public class NextTrainingServlet extends HttpServlet {
 	        dispatcher.forward(request, response);
 	        return;
 		} else {
-			training = training_menus.remove(0);
+			training = training_menus.get(trIndex);
 		}
 
 		session.setAttribute("detail", training);

@@ -73,7 +73,7 @@
   </div>
   <script src="./JavaScript/home.js"></script>
   <%
-    List<Double> weightData = (List<Double>) request.getAttribute("weightData");
+    List<Double> weightData = (List<Double>)request.getAttribute("weightData");
   %>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -93,13 +93,13 @@
       var weightData = [
     	    <% 
     	        if (weightData != null) {
-    	            for (int i = 16; i > 0; i--) { 
+    	            for (int i = 0; i < weightData.size(); i++) { 
     	    %>
-    	                <%= i < weightData.size() ? weightData.get(i) : 0 %>,
+    	                <%= weightData.get(i) %>,
     	    <% 
     	            }
     	        } else {
-    	            for (int i = 16; i > 0; i--) { 
+    	            for (int i = 0; i < 9; i++) { 
     	    %>
     	                0,
     	    <%
