@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="dto.MuscleDTO" %>
+<%@ page import="dao.MuscleDAO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,13 +35,15 @@
 
   <%=training.getMovie_url() %>
   <br>
-  <p class="explanation">
-    ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
-    ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
-    ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
-    ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
-    ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
-  </p>
+  
+  <%
+  List<String> explanation = MuscleDAO.selectTrainingExplanation(training.getTraining_event_id());
+  %>
+  <div class="explanation">
+    <%for(int i = 1 ; i <= explanation.size() ; i++){ %>
+    <p><%=i %>. <%=explanation.get(i-1) %></p>
+    <%} %>
+  </div>
 </main>
 </body>
 </html>
