@@ -83,32 +83,56 @@
       oneWeekAgo.setDate(today.getDate() - 7);
 
       var labels = [];
-      for (var i = 8; i >= 0; i--) { // 今日を中心に後ろ10日間分の日付を取得
+      for (var i = 7; i >= 0; i--) {
           var date = new Date(today);
           date.setDate(today.getDate() - i);
           labels.push(date.toLocaleDateString());
       }
-      console.log("Labels: ", labels); // デバッグステートメント
+      console.log("Labels: ", labels);
 
+      var newestWeight = <%= request.getAttribute("newestWeight") %>;
+
+      // 最新の日付に最新の体重を挿入
       var weightData = [
-    	    <% 
-    	        if (weightData != null) {
-    	            for (int i = 0; i < weightData.size(); i++) { 
-    	    %>
-    	                <%= weightData.get(i) %>,
-    	    <% 
-    	            }
-    	        } else {
-    	            for (int i = 0; i < 9; i++) { 
-    	    %>
-    	                0,
-    	    <%
-    	            }
-    	        }
-    	    %>
-    	];
+        parseFloat(newestWeight), // 一番新しい日付の位置に挿入
+        <% 
+          if (weightData != null) {
+            for (int i = 0; i < weightData.size(); i++) { 
+        %>
+              <%= weightData.get(i) %>,
+        <%
+            }
+          }
+        %>
+      ];
 
-      console.log("Weight Data: ", weightData); // デバッグステートメント
+      // 新しい体重がない場合は前の値を挿入
+      for (var i = 0; i < weightData.length; i++) {
+        if (weightData[i] == null || isNaN(weightData[i])) {
+          weightData[i] = weightData[i - 1];
+        }
+      }
+
+      for (var i = 0; i < weightData.length; i++) {
+          if (weightData[i] == null || isNaN(weightData[i])) {
+            weightData[i] = 0; // 0に設定
+          }
+        }
+
+      console.log("Weight Data: ", weightData);
+
+      var calorieData = {
+        labels: labels,
+        datasets: [{
+          label: 'あなたの体重',
+          data: weightData,
+          fill: false,
+          borderColor: 'blue',
+          borderWidth: 2,
+        }]
+      };
+
+      console.log("Calorie Data: ", calorieData);
 
       var calorieData = {
         labels: labels,
