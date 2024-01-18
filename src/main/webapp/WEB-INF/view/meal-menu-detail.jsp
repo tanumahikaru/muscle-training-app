@@ -113,8 +113,8 @@
                 %>
                             <div class="card-body">
                             <div class="materials">
-                                <h1><%= material.getIngredients() %></h1>
-                                <h1><%= material.getQuantity() %></h1>
+                                <h4><%= material.getIngredients() %></h4>
+                                <h4><%= material.getQuantity() %></h4>
                                 </div>
                             </div>
                 <%
