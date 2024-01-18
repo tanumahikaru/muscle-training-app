@@ -80,31 +80,34 @@
       // グラフのデータ
       var today = new Date();
       var oneWeekAgo = new Date(today);
-      oneWeekAgo.setDate(today.getDate() - 7);
+      oneWeekAgo.setDate(today.getDate() - 6);
 
-      var labels = [];
-      for (var i = 7; i >= 0; i--) {
+      var originalLabels = [];
+      for (var i = 10; i >= 0; i--) {
           var date = new Date(today);
           date.setDate(today.getDate() - i);
-          labels.push(date.toLocaleDateString());
+          originalLabels.push(date.toLocaleDateString());
       }
+
+      // labelsを反転
+      var labels = originalLabels.slice().reverse();
       console.log("Labels: ", labels);
 
       var newestWeight = <%= request.getAttribute("newestWeight") %>;
 
       // 最新の日付に最新の体重を挿入
       var weightData = [
-        parseFloat(newestWeight), // 一番新しい日付の位置に挿入
+        parseFloat(newestWeight) // 一番新しい日付の位置に挿入
         <% 
           if (weightData != null) {
             for (int i = 0; i < weightData.size(); i++) { 
         %>
-              <%= weightData.get(i) %>,
+              ,<%= weightData.get(i) %>
         <%
             }
           }
         %>
-      ];
+      ]; // 配列
 
       // 新しい体重がない場合は前の値を挿入
       for (var i = 0; i < weightData.length; i++) {
@@ -112,12 +115,6 @@
           weightData[i] = weightData[i - 1];
         }
       }
-
-      for (var i = 0; i < weightData.length; i++) {
-          if (weightData[i] == null || isNaN(weightData[i])) {
-            weightData[i] = 0; // 0に設定
-          }
-        }
 
       console.log("Weight Data: ", weightData);
 
@@ -133,19 +130,6 @@
       };
 
       console.log("Calorie Data: ", calorieData);
-
-      var calorieData = {
-        labels: labels,
-        datasets: [{
-          label: 'あなたの体重',
-          data: weightData,
-          fill: false,
-          borderColor: 'blue',
-          borderWidth: 2,
-        }]
-      };
-
-      console.log("Calorie Data: ", calorieData); // デバッグステートメント
 
       // グラフ描画のためのCanvas要素
       var ctx = document.getElementById('calorieLineChart').getContext('2d');
@@ -163,7 +147,7 @@
         scales: {
           xAxes: [{
             type: 'category',
-            labels: calorieData.labels,
+            labels: labels,
             scaleLabel: {
               display: true,
               labelString: '日付'
