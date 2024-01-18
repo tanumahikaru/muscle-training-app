@@ -53,6 +53,7 @@ body {
 .materials{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    font-size: 16px;
 }
 
 #option {
@@ -81,4 +82,8 @@ body {
     background-color: #2941bc;
     color: white;
     text-align: center;
+}
+
+.ol{
+	text-align: left;
 }
