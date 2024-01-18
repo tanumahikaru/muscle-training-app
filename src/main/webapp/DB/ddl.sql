@@ -12,7 +12,11 @@ CREATE TABLE training_programs(
 INSERT INTO training_programs (training_program_name) VALUES
 	('Program 1'),
 	('Program 2'),
-	('Program 3')
+	('Program 3'),
+	('Program 4'),
+	('Program 5'),
+	('Program 6'),
+	('Program 7')
 ;
 
 -- meal_menusテーブル(食事メニュー)
