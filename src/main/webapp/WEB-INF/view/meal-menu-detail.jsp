@@ -132,6 +132,7 @@
 					<p><input type="radio" name="kome" value="1">大(200g)</p>
 					<p><input type="radio" name="kome" value="2">中(150g)</p>
 					<p><input type="radio" name="kome" value="3">小(100g)</p>
+					<p><input type="radio" name="kome" value="0" checked>なし</p>
 				</div>
 				<h3>食パン</h3>
 				<div class="button-group">
@@ -139,6 +140,7 @@
 					<p><input type="radio" name="pan" value="5">ジャム</p>
 					<p><input type="radio" name="pan" value="6">マーガリン</p>
 					<p><input type="radio" name="pan" value="7">バター</p>
+					<p><input type="radio" name="pan" value="0" checked>なし</p>
 				</div>
 				
    				 <!-- フォームの内容 -->
