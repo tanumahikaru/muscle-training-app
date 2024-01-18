@@ -59,7 +59,7 @@
 	
 	<div id="main-contents">
 		<div id="left-contents">
-			<img id="meal-img" src="images/<%= menu.getFood_id() %>.png" alt="食事メニュー画像">
+			<img id="meal-img" src="images/<%= menu.getFood_id() %>.jpg" alt="食事メニュー画像">
 			<h2 id="menu-title"><%=menu.getFood_name()%></h2>
 			
 			<!-- JSP ページの該当部分に追加 -->
@@ -69,7 +69,7 @@
    		 <h3>レシピ</h3>
    		 <ol>
 			<% for (RecipeDTO recipe : recipes) { %>
-  			  <li> <%= recipe.getExplanation() %></li>
+  			  <li style="text-align: left;"> <%= recipe.getExplanation() %></li>
 		<% } %>
  		 </ol>
 		<%
