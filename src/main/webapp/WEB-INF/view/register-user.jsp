@@ -28,7 +28,7 @@
     	</div>
 	
 		<div class="signup-container">
-  		あとで修正
+  	
   		<p style="color:red">登録に失敗しました。</p>
     		<header>
       		<h1>新規登録</h1>
