@@ -40,7 +40,7 @@
         <input type="text" name="searchKeyword" placeholder="検索したいメニューを入力してください">
         <input type="submit" value="検索">
     </form>
-    <form action="FreeTrainingServlet" method="post" id="categoryForm">
+    <form action="TrainingLogServlet" method="post" id="categoryForm">
         <!-- positionIdをサーバーに送信するフォーム -->
         <input type="hidden" name="positionId" id="positionId" value="" />
     <div class="form-buttons">
@@ -66,8 +66,8 @@
         %>
         
         <div class="card-body">
-        	<figure class="image" style="font-family: 'Font Awesome 6 Free Solid'; font-size: 50px;"></figure>    
-            <h2><a href="TrainingChartServlet?id=<%=m.getTraining_event_id() %>"><%=m.getEvent_name() %></a></td>
+        	<figure class="image" style="font-family: 'Font Awesome 6 Free Solid'; font-size: 50px;"></figure>    
+            <h2><a href="TrainingChartServlet?id=<%=m.getTraining_event_id() %>"><%=m.getEvent_name() %></a></h2>
             <h1><%=m.getMets() %>Met's</h1>
         </div>
         <%} %>
