@@ -80,7 +80,7 @@
       // グラフのデータ
       var today = new Date();
       var oneWeekAgo = new Date(today);
-      oneWeekAgo.setDate(today.getDate() - 6);
+      oneWeekAgo.setDate(today.getDate() - 7);
 
       var originalLabels = [];
       for (var i = 10; i >= 0; i--) {
@@ -108,13 +108,6 @@
           }
         %>
       ]; // 配列
-
-      // 新しい体重がない場合は前の値を挿入
-      for (var i = 0; i < weightData.length; i++) {
-        if (weightData[i] == null || isNaN(weightData[i])) {
-          weightData[i] = weightData[i - 1];
-        }
-      }
 
       console.log("Weight Data: ", weightData);
 
