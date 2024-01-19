@@ -36,6 +36,7 @@
    	  <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
 	</div>
     
+    
     <form action="SearchTrainingServlet" method="post" class="search-menu">
         <input type="text" name="searchKeyword" placeholder="検索したいメニューを入力してください">
         <input type="submit" value="検索">
