@@ -26,6 +26,27 @@
 /* 新しく作りたいメニューのスタイル */
 .meal-entry {
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.meal-entry p {
+    margin: 0; /* デフォルトの段落の余白を削除 */
+}
+
+.meal-entry p:first-child {
+    flex: 1; /* 最初の段落が利用可能なスペースを占めるようにする */
+}
+
+.meal-entry p.calorie {
+    margin-left: 50px; /* カロリー表示と削除ボタンの隙間を調整 */
+}
+
+.meal-entry p:last-child {
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 /* 登録フォームのスタイル */
@@ -40,3 +61,42 @@
     margin: 0 auto; /* 画像を中央に配置するために追加 */
 }
     
+/* a タグを中央に寄せるための親要素のスタイル */
+.centered-link-container {
+    text-align: center;
+}
+
+/* a タグのスタイル */
+.centered-link-container a {
+    display: inline-block;
+    height: 50px; /* 例: 適切な高さに調整 */
+    width: 150px; /* 例: 適切な幅に調整 */
+    line-height: 50px; /* 高さと同じ値に設定して中央に寄せる */
+    border-radius: 25px;
+    border-color: #f0f0f0;
+    background-color: #2941bc;
+    color: white;
+    margin-left: 10px;
+    text-decoration: none;
+    text-align: center; /* テキストを中央寄せにする */
+}
+
+.delete-button {
+    display: inline-block;
+    padding: 3px 6px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    text-decoration: none;
+    color: #555;
+    margin-left: 10px; /* 任意のマージンを設定 */
+}
+
+.delete-button i {
+    margin-right: 4px;
+}
+
+.delete-button:hover {
+    background-color: #eee;
+}
