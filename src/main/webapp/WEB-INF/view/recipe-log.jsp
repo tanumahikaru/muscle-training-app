@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/meal_menu.css">
     <link rel="stylesheet" href="css/user-log.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/free-training.css"> 
     
 </head>
 <body>
@@ -83,7 +84,9 @@
 			<figure class="image"><img src="images/user_icon.png" alt="" style="width: 50px; height: 50px;"></figure>
 			<h2><%= m.getFood_name() %></h2>
        		<h1><%= m.getCalorie() %>kcal</h1>
-			<a href="MealMenuDetailServlet?id=<%=m.getFood_id() %>">料理を作る</a>
+       		    <div class="centered-link-container">
+       		<a href="MealMenuDetailServlet?id=<%=m.getFood_id() %>">料理を作る</a>
+       			</div>
 		</div>
 		<%} %>
 	</div>
