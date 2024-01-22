@@ -20,12 +20,10 @@
       justify-content: space-between;
       margin-top: 1px;
     }
-
     .info-item {
       flex: 5;
       text-align: center;
     }
-
     .info-text {
       margin-left: 50px;
       margin: 10px; /* 適切なマージンに調整 */
@@ -35,7 +33,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="header-banner">
     <button type="button" class="menu-btn">
@@ -43,7 +40,6 @@
     </button>
     <h1>筋トレ</h1>
   </div>
-
   <div class="menu">
     <div class="menu__item"><a href="TopServlet">ホーム</a></div>
     <div class="menu__item"><a href="TrainingSuggestionServlet">今日のトレーニング</a></div>
@@ -54,16 +50,13 @@
     <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
     <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
   </div>
-
   <canvas id="calorieLineChart" width="1000" height="400"></canvas>
-
   <div class="info-text">
     <p>摂取カロリー： <%= session.getAttribute("totalCalorieIntake") %>kcal</p><br>
   </div>
   <div class="info-text">
     <p>消費カロリー：<%= session.getAttribute("totalCaloriesConsumed") %>kcal</p><br>
   </div>
-
   <!-- 体重記録フォーム -->
   <div class="down" style="text-align:center;">
     <form action="RegisterWeightServlet" method="post" style="text-align:center;">
@@ -78,28 +71,22 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // グラフのデータ
-      var today = new Date();
-      var oneWeekAgo = new Date(today);
-      oneWeekAgo.setDate(today.getDate() - 7);
-
       var labels = [];
-      for (var i = 8; i >= 0; i--) { // 今日を中心に後ろ10日間分の日付を取得
-          var date = new Date(today);
-          date.setDate(today.getDate() - i);
-          labels.push(date.toLocaleDateString());
+      // 今日を中心に後ろ10日間分の日付を取得
+      for (var i = 1; i <= 8; i++) {
+          labels.push(" " + i);
       }
       console.log("Labels: ", labels); // デバッグステートメント
-
       var weightData = [
-    	    <% 
+    	    <%
     	        if (weightData != null) {
-    	            for (int i = 0; i < weightData.size(); i++) { 
+    	            for (int i = 0; i < weightData.size(); i++) {
     	    %>
     	                <%= weightData.get(i) %>,
-    	    <% 
+    	    <%
     	            }
     	        } else {
-    	            for (int i = 0; i < 9; i++) { 
+    	            for (int i = 0; i < 9; i++) {
     	    %>
     	                0,
     	    <%
@@ -107,9 +94,7 @@
     	        }
     	    %>
     	];
-
       console.log("Weight Data: ", weightData); // デバッグステートメント
-
       var calorieData = {
         labels: labels,
         datasets: [{
@@ -120,12 +105,9 @@
           borderWidth: 2,
         }]
       };
-
       console.log("Calorie Data: ", calorieData); // デバッグステートメント
-
       // グラフ描画のためのCanvas要素
       var ctx = document.getElementById('calorieLineChart').getContext('2d');
-
       // グラフのオプション
       var options = {
         responsive: false,
@@ -156,7 +138,6 @@
           }]
         }
       };
-
       // 折れ線グラフの描画
       var lineChart = new Chart(ctx, {
         type: 'line',
@@ -165,7 +146,16 @@
       });
     });
   </script>
-
 </body>
-
 </html>
+
+
+
+
+
+
+
+
+
+
+
