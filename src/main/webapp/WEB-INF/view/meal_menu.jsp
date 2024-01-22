@@ -79,7 +79,9 @@
 			<figure class="image"><img src="images/<%= m.getFood_id() %>.jpg" alt="" style="width:150px; height:150px;"></figure>
 			<h2><%= m.getFood_name() %></h2>
        		<h1><%= m.getCalorie() %>kcal</h1>
+       		<div class="centered-link-container">
 			<a href="MealMenuDetailServlet?id=<%=m.getFood_id() %>">料理を作る</a>
+			</div>
 		</div>
 		<%} %>
 	</div>	

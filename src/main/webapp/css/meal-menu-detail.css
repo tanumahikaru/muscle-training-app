@@ -87,3 +87,23 @@ body {
 .ol{
 	text-align: left;
 }
+
+/* a タグを中央に寄せるための親要素のスタイル */
+.centered-link-container {
+    text-align: center;
+}
+
+/* a タグのスタイル */
+.centered-link-container a {
+    display: inline-block;
+    height: 50px; /* 例: 適切な高さに調整 */
+    width: 150px; /* 例: 適切な幅に調整 */
+    line-height: 50px; /* 高さと同じ値に設定して中央に寄せる */
+    border-radius: 25px;
+    border-color: #f0f0f0;
+    background-color: #2941bc;
+    color: white;
+    margin-left: 10px;
+    text-decoration: none;
+    text-align: center; /* テキストを中央寄せにする */
+}

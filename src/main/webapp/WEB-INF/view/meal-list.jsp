@@ -44,7 +44,9 @@
         <% if (!meal_menu.getFood_name().isEmpty()) { %>
            <img id="meal-img" src="images/<%= meal_menu.getFood_id() %>.jpg" alt="食事メニュー画像">
             <h1 style="text-align: center;"><%= meal_menu.getFood_name() %></h1>
+             <div class="centered-link-container">
             <a href="MealMenuDetailServlet?id=<%= meal_menu.getFood_id() %>">料理を作る</a>
+            </div>
         <% } else { %>    
             <p>提案されたメニューはありません。</p>
         <% } %>
@@ -52,8 +54,9 @@
     
     <div class="content-container">
         <!-- レシピ検索で追加ボタン -->
-        <a href="RecipeServlet" class="recipe-button" id="recipeAddButton">レシピ検索で追加</a><br>
-        
+        <div class="centered-link-container">
+      	  <a href="RecipeServlet" class="recipe-button" id="recipeAddButton">レシピ検索で追加</a><br>
+        </div>
         <!-- 新しく作りたいメニューと登録フォームを一つの箱に表示 -->
     
         <h2>今日の食べたメニュー:</h2>
@@ -65,7 +68,7 @@
                     <p><%= meal.getFood_name() %></p>
                     <p><%= meal.getCalorie() %>kcal</p>
                     <!-- アイコンを追加して削除機能を実装 -->
-                    <a href="DeleteMealServlet?id=<%= meal.getId() %>">
+                    <a href="DeleteMealServlet?id=<%= meal.getId() %>" class="delete-button">
                         <i class="fa fa-trash" aria-hidden="true"></i> 削除
                     </a>
                 </div>
