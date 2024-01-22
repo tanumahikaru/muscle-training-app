@@ -95,6 +95,7 @@
     	    %>
     	];
       console.log("Weight Data: ", weightData); // デバッグステートメント
+
       var calorieData = {
         labels: labels,
         datasets: [{
@@ -105,7 +106,9 @@
           borderWidth: 2,
         }]
       };
+
       console.log("Calorie Data: ", calorieData); // デバッグステートメント
+
       // グラフ描画のためのCanvas要素
       var ctx = document.getElementById('calorieLineChart').getContext('2d');
       // グラフのオプション
@@ -121,7 +124,7 @@
         scales: {
           xAxes: [{
             type: 'category',
-            labels: calorieData.labels,
+            labels: labels,
             scaleLabel: {
               display: true,
               labelString: '日付'

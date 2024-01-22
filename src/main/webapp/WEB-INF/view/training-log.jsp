@@ -36,56 +36,45 @@
    	  <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
 	</div>
     
-    <div class="search">
-    <form action="SearchTrainingServlet" method="post" id="searchForm" class="searchForm">
-    <input type="text" name="searchKeyword" placeholder="検索したいメニューを入力してください">
-    <input type="submit" value="検索">
-</form>
-</div>
-   <form action="TrainingLogServlet" method="get" id="categoryForm" class="button-container">
-    <!-- positionIdをサーバーに送信するフォーム -->
-    <input type="hidden" name="positionId" id="positionId" value="" />
-
-    <!-- ボタンがクリックされたときにJavaScriptでpositionIdを設定し、フォームをサーバーに送信する -->
-    <button type="button" onclick="setAndSubmitForm(1)">腕</button>
-    <button type="button" onclick="setAndSubmitForm(2)">背筋</button>
-    <button type="button" onclick="setAndSubmitForm(3)">腹筋</button>
-    <button type="button" onclick="setAndSubmitForm(4)">胸筋</button>
-    <button type="button" onclick="setAndSubmitForm(5)">脚</button>
-    <button type="button" onclick="setAndSubmitForm(6)">肩</button>
-    <button type="button" onclick="setAndSubmitForm(7)">有酸素</button>
-</form>
-
-<!-- 以下省略 -->
-
+    <form action="SearchTrainingServlet" method="post" class="search-menu">
+        <input type="text" name="searchKeyword" placeholder="検索したいメニューを入力してください">
+        <input type="submit" value="検索">
+    </form>
+    <form action="TrainingLogServlet" method="post" id="categoryForm">
+        <!-- positionIdをサーバーに送信するフォーム -->
+        <input type="hidden" name="positionId" id="positionId" value="" />
+    <div class="form-buttons">
+        <!-- ボタンがクリックされたときにJavaScriptでpositionIdを設定し、フォームをサーバーに送信する -->
+        <button type="button" class="button-outline" onclick="setAndSubmitForm(1)">腕</button>
+        <button type="button" class="button-outline" onclick="setAndSubmitForm(2)">背筋</button>
+        <button type="button" class="button-outline" onclick="setAndSubmitForm(3)">腹筋</button>
+        <button type="button" class="button-outline" onclick="setAndSubmitForm(4)">胸筋</button>
+        <button type="button" class="button-outline" onclick="setAndSubmitForm(5)">脚</button>
+        <button type="button" class="button-outline" onclick="setAndSubmitForm(6)">肩</button>
+        <button type="button" class="button-outline" onclick="setAndSubmitForm(7)">有酸素</button>
+    </div>
+    </form>
     
-    <h2><%=request.getAttribute("positionName") %>のレシピ一覧</h2>
+    <hr>
     
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>種目名</th>
-            <th>Met's</th>
-        </tr>
+    <h2><%=request.getAttribute("positionName") %>のメニュー一覧</h2>
+    
+    <div class="card-container type2">
         <%
             List<MuscleDTO> training = (ArrayList<MuscleDTO>)request.getAttribute("list");
             for(MuscleDTO m : training) {
         %>
-        <tr>
-            <td><%=m.getTraining_event_id() %></td>
-            <td><a href="TrainingChartServlet?id=<%=m.getTraining_event_id() %>"><%=m.getEvent_name() %></a></td>
-            <td><%=m.getMets() %></td>
-        </tr>
+        
+        <div class="card-body">
+        	<figure class="image" style="font-family: 'Font Awesome 6 Free Solid'; font-size: 50px;"></figure>    
+            <h2><a href="TrainingChartServlet?id=<%=m.getTraining_event_id() %>"><%=m.getEvent_name() %></a></h2>
+            <h1><%=m.getMets() %>Met's</h1>
+        </div>
         <%} %>
-    </table>
-<div class="button-group center-button">
-   <button type="button" onclick="goBack()">戻る</button>
-   </div>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>  
+    </div>
+    <div class="centered-link-container">
+    	<a href="TopServlet" class="back">戻る</a>
+	</div>
      <script src="./JavaScript/home.js"></script>
 </body>
 </html>

@@ -22,11 +22,7 @@
       <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
        <h1 id="header-title">筋トレ</h1>
-  <div class="right">
-    <div id="user-level">Lv.13
-      <img src="user.png" alt="ユーザー画像">
-      </div>
-  </div>
+
   </div>
    <div class="menu">
     <div class="menu__item"><a href="TopServlet">ホーム</a></div>
@@ -80,7 +76,7 @@
 		%>
 
 		<div class="card-body">
-			<figure class="image"><img src="images/user_icon.png" alt="" style="width: 50px; height: 50px;"></figure>
+			<figure class="image"><img src="images/<%= m.getFood_id() %>.jpg" alt="" style="width:150px; height:150px;"></figure>
 			<h2><%= m.getFood_name() %></h2>
        		<h1><%= m.getCalorie() %>kcal</h1>
 			<a href="MealMenuDetailServlet?id=<%=m.getFood_id() %>">料理を作る</a>

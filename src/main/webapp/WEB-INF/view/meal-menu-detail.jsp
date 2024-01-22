@@ -59,7 +59,7 @@
 	
 	<div id="main-contents">
 		<div id="left-contents">
-			<img id="meal-img" src="images/<%= menu.getFood_id() %>.png" alt="食事メニュー画像">
+			<img id="meal-img" src="images/<%= menu.getFood_id() %>.jpg" alt="食事メニュー画像">
 			<h2 id="menu-title"><%=menu.getFood_name()%></h2>
 			
 			<!-- JSP ページの該当部分に追加 -->
@@ -69,7 +69,7 @@
    		 <h3>レシピ</h3>
    		 <ol>
 			<% for (RecipeDTO recipe : recipes) { %>
-  			  <li> <%= recipe.getExplanation() %></li>
+  			  <li style="text-align: left;"> <%= recipe.getExplanation() %></li>
 		<% } %>
  		 </ol>
 		<%
@@ -83,11 +83,11 @@
 		
 
 		<div id="right-contents">
-			<button class="back-button" onclick="goBack()">戻る</button>
+		
 			<div class="title">
 				<h3>栄養素</h3>
 			</div>
-			<span class="calorie"><%=menu.getCalorie() %></span>
+			<span class="calorie"><%=menu.getCalorie() %>kcal</span>
 			<hr>
 			<div id="nutrients">
 				<div class="protein">
@@ -132,6 +132,7 @@
 					<p><input type="radio" name="kome" value="1">大(200g)</p>
 					<p><input type="radio" name="kome" value="2">中(150g)</p>
 					<p><input type="radio" name="kome" value="3">小(100g)</p>
+					<p><input type="radio" name="kome" value="0" checked>なし</p>
 				</div>
 				<h3>食パン</h3>
 				<div class="button-group">
@@ -139,6 +140,7 @@
 					<p><input type="radio" name="pan" value="5">ジャム</p>
 					<p><input type="radio" name="pan" value="6">マーガリン</p>
 					<p><input type="radio" name="pan" value="7">バター</p>
+					<p><input type="radio" name="pan" value="0" checked>なし</p>
 				</div>
 				
    				 <!-- フォームの内容 -->

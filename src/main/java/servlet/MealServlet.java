@@ -45,7 +45,9 @@ public class MealServlet extends HttpServlet {
         
         // 取得したデータをリクエスト属性にセット
         request.setAttribute("mealsAddedOnSameDay", mealsAddedOnSameDay);
-        System.out.println("Meals added on the same day: " + mealsAddedOnSameDay);
+        
+        System.out.println("<Meals added on the same day:> " + mealsAddedOnSameDay);
+        
         // フォワード先のJSPでmealSuggestionを使いたい場合、リクエスト属性にセット
         request.getRequestDispatcher("WEB-INF/view/meal-list.jsp").forward(request, response);
     }

@@ -20,12 +20,7 @@
             <button type="button" class="menu-btn">
                 <i class="fa fa-bars" aria-hidden="true"></i>
             </button>
-            <h1 id="header-title">筋トレ</h1>
-            <div class="right">
-                <div id="user-level">Lv.13
-                    <img src="user.png" alt="ユーザー画像">
-                </div>
-            </div>
+            <h1 id="header-title">筋トレ</h1>        
         </div>
         <div class="menu">
             <div class="menu__item"><a href="TopServlet">ホーム</a></div>
@@ -47,8 +42,8 @@
         <!-- 今日のおすすめメニューを表示 -->
         <h2>今日のおすすめメニュー:</h2>
         <% if (!meal_menu.getFood_name().isEmpty()) { %>
-           <img id="meal-img" src="images/<%= meal_menu.getFood_id() %>.png" alt="食事メニュー画像">
-            <p><%= meal_menu.getFood_name() %></p>
+           <img id="meal-img" src="images/<%= meal_menu.getFood_id() %>.jpg" alt="食事メニュー画像">
+            <h1 style="text-align: center;"><%= meal_menu.getFood_name() %></h1>
             <a href="MealMenuDetailServlet?id=<%= meal_menu.getFood_id() %>">料理を作る</a>
         <% } else { %>    
             <p>提案されたメニューはありません。</p>
