@@ -83,11 +83,11 @@
 		
 
 		<div id="right-contents">
-			<button class="back-button" onclick="goBack()">戻る</button>
+		
 			<div class="title">
 				<h3>栄養素</h3>
 			</div>
-			<span class="calorie"><%=menu.getCalorie() %></span>
+			<span class="calorie"><%=menu.getCalorie() %>kcal</span>
 			<hr>
 			<div id="nutrients">
 				<div class="protein">
