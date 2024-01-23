@@ -107,3 +107,22 @@ body {
     text-decoration: none;
     text-align: center; /* テキストを中央寄せにする */
 }
+
+#addButton {
+    display: inline-block;
+    height: 50px; /* 適切な高さに調整 */
+    width: 150px; /* 適切な幅に調整 */
+    line-height: 50px; /* 高さと同じ値に設定して中央に寄せる */
+    border-radius: 25px;
+    border: 1px solid #f0f0f0; /* ボーダーカラーを適用 */
+    background-color: #2941bc;
+    color: white;
+    text-decoration: none;
+    text-align: center; /* テキストを中央寄せにする */
+    cursor: pointer; /* カーソルをポインターに変更 */
+    margin-left: 10px; /* 任意のマージンを追加 */
+}
+
+#addButton:hover {
+    background-color: #1d327a; /* ホバー時の背景色を変更 */
+}
