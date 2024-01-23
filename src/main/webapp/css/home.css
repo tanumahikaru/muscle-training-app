@@ -107,3 +107,13 @@
   height: 100%;
   margin-right: 20px; /* 必要に応じて調整してください */
 }
+
+.recordBtn {
+	height: 35px;
+    width: 80px;
+    border-radius: 25px;
+    border-color: #f0f0f0;
+    background-color: #2941bc;
+    color: white;
+    margin-left: 10px;
+}
