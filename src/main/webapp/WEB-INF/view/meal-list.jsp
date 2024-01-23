@@ -44,7 +44,7 @@
         <% if (!meal_menu.getFood_name().isEmpty()) { %>
            <img id="meal-img" src="images/<%= meal_menu.getFood_id() %>.jpg" alt="食事メニュー画像">
             <h1 style="text-align: center;"><%= meal_menu.getFood_name() %></h1>
-             <div class="centered-link-container">
+             <div class="centered-link-container-strike">
             <a href="MealMenuDetailServlet?id=<%= meal_menu.getFood_id() %>">料理を作る</a>
             </div>
         <% } else { %>    
@@ -54,7 +54,7 @@
     
     <div class="content-container">
         <!-- レシピ検索で追加ボタン -->
-        <div class="centered-link-container">
+        <div class="centered-link-container-strike">
       	  <a href="RecipeServlet" class="recipe-button" id="recipeAddButton">レシピ検索で追加</a><br>
         </div>
         <!-- 新しく作りたいメニューと登録フォームを一つの箱に表示 -->
