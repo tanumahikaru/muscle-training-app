@@ -91,6 +91,25 @@ type2
     text-align: center; /* テキストを中央寄せにする */
 }
 
+/*ストライクカラーにするよ、a タグを中央に寄せるための親要素のスタイル */
+.centered-link-container-strike {
+    text-align: center;
+}
+
+.centered-link-container-strike a {
+    display: inline-block;
+    height: 50px; /* 例: 適切な高さに調整 */
+    width: 150px; /* 例: 適切な幅に調整 */
+    line-height: 50px; /* 高さと同じ値に設定して中央に寄せる */
+    border-radius: 25px;
+    border: 2px solid #000000; /* 枠線の色を黒色に変更 */
+    background-color: #FFFF00; /* 背景色を黄色に変更 */
+    color: #000000; /* 文字色を黒色に変更 */
+    margin-left: 10px;
+    text-decoration: none;
+    text-align: center; /* テキストを中央寄せにする */
+}
+
 .search-menu {
   display: flex; /* 横並びにする */
   justify-content: center; /* 中央寄せ */
