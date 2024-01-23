@@ -144,7 +144,9 @@
 				</div>
 				
    				 <!-- フォームの内容 -->
+   				
    					 <button type="submit" class="margin-button" id="addButton">追加</button>
+   				
 				</form>
 				
 			</div>
