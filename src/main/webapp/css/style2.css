@@ -12,10 +12,17 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    height: 72px;
     background-color: #2941BC;
     color: white;
     font-size: 36px;
+    
+    height: 68px;
+    width: 100%;
+    
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
 }
 
 #header-title {

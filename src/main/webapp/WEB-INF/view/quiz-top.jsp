@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Quiz</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/style2.css">
 <link rel="stylesheet" href="css/quiz-top.css">
@@ -63,7 +64,7 @@
 				int countCorrect = QuizDAO.CountCorrect(user.getId());
 				int countAns = QuizDAO.CountAns(user.getId());
 				int countFail = countAns - countCorrect;
-				int notAns = 100 - countAns;
+				int notAns = 25 - countAns;
 				%>
 
 				<span class="records" style="color: #B01B3C">正解:<%=countCorrect%></span>
@@ -114,7 +115,7 @@
 	</div>
 	<div class="right-upper-contents">
 		<div id="correct-answers">
-			正答数 <span class="correct-count"><%=countCorrect%></span>/100
+			正答数 <span class="correct-count"><%=countCorrect%></span>/25
 		</div>
 		<!-- <button>ランダム出題</button> -->
 	</div>
@@ -122,11 +123,11 @@
 	<script>
 		let bad = document.querySelector(".bad")
 		let badCount = document.querySelector(".bad").dataset.bad;
-		bad.style.width = (badCount * 6) + 'px'
+		bad.style.width = (badCount * 24) + 'px'
 
 		let good = document.querySelector(".good")
 		let goodCount = document.querySelector(".good").dataset.good;
-		good.style.width = (goodCount * 6) + 'px'
+		good.style.width = (goodCount * 24) + 'px'
 	</script>
 	<script src="./JavaScript/home.js"></script>
 </body>
