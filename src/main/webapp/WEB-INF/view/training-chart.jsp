@@ -39,7 +39,7 @@
         <canvas id="myChart" width="750" height="400"></canvas>
 
         <div class="training-summary">
-            <p>合計回数: <span id="totalReps"></span></p>
+     		<p>合計回数： <%= request.getAttribute("totalNumber") %></p><br>
             <p>合計セット数: <span id="totalSets"></span></p>
             <p>一セット当たりの回数(平均): <span id="avgReps"></span></p>
             <p>MAX: <span id="maxReps"></span></p>
