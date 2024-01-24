@@ -216,30 +216,27 @@ public class MuscleRecordDAO {
         }
         return result;
     }
-    public static int calculateTotalCount(Integer userId) {
-        if (userId == null) {
-            // userId が null の場合の処理を追加（例: ゼロを返すなど）
-            return 0;
-        }
-        String sql = "SELECT SUM(number) as totalCount FROM training_records WHERE user_id = ?";
-        int totalCount = 0;
+    public static int calculateTotalNumber(int userId, int trainingEventId) {
+        // 実行するSQL
+        String sql = "SELECT SUM(number) as totalNumber FROM training_records WHERE user_id = ? AND training_event_id = ?";
 
+        int totalNumber = 0;
         try (
             Connection con = getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
         ) {
             pstmt.setInt(1, userId);
+            pstmt.setInt(2, trainingEventId);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    totalCount = rs.getInt("totalCount");
+                    totalNumber = rs.getInt("totalNumber");
                 }
             }
         } catch (SQLException | URISyntaxException e) {
             e.printStackTrace();
         }
-
-        return totalCount;
+        return totalNumber;
     }
 
     // 下から3件の消費カロリーの合計を取得するメソッド
