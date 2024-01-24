@@ -123,7 +123,7 @@
             <button type="submit">トレーニング記録</button>
         </form>
         <div class="space"></div> <!-- ここにスペースを追加 -->
-        <form action="RecipeServlet" method="post">
+        <form action="RecipeLogServlet" method="post">
             <button>食事記録</button>
         </form>
     </div>
