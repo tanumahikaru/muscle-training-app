@@ -8,21 +8,22 @@ public class Validation {
 	}
 
 	// nullチェックを行う
-	private Validation nullOrEmptyCheck(String str) {
-        if (!checkNull(str)) {
-												result = false;
+	private Validation isNullOrEmpty(String str) {
+        if (str == null) {
+												result = true;
             errorMessage = "nullです。";
             return new Validation(result, errorMessage);
         }
-        if (!checkEmpty(str)) {
+        if (str.equals("") {
+												result = true;
             errorMessage = "文字が入力されていません。";
             return new Validation(result, errorMessage);;
         }
-        return new Validation(true, "");
+        return new Validation(false, "値は正常です");
 	}
 
 	// 文字列の長さが指定範囲内かどうかをチェックする
-	public boolean stringLengthCheck(String str, int minLength, int maxLength) {
+	public boolean stringLength(String str, int minLength, int maxLength) {
 		if(str.length() < minLength && maxLength < str.length()) {
 			// パスワードの長さが指定範囲外だった場合falseを返す
 			return false;
