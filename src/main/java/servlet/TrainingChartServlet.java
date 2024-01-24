@@ -45,7 +45,6 @@ public class TrainingChartServlet extends HttpServlet {
         // セッションとリクエストに属性を設定
         HttpSession session = request.getSession();
         session.setAttribute("detail", training);
-        request.setAttribute("training", training);
         request.setAttribute("totalNumber", totalNumber);
 
         String view = "WEB-INF/view/training-chart.jsp";
