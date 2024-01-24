@@ -1,16 +1,24 @@
-public class Validate {
+public class Validation {
+	private boolean result;
+	private String errorMessage;
+
+	private Validation(booren result, String errorMessage) {
+		this.result = result;
+		this.errorMessage = errorMessage;
+	}
 
 	// nullチェックを行う
-	private void checkName(String name) {// [40]
-        if (!checkNull(name)) {//[41]
-            messageOfNameCheck = "nullチェックでエラーです。";//[42]
-            return;//[43]
+	private Validation nullOrEmptyCheck(String str) {
+        if (!checkNull(str)) {
+												result = false;
+            errorMessage = "nullです。";
+            return new Validation(result, errorMessage);
         }
-        if (!checkEmpty(name)) {//[44]
-            messageOfNameCheck = "文字が入力されていません。";//[45]
-            return;//[46]
+        if (!checkEmpty(str)) {
+            errorMessage = "文字が入力されていません。";
+            return new Validation(result, errorMessage);;
         }
-        return;
+        return new Validation(true, "");
 	}
 
 	// 文字列の長さが指定範囲内かどうかをチェックする
@@ -25,4 +33,6 @@ public class Validate {
 	public boolean passwordIsValid(String str, int minLength, int maxLength, ) {
 
 	}
+
+// 一旦終わり
 }
