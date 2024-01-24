@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.Objects;
 import dao.QuizDAO;
 import dto.Quiz;
 import dto.UserDTO;
@@ -36,6 +37,13 @@ public class QuizServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		UserDTO user = (UserDTO) session.getAttribute("user");
+
+		// ログイン済みかどうかの判定
+		if(Objects.isNull(user)) {
+			String view = "/";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+			dispatcher.forward(request, response);
+		}
 		
 		List<Quiz> quizList = QuizDAO.selectQuizListByUser(user.getId());
 		request.setAttribute("quizList", quizList);
