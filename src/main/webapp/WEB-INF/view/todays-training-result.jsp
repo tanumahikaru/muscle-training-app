@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>トレーニング結果</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="css/training_result.css">
