@@ -31,7 +31,6 @@ public class ChangePasswordExecuteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ここにパスワード変更処理を記述する
 		String password1 = request.getParameter("password1");
 		String password2 = request.getParameter("password2");
 		
@@ -64,6 +63,12 @@ public class ChangePasswordExecuteServlet extends HttpServlet {
             RequestDispatcher errorDispatcher = request.getRequestDispatcher("WEB-INF/view/change-password.jsp?error=1");
             errorDispatcher.forward(request, response);
         } else {
+
+
+            // ワンタイムパスワードを削除する処理を記述
+            UserDAO.deleteOnetimePassword(userId);
+
+
     		String view = "/";
     		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
     		dispatcher.forward(request, response);
