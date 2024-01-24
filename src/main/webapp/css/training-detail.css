@@ -10,11 +10,12 @@ body {
 
 /* ヘッダーのスタイリング */
 header {
-    height: 80px;
+    height: 68px;
     background-color: #3333cc;
     color: white;
     display: flex;
     justify-content: space-between;
+    padding-left: 20px;
 }
 
 .right {
@@ -63,9 +64,12 @@ iframe {
 }
 
 .explanation {
-    width: 1100px;
+    width: 800px;
     overflow-wrap: break-word;
-    margin: 100px;
+    margin: 100px 100px;
+    padding-left: 100px;
+    
+    text-align: left;
 }
 
 a {

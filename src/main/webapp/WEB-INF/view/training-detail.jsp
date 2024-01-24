@@ -19,17 +19,13 @@
   <!-- ここにハンバーガーメニューが入ります -->
   <h1 id="header-title">筋トレ</h1>
   <div class="right">
-    <div id="user-level">Lv.13</div>
-    <div class="user-icon">
-      <img src="user.png" alt="ユーザー画像">
-    </div>
   </div>
 </header>
 <% MuscleDTO training = (MuscleDTO)request.getAttribute("training"); %>
 
 <main>
   <div class="upper-contents">
-    <h1><%=training.getEvent_name() %></h1>
+    <h1 style="margin-left: -600px;"><%=training.getEvent_name() %></h1>
     <a href="TrainingSuggestionServlet"><button class="back-button">戻る</button></a>
   </div>
 

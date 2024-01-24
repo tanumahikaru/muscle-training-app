@@ -15,22 +15,26 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
   <title>TOP</title>
   <style>
-    .info-container {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 1px;
-    }
-    .info-item {
-      flex: 5;
-      text-align: center;
-    }
-    .info-text {
-      margin-left: 50px;
-      margin: 10px; /* 適切なマージンに調整 */
-      display: flex; /* フレックスボックスを使用して子要素を横に配置 */
-      align-items: center; /* 子要素を垂直方向に中央に配置 */
-      border-left: 2px solid #000000; /* 縦線のスタイル */
-    }
+  .info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-left: 1200px;
+  }
+  .info-text {
+    display: flex;
+    align-items: center;
+  }
+  .info-text p {
+    margin: 0;
+  }
+  .graph-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* グラフを中央に配置 */
+    margin-left: -230px;
+    margin-top: 0px;
+  }
   </style>
 </head>
 <body>
@@ -50,18 +54,22 @@
     <div class="menu__item"><a href="QuizServlet">クイズ</a></div>
     <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
   </div>
-  <canvas id="calorieLineChart" width="1000" height="400"></canvas>
-  <div class="info-text">
-    <p>摂取カロリー： <%= session.getAttribute("totalCalorieIntake") %>kcal</p><br>
-  </div>
-  <div class="info-text">
-    <p>消費カロリー：<%= session.getAttribute("totalCaloriesConsumed") %>kcal</p><br>
+   <div class="graph-container">
+    <div class="info-container">
+      <div class="info-text">
+        <p>摂取カロリー：<%= session.getAttribute("totalCalorieIntake") %>kcal</p>
+      </div>
+      <div class="info-text">
+        <p>消費カロリー：<%= session.getAttribute("totalCaloriesConsumed") %>kcal</p>
+      </div>
+    </div>
+    <canvas id="calorieLineChart" width="1000" height="400"></canvas>
   </div>
   <!-- 体重記録フォーム -->
   <div class="down" style="text-align:center;">
     <form action="RegisterWeightServlet" method="post" style="text-align:center;">
       今日の体重を記録：<input type="text" name="weight" placeholder="体重を入力してください" style="text-align:center;"><br>
-      <input type="submit" value="記録">
+      <input type="submit" class="recordBtn" value="記録">
     </form>
   </div>
   <script src="./JavaScript/home.js"></script>
@@ -74,7 +82,7 @@
       var labels = [];
       // 今日を中心に後ろ10日間分の日付を取得
       for (var i = 1; i <= 8; i++) {
-          labels.push(" " + i);
+          labels.push(" " + i + "回目");
       }
       console.log("Labels: ", labels); // デバッグステートメント
       var weightData = [
@@ -95,52 +103,54 @@
     	    %>
     	];
       console.log("Weight Data: ", weightData); // デバッグステートメント
-
       var calorieData = {
         labels: labels,
         datasets: [{
-          label: 'あなたの体重',
+          label: 'あなたの体重（kg）',
           data: weightData,
           fill: false,
           borderColor: 'blue',
           borderWidth: 2,
         }]
       };
-
       console.log("Calorie Data: ", calorieData); // デバッグステートメント
-
       // グラフ描画のためのCanvas要素
       var ctx = document.getElementById('calorieLineChart').getContext('2d');
       // グラフのオプション
       var options = {
-        responsive: false,
-        layout: {
-          padding: {
-            left: 250,
-            top: 0,
-            bottom: 10
-          }
-        },
-        scales: {
-          xAxes: [{
-            type: 'category',
-            labels: labels,
-            scaleLabel: {
-              display: true,
-              labelString: '日付'
-            }
-          }],
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            },
-            scaleLabel: {
-              display: true,
-              labelString: '摂取カロリー'
-            }
-          }]
+  responsive: false,
+  layout: {
+    padding: {
+      left: 250,
+      top: 0,
+      bottom: 10
+    }
+  },
+  scales: {
+    x: {
+      type: 'category',
+      labels: calorieData.labels,
+      title: {
+        display: true,
+        text: '測定日（回）'
+      },
+      maxRotation: 90,  // ラベルを最大90度回転
+      minRotation: 90   // ラベルを最小90度回転
+    },
+    y: {
+      beginAtZero: true,
+      title: {
+        display: true,
+        text: '摂取カロリー (kg)'
+      },
+      ticks: {
+        callback: function(value, index, values) {
+          return value + ' kg';
         }
-      };
+      }
+    }
+  }
+};
       // 折れ線グラフの描画
       var lineChart = new Chart(ctx, {
         type: 'line',
@@ -151,14 +161,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
