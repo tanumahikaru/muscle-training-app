@@ -31,18 +31,30 @@ public class TrainingChartServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		
-		MuscleDTO training = SampleMuscleDAO.SelectTrainingById(id);
-		
-		HttpSession session=request.getSession();
-		session.setAttribute("detail", training);
-		
-		request.setAttribute("training", training);
-		String view = "WEB-INF/view/training-chart.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        MuscleDTO training = SampleMuscleDAO.SelectTrainingById(id);
+        
+        // 合計回数を計算
+        int userId = 1; // 適切なユーザーIDを設定する必要があります
+        int trainingEventId = id; // ここではトレーニングイベントIDを使用していると仮定しています
+
+        int totalNumber = calculateTotalNumber(userId, trainingEventId);
+
+        // セッションとリクエストに属性を設定
+        HttpSession session = request.getSession();
+        session.setAttribute("detail", training);
+        request.setAttribute("totalNumber", totalNumber);
+
+        String view = "WEB-INF/view/training-chart.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+        dispatcher.forward(request, response);
+    }
+
+	private int calculateTotalNumber(int userId, int trainingEventId) {
+		// TODO 自動生成されたメソッド・スタブ
+		return 0;
 	}
 
 	/**
