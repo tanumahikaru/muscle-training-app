@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="dto.Meal_menuDTO" %>
+<%@ page import="dto.Meal_RecordDTO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -35,65 +36,37 @@
   </div>
 </header>
 
- 	<form action="SearchRecipeServlet" method="post">
-        <input type="text" name="searchKeyword" placeholder="検索したいメニューを入力してください">
-        <input type="submit" value="検索">
+<body>
+	
+	     <!-- 日付選択フォーム -->
+    <form action="RecipeLogServlet" method="GET">
+        <label for="selectedDate">日付選択：</label>
+        <input type="date" id="selectedDate" name="selectedDate" value="<%= request.getAttribute("selectedDate") %>">
+        <input type="submit" value="表示">
     </form>
 
-
-</head>
-<body>
-
- 	<%
-    // ボタンがクリックされたときにpositionIdを取得するサーブレットのURL
-    String servletURL = "RecipeLogServlet"; // サーブレットのURLに置き換えてください
-%>
-
-<form action="<%=servletURL%>" method="post" id="categoryForm">
-    <!-- positionIdをサーバーに送信するフォーム -->
-    <input type="hidden" name="category_Id" id="category_Id" value="" />
-
-    <!-- ボタンがクリックされたときにJavaScriptでpositionIdを設定し、フォームをサーバーに送信する -->
-    <button type="button" class="button-outline" onclick="setAndSubmitForm(1)">肉</button>
-	<button type="button" class="button-outline" onclick="setAndSubmitForm(2)">魚</button>
-	<button type="button" class="button-outline" onclick="setAndSubmitForm(3)">卵</button>
-	<button type="button" class="button-outline" onclick="setAndSubmitForm(4)">乳製品</button>
-	<button type="button" class="button-outline" onclick="setAndSubmitForm(5)">豆</button>
-	<button type="button" class="button-outline" onclick="setAndSubmitForm(6)">野菜</button>
-	<button type="button" class="button-outline" onclick="setAndSubmitForm(7)">果実</button>
-	<button type="button" class="button-outline" onclick="setAndSubmitForm(8)">その他</button>
+    <!-- 食事データ表示部分 -->
+    <% if (request.getAttribute("mealsAddedOnSameDay") != null) { 
+        List<Meal_RecordDTO> mealsAddedOnSameDay = (List<Meal_RecordDTO>) request.getAttribute("mealsAddedOnSameDay");
+        String selectedDate = (String) request.getAttribute("selectedDate");
+        for (Meal_RecordDTO meal : mealsAddedOnSameDay) { %>
+            <div class="meal-entry">
+                <p><%= meal.getFood_name() %></p>
+                <p><%= meal.getCalorie() %>kcal</p>
+                <p>Date: <%= selectedDate %></p>
+                <a href="DeleteMealServlet?id=<%= meal.getId() %>" class="delete-button">
+                    <i class="fa fa-trash" aria-hidden="true"></i> 削除
+                </a>
+            </div>
+        <% }
+    } else { %>
+        <p>選択された日にはまだ何も食べていません。</p>
+    <% } %>
     
-
-   	<%-- カテゴリー名を表示 --%>
-	<h2><%= request.getAttribute("categoryName") %>のレシピ一覧</h2>
-    
-	<div class="card-container type2">
-		<%
-		int category_Id = 1;
-		List<Meal_menuDTO> meal_menu = (ArrayList<Meal_menuDTO>)request.getAttribute("list");
-		for(Meal_menuDTO m : meal_menu) {
-		%>
-
-		<div class="card-body">
-			<figure class="image"><img src="images/user_icon.png" alt="" style="width: 50px; height: 50px;"></figure>
-			<h2><%= m.getFood_name() %></h2>
-       		<h1><%= m.getCalorie() %>kcal</h1>
-       		    <div class="centered-link-container">
-       		<a href="MealMenuDetailServlet?id=<%=m.getFood_id() %>">料理を作る</a>
-       			</div>
-		</div>
-		<%} %>
-	</div>
-	
-</form>
-
    	<button type="button" onclick="goBack()">戻る</button>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+   	
     <script src="./JavaScript/home.js"></script>
     <script src="./JavaScript/meal_menu.js"></script>
+    <script src="./JavaScript/back.js"></script>
 </body>
 </html>
