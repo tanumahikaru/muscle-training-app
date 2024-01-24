@@ -290,7 +290,7 @@ public class UserDAO {
 		return userId;
 	}
 
-	// パスワードを更新するメソッドを更新するメソッド
+	// パスワードを更新するメソッド
 	public static int updatePassword(String password, int userId) {
 		int result = 0; // 更新件数0のままだったら登録失敗
 		
@@ -316,6 +316,29 @@ public class UserDAO {
 			e.printStackTrace();
 		} finally {
 			System.out.println(result + "件更新しました。(トレプロID)");
+		}
+		return result; // 更新件数を返す
+	}
+	
+	// ワンタイムパスワードを削除するメソッド
+	public static int updatePassword(int userId) {
+		int result = 0; // 更新件数0のままだったら登録失敗
+		
+		String sql = "DELETE FROM onetime_passwords SET WHERE user_id=?";
+
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) { // SQL文は、プリコンパイルされ、PreparedStatementオブジェクトに格納される
+			// 値をバインドする
+			pstmt.setInt(1, userId);
+			// sql実行
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件更新しました。(ワンタイムパスワード削除)");
 		}
 		return result; // 更新件数を返す
 	}
