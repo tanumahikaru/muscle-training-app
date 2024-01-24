@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/meal_menu.css">
+    <link rel="stylesheet" href="css/meal_record.css">
     <link rel="stylesheet" href="css/user-log.css">
     <link rel="stylesheet" href="css/style.css">
     
@@ -37,6 +38,12 @@
 </header>
 
 <body>
+
+    <div class="content-container">
+        <!-- レシピ検索で追加ボタン -->
+        <div class="centered-link-container-strike">
+      	  <a href="RecipeServlet" class="recipe-button" id="recipeAddButton">レシピ検索で追加</a><br>
+        </div>
 	
 	     <!-- 日付選択フォーム -->
     <form action="RecipeLogServlet" method="GET">
@@ -54,16 +61,26 @@
                 <p><%= meal.getFood_name() %></p>
                 <p><%= meal.getCalorie() %>kcal</p>
                 <p>Date: <%= selectedDate %></p>
-                <a href="DeleteMealServlet?id=<%= meal.getId() %>" class="delete-button">
-                    <i class="fa fa-trash" aria-hidden="true"></i> 削除
-                </a>
+              
             </div>
         <% }
     } else { %>
         <p>選択された日にはまだ何も食べていません。</p>
     <% } %>
     
-   	<button type="button" onclick="goBack()">戻る</button>
+    <!-- 登録フォーム -->
+        <form action="RegistrationServlet2" method="post">
+            <div class="underline-input-container">
+                <span style="border-bottom: solid 1px">
+                    <input type="text" id="foodName" name="foodName" class="small-rounded-input" placeholder="食べたものを入力">
+                </span>
+                <input type="text" id="calorie" name="calorie" class="rounded-textarea" required>kcal
+                <button type="submit" class="margin-button" id="addButton">追加</button>
+            </div>
+        </form>
+    </div>
+    
+   	<button type="button" class= backbutton onclick="goBack()">戻る</button>
    	
     <script src="./JavaScript/home.js"></script>
     <script src="./JavaScript/meal_menu.js"></script>

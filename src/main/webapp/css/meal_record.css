@@ -1,0 +1,109 @@
+@charset "UTF-8";
+/* #containerに追加するスタイル */
+#container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* 上寄せに変更 */
+    flex-wrap: wrap; /* flexアイテムを折り返し表示する */
+}
+
+.content {
+    box-sizing: border-box; /* ボーダーボックスモデルを適用 */
+    width: 45%;
+    margin-left: 60px; /* 下側のマージンを追加 */
+}
+
+.content-container {
+    box-sizing: border-box; /* ボーダーボックスモデルを適用 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    margin-bottom: 20px; /* 下側のマージンを追加 */
+    margin-right: 50px; /* 下側のマージンを追加 */
+}
+/* 新しく作りたいメニューのスタイル */
+.meal-entry {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.meal-entry p {
+    margin: 0; /* デフォルトの段落の余白を削除 */
+}
+
+.meal-entry p:first-child {
+    flex: 1; /* 最初の段落が利用可能なスペースを占めるようにする */
+}
+
+.meal-entry p.calorie {
+    margin-left: 50px; /* カロリー表示と削除ボタンの隙間を調整 */
+}
+
+.meal-entry p:last-child {
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* a タグを中央に寄せるための親要素のスタイル */
+.centered-link-container {
+    text-align: center;
+}
+
+/* a タグのスタイル */
+.centered-link-container a {
+    display: inline-block;
+    height: 50px; /* 例: 適切な高さに調整 */
+    width: 150px; /* 例: 適切な幅に調整 */
+    line-height: 50px; /* 高さと同じ値に設定して中央に寄せる */
+    border-radius: 25px;
+    border-color: #f0f0f0;
+    background-color: #2941bc;
+    color: white;
+    margin-left: 10px;
+    text-decoration: none;
+    text-align: center; /* テキストを中央寄せにする */
+}
+
+/*ストライクカラーにするよ、a タグを中央に寄せるための親要素のスタイル */
+.centered-link-container-strike {
+    text-align: center;
+}
+
+.centered-link-container-strike a {
+    display: inline-block;
+    height: 50px; /* 例: 適切な高さに調整 */
+    width: 150px; /* 例: 適切な幅に調整 */
+    line-height: 50px; /* 高さと同じ値に設定して中央に寄せる */
+    border-radius: 25px;
+    border: 2px solid #000000; /* 枠線の色を黒色に変更 */
+    background-color: #FFFF00; /* 背景色を黄色に変更 */
+    color: #000000; /* 文字色を黒色に変更 */
+    margin-left: 10px;
+    text-decoration: none;
+    text-align: center; /* テキストを中央寄せにする */
+}
+
+/* 戻るボタンのスタイル */
+.backbutton {
+    position: fixed; /* ボタンの位置を固定 */
+    bottom: 20px; /* ボタンの下端を画面下からの距離を指定 */
+    right: 20px; /* ボタンの右端を画面右からの距離を指定 */
+    padding: 10px; /* ボタンの内部余白を指定 */
+    background-color: #2941bc; /* ボタンの背景色を指定 */
+    color: white; /* ボタンの文字色を指定 */
+    border: none; /* ボタンの枠線をなしに指定 */
+    border-radius: 5px; /* ボタンの角を丸める */
+    cursor: pointer; /* マウスがボタンの上にあるときにポインターを指定 */
+    font-size: 16px; /* ボタンの文字サイズを指定 */
+}
+
+.backbutton:hover {
+    background-color: #1f2d85; /* マウスがボタンの上にあるときの背景色を指定 */
+}
+
