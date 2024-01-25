@@ -107,3 +107,22 @@
     background-color: #1f2d85; /* マウスがボタンの上にあるときの背景色を指定 */
 }
 
+.delete-button {
+    display: inline-block;
+    padding: 3px 6px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    text-decoration: none;
+    color: #555;
+    margin-left: 10px; /* 任意のマージンを設定 */
+}
+
+.delete-button i {
+    margin-right: 4px;
+}
+
+.delete-button:hover {
+    background-color: #eee;
+}
