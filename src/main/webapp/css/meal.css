@@ -120,3 +120,13 @@
 .delete-button:hover {
     background-color: #eee;
 }
+
+#addButton {
+	height: 35px;
+    width: 80px;
+    border-radius: 25px;
+    border: none;
+    background-color: #2941bc;
+    color: white;
+    margin-left: 10px;
+}

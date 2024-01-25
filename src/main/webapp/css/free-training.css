@@ -120,3 +120,7 @@ type2
 .search-menu input[type="submit"]:hover {
   background-color: #4c8031;
 }
+
+.link_title {
+	text-decoration: none; /* 下線をなしにする */
+}

@@ -112,8 +112,9 @@
 	height: 35px;
     width: 80px;
     border-radius: 25px;
-    border-color: #f0f0f0;
+    border: none;
     background-color: #2941bc;
     color: white;
     margin-left: 10px;
+    margin-top: 10px;
 }

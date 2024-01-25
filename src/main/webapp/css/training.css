@@ -17,7 +17,7 @@
 	height: 40px;
     width: 100px;
     border-radius: 25px;
-    border-color: #f0f0f0;
+    border: none;
     background-color: #2941bc;
     color: white;
     margin-left: 580px;
@@ -28,7 +28,7 @@
 	height: 40px;
     width: 100px;
     border-radius: 25px;
-    border-color: #f0f0f0;
+    border: none;
     background-color: #2941bc;
     color: white;
     margin-left: 580px;
@@ -39,7 +39,7 @@
 	height: 40px;
     width: 100px;
     border-radius: 25px;
-    border-color: #f0f0f0;
+   	border: none;
     background-color: #2941bc;
     color: white;
     margin-left: 1000px;
@@ -62,7 +62,7 @@
 	height: 35px;
     width: 80px;
     border-radius: 25px;
-    border-color: #f0f0f0;
+    border: none;
     background-color: #2941bc;
     color: white;
     margin-left: 10px;
@@ -72,7 +72,7 @@
 	height: 35px;
     width: 80px;
     border-radius: 25px;
-    border-color: #f0f0f0;
+    border: none;
     background-color: #2941bc;
     color: white;
     margin-left: 10px;
@@ -82,7 +82,7 @@
 	height: 35px;
     width: 80px;
     border-radius: 25px;
-    border-color: #f0f0f0;
+    border: none;
     background-color: #2941bc;
     color: white;
     margin-left: 10px;
