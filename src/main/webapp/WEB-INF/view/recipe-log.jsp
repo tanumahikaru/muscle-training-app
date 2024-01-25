@@ -60,7 +60,9 @@
             <div class="meal-entry">
                 <p><%= meal.getFood_name() %></p>
                 <p><%= meal.getCalorie() %>kcal</p>
-                <p>Date: <%= selectedDate %></p>
+                 <a href="DeleteMealServlet?id=<%= meal.getId() %>" class="delete-button">
+                        <i class="fa fa-trash" aria-hidden="true"></i> 削除
+                 </a>
               
             </div>
         <% }
