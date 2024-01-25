@@ -162,7 +162,7 @@ CREATE TABLE training_descriptions(
 );
 
 --トレーニングプログラム詳細テーブル
-CREATE TABLE traning_programs_detail(
+CREATE TABLE training_programs_detail(
     detail_id             					SERIAL PRIMARY KEY,
     training_program_id   		INTEGER,
     step                 					INTEGER,
