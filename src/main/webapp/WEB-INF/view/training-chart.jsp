@@ -6,6 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/training-chart.css">    
@@ -32,23 +33,24 @@
         <div class="menu__item"><a href="LogoutServlet">ログアウト</a></div>
     </div>
     <%-- サーブレットから受け取ったトレーニングデータを表示 --%>
-    <div>
-        <p><%= ((MuscleDTO)request.getAttribute("training")).getEvent_name() %>の記録</p>
-        <%-- 他に表示したいトレーニングデータがあれば適宜追加 --%>
-    </div>
-
+   	<%
+		MuscleDTO training = (MuscleDTO) request.getAttribute("training2");
+	%>
+	
+	<h1 class="record_title"><%=training.getEvent_name() %>の記録</h1>
+	
     <div class="chart-container"> <%-- グラフとサマリーを包むコンテナ --%>
         <canvas id="myChart" width="750" height="400"></canvas>
 
         <div class="training-summary">
 		<div class="info-text">
-            <p>合計回数：<%= request.getAttribute("totalNumber") %></p><br>
+            <p>合計回数：<%= request.getAttribute("totalNumber") %></p>
+            <p>合計セット数: <%=request.getAttribute("totalSetNumber") %><span id="totalSets"></span></p>
+            <p>平均回数: <%=request.getAttribute("avgNumber") %> <span id="avgReps"></span></p>
+            <p>MAX: <%=request.getAttribute("maxNumber") %><span id="maxReps"></span></p>
+            <p>MIN: <%=request.getAttribute("minNumber") %><span id="minReps"></span></p>
+            <p>消費カロリー: <%=request.getAttribute("totalCalories_burned") %> <span id="calories"></span> kcal</p>
         </div>
-            <p>合計セット数: <span id="totalSets"></span></p>
-            <p>一セット当たりの回数(平均): <span id="avgReps"></span></p>
-            <p>MAX: <span id="maxReps"></span></p>
-            <p>MIN: <span id="minReps"></span></p>
-            <p>消費: <span id="calories"></span> kcal</p>
         </div>
     </div>
 
