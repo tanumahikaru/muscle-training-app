@@ -216,6 +216,8 @@ public class MuscleRecordDAO {
         }
         return result;
     }
+    
+    //回数の合計を求めるメソッド（トレーニング記録で使用）
     public static int calculateTotalNumber(int userId, int trainingEventId) {
         // 実行するSQL
         String sql = "SELECT SUM(number) as totalNumber FROM training_records WHERE user_id = ? AND training_event_id = ?";
@@ -238,7 +240,127 @@ public class MuscleRecordDAO {
         }
         return totalNumber;
     }
+    
+    //回数の最大値を求めるメソッド（トレーニング記録で使用）
+    public static int getMaxNumber(int userId, int trainingEventId) {
+        // 実行するSQL
+        String sql = "SELECT MAX(number) as maxNumber FROM training_records WHERE user_id = ? AND training_event_id = ?";
 
+        int maxNumber = 0;
+        try (
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, trainingEventId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    maxNumber = rs.getInt("maxNumber");
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return maxNumber;
+    }
+    
+    //回数の最小値を求めるメソッド（トレーニング記録で使用）
+    public static int getMinNumber(int userId, int trainingEventId) {
+        // 実行するSQL
+        String sql = "SELECT MIN(number) as minNumber FROM training_records WHERE user_id = ? AND training_event_id = ?";
+
+        int minNumber = 0;
+        try (
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, trainingEventId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    minNumber = rs.getInt("minNumber");
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return minNumber;
+    }
+    
+    //回数の平均を求めるメソッド（トレーニング記録で使用）
+    public static double getAverageNumber(int userId, int trainingEventId) {
+        // 実行するSQL
+        String sql = "SELECT AVG(number) as avgNumber FROM training_records WHERE user_id = ? AND training_event_id = ?";
+
+        double avgNumber = 0.0;
+        try (
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, trainingEventId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    avgNumber = rs.getDouble("avgNumber");
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return avgNumber;
+    }
+    
+    //種目ごとの消費カロリーの合計を求めるメソッド（トレーニング記録で使用）
+    public static double getTotalCaloriesBurned(int userId, int trainingEventId) {
+        // 実行するSQL
+        String sql = "SELECT SUM(calories_burned) as totalCaloriesBurned FROM training_records WHERE user_id = ? AND training_event_id = ?";
+
+        double totalCaloriesBurned = 0.0;
+        try (
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, trainingEventId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    totalCaloriesBurned = rs.getDouble("totalCaloriesBurned");
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return totalCaloriesBurned;
+    }
+    
+    //種目ごとの合計セット数を取得するメソッド（トレーニング記録で使用）
+    public static int getRecordCountByUserAndEvent(int user_id, int training_event_id) {
+        // 実行するSQL
+        String sql = "SELECT COUNT(*) as recordCount FROM training_records WHERE user_id = ? AND training_event_id = ?";
+
+        int recordCount = 0;
+        try (
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setInt(1, user_id);
+            pstmt.setInt(2, training_event_id);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    recordCount = rs.getInt("recordCount");
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return recordCount;
+    }
+    
     // 下から3件の消費カロリーの合計を取得するメソッド
     public static double getTotalCaloriesLast3(int userId) {
         List<Double> last3Calories = selectLast3Calories(userId);

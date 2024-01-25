@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.MuscleRecordDAO;
 import dao.SampleMuscleDAO;
 import dto.MuscleDTO;
+import dto.UserDTO;
 
 /**
  * Servlet implementation class TrainingServlet
@@ -34,18 +36,33 @@ public class TrainingChartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         
+        System.out.println(id);
+        
         MuscleDTO training = SampleMuscleDAO.SelectTrainingById(id);
         
-        // 合計回数を計算
-        int userId = 1; // 適切なユーザーIDを設定する必要があります
-        int trainingEventId = id; // ここではトレーニングイベントIDを使用していると仮定しています
-
-        int totalNumber = calculateTotalNumber(userId, trainingEventId);
-
         // セッションとリクエストに属性を設定
         HttpSession session = request.getSession();
-        session.setAttribute("detail", training);
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        
+        int userId = user.getId();
+        System.out.println(userId);
+        int trainingEventId = training.getTraining_event_id();
+        System.out.println(trainingEventId);
+        
+        int totalNumber = MuscleRecordDAO.calculateTotalNumber(userId, trainingEventId);
+        int totalSetNumber = MuscleRecordDAO.getRecordCountByUserAndEvent(userId, trainingEventId);
+        int maxNumber = MuscleRecordDAO.getMaxNumber(userId, trainingEventId);
+        int minNumber = MuscleRecordDAO.getMinNumber(userId, trainingEventId);
+        int avgNumber = (int) MuscleRecordDAO.getAverageNumber(userId, trainingEventId); // 小数点以下を切り捨てる
+        int totalCalories_burned = (int) MuscleRecordDAO.getTotalCaloriesBurned(userId, trainingEventId);
+        
+        request.setAttribute("training2", training);
         request.setAttribute("totalNumber", totalNumber);
+        request.setAttribute("totalSetNumber", totalSetNumber);
+        request.setAttribute("maxNumber", maxNumber);
+        request.setAttribute("minNumber", minNumber);
+        request.setAttribute("avgNumber", avgNumber);
+        request.setAttribute("totalCalories_burned", totalCalories_burned);
 
         String view = "WEB-INF/view/training-chart.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(view);

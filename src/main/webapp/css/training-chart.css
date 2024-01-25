@@ -111,3 +111,7 @@ p{
     background-color: #3498db; /* バーの色 */
     margin-bottom: 10px;
 }
+
+.record_title {
+	text-align: center;
+}
