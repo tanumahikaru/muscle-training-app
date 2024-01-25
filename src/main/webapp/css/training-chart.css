@@ -74,7 +74,7 @@ p{
     height: 50px;
     width: 150px;
     border-radius: 25px;
-    border-color: #f0f0f0;
+    border: none;
     background-color: #2941bc;
     color: white;
     margin: 0; /* margin を 0 に設定して中央に寄せる */

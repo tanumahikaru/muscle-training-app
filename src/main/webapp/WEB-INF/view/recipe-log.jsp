@@ -46,10 +46,10 @@
         </div>
 	
 	     <!-- 日付選択フォーム -->
-    <form action="RecipeLogServlet" method="GET">
+    <form action="RecipeLogServlet" class="record_date" method="GET">
         <label for="selectedDate">日付選択：</label>
         <input type="date" id="selectedDate" name="selectedDate" value="<%= request.getAttribute("selectedDate") %>">
-        <input type="submit" value="表示">
+        <input type="submit" class="dis" value="表示">
     </form>
 
     <!-- 食事データ表示部分 -->

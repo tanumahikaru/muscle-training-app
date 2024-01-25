@@ -14,14 +14,15 @@
 }
 
 .content-container {
-    box-sizing: border-box; /* ボーダーボックスモデルを適用 */
+	box-sizing: border-box;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 45%;
-    margin-bottom: 20px; /* 下側のマージンを追加 */
-    margin-right: 50px; /* 下側のマージンを追加 */
+    margin-bottom: 20px;
+    margin-right: auto;
+    margin-left: auto;
 }
 /* 新しく作りたいメニューのスタイル */
 .meal-entry {
@@ -91,20 +92,16 @@
 
 /* 戻るボタンのスタイル */
 .backbutton {
-    position: fixed; /* ボタンの位置を固定 */
-    bottom: 20px; /* ボタンの下端を画面下からの距離を指定 */
-    right: 20px; /* ボタンの右端を画面右からの距離を指定 */
-    padding: 10px; /* ボタンの内部余白を指定 */
-    background-color: #2941bc; /* ボタンの背景色を指定 */
-    color: white; /* ボタンの文字色を指定 */
-    border: none; /* ボタンの枠線をなしに指定 */
-    border-radius: 5px; /* ボタンの角を丸める */
-    cursor: pointer; /* マウスがボタンの上にあるときにポインターを指定 */
-    font-size: 16px; /* ボタンの文字サイズを指定 */
-}
-
-.backbutton:hover {
-    background-color: #1f2d85; /* マウスがボタンの上にあるときの背景色を指定 */
+    height: 35px;
+    width: 80px;
+    border-radius: 25px;
+    border: none;
+    background-color: #2941bc;
+    color: white;
+    margin-left: 10px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 }
 
 .delete-button {
@@ -125,4 +122,28 @@
 
 .delete-button:hover {
     background-color: #eee;
+}
+
+.record_date {
+	margin-top: 30px;
+}
+
+.dis {
+	height: 35px;
+    width: 80px;
+    border-radius: 25px;
+    border: none;
+    background-color: #2941bc;
+    color: white;
+    margin-left: 10px;
+}
+
+#addButton {
+	height: 35px;
+    width: 80px;
+    border-radius: 25px;
+    border: none;
+    background-color: #2941bc;
+    color: white;
+    margin-left: 10px;
 }
