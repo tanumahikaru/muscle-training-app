@@ -76,3 +76,7 @@ h1 {
 .button-group button:first-child {
     margin: 0;
 }
+
+.image {
+	margin-top: 4px;
+}
