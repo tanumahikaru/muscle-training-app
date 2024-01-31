@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="dto.MuscleDTO" %>
+<%@ page import="dto.ExplanationDTO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,7 +91,14 @@
 
     <hr>
 
-    <h1>ここに説明</h1>
+    <%
+        List<ExplanationDTO> ex = (ArrayList< ExplanationDTO>)request.getAttribute("explanation");
+        for( ExplanationDTO e : ex) {
+     %>
+	<div class="explanation">
+    <p data-step="<%=e.getStep() %>" data-explanation="<%=e.getExplanation() %>"></p>
+	</div>
+	<%} %>
 
     <script src="./JavaScript/home.js"></script>
     <script src="./JavaScript/timer.js"></script>

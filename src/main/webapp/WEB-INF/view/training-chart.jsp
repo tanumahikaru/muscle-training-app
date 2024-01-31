@@ -52,8 +52,8 @@
         </div>
         </div>
     </div>
-    <div class="button-group center-button">
-        <button type="button" onclick="goBack()">戻る</button>
+    <div class="centered-link-container">
+        <a href="TrainingLogServlet" class="back">戻る</a>
     </div>
     <%
         // 今日の日付を取得

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.MuscleDAO;
+import dao.SampleMuscleDAO;
+import dto.ExplanationDTO;
 import dto.MuscleDTO;
 import dto.MuscleRecord;
 import dto.UserDTO;
@@ -54,10 +56,14 @@ public class NextTrainingServlet extends HttpServlet {
 	        return;
 		} else {
 			training = training_menus.get(trIndex);
+			System.out.println(training.getTraining_event_id());
 		}
 
+		int trainingEventId = training.getTraining_event_id();
+		List<ExplanationDTO> ex = SampleMuscleDAO.selectExplanationById(trainingEventId);
+		
 		session.setAttribute("detail", training);
-
+		request.setAttribute("explanation", ex);
 		request.setAttribute("training", training);
 		
         String view = "WEB-INF/view/todays-training.jsp";

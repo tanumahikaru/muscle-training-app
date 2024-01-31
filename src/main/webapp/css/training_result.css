@@ -27,3 +27,15 @@ h2 {
     border-color: black;
     font-size: 18px;
 }
+
+.btnTop {
+	height: 40px;
+    width: 100px;
+    border-radius: 25px;
+    border: none;
+    background-color: #2941bc;
+    color: white;
+   	margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}

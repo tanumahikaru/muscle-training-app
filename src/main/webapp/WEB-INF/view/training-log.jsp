@@ -73,7 +73,7 @@
         <%} %>
     </div>
     <div class="centered-link-container">
-    	<a href="TopServlet" class="back">戻る</a>
+    	<a href="UserLogServlet" class="back">戻る</a>
 	</div>
      <script src="./JavaScript/home.js"></script>
 </body>

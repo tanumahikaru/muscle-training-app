@@ -111,7 +111,9 @@
 			}
 			%>
 		</div>
-		<button class="top-btn">TOP</button>
+		<form action="TopServlet" method="post">
+			<button class="top-btn">TOP</button>
+		</form>
 	</div>
 	<div class="right-upper-contents">
 		<div id="correct-answers">
