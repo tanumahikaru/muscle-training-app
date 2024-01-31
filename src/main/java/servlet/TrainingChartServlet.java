@@ -56,10 +56,6 @@ public class TrainingChartServlet extends HttpServlet {
             int totalCalories_burned = (int) MuscleRecordDAO.getTotalCaloriesBurned(userId, trainingEventId);
 
             // トレーニングデータをJSPに転送
-            List<Double> repsData = MuscleRecordDAO.getRepsByUserIdAndEvent(userId, trainingEventId);
-            System.out.println("repsData: " + repsData);
-
-            // トレーニングデータをJSPに転送
             request.setAttribute("training2", training);
             request.setAttribute("totalNumber", totalNumber);
             request.setAttribute("totalSetNumber", totalSetNumber);
@@ -68,8 +64,6 @@ public class TrainingChartServlet extends HttpServlet {
             request.setAttribute("avgNumber", avgNumber);
             request.setAttribute("totalCalories_burned", totalCalories_burned);
 
-            // 回数のデータをJSPに転送
-            request.setAttribute("repsData", repsData);
 
             // JSPにフォワード
             String view = "WEB-INF/view/training-chart.jsp";
