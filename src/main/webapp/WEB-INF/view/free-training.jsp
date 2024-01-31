@@ -57,7 +57,7 @@
     
     <hr>
     
-    <h2><%=request.getAttribute("positionName") %>のレシピ一覧</h2>
+    <h2><%=request.getAttribute("positionName") %>のメニュー一覧</h2>
     
     <div class="card-container type2">
         <%
