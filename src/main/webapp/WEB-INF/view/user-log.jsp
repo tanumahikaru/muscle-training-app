@@ -44,79 +44,88 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    	var trainingData = {
-    		    labels: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-03', '2023-01-04'],
-    		    datasets: [{
-    		        label: '摂取カロリー',
-    		        data: [5, 8, 3, 10, 6, 12, 4, 9, 7, 11, 38, 45, 10, 6],
-    		        backgroundColor: 'rgba(33, 187, 504, 0.7)', // 透明度を設定
-    		        borderColor: 'rgba(33, 187, 204, 1)',
-    		        borderWidth: 1,
-    		        type: 'bar'
-    		    }, {
-    		        label: '消費カロリー',
-    		        data: [-8, -40, -6, -9, -5, -11, -7, -10, -8, -3, -12, -6, -9, -7],
-    		        backgroundColor: 'rgba(255, 87, 51, 0.7)', // 透明度を設定
-    		        borderColor: 'rgba(255, 87, 51, 1)',
-    		        borderWidth: 1,
-    		        type: 'bar'
-    		    }, {
-    		        label: 'カロリー差分',
-    		        data: [-3, -32, -3, 1, 1, 1, -3, 9, -1, 11, 26, 39, 1, -1],
-    		        fill: false,
-    		        backgroundColor:'#4CAF50', 
-    		        borderColor: '#4CAF50',
-    		        borderWidth: 2,
-    		        pointRadius: 4,
-    		        yAxisID: 'calorieSum',
-    		        type: 'line' // 折れ線グラフに変更
-    		    }]
-    		};
+document.addEventListener("DOMContentLoaded", function () {
+    // 過去2週間の日付を計算
+    var today = new Date();
+    var pastTwoWeeks = [];
+    for (var i = 13; i >= 0; i--) {
+        var date = new Date(today);
+        date.setDate(today.getDate() - i);
+        pastTwoWeeks.push(date.toISOString().split('T')[0]);
+    }
 
+    var trainingData = {
+        labels: pastTwoWeeks,
+        datasets: [{
+            label: '摂取カロリー',
+            data: [5, 8, 3, 10, 6, 12, 4, 9, 7, 11, 38, 45, 10, 6],
+            backgroundColor: 'rgba(33, 187, 504, 0.7)',
+            borderColor: 'rgba(33, 187, 204, 1)',
+            borderWidth: 1,
+            type: 'bar'
+        }, {
+            label: '消費カロリー',
+            data: [-8, -40, -6, -9, -5, -11, -7, -10, -8, -3, -12, -6, -9, -7],
+            backgroundColor: 'rgba(255, 87, 51, 0.7)',
+            borderColor: 'rgba(255, 87, 51, 1)',
+            borderWidth: 1,
+            type: 'bar'
+        }, {
+            label: 'カロリー差分',
+            data: [-3, -32, -3, 1, 1, 1, -3, 9, -1, 11, 26, 39, 1, -1],
+            fill: false,
+            backgroundColor: '#4CAF50',
+            borderColor: '#4CAF50',
+            borderWidth: 2,
+            pointRadius: 4,
+            yAxisID: 'calorieSum',
+            type: 'line' // 折れ線グラフに変更
+        }]
+    };
 
-        var ctx = document.getElementById('calorieGraph').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: trainingData,
-            options: {
-                responsive: false,
-                layout: {
-                    padding: {
-                        left: 60,
-                        top: 10,
-                        right: 10,
+    var ctx = document.getElementById('calorieGraph').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: trainingData,
+        options: {
+            responsive: false,
+            layout: {
+                padding: {
+                    left: 60,
+                    top: 10,
+                    right: 10,
+                }
+            },
+            scales: {
+                xAxes: [{
+                    type: 'category',
+                    labels: ['日付'].concat(trainingData.labels)
+                }],
+                yAxes: [{
+                    id: 'calorieSum',
+                    type: 'linear',
+                    position: 'right',
+                    ticks: {
+                        beginAtZero: true
                     }
-                },
-                scales: {
-                    xAxes: [{
-                        type: 'category',
-                        labels: ['日付'].concat(trainingData.labels)
-                    }],
-                    yAxes: [{
-                        id: 'calorieSum',
-                        type: 'linear',
-                        position: 'right',
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                },
-                plugins: {
-                    backgroundColorPlugin: {
-                        beforeDraw: function (chart) {
-                            var ctx = chart.canvas.getContext('2d');
-                            ctx.save();
-                            ctx.globalCompositeOperation = 'destination-over';
-                            ctx.fillStyle = 'white';
-                            ctx.fillRect(0, 0, chart.width, chart.height);
-                            ctx.restore();
-                        }
+                }]
+            },
+            plugins: {
+                backgroundColorPlugin: {
+                    beforeDraw: function (chart) {
+                        var ctx = chart.canvas.getContext('2d');
+                        ctx.save();
+                        ctx.globalCompositeOperation = 'destination-over';
+                        ctx.fillStyle = 'white';
+                        ctx.fillRect(0, 0, chart.width, chart.height);
+                        ctx.restore();
                     }
                 }
             }
-        });
+        }
     });
+});
+
 </script>
     <div class="button-group">
         <form action="TrainingLogServlet" method="post">
