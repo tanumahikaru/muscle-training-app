@@ -130,3 +130,16 @@
     color: white;
     margin-left: 10px;
 }
+
+.top_button {
+	height: 50px;
+    width: 150px;
+    border-radius: 25px;
+    border: none;
+    background-color: #2941bc;
+    color: white;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 25px;
+    display: block; /* 追加：要素をブロックレベルで表示するように指定 */
+}
