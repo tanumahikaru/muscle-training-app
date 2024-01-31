@@ -55,7 +55,7 @@
 
   </div>
   <div class="button-group">
-    <button>TOP</button>
+    <button onclick="location.href='TopServlet'">TOP</button>
     <button onclick="location.href='NextTrainingServlet'">START</button>
   </div>
 </main>

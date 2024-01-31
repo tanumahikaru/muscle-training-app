@@ -89,6 +89,9 @@
         </form>
     </div>
 </div>
+	<form action="TopServlet" method="post">
+		<button type="submit" class="top_button">TOP</button>
+	</form>
     <!-- ここに食事に関する情報やコンテンツを追加 -->
     <script src="./JavaScript/home.js"></script>
 </body>
