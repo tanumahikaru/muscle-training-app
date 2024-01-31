@@ -65,7 +65,9 @@
 	  div.innerText = <%=total%>+'kcal'
 	</script>
     
-    
+    <form action="TopServlet" method="post">
+    	<button class="btnTop">TOP</button>
+    </form>
     
 	<script src="./JavaScript/home.js"></script>
 </body>

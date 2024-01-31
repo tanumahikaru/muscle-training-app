@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/user-log.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/training-suggestion.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <style>
@@ -120,16 +119,16 @@
 </script>
     <div class="button-group">
         <form action="TrainingLogServlet" method="post">
-            <button type="submit">トレーニング記録</button>
+            <button type="submit" class="training_records">トレーニング記録</button>
         </form>
         <div class="space"></div> <!-- ここにスペースを追加 -->
         <form action="RecipeLogServlet" method="post">
-            <button>食事記録</button>
+            <button type="submit" class="meal_records">食事記録</button>
         </form>
     </div>
     <div class="button-group center-button">
         <form action="TopServlet" method="post">
-            <button class="start-button">TOP</button>
+            <button class="top-button">TOP</button>
         </form>
     </div>	
 </main>

@@ -13,20 +13,17 @@ main {
     margin: 120px;
 }
 
-.start-button {
-    background-color: #2941BC;
+.top-button {
+    height: 50px;
+    width: 150px;
+    border-radius: 25px;
     border: none;
-    cursor: pointer;
-    height: 36px;
-    width: 80px;
-    border-radius: 10px;
-    color: black;
-    text-align: center;
+    background-color: #2941bc;
+    color: white;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
-.start-button:hover {
-    background-color: #2941BC;
-}
 
 .header-banner {
     background-color: #2941BC;
@@ -67,13 +64,24 @@ main {
     justify-content: center;
 }
 
-.start-button {
-    background-color: #2941BC;
+.training_records {
+	height: 50px;
+    width: 150px;
+    border-radius: 25px;
     border: none;
-    cursor: pointer;
-    height: 36px;
-    width: 80px;
-    border-radius: 8px;
+    background-color: #2941bc;
     color: white;
-    text-align: center;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.meal_records {
+	height: 50px;
+    width: 150px;
+    border-radius: 25px;
+    border: none;
+    background-color: #2941bc;
+    color: white;
+    margin-left: 10px;
+    margin-top: 10px;
 }
