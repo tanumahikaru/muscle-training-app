@@ -386,5 +386,31 @@ public class MuscleRecordDAO {
         }
         return totalCalories_burned;
     }
+    
+    public static List<Double> getRepsByUserIdAndEvent(int userId, int trainingEventId) {
+	    String sql = "SELECT number FROM training_records WHERE user_id = ? AND training_event_id = ? ORDER BY date";
+	    List<Double> reps = new ArrayList<>();
 
+	    try (
+	        Connection con = getConnection();
+	        PreparedStatement pstmt = con.prepareStatement(sql);
+	    ) {
+	        pstmt.setInt(1, userId);
+	        pstmt.setInt(2, trainingEventId);
+
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            while (rs.next()) {
+	                double number = rs.getDouble("number");
+	                if (!rs.wasNull()) {
+	                    reps.add(number);
+	                } else {
+	                    reps.add(0.0);
+	                }
+	            }
+	        }
+	    } catch (SQLException | URISyntaxException e) {
+	        e.printStackTrace();
+	    }
+	    return reps;
+	}
 }
