@@ -60,85 +60,84 @@
         java.time.LocalDate today = java.time.LocalDate.now();
         // 過去5日分の日付を生成
         java.util.List<String> dateLabels = new java.util.ArrayList<>();
-        for (int i = 4; i >= 0; i--) {
-            dateLabels.add(today.minusDays(i).toString());
-        }
+		for (int i = 0; i < 5; i++) {
+    		dateLabels.add(today.plusDays(i).toString());
+		}
         // リクエストから回数のデータを取得
-        int totalNumber = (int) request.getAttribute("totalNumber");
+        int totalNumber = (int) request.getAttribute("todaystotalNumber");
         List<Integer> totalNumberList = new java.util.ArrayList<>();
         totalNumberList.add(totalNumber);
     %>
-    <script>
-        // グラフ描画のためのデータ
-        var trainingData = {
-            labels: [
-                <%-- 生成した日付をJavaScriptの形式で出力 --%>
-                <% for (String dateLabel : dateLabels) { %>
-                    '<%= dateLabel %>',
+   <script>
+    // グラフ描画のためのデータ
+    var trainingData = {
+        labels: [
+            <%-- 生成した日付をJavaScriptの形式で出力 --%>
+            <% for (int i = dateLabels.size() - 1; i >= 0; i--) { %>
+                '<%= dateLabels.get(i) %>',
+            <% } %>
+        ],
+        datasets: [{
+            label: '回数', // ラベル
+            data: [
+                <%-- 合計回数のデータを出力 --%>
+                <% for (int i = 0; i < totalNumberList.size(); i++) { %>
+                    <%= totalNumberList.get(i) %>,
                 <% } %>
             ],
-            datasets: [{
-                label: '回数', // ラベル
-                data: [
-                    <%-- 合計回数のデータを出力 --%>
-                    <% for (int i = 0; i < dateLabels.size(); i++) {
-                        int reps = (i < totalNumberList.size()) ? totalNumberList.get(i) : 0;
-                    %>
-                        <%= reps %>,
-                    <% } %>
-                ],
-                backgroundColor: ['#21BC', '#21BC', '#21BC', '#21BC', '#21BC'], // 棒グラフの色
-                borderColor: ['#21BC', '#21BC', '#21BC', '#21BC', '#21BC'], // 棒の境界線の色
-                borderWidth: 1, // 棒の境界線の太さ
-                datalabels: {
-                    align: 'end', // データラベルを棒グラフの右端に配置
-                    anchor: 'end', // データラベルを棒グラフの右上に配置
-                    display: true // データラベルを表示
-                }
-            }]
-        };
+            backgroundColor: ['#21BC', '#21BC', '#21BC', '#21BC', '#21BC'], // 棒グラフの色
+            borderColor: ['#21BC', '#21BC', '#21BC', '#21BC', '#21BC'], // 棒の境界線の色
+            borderWidth: 1, // 棒の境界線の太さ
+            datalabels: {
+                align: 'end', // データラベルを棒グラフの右端に配置
+                anchor: 'end', // データラベルを棒グラフの右上に配置
+                display: true // データラベルを表示
+            }
+        }]
+    };
 
-        // グラフを描画
-        document.addEventListener("DOMContentLoaded", function () {
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar', // 棒グラフを指定
-                data: trainingData,
-                options: {
-                    responsive: false, // グラフのサイズを固定
-                    layout: {
-                        padding: {
-                            left: 110, // 左
+    // グラフを描画
+    document.addEventListener("DOMContentLoaded", function () {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar', // 棒グラフを指定
+            data: trainingData,
+            options: {
+                responsive: false, // グラフのサイズを固定
+                layout: {
+                    padding: {
+                        left: 110, // 左
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        type: 'category', // 横軸のスケールをカテゴリに設定
+                        labels: trainingData.labels.reverse(), // 日付を逆順に追加
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true // 縦軸のスケールを0から始める
                         }
-                    },
-                    scales: {
-                        xAxes: [{
-                            type: 'category', // 横軸のスケールをカテゴリに設定
-                            labels: trainingData.labels.reverse() // 日付を逆順に追加
-                        }],
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true // 縦軸のスケールを0から始める
-                            }
-                        }]
-                    },
-                    plugins: {
-                        // 背景色のプラグイン
-                        backgroundColorPlugin: {
-                            beforeDraw: function (chart) {
-                                var ctx = chart.canvas.getContext('2d');
-                                ctx.save();
-                                ctx.globalCompositeOperation = 'destination-over';
-                                ctx.fillStyle = 'white';
-                                ctx.fillRect(0, 0, chart.width, chart.height);
-                                ctx.restore();
-                            }
+                    }]
+                },
+                plugins: {
+                    // 背景色のプラグイン
+                    backgroundColorPlugin: {
+                        beforeDraw: function (chart) {
+                            var ctx = chart.canvas.getContext('2d');
+                            ctx.save();
+                            ctx.globalCompositeOperation = 'destination-over';
+                            ctx.fillStyle = 'white';
+                            ctx.fillRect(0, 0, chart.width, chart.height);
+                            ctx.restore();
                         }
                     }
                 }
-            });
+            }
         });
-    </script>
+    });
+</script>
+   
     <script src="./JavaScript/home.js"></script>
 </body>
 </html>

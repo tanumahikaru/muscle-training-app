@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -46,9 +47,12 @@ public class TrainingChartServlet extends HttpServlet {
 
             int userId = user.getId();
             int trainingEventId = training.getTraining_event_id();
-
+            String todayString = new java.sql.Date(new java.util.Date().getTime()).toString(); // 現在日時を取得
+            Date todayDate = Date.valueOf(todayString);
+            
             // トレーニングの統計データを取得
             int totalNumber = MuscleRecordDAO.calculateTotalNumber(userId, trainingEventId);
+            int todaystotalNumber = MuscleRecordDAO.TodayscalculateTotalNumber(userId, trainingEventId, todayDate);
             int totalSetNumber = MuscleRecordDAO.getRecordCountByUserAndEvent(userId, trainingEventId);
             int maxNumber = MuscleRecordDAO.getMaxNumber(userId, trainingEventId);
             int minNumber = MuscleRecordDAO.getMinNumber(userId, trainingEventId);
@@ -58,6 +62,7 @@ public class TrainingChartServlet extends HttpServlet {
             // トレーニングデータをJSPに転送
             request.setAttribute("training2", training);
             request.setAttribute("totalNumber", totalNumber);
+            request.setAttribute("todaystotalNumber", todaystotalNumber);
             request.setAttribute("totalSetNumber", totalSetNumber);
             request.setAttribute("maxNumber", maxNumber);
             request.setAttribute("minNumber", minNumber);

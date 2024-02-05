@@ -33,8 +33,8 @@ public class MuscleRecordDAO {
 	// メインディッシュの食事メニューIDを取得するメソッド
 	public static List<Integer> selectPreviousMuscleRecords(int id) {
 		// 実行するSQL
-		String sql = "SELECT training_program_id FROM training_records JOIN traning_programs_detail "
-				+ "ON training_records.training_event_id=traning_programs_detail.training_event_id "
+		String sql = "SELECT training_program_id FROM training_records JOIN training_programs_detail "
+				+ "ON training_records.training_event_id=training_programs_detail.training_event_id "
 				+ "WHERE training_records.user_id=? AND training_records.date=(SELECT max(date) FROM training_records) "
 				+ "ORDER BY training_record_id;";
 		// 返却用のListインスタンス
@@ -413,4 +413,28 @@ public class MuscleRecordDAO {
 	    }
 	    return reps;
 	}
+    
+    public static int TodayscalculateTotalNumber(int userId, int trainingEventId, Date date) {
+        // 実行するSQL
+        String sql = "SELECT SUM(number) as totalNumber FROM training_records WHERE user_id = ? AND training_event_id = ? AND date = ?";
+
+        int totalNumber = 0;
+        try (
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, trainingEventId);
+            pstmt.setDate(3, date); // date_columnは実際のデータベースの日付列の名前を想定しています
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    totalNumber = rs.getInt("totalNumber");
+                }
+            }
+        } catch (SQLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return totalNumber;
+    }
 }
