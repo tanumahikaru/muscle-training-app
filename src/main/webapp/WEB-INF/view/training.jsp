@@ -36,7 +36,6 @@
 	
 	
     <form action="FreeTrainingResultServlet" method="post" id="form">
-        <button class="breakBtn">中断</button>
 
 	<h1 class="titile"><%=training.getEvent_name()%></h1>
 	
