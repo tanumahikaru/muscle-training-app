@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
             type: 'bar'
         }, {
             label: 'カロリー差分',
-            data: [106,25,−203,−51,146,−264,−89,−199,389,−532,322,267,−511,388],
+            data: [106, 25, -203, -51, 146, -264, -89, -199, 389, -532, 322, 267, -511, 388],
             fill: false,
             backgroundColor: '#4CAF50',
             borderColor: '#4CAF50',
