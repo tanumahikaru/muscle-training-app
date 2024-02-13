@@ -57,21 +57,21 @@ document.addEventListener("DOMContentLoaded", function () {
         labels: pastTwoWeeks,
         datasets: [{
             label: '摂取カロリー',
-            data: [5, 8, 3, 10, 6, 12, 4, 9, 7, 11, 38, 45, 10, 6],
+            data: [2345, 2012, 2198, 1825, 2276, 2026, 1956, 2234, 2339, 1833, 2134, 2445, 1978, 2299],
             backgroundColor: 'rgba(33, 187, 504, 0.7)',
             borderColor: 'rgba(33, 187, 204, 1)',
             borderWidth: 1,
             type: 'bar'
         }, {
             label: '消費カロリー',
-            data: [-8, -40, -6, -9, -5, -11, -7, -10, -8, -3, -12, -6, -9, -7],
+            data: [-2239, -1987, -2401, -1876, -2130, -2290, -2045, -2433, -1950, -2365, -1812, -2178, -2489, -1989],
             backgroundColor: 'rgba(255, 87, 51, 0.7)',
             borderColor: 'rgba(255, 87, 51, 1)',
             borderWidth: 1,
             type: 'bar'
         }, {
             label: 'カロリー差分',
-            data: [-3, -32, -3, 1, 1, 1, -3, 9, -1, 11, 26, 39, 1, -1],
+            data: [106,25,−203,−51,146,−264,−89,−199,389,−532,322,267,−511,388],
             fill: false,
             backgroundColor: '#4CAF50',
             borderColor: '#4CAF50',
